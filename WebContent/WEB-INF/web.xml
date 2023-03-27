@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>studymate</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <!-- <welcome-file>메인</welcome-file> -->
+  </welcome-file-list>
+  
+  <servlet>
+     <servlet-name>Member</servlet-name>
+     <servlet-class>com.studymate.app.member.MemberFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>Member</servlet-name>
+     <url-pattern>*.me</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>Admin</servlet-name>
+     <servlet-class>com.studymate.app.admin.AdminFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>Admin</servlet-name>
+     <url-pattern>*.ad</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>Board</servlet-name>
+     <servlet-class>com.studymate.app.board.BoardFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>Board</servlet-name>
+     <url-pattern>*.bo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>BoardComment</servlet-name>
+     <servlet-class>com.studymate.app.boardComment.BoardCommentFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>BoardComment</servlet-name>
+     <url-pattern>*.bc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>BoardFile</servlet-name>
+     <servlet-class>com.studymate.app.boardFile.BoardFileFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>BoardFile</servlet-name>
+     <url-pattern>*.bf</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>Faq</servlet-name>
+     <servlet-class>com.studymate.app.faq.FaqFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>Faq</servlet-name>
+     <url-pattern>*.fq</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>MemberLikeCafe</servlet-name>
+     <servlet-class>com.studymate.app.memberLikeCafe.MemberLikeCafeFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>MemberLikeCafe</servlet-name>
+     <url-pattern>*.mlc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>MemberLikeStudyGroup</servlet-name>
+     <servlet-class>com.studymate.app.memberLikeStudyGroup.MemberLikeStudyGroupFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>MemberLikeStudyGroup</servlet-name>
+     <url-pattern>*.mlsg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>MemberProfile</servlet-name>
+     <servlet-class>com.studymate.app.memberProfile.MemberProfileFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>MemberProfile</servlet-name>
+     <url-pattern>*.mp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>Reservation</servlet-name>
+     <servlet-class>com.studymate.app.reservation.ReservationFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>Reservation</servlet-name>
+     <url-pattern>*.rv</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>StudyCafe</servlet-name>
+     <servlet-class>com.studymate.app.studyCafe.StudyCafeFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>StudyCafe</servlet-name>
+     <url-pattern>*.sc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>StudyCafeComment</servlet-name>
+     <servlet-class>com.studymate.app.studyCafeComment.StudyCafeCommentFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>StudyCafeComment</servlet-name>
+     <url-pattern>*.scc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>StudyCafeFile</servlet-name>
+     <servlet-class>com.studymate.app.studyCafeFile.StudyCafeFileFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>StudyCafeFile</servlet-name>
+     <url-pattern>*.scf</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>StudyGroup</servlet-name>
+     <servlet-class>com.studymate.app.studyGroup.StudyGroupFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>StudyGroup</servlet-name>
+     <url-pattern>*.sg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>StudyGroupComment</servlet-name>
+     <servlet-class>com.studymate.app.studyGroupComment.StudyGroupCommentFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>StudyGroupComment</servlet-name>
+     <url-pattern>*.sgc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>StudyGroupFile</servlet-name>
+     <servlet-class>com.studymate.app.studyGroupFile.StudyGroupFileFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>StudyGroupFile</servlet-name>
+     <url-pattern>*.sgf</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>StudyGroupLeader</servlet-name>
+     <servlet-class>com.studymate.app.studyGroupLeader.StudyGroupLeaderFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>StudyGroupLeader</servlet-name>
+     <url-pattern>*.sgl</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>
