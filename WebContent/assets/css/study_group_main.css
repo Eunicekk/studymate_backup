@@ -1,0 +1,1131 @@
+/* 검색 창 */
+.searchContainer {
+  position: sticky;
+  top: 0px;
+  background: rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(245, 241, 241);
+  z-index: 1050;
+}
+
+.searchBox > form {
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 402px;
+  height: 45px;
+  padding: 0px 19px 0px 17px;
+  border: 1px solid rgb(114, 115, 190);
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-left: 28px;
+}
+
+.searchBox > form > input[type="text"] {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 1px;
+  color: rgb(36, 36, 36);
+  font-size: 16px;
+  font-family: Regular, sans-serif;
+  letter-spacing: -0.8px;
+  box-sizing: border-box;
+  outline: none;
+  border: 0;
+}
+
+.searchBox > form > input[type="submit"] {
+  width: 15.5px;
+  height: 15.5px;
+  background: url("../img/icon-search-input.svg") 0px 0px / 100% 100% no-repeat;
+  cursor: pointer;
+  border: 0;
+}
+
+.searchFilter {
+  position: relative;
+  height: 52px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  background-color: rgb(255, 255, 255);
+  z-index: 1040;
+}
+
+/* 필터 버튼 */
+.filterContainer {
+  display: flex;
+  height: 100%;
+  -webkit-box-align: center;
+  align-items: center;
+  width: auto;
+  margin-left: 28px;
+  margin-right: 28px;
+}
+
+.filterBtn {
+  margin-right: 10px;
+}
+
+.filterlist {
+  position: relative;
+}
+
+.filter {
+  display: flex;
+  -webkit-box-align: center;
+  padding: 0px 6px 0px 11px;
+  height: 36px;
+  width: 405px;
+  border: 1px solid rgb(212, 219, 226);
+  border-radius: 4px;
+  align-items: center;
+  background-color: white;
+  position: relative;
+}
+
+.selectMenu {
+  top: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.1) 0px 4px 11px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.selectList {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.selectOption {
+  background-color: transparent;
+  color: inherit;
+  cursor: default;
+  display: block;
+  font-size: inherit;
+  padding: 8px 12px;
+  width: 100%;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+}
+
+.selectOption:hover {
+  background-color: rgb(102, 103, 171);
+}
+.Option {
+  background-color: transparent;
+  color: inherit;
+  cursor: default;
+  display: block;
+  font-size: inherit;
+  padding: 8px 12px;
+  width: 100%;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+}
+
+.Option:hover {
+  background-color: rgb(102, 103, 171);
+}
+
+.filter:hover {
+  border: 1px solid rgb(102, 103, 171);
+}
+
+.selectText:hover {
+  border: 1px solid rgb(102, 103, 171);
+}
+
+.click {
+  border: 1px solid rgb(102, 103, 171);
+  color: rgb(46, 47, 105);
+}
+
+.filter > span {
+  font-family: Regular, sans-serif;
+  font-size: 14px;
+  letter-spacing: -0.7px;
+  margin-right: 285px;
+  line-height: 19px;
+  color: rgb(138, 138, 138);
+}
+
+.filter .filterImg {
+  box-sizing: border-box;
+  display: inline-block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  max-width: 100%;
+}
+
+.filterImg > img {
+  margin-left: 10px;
+}
+
+.resetFilterBtn {
+  margin-left: auto;
+}
+
+.resetFilterBtn > a {
+  display: flex;
+  -webkit-box-align: center;
+  padding: 0px 6px 0px 11px;
+  width: 100px;
+  height: 36px;
+  border: 1px solid rgb(212, 219, 226);
+  border-radius: 15px;
+  align-items: center;
+  background-color: white;
+  justify-content: center;
+}
+
+.resetFilterBtn > a:hover {
+  background-color: rgb(102, 103, 171);
+}
+
+/* 지역 모달창 */
+
+.locationList > div {
+  left: 0;
+  top: 90px;
+}
+
+.locationModal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.28);
+  z-index: 1060;
+}
+
+.locationMain {
+  width: 100%;
+  background-color: white;
+  box-shadow: rgba(186, 184, 200, 0.16) 0px 34px 42px 0px;
+}
+
+.checkboxArea {
+  padding: 30px 0px;
+  width: 1194px;
+  margin: 0 28px;
+  max-height: calc(100vh - 207px);
+  overflow: hidden auto;
+}
+
+.checkboxStyle {
+  min-width: 400px;
+  display: flex;
+}
+
+ul {
+  list-style: none;
+}
+
+.locationRegion {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fit, minmax(47px, 47px));
+  background-color: rgb(243, 243, 247);
+  width: 200px;
+}
+
+.locationRegion > li {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 47px;
+  color: rgb(5, 5, 5);
+  cursor: pointer;
+}
+
+.locationRegion > li:hover {
+  background-color: rgb(102, 103, 171);
+}
+
+.locationArea {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(auto-fit, minmax(47px, 47px));
+  padding: 0px 50px;
+}
+
+.Area {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 47px;
+}
+
+.Area > label {
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.Area > span {
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.locationBtn {
+  border-top: 1px solid rgb(240, 240, 240);
+  padding: 15px 0px;
+}
+
+.locationSubmit {
+  width: 1194px;
+  margin: 0px auto;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+}
+
+.locationSubmit > button:first-child {
+  color: rgb(102, 103, 171);
+  border: 1px solid rgb(102, 103, 171);
+  background-color: white;
+  margin-right: 12px;
+}
+
+.locationSubmit > button:first-child:hover {
+  border: 1px solid rgb(102, 103, 171);
+}
+
+.locationSubmit > button {
+  font-family: Medium, sans-serif;
+  width: 143px;
+  height: 41px;
+  font-size: 15px;
+  letter-spacing: -0.75px;
+  border-radius: 4px;
+}
+
+.locationSubmit > button:last-child {
+  color: rgb(255, 255, 255);
+  background-color: rgb(102, 103, 171);
+  border: 1px solid rgb(102, 103, 171);
+}
+
+.locationSubmit > button:last-child:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(80, 81, 141);
+  border: 1px solid rgb(80, 81, 141);
+}
+
+.none {
+  display: none;
+}
+
+.person_none {
+  display: none;
+}
+
+.cal_none {
+  display: none;
+}
+
+/* 인원 모달창 */
+.personMain {
+  width: 100%;
+  background-color: white;
+  box-shadow: rgba(186, 184, 200, 0.16) 0px 34px 42px 0px;
+}
+
+.personContentStyle {
+  position: relative;
+  width: 1194px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.personContainer {
+  display: flex;
+  padding: 15px 320px;
+  width: calc(100% + 647px);
+  transform: translateX(-326px);
+}
+
+.personContainer > div {
+  width: 1194px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+}
+
+.personCount {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.minus {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  content: url("../img/minusR_unable_2G_24.svg");
+}
+
+.img {
+  vertical-align: top;
+}
+
+.personCnt {
+  display: flex;
+  width: 180px;
+  height: 42px;
+  padding: 0px 18px 0px 14px;
+  border: 1px solid rgb(212, 219, 226);
+  border-radius: 4px;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.personCnt > span:first-child {
+  flex: 0 0 auto;
+  color: rgb(87, 87, 87);
+}
+
+.personCnt input {
+  width: 100%;
+  height: 100%;
+  padding: 0px 5px;
+  color: rgb(36, 36, 36);
+  text-align: right;
+  font-size: 15px;
+  letter-spacing: -0.38px;
+  border: none;
+}
+
+input {
+  vertical-align: middle;
+}
+
+.personCnt > span:last-child {
+  flex: 0 0 auto;
+  color: rgb(87, 87, 87);
+}
+
+.personCnt > span {
+  font-size: 15px;
+  letter-spacing: -0.38px;
+}
+
+.plus {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  content: url("../img/plusR_base_2G_24.svg");
+}
+
+.personContainer div {
+  width: 1194px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+}
+
+.personBtn {
+  display: flex;
+  gap: 12px;
+}
+
+.personBtn > button {
+  display: inline-block;
+  width: 143px;
+  height: 41px;
+  font-size: 15px;
+  font-family: Medium, sans-serif;
+  letter-spacing: -0.75px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.personBtn > button:first-child {
+  color: rgb(42 53 110);
+  line-height: 39px;
+  background-color: white;
+  border: 1px solid rgb(115 140 166);
+}
+
+.personBtn > button:first-child:hover {
+  border: 1px solid rgb(54, 55, 104);
+}
+
+.personBtn > button:last-child {
+  color: rgb(255, 255, 255);
+  background-color: rgb(102, 103, 171);
+  border: 1px solid rgb(102, 103, 171);
+}
+
+.personBtn > button:last-child:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(80, 81, 141);
+  border: 1px solid rgb(80, 81, 141);
+}
+
+/* 메인 예약 공간 */
+
+.mainSpace {
+  width: 103%;
+  margin: 0 -25px;
+  margin-top: 57px;
+  padding-bottom: 68px;
+}
+
+.titleOrder {
+  display: flex;
+  position: relative;
+  padding-bottom: 17px;
+  border-bottom: 1px solid rgb(212, 219, 226);
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin: 0 58px;
+}
+
+.title {
+  color: rgb(36, 36, 36);
+  font-size: 20px;
+  font-family: Regular, sans-serif;
+  letter-spacing: -0.5px;
+  line-height: 29px;
+}
+
+.selectOrder {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.selectOrder > select {
+  margin-left: 46px;
+  padding: 0px 25px 0px 5px;
+  color: rgb(87, 87, 87);
+  font-size: 15px;
+  font-family: Medium, sans-serif;
+  letter-spacing: -0.75px;
+  border: none;
+  background: url("../img/select-down-5e5e5e.svg") right center / 16px no-repeat;
+  cursor: pointer;
+  appearance: none;
+  text-align-last: right;
+}
+
+select {
+  vertical-align: middle;
+}
+
+option {
+  font-weight: normal;
+  display: block;
+  white-space: nowrap;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
+}
+
+/* 메인 예약 정보 리스트 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.mainContainer {
+  margin: 0 auto;
+  width: 1300px;
+}
+
+.spaceList {
+  display: flex;
+  grid-gap: 27px;
+  gap: 27px;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.studyOpen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 20px 0;
+  width: 250px;
+  height: 250px;
+  background: #fff;
+  border: 2px solid #d1d1d1;
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  grid-gap: 3px;
+  gap: 3px;
+}
+
+.badgeFiled {
+  height: 28px;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.04em;
+}
+
+.badgeFiled > div {
+  border-radius: 20px;
+  padding: 4px 12px;
+  background: #efefef;
+  color: #656565;
+}
+
+.endDate {
+  display: flex;
+  font-size: 14px;
+  grid-gap: 8px;
+  gap: 8px;
+  color: #999;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.groupTitle {
+  font-size: 17px;
+  min-height: 50px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  margin: 12px 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.positionList {
+  height: 22px;
+  display: flex;
+  margin-bottom: 20px;
+  grid-gap: 3px;
+  gap: 3px;
+}
+
+.positionItem {
+  padding: 3px 10px;
+  grid-gap: 5px;
+  gap: 5px;
+  height: 22px;
+  background: #f2f4f8;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  color: #3e86f5;
+}
+
+.studyBorder {
+  border-top: 2px solid #f2f2f2;
+}
+
+.ReadReviewCnt {
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: space-between;
+  letter-spacing: -0.04em;
+  margin-top: 8px;
+}
+
+.userInfo {
+  display: flex;
+  grid-gap: 10px;
+  gap: 10px;
+}
+
+.userInfo > div:last-child {
+  padding-top: 8px;
+}
+
+.userImg {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.userImg > img {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+img {
+  width: 25px;
+  /* aspect-ratio: auto 30 / 30; */
+  height: 23px;
+}
+
+.ReadReview {
+  display: flex;
+  grid-gap: 10px;
+  gap: 10px;
+}
+
+.replyCnt {
+  display: flex;
+  align-items: center;
+  color: #999;
+  grid-gap: 5px;
+  gap: 5px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.replyCnt > p {
+  margin: 0;
+}
+
+.bookmark {
+  display: block;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 40px;
+  right: 20px;
+}
+
+.box-sizing {
+  box-sizing: border-box;
+  display: block;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  max-width: 100%;
+}
+
+/* 페이징 css */
+.pageNumber {
+  display: flex;
+  margin-top: 30px;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.prev {
+  width: 23px;
+  height: 35px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.prev:first-child {
+  margin-left: 0px;
+}
+
+.prev > button,
+.next > button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mainBtn .pageBtn {
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* 버튼에 올릴때 바뀌기 */
+.mainBtn > button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-family: Light, sans-serif;
+  letter-spacing: -0.8px;
+  line-height: 35px;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 78, 235);
+  border-radius: 50%;
+  border: none;
+}
+
+.pageBtn button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: rgb(87, 87, 87);
+  background-color: white;
+  font-size: 16px;
+  font-family: Light, sans-serif;
+  letter-spacing: -0.8px;
+  line-height: 35px;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: none;
+  padding: 0 15px;
+}
+
+.pageBtn button:hover {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-family: Light, sans-serif;
+  letter-spacing: -0.8px;
+  line-height: 35px;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 78, 235);
+  border-radius: 50%;
+  border: none;
+}
+
+.calMain {
+  width: 100%;
+  background-color: white;
+  box-shadow: rgba(186, 184, 200, 0.16) 0px 34px 42px 0px;
+}
+
+.sec_cal {
+  width: 360px;
+  margin: 0 auto;
+  font-family: "NotoSansR";
+}
+
+.sec_cal .cal_nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 78px;
+}
+
+.sec_cal .cal_nav .year-month {
+  width: 300px;
+  text-align: center;
+  line-height: 1;
+}
+
+.sec_cal .cal_nav .nav {
+  display: flex;
+  border: 1px solid #333333;
+  border-radius: 5px;
+}
+
+.sec_cal .cal_nav .go-prev,
+.sec_cal .cal_nav .go-next {
+  display: block;
+  width: 50px;
+  height: 78px;
+  font-size: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sec_cal .cal_nav .go-prev::before,
+.sec_cal .cal_nav .go-next::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #000;
+  border-width: 3px 3px 0 0;
+  transition: border 0.1s;
+}
+
+.sec_cal .cal_nav .go-prev:hover::before,
+.sec_cal .cal_nav .go-next:hover::before {
+  border-color: #ed2a61;
+}
+
+.sec_cal .cal_nav .go-prev::before {
+  transform: rotate(-135deg);
+}
+
+.sec_cal .cal_nav .go-next::before {
+  transform: rotate(45deg);
+}
+
+.sec_cal .cal_wrap {
+  padding-top: 40px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.sec_cal .cal_wrap .days {
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.sec_cal .cal_wrap::after {
+  top: 368px;
+}
+
+.sec_cal .cal_wrap .day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 7.1);
+  text-align: left;
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.current.today {
+  background: rgb(242 242 242);
+}
+
+.sec_cal .cal_wrap .dates {
+  display: flex;
+  flex-flow: wrap;
+  height: 290px;
+  align-content: space-around;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n -1) {
+  color: #3c6ffa;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n) {
+  color: #ed2a61;
+}
+
+.sec_cal .cal_wrap .day.disable {
+  color: #ddd;
+}
+
+.sec_cal .cal_wrap .day:hover {
+  border-bottom: 5px solid #5a5597;
+  color: #5a5597;
+}
+
+/* 전체적인 스타일링 */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  width: auto;
+  height: auto;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.custom-select > div {
+  padding-top: 5px;
+}
+
+/* 선택된 항목 스타일링 */
+.select-selected {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 셀렉트 박스 항목 스타일링 */
+.select-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #f9f9f9;
+  z-index: 999;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.select-items div {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 마우스 오버 시 스타일링 */
+.select-items div:hover {
+  background-color: #ddd;
+}
+
+.InputContainer > input {
+  width: 20rem;
+  height: 2.5rem;
+  outline: none;
+  font-size: 1rem;
+  padding: 0 1.5rem;
+  border: 3px solid #4482f7;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.selectMenu {
+  top: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.1) 0px 4px 11px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.selectList {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.selectText {
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(204, 204, 204);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  position: relative;
+  transition: all 100ms ease 0s;
+  box-sizing: border-box;
+  width: 405px;
+  outline: 0px !important;
+  height: 37px;
+}
+
+.TextFiled {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  flex: 1 1 0%;
+  flex-wrap: wrap;
+  padding: 2px 8px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 20px;
+}
+
+.Text {
+  color: rgb(128, 128, 128);
+  margin-left: 2px;
+  margin-right: 2px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+
+.Text_filed {
+  color: rgb(128, 128, 128);
+  margin-left: 2px;
+  margin-right: 2px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+
+.BtnFiled {
+  -webkit-box-align: center;
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.BtnFiled > span {
+  /* align-self: stretch; */
+  background-color: rgb(204, 204, 204);
+  margin-bottom: 8px;
+  margin-top: 8px;
+  width: 1px;
+  box-sizing: border-box;
+}
+
+.underImg {
+  color: rgb(204, 204, 204);
+  display: flex;
+  padding: 8px;
+  transition: color 150ms ease 0s;
+  box-sizing: border-box;
+}
+
+.newWriteBtn {
+  margin-right: 28px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

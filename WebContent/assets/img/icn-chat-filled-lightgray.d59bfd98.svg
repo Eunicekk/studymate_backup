@@ -1,0 +1,15 @@
+<svg id="icn-chat-filled-lightgray" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-2{fill:#fff}
+        </style>
+    </defs>
+    <g id="그룹_23693" data-name="그룹 23693" transform="translate(-290.999 -740.133)">
+        <path id="합치기_45" data-name="합치기 45" d="M-7136.4-1486a5.11 5.11 0 0 1-1.712.293 4.775 4.775 0 0 1-4.892-4.648 4.775 4.775 0 0 1 4.892-4.648 4.774 4.774 0 0 1 4.893 4.648 4.515 4.515 0 0 1-1.365 3.221l.146 2.429z" transform="translate(7441 2242.134)" style="fill:#bec2c8"/>
+        <g id="그룹_23692" data-name="그룹 23692" transform="translate(-1.5)">
+            <circle id="타원_479" data-name="타원 479" class="cls-2" cx=".75" cy=".75" r=".75" transform="translate(305.142 751)"/>
+            <circle id="타원_480" data-name="타원 480" class="cls-2" cx=".75" cy=".75" r=".75" transform="translate(302.142 751)"/>
+        </g>
+    </g>
+    <path id="사각형_5559" data-name="사각형 5559" style="fill:none" d="M0 0h24v24H0z"/>
+</svg>
