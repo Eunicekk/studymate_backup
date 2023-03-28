@@ -8,90 +8,89 @@ package com.studymate.app.studyCafe.dto;
 //study_cafe_content varchar(300),
 //member_number int unsigned,
 public class StudyCafeDTO {
-	private int studyCafeNumber;
-	private String studyCafeName;
-	private String studyCafeAddress;
-	private String studyCafePrice;
-	private String studyCafeAvaliableDate;
-	private int studyCafeAvaliableCapacity;
-	private String studyCafeContent;
-	private int reservationNumber;
-	
-	public StudyCafeDTO() {}
 
-	public int getStudyCafeNumber() {
-		return studyCafeNumber;
-	}
+   private int studyCafeNumber;
+   private String studyCafeName;
+   private String studyCafeAddress;
+   private String studyCafePrice;
+   private String studyCafeAvaliableDate;
+   private int studyCafeAvaliableCapacity;
+   private String studyCafeContent;
+   private int reservationNumber;
+   
+   public StudyCafeDTO() {}
 
-	public void setStudyCafeNumber(int studyCafeNumber) {
-		this.studyCafeNumber = studyCafeNumber;
-	}
+   public int getStudyCafeNumber() {
+      return studyCafeNumber;
+   }
 
-	public String getStudyCafeName() {
-		return studyCafeName;
-	}
+   public void setStudyCafeNumber(int studyCafeNumber) {
+      this.studyCafeNumber = studyCafeNumber;
+   }
 
-	public void setStudyCafeName(String studyCafeName) {
-		this.studyCafeName = studyCafeName;
-	}
+   public String getStudyCafeName() {
+      return studyCafeName;
+   }
 
-	public String getStudyCafeAddress() {
-		return studyCafeAddress;
-	}
+   public void setStudyCafeName(String studyCafeName) {
+      this.studyCafeName = studyCafeName;
+   }
 
-	public void setStudyCafeAddress(String studyCafeAddress) {
-		this.studyCafeAddress = studyCafeAddress;
-	}
+   public String getStudyCafeAddress() {
+      return studyCafeAddress;
+   }
 
-	public String getStudyCafePrice() {
-		return studyCafePrice;
-	}
+   public void setStudyCafeAddress(String studyCafeAddress) {
+      this.studyCafeAddress = studyCafeAddress;
+   }
 
-	public void setStudyCafePrice(String studyCafePrice) {
-		this.studyCafePrice = studyCafePrice;
-	}
+   public String getStudyCafePrice() {
+      return studyCafePrice;
+   }
 
-	public String getStudyCafeAvaliableDate() {
-		return studyCafeAvaliableDate;
-	}
+   public void setStudyCafePrice(String studyCafePrice) {
+      this.studyCafePrice = studyCafePrice;
+   }
 
-	public void setStudyCafeAvaliableDate(String studyCafeAvaliableDate) {
-		this.studyCafeAvaliableDate = studyCafeAvaliableDate;
-	}
+   public String getStudyCafeAvaliableDate() {
+      return studyCafeAvaliableDate;
+   }
 
-	public int getStudyCafeAvaliableCapacity() {
-		return studyCafeAvaliableCapacity;
-	}
+   public void setStudyCafeAvaliableDate(String studyCafeAvaliableDate) {
+      this.studyCafeAvaliableDate = studyCafeAvaliableDate;
+   }
 
-	public void setStudyCafeAvaliableCapacity(int studyCafeAvaliableCapacity) {
-		this.studyCafeAvaliableCapacity = studyCafeAvaliableCapacity;
-	}
+   public int getStudyCafeAvaliableCapacity() {
+      return studyCafeAvaliableCapacity;
+   }
 
-	public String getStudyCafeContent() {
-		return studyCafeContent;
-	}
+   public void setStudyCafeAvaliableCapacity(int studyCafeAvaliableCapacity) {
+      this.studyCafeAvaliableCapacity = studyCafeAvaliableCapacity;
+   }
 
-	public void setStudyCafeContent(String studyCafeContent) {
-		this.studyCafeContent = studyCafeContent;
-	}
+   public String getStudyCafeContent() {
+      return studyCafeContent;
+   }
 
-	public int getReservationNumber() {
-		return reservationNumber;
-	}
+   public void setStudyCafeContent(String studyCafeContent) {
+      this.studyCafeContent = studyCafeContent;
+   }
 
-	public void setReservationNumber(int reservationNumber) {
-		this.reservationNumber = reservationNumber;
-	}
+   public int getReservationNumber() {
+      return reservationNumber;
+   }
 
-	@Override
-	public String toString() {
-		return "StudyCafeDTO [studyCafeNumber=" + studyCafeNumber + ", studyCafeName=" + studyCafeName
-				+ ", studyCafeAddress=" + studyCafeAddress + ", studyCafePrice=" + studyCafePrice
-				+ ", studyCafeAvaliableDate=" + studyCafeAvaliableDate + ", studyCafeAvaliableCapacity="
-				+ studyCafeAvaliableCapacity + ", studyCafeContent=" + studyCafeContent + ", reservationNumber="
-				+ reservationNumber + "]";
-	}
+   public void setReservationNumber(int reservationNumber) {
+      this.reservationNumber = reservationNumber;
+   }
 
-	
-	
+   @Override
+   public String toString() {
+      return "StudyCafeDTO [studyCafeNumber=" + studyCafeNumber + ", studyCafeName=" + studyCafeName
+            + ", studyCafeAddress=" + studyCafeAddress + ", studyCafePrice=" + studyCafePrice
+            + ", studyCafeAvaliableDate=" + studyCafeAvaliableDate + ", studyCafeAvaliableCapacity="
+            + studyCafeAvaliableCapacity + ", studyCafeContent=" + studyCafeContent + ", reservationNumber="
+            + reservationNumber + "]";
+   }
+
 }
