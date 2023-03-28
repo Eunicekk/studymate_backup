@@ -3,7 +3,9 @@
    License: none (public domain)
 */
 
+
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
 
 html,
 body,
@@ -86,14 +88,16 @@ time,
 mark,
 audio,
 video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    font-family: 'Pretendard', 'sans-serif';
-    /* box-sizing: border-box; */
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  font-family: "Pretendard", "sans-serif";
+  /* box-sizing: border-box; */
+
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -107,34 +111,38 @@ hgroup,
 menu,
 nav,
 section {
-    display: block;
-    /* box-sizing: border-box; */
+
+  display: block;
+  /* box-sizing: border-box; */
 }
 body {
-    line-height: 1;
+  line-height: 1;
 }
 ol,
 ul {
-    list-style: none;
+  list-style: none;
 }
 blockquote,
 q {
-    quotes: none;
+  quotes: none;
+
 }
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: "";
-    content: none;
+
+  content: "";
+  content: none;
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 a {
-    text-decoration: none;
-    cursor: pointer;
-    color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+
 }

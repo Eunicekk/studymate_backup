@@ -8,6 +8,7 @@ package com.studymate.app.studyCafe.dto;
 //study_cafe_content varchar(300),
 //member_number int unsigned,
 public class StudyCafeDTO {
+
    private int studyCafeNumber;
    private String studyCafeName;
    private String studyCafeAddress;
@@ -91,4 +92,5 @@ public class StudyCafeDTO {
             + studyCafeAvaliableCapacity + ", studyCafeContent=" + studyCafeContent + ", reservationNumber="
             + reservationNumber + "]";
    }
+
 }
