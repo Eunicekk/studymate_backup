@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+body{
+    font-family: 'Pretendard';
+}
+
+.chart{
+    margin-bottom: 80px;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 28px;
+}

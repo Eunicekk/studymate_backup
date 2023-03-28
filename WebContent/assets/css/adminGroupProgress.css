@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+body{
+    width: 980px;
+    margin: 20px auto 0;
+    font-family: 'Pretendard';
+}
+
+.chart{
+    margin-bottom: 80px;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 28px;
+}
