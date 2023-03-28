@@ -1,0 +1,176 @@
+@charset "UTF-8";
+
+
+
+/* 포트폴리오 테이블 검색, 포트폴리오 테이블 정렬 */
+.board-check-setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* 검색 창 */
+.board-search {
+    position: relative;
+}
+
+.board-search input {
+    width: 300px;
+    padding: 10px 10px 10px 40px;
+    border-radius: 4px;
+    border: 1px solid #bdbdbd;
+    font-size: 16px;
+    font-family: 'Pretendard';
+    outline: none;
+}
+
+.board-search span {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    z-index: 10;
+    color: #bdbdbd;
+}
+
+.board-search button {
+    padding: 11px 24px;
+    border-radius: 4px;
+    border: none;
+    background-color: #65619E;
+    color: white;
+    font-family: 'Pretendard';
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.board-search button:hover {
+    background-color: #4E4C8D;
+}
+
+/* 테이블 정렬 버튼 */
+.board-align {
+    display: flex;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+.board-align div {
+    display: flex;
+    align-items: center;
+    color: #bdbdbd;
+    cursor: pointer;
+}
+
+.board-align div .material-symbols-outlined {
+    font-weight: bold;
+}
+
+.board-align div:nth-child(1) {
+    margin-right: 18px;
+}
+
+.board-align div:nth-child(1) .material-symbols-outlined {
+    color: #65619E;
+}
+
+.board-align div:nth-child(1) span {
+    color: #000000;
+}
+
+/* 총 개수 */
+h1{
+    font-size: 20px;
+    font-weight: 700;
+    color: #575757;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 40px;
+}
+
+/* 전체 포트폴리오 테이블 */
+.board-check{
+    margin-top: 40px;
+}
+.board-table, tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.board-table{
+    width: 952px;
+    background-color: white;
+}
+.board-table th{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 16px 0;
+    background-color: #65619E;
+    color: white;
+}
+.board-table td{
+    font-size: 14px;
+    padding: 12px 0;
+    vertical-align: middle;
+}
+.board-table td>span{
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    padding: 0 4px;
+    cursor: pointer;
+}
+.board-table td>span:hover{
+    color: red;
+}
+.board-table td a{
+    display: inline-block;
+    width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.board-table td a:hover{
+    text-decoration: underline;
+}
+
+/* page */
+#paging {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#paging>a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    border-radius: 100%;
+    height: 32px;
+    width: 32px;
+    font-size: 14px;
+}
+
+#paging>a:hover {
+    background-color: rgb(227, 227, 227);
+}
+
+#left-side-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 3px solid #1a4568;
+    border-radius: 100%;
+    padding: 10px;
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    bottom: 5%;
+    left: 3%;
+    color: #1a4568;
+}
