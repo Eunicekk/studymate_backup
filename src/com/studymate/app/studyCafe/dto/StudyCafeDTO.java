@@ -12,10 +12,10 @@ public class StudyCafeDTO {
 	private String studyCafeName;
 	private String studyCafeAddress;
 	private String studyCafePrice;
-	private String studyCafeAcaliableDate;
-	private int studyCafeAcaliableCapacity;
+	private String studyCafeAvaliableDate;
+	private int studyCafeAvaliableCapacity;
 	private String studyCafeContent;
-	private int memberNumber;
+	private int reservationNumber;
 	
 	public StudyCafeDTO() {}
 
@@ -51,20 +51,20 @@ public class StudyCafeDTO {
 		this.studyCafePrice = studyCafePrice;
 	}
 
-	public String getStudyCafeAcaliableDate() {
-		return studyCafeAcaliableDate;
+	public String getStudyCafeAvaliableDate() {
+		return studyCafeAvaliableDate;
 	}
 
-	public void setStudyCafeAcaliableDate(String studyCafeAcaliableDate) {
-		this.studyCafeAcaliableDate = studyCafeAcaliableDate;
+	public void setStudyCafeAvaliableDate(String studyCafeAvaliableDate) {
+		this.studyCafeAvaliableDate = studyCafeAvaliableDate;
 	}
 
-	public int getStudyCafeAcaliableCapacity() {
-		return studyCafeAcaliableCapacity;
+	public int getStudyCafeAvaliableCapacity() {
+		return studyCafeAvaliableCapacity;
 	}
 
-	public void setStudyCafeAcaliableCapacity(int studyCafeAcaliableCapacity) {
-		this.studyCafeAcaliableCapacity = studyCafeAcaliableCapacity;
+	public void setStudyCafeAvaliableCapacity(int studyCafeAvaliableCapacity) {
+		this.studyCafeAvaliableCapacity = studyCafeAvaliableCapacity;
 	}
 
 	public String getStudyCafeContent() {
@@ -75,22 +75,23 @@ public class StudyCafeDTO {
 		this.studyCafeContent = studyCafeContent;
 	}
 
-	public int getMemberNumber() {
-		return memberNumber;
+	public int getReservationNumber() {
+		return reservationNumber;
 	}
 
-	public void setMemberNumber(int memberNumber) {
-		this.memberNumber = memberNumber;
+	public void setReservationNumber(int reservationNumber) {
+		this.reservationNumber = reservationNumber;
 	}
 
 	@Override
 	public String toString() {
 		return "StudyCafeDTO [studyCafeNumber=" + studyCafeNumber + ", studyCafeName=" + studyCafeName
 				+ ", studyCafeAddress=" + studyCafeAddress + ", studyCafePrice=" + studyCafePrice
-				+ ", studyCafeAcaliableDate=" + studyCafeAcaliableDate + ", studyCafeAcaliableCapacity="
-				+ studyCafeAcaliableCapacity + ", studyCafeContent=" + studyCafeContent + ", memberNumber="
-				+ memberNumber + "]";
+				+ ", studyCafeAvaliableDate=" + studyCafeAvaliableDate + ", studyCafeAvaliableCapacity="
+				+ studyCafeAvaliableCapacity + ", studyCafeContent=" + studyCafeContent + ", reservationNumber="
+				+ reservationNumber + "]";
 	}
+
 	
 	
 }
