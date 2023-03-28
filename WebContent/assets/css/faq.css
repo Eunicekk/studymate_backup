@@ -1,0 +1,219 @@
+@charset "UTF-8";
+
+
+section {
+    display: block;
+    font-size: 1.125rem;
+}
+
+/* section * {
+    box-sizing: border-box;
+    outline: none;
+} */
+
+li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+section button {
+    border: 0;
+    background: transparent;
+}
+
+img {
+    vertical-align: top;
+}
+
+/* ============ 초기화 =========== */
+
+
+/* 상단 배너 컨테이너 */
+.topBanner-container {
+    display: flex;
+    /* width: 100%; */
+    height: 292px;
+    background-position: center;
+    background-color:#9EA0C6 ;
+    align-items: center;
+    margin-bottom: 135px;
+}
+
+/* 상단 배너 텍스트 2줄 */
+.topBanner-textBox {
+    display: flex;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    width: 1194px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* 자주하는 질문 */
+.topBanner-textBox>p:first-child{
+
+    font-family: Medium, sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 45px;
+    letter-spacing: -1.2px;
+    margin-bottom: 5px;
+}
+
+/* 질문 리스트 래퍼 */
+
+.NoticeContent-container {
+    width: 1194px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.NoticeContent-titleBox {
+    position: relative;
+    padding-bottom: 24.5px;
+    border-bottom: 1px solid rgb(212, 219, 226);
+    width: 90%;
+}
+
+.NoticeContent-titleBox>h2 {
+    font-size: 24px;
+    letter-spacing: 0.6px;
+}
+
+.NoticeContent-titleBox::after {
+    position: absolute;
+    left: 0px;
+    /* 선 위치 */
+    bottom: -1px;
+/* absolute에 걸린 선위치 */
+    width: 50px;
+    /* 선 넓이 */
+    height: 1px;  
+    /* 선 두께 */
+    background-color: rgb(94, 102, 141);
+     content: ""
+     /* 선 밑에 공백 안주면 안생김*/
+}
+
+/* FAQ 게시판 게시글하나하나 버튼으로돼있음 */
+.NoticeContent-serviceItemButton {
+    position: relative;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    /* 이 두개 뭐지? */
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 28.5px 0px;
+    border-bottom: 1px solid rgb(212, 219, 226);
+    outline: none;
+    box-shadow: none;
+    align-items: flex-start;
+}
+
+/* FAQ 게시판 게시글 번호 */
+.NoticeContent-serviceItemButton>p {
+min-width: 68px;
+font-size: 18px;
+letter-spacing: -0.45px;
+color: rgb(94, 102, 141);
+margin-right: 59px;
+white-space: nowrap;
+text-align: left;
+}
+
+.serviceItem-titleDate {
+    display: flex;
+    width: 900px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+.serviceItem-titleDate>p:first-child {
+    font-size: 23px;
+    letter-spacing: -0.45px;
+    text-align: left;
+}
+
+
+/* 추가 div의 js 처리하면서 수정할 부분  */
+
+.serviceItem-extra {
+    position: absolute;
+    box-sizing: border-box;
+    display: inline-block;
+    overflow: hidden;
+    height: initial;
+    background: none;
+    opacity: 1;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    top: 10px;
+    right: 10px;
+    position: relative;
+    max-width: 100%;
+}
+
+.serviceItem-extra-button {
+    box-sizing: border-box;
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: #9EA0C6;
+    /* height: initial; */
+    background: none;
+    opacity: 1;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+/* 팝업창 */
+.serviceItem-contentBox {
+    display: none;
+    width: 90%;
+    padding: 75.5px 0px;
+    border-bottom: 1px solid rgb(212, 219, 226);
+    position: relative;
+
+}
+
+/* 팝업창 */
+.serviceItem-contentBox p {
+    font-size: 19px;
+    line-height: 35px;
+    letter-spacing: -0.5px;
+}
+
+.serviceItem-contentBox h2 {
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 35px;
+    letter-spacing: -0.45px;
+    
+}
+
+
+/* 관리자용 등록 수정 삭제 버튼 */
+
+.boardContent-editButtons button {
+    right: 0;
+    border-radius: 4px;
+    background-color: azure;
+    margin-top: 20px;
+    
+}
+ 
+.boardContent-editButtons button:hover {
+    background-color: #9EA0C6;
+}
+
