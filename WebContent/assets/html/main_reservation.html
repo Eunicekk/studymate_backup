@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/main_reservation.css" />
+  </head>
+  <body>
+    <header></header>
+    <main id="main">
+      <!--nav 검색창, 필터버튼 -->
+      <div class="searchContainer">
+        <div class="searchBox">
+          <button class="searchBtn" hidden></button>
+          <form id="search" action="" method="post">
+            <input
+              type="text"
+              ,
+              autocomplete="off"
+              id="searchInput"
+              placeholder="카페이름을 입력하세요"
+              value=""
+            />
+            <input type="submit" value="" />
+          </form>
+        </div>
+
+        <div class="searchFilter">
+          <ul class="filterContainer">
+
+            <li class="filterBtn location">
+              <div class="filterlist">
+                <button class="filter">
+                  <span class="fontColor">지역</span>
+                  <span class="filterImg">
+                    <img src="../img/arrow-down-87-new.f91c9db5.svg" />
+                  </span>
+                </button>
+              </div>
+              <!-- 모달창 -->
+              <div class="locationList none">
+                <div class="locationModal">
+                  <div class="locationMain">
+                    <div class="mainContainer">
+                      <div class="checkboxArea">
+                        <div class="checkboxStyle">
+                          <ul class="locationRegion">
+                            <li class="Region changeColor">서울</li>
+                            <li class="Region">경기</li>
+                            <li class="Region">인천</li>
+                            <li class="Region">부산</li>
+                            <li class="Region">대전</li>
+                            <li class="Region">대구</li>
+                            <li class="Region">울산</li>
+                            <li class="Region">세종</li>
+                            <!-- <li class="Region">광주</li>
+                            <li class="Region">강원</li>
+                            <li class="Region">충북</li>
+                            <li class="Region">충남</li>
+                            <li class="Region">경북</li>
+                            <li class="Region">경남</li>
+                            <li class="Region">전북</li>
+                            <li class="Region">전남</li>
+                            <li class="Region">제주</li> -->
+                          </ul>
+                          <!-- 지역 별로 name 값 나눠야하고 value 값 채워야함 -->
+                          <ul id="" class="locationArea" >
+                            <li class="Area">
+                              <label>
+                                <input id="all" type="checkbox" name="area" value="서울전체">
+                                <span>서울전체</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area" value="강남구">
+                                <span>강남구</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area" value="강동구">
+                                <span>강동구</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area" value="강북구">
+                                <span>강북구</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area" value="강서구">
+                                <span>강서구</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>관악구</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>광진구</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>구로구</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>금천구</span>
+                              </label>
+                            </li>
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>노원구</span>
+                              </label>
+                            </li>
+                            
+                          </ul>
+                          <ul id="ex" class="locationArea none">
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>경기전체</span>
+                              </label>
+                            </li>
+                          </ul>
+
+                          <ul class="locationArea none">
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>인천 전체</span>
+                              </label>
+                            </li>
+                          </ul>
+                          <ul class="locationArea none">
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>부산 전체</span>
+                              </label>
+                            </li>
+                          </ul>
+                          <ul class="locationArea none">
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>대구 전체</span>
+                              </label>
+                            </li>
+                          </ul>
+                          <ul class="locationArea none">
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>대전 전체</span>
+                              </label>
+                            </li>
+                          </ul>
+                          <ul class="locationArea none">
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>울산 전체</span>
+                              </label>
+                            </li>
+                          </ul>
+                          <ul class="locationArea none">
+                            <li class="Area">
+                              <label >
+                                <input type="checkbox" name="area">
+                                <span>세종 전체</span>
+                              </label>
+                            </li>
+                          </ul>                         
+
+                        </div>
+                      </div>
+                    </div>
+                  
+                  <div class="locationBtn">
+                    <div class="locationSubmit">
+                      <button type="button" onclick="initCheckbox()" >초기화</button>
+                      <button class="ReginBtn">적용</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </li>
+
+            <li class="filterBtn calendal">
+              <div class="filterlist">
+                <button class="filter">
+                  <span class="cal">날짜</span>
+                  <span class="filterImg">
+                    <img src="../img/arrow-down-87-new.f91c9db5.svg" />
+                  </span>
+                </button>
+                
+                <!--캘린더  -->
+                <div class="locationList cal_none">
+                  <div class="locationModal">
+                    <div class="calMain">
+                      <div class="sec_cal">
+                        <div class="cal_nav">
+                          <a href="javascript:;" class="nav-btn go-prev">prev</a>
+                          <div class="year-month"></div>
+                          <a href="javascript:;" class="nav-btn go-next">next</a>
+                        </div>
+                        <div class="cal_wrap">
+                          <div class="days">
+                            <div class="day">MON</div>
+                            <div class="day">TUE</div>
+                            <div class="day">WED</div>
+                            <div class="day">THU</div>
+                            <div class="day">FRI</div>
+                            <div class="day">SAT</div>
+                            <div class="day">SUN</div>
+                          </div>
+                          <div class="dates"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+            </li>
+
+            <li class="filterBtn personnel ">
+              <div class="filterlist">
+                <button class="filter">
+                  <span class="price">가격</span>
+                  <span class="filterImg">
+                    <img src="../img/arrow-down-87-new.f91c9db5.svg" />
+                  </span>
+                </button>
+              </div>
+
+              <div class="locationList person_none">
+                <div class="locationModal">
+                  <form id=reset_test_form>
+                    <div class="wrapper">
+                      <header>
+                        <h2>가격대 정하기</h2>
+                        <p>최소 가격과 최대 가격을 설정하세요</p>
+                      </header>
+                      
+                      <div class="price-input">
+                        <div class="field">
+                          <span>Min</span>
+                          <input type="number" class="input-min" value="12500" >
+                        </div>
+                        <div class="separator">-</div>
+                        <div class="field">
+                          <span>Max</span>
+                          <input type="number" class="input-max" value="37500" />
+                        </div>
+                      </div>
+                      <div class="slider">
+                        <div class="progress"></div>
+                      </div>
+                      <div class="range-input">
+                        
+                        <input
+                          type="range"
+                          class="range-min"
+                          min="0"
+                          max="50000"
+                          value="12500"
+                          step="1000"
+                        />
+                        <input
+                          type="range"
+                          class="range-max"
+                          min="0"
+                          max="50000"
+                          value="37500"
+                          step="1000"
+                          />
+                          <!-- 설정한 가격 get으로 넘겨주고 mapper로 최소 최대 사이의 있는 가격인 스터디 카페 뿌려주기 -->
+                      <form action="" method="get">
+                        <input type="text" class="min" hidden>
+                        <input type="text" class="max" hidden>
+                      </div>
+                      <div class="personBtn">
+                        <button id="btn_reset" type="reset">초기화</button>
+                        <button id="priceBtn" type="submit">적용</button>
+                      </div>
+                    </form>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </li>
+
+            <li class="resetFilterBtn">
+              <!-- 스터디 예약 메인 페이지 -->
+              <a href="">
+                <span>초기화</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 스터디 카페 메인  -->
+        <div class="mainSpace">
+          <div class="titleOrder">
+            <h2 class="title">
+              스터디카페 예약
+            </h2>
+            <div class="selectOrder">
+              <select >
+                <option value="popularity">
+                  인기순
+                </option>
+                <option value="interest">
+                  관심순
+                </option>
+                <option value="latest">
+                  최신순
+                </option>
+                <option value="viewCount">
+                  조회순
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <ul class="spaceList">
+            <li>
+              <a href="" class="cafeOpen">
+                <div class="spaceImg">
+                  <img class="imgInfo" src="../img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg" alt="뉴욕감성">
+                  <input type="button" class="favoritButton">
+                </div>
+
+                <div class="spaceItem">
+                  <div class="studyCafeName">
+                    <!-- 카페이름 -->
+                    <div class="cafename">
+                      <span>케페이름</span>
+                    </div>
+
+                    <!-- 조회순 좋아요 -->
+                    <div class="readContLike">
+                      <!-- 조회순 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-chat-filled-lightgray.d59bfd98.svg" alt="">
+                        </span>
+                        156</span>
+                        <!-- like수 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
+                        </span>
+                        156</span>
+                    </div>
+                  </div>
+                  <!-- 카페 위치 -->
+                  <p class="studyCafeLocation">서울시 강남구 사가정로 148 sk스포트상가 토모집</p>
+
+                  <!-- 카페 가격 -->
+                  <div class="studyCafePrice">
+                    <div class="priceText">
+                      68000
+                      <p>
+                        원~
+                        / 1시간당
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 댓글 -->
+                  <div class="studyCafeReply">
+                    <div class="startImg">
+                      <img src="../img/Star_1.svg" alt="별점">
+                    </div>
+                    4.8
+                    <div class="replyInfo">(후기5)</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="spaceImg">
+                  <img class="imgInfo" src="../img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg" alt="뉴욕감성">
+                  <input type="button" class="favoritButton">
+                </div>
+
+                <div class="spaceItem">
+                  <div class="studyCafeName">
+                    <!-- 카페이름 -->
+                    <div class="cafename">
+                      <span>케페이름</span>
+                    </div>
+
+                    <!-- 조회순 좋아요 -->
+                    <div class="readContLike">
+                      <!-- 조회순 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-chat-filled-lightgray.d59bfd98.svg" alt="">
+                        </span>
+                        156</span>
+                        <!-- like수 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
+                        </span>
+                        156</span>
+                    </div>
+                  </div>
+                  <!-- 카페 위치 -->
+                  <p class="studyCafeLocation">서울시 동대문구 사가정로 148 sk스포트상가 토모집</p>
+
+                  <!-- 카페 가격 -->
+                  <div class="studyCafePrice">
+                    <div class="priceText">
+                      68000
+                      <p>
+                        원~
+                        / 1시간당
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 댓글 -->
+                  <div class="studyCafeReply">
+                    <div class="startImg">
+                      <img src="../img/Star_1.svg" alt="별점">
+                    </div>
+                    4.8
+                    <div class="replyInfo">(후기5)</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="spaceImg">
+                  <img class="imgInfo" src="../img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg" alt="뉴욕감성">
+                  <input type="button" class="favoritButton">
+                </div>
+
+                <div class="spaceItem">
+                  <div class="studyCafeName">
+                    <!-- 카페이름 -->
+                    <div class="cafename">
+                      <span>케페이름</span>
+                    </div>
+
+                    <!-- 조회순 좋아요 -->
+                    <div class="readContLike">
+                      <!-- 조회순 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-chat-filled-lightgray.d59bfd98.svg" alt="">
+                        </span>
+                        156</span>
+                        <!-- like수 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
+                        </span>
+                        156</span>
+                    </div>
+                  </div>
+                  <!-- 카페 위치 -->
+                  <p class="studyCafeLocation">서울시 동대문구 사가정로 148 sk스포트상가 토모집</p>
+
+                  <!-- 카페 가격 -->
+                  <div class="studyCafePrice">
+                    <div class="priceText">
+                      68000
+                      <p>
+                        원~
+                        / 1시간당
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 댓글 -->
+                  <div class="studyCafeReply">
+                    <div class="startImg">
+                      <img src="../img/Star_1.svg" alt="별점">
+                    </div>
+                    4.8
+                    <div class="replyInfo">(후기5)</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="spaceImg">
+                  <img class="imgInfo" src="../img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg" alt="뉴욕감성">
+                  <input type="button" class="favoritButton">
+                </div>
+
+                <div class="spaceItem">
+                  <div class="studyCafeName">
+                    <!-- 카페이름 -->
+                    <div class="cafename">
+                      <span>케페이름</span>
+                    </div>
+
+                    <!-- 조회순 좋아요 -->
+                    <div class="readContLike">
+                      <!-- 조회순 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-chat-filled-lightgray.d59bfd98.svg" alt="">
+                        </span>
+                        156</span>
+                        <!-- like수 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
+                        </span>
+                        156</span>
+                    </div>
+                  </div>
+                  <!-- 카페 위치 -->
+                  <p class="studyCafeLocation">서울시 동대문구 사가정로 148 sk스포트상가 토모집</p>
+
+                  <!-- 카페 가격 -->
+                  <div class="studyCafePrice">
+                    <div class="priceText">
+                      68000
+                      <p>
+                        원~
+                        / 1시간당
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 댓글 -->
+                  <div class="studyCafeReply">
+                    <div class="startImg">
+                      <img src="../img/Star_1.svg" alt="별점">
+                    </div>
+                    4.8
+                    <div class="replyInfo">(후기5)</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="spaceImg">
+                  <img class="imgInfo" src="../img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg" alt="뉴욕감성">
+                  <input type="button" class="favoritButton">
+                </div>
+
+                <div class="spaceItem">
+                  <div class="studyCafeName">
+                    <!-- 카페이름 -->
+                    <div class="cafename">
+                      <span>케페이름</span>
+                    </div>
+
+                    <!-- 조회순 좋아요 -->
+                    <div class="readContLike">
+                      <!-- 조회순 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-chat-filled-lightgray.d59bfd98.svg" alt="">
+                        </span>
+                        156</span>
+                        <!-- like수 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
+                        </span>
+                        156</span>
+                    </div>
+                  </div>
+                  <!-- 카페 위치 -->
+                  <p class="studyCafeLocation">서울시 동대문구 사가정로 148 sk스포트상가 토모집</p>
+
+                  <!-- 카페 가격 -->
+                  <div class="studyCafePrice">
+                    <div class="priceText">
+                      68000
+                      <p>
+                        원~
+                        / 1시간당
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 댓글 -->
+                  <div class="studyCafeReply">
+                    <div class="startImg">
+                      <img src="../img/Star_1.svg" alt="별점">
+                    </div>
+                    4.8
+                    <div class="replyInfo">(후기5)</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="spaceImg">
+                  <img class="imgInfo" src="../img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg" alt="뉴욕감성">
+                  <input type="button" class="favoritButton">
+                </div>
+
+                <div class="spaceItem">
+                  <div class="studyCafeName">
+                    <!-- 카페이름 -->
+                    <div class="cafename">
+                      <span>케페이름</span>
+                    </div>
+
+                    <!-- 조회순 좋아요 -->
+                    <div class="readContLike">
+                      <!-- 조회순 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-chat-filled-lightgray.d59bfd98.svg" alt="">
+                        </span>
+                        156</span>
+                        <!-- like수 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
+                        </span>
+                        156</span>
+                    </div>
+                  </div>
+                  <!-- 카페 위치 -->
+                  <p class="studyCafeLocation">서울시 동대문구 사가정로 148 sk스포트상가 토모집</p>
+
+                  <!-- 카페 가격 -->
+                  <div class="studyCafePrice">
+                    <div class="priceText">
+                      68000
+                      <p>
+                        원~
+                        / 1시간당
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 댓글 -->
+                  <div class="studyCafeReply">
+                    <div class="startImg">
+                      <img src="../img/Star_1.svg" alt="별점">
+                    </div>
+                    4.8
+                    <div class="replyInfo">(후기5)</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="spaceImg">
+                  <img class="imgInfo" src="../img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg" alt="뉴욕감성">
+                  <input type="button" class="favoritButton">
+                </div>
+
+                <div class="spaceItem">
+                  <div class="studyCafeName">
+                    <!-- 카페이름 -->
+                    <div class="cafename">
+                      <span>케페이름</span>
+                    </div>
+
+                    <!-- 조회순 좋아요 -->
+                    <div class="readContLike">
+                      <!-- 조회순 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-chat-filled-lightgray.d59bfd98.svg" alt="">
+                        </span>
+                        156</span>
+                        <!-- like수 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
+                        </span>
+                        156</span>
+                    </div>
+                  </div>
+                  <!-- 카페 위치 -->
+                  <p class="studyCafeLocation">서울시 동대문구 사가정로 148 sk스포트상가 토모집</p>
+
+                  <!-- 카페 가격 -->
+                  <div class="studyCafePrice">
+                    <div class="priceText">
+                      68000
+                      <p>
+                        원~
+                        / 1시간당
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 댓글 -->
+                  <div class="studyCafeReply">
+                    <div class="startImg">
+                      <img src="../img/Star_1.svg" alt="별점">
+                    </div>
+                    4.8
+                    <div class="replyInfo">(후기5)</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="spaceImg">
+                  <img class="imgInfo" src="../img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg" alt="뉴욕감성">
+                  <input type="button" class="favoritButton">
+                </div>
+
+                <div class="spaceItem">
+                  <div class="studyCafeName">
+                    <!-- 카페이름 -->
+                    <div class="cafename">
+                      <span>케페이름</span>
+                    </div>
+
+                    <!-- 조회순 좋아요 -->
+                    <div class="readContLike">
+                      <!-- 조회순 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-chat-filled-lightgray.d59bfd98.svg" alt="">
+                        </span>
+                        156</span>
+                        <!-- like수 -->
+                      <span class="CntLikeStyle">
+                        <span class="box-sizing">
+                          <img src="../img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
+                        </span>
+                        156</span>
+                    </div>
+                  </div>
+                  <!-- 카페 위치 -->
+                  <p class="studyCafeLocation">서울시 동대문구 사가정로 148 sk스포트상가 토모집</p>
+
+                  <!-- 카페 가격 -->
+                  <div class="studyCafePrice">
+                    <div class="priceText">
+                      68000
+                      <p>
+                        원~
+                        / 1시간당
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 댓글 -->
+                  <div class="studyCafeReply">
+                    <div class="startImg">
+                      <img src="../img/Star_1.svg" alt="별점">
+                    </div>
+                    4.8
+                    <div class="replyInfo">(후기5)</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <!-- 페이징 처리 -->
+          <ul class="pageNumber">
+            <li class="prev">
+              <button type="button">
+                <span class="box-sizing">
+                  <img src="../img/arrow-left-677294.ae6b1d0b.svg" alt="">
+                </span>
+              </button>
+            </li>
+            <li class="pageBtn">
+              <button type="button">1</button>
+            </li>
+            <li class="pageBtn">
+              <button type="button">2</button>
+            </li>
+            <li class="pageBtn">
+              <button type="button">3</button>
+            </li>
+            <li class="pageBtn">
+              <button type="button">4</button>
+            </li>
+            <li class="pageBtn">
+              <button type="button">5</button>
+            </li>
+            <li class="next">
+              <button type="button">
+                <span class="box-sizing">
+                  <img src="../img/arrow-right-677294.662f8854.svg" alt="">
+                </span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+
+    </main>
+    <footer></footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/main_reservation.js"></script>
+  </body>
+</html>
