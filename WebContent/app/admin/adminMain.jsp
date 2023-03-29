@@ -15,7 +15,7 @@
 <body class="main">
     <!-- header 추가하기 -->
     <header>
-
+		 <jsp:include page="${pageContext.request.contextPath}/app/admin/adminheader.jsp"/>
     </header>
 
     <main class="content">
@@ -67,7 +67,7 @@
 
     <!-- footer 추가하기 -->
     <footer>
-
+		<jsp:include page="${pageContext.request.contextPath}/app/footer/footer.jsp"/>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

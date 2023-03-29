@@ -20,9 +20,16 @@ public class AdminFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
-
-		switch(target) {
+		System.out.println(target);
 		
+		
+		switch(target) {
+		case "/admin/adminlogin.ad":
+			new adminLoginCotroller().execute(req, resp);
+			break;
+		case "/admin/adminloginOk.ad":
+			new adminLoginOkCotroller().execute(req, resp);
+			break;
 		}
 	}
 }
