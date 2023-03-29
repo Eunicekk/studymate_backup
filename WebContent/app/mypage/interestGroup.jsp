@@ -22,10 +22,10 @@
       <div class="container">
         <!-- 사이드바 영역 -->
         <div class="sidebar">
-           <ul>
+         <ul>
             <li class="active"><a href="#">내 정보</a></li>
             <li class="side">
-              <a href="Modifying Information.jsp">정보 수정</a>
+              <a href="ModifyingInformation.jsp">정보 수정</a>
             </li>
             <li class="side">
               <a href="portfolioList.jsp">내 포트폴리오</a>
@@ -33,7 +33,7 @@
             <li class="active"><a href="#">카페 예약 정보</a></li>
             <li class="side"><a href="interestPlace.jsp">관심 장소</a></li>
             <li class="side"><a href="reserve.jsp">예약 정보</a></li>
-            <li class="side"><a href="Usage details.jsp">이용 내역</a></li>
+            <li class="side"><a href="UsageDetails.jsp">이용 내역</a></li>
             <li class="side"><a href="cancel.jsp">취소/환불</a></li>
             <li class="active"><a href="#">그룹 참여 정보</a></li>
             <li class="side"><a href="leaderGroup.jsp">내 그룹</a></li>
