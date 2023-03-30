@@ -75,7 +75,7 @@
               <span class="studyFeild">인원</span>
             </li>
             <li class="studyInfoList">
-              <span class="studyTitle">시작예정</span>
+              <span class="studyTitle">모집 마감일</span>
               <span class="studyFeild">기간</span>
             </li>
             <li class="studyInfoList">
@@ -87,7 +87,7 @@
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">예상 기간</span>
-              <span class="studyFeild">장기</span>
+              <span class="studyFeild">1-6개월 /개월수받아오기</span>
             </li>
           </ul>
         </section>

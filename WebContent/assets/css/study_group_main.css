@@ -589,9 +589,11 @@ option {
   align-items: center;
   grid-gap: 3px;
   gap: 3px;
+
 }
 
 .badgeFiled {
+  display : flex;
   height: 28px;
   font-weight: 800;
   font-size: 12px;
@@ -600,8 +602,10 @@ option {
 }
 
 .badgeFiled > div {
+
   border-radius: 20px;
   padding: 4px 12px;
+  margin : 0 5px;
   background: #efefef;
   color: #656565;
 }
