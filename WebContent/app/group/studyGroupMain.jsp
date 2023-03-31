@@ -211,7 +211,7 @@
                 </div>
 
                 <!-- 이름 -->
-                <h1 class="groupTitle">앱 개발 공모전 같이 나가실 UI/UX 디자이너분 구합니다!</h1>
+                <h1 class="groupTitle">${group.getStudyGroupTitle()}</h1>
                 <ul class="positionList">
                   <!-- 분야 넣어주기 -->
                   <li class="positionItem">백엔드</li>
