@@ -691,16 +691,56 @@
               
           </ul>
         </div>
+        
           <!-- 페이징 처리 -->
           <ul class="pageNumber">
+          
+           <c:if test="${prev}">
             <li class="prev">
-              <button type="button">
+             <button type="button" onclick="location.href='${pageContext.request.contextPath}/studyGroup/studyGroupMainOk.sg?page=${startPage - 1}'">
                 <span class="box-sizing">
+                <!--  이 a 태그를 윤님은 button 에다가 onclick 을 주셨는데 나는 a 태그를 넣어봄. 되는지 확인하고 수정하기-->
                   <img src="${pageContext.request.contextPath}/assets/img/arrow-left-677294.ae6b1d0b.svg" alt="">
                 </span>
               </button>
             </li>
-            <li class="pageBtn">
+               </c:if>   
+               
+                  <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                  <c:choose>
+                     <c:when test="${!(i==page)}">
+                        <li class="pageBtn">
+                        <button type="button" onclick="location.href='${pageContext.request.contextPath}/studyGroup/studyGroupMainOk.sg?page=${i}'">
+               	   <c:out value="${i }" />
+                        </button>
+                        </li>
+                     </c:when>
+                     <c:otherwise>
+                        <li class="pageBtn">
+                        <button type="button" onclick="location.href='#'" class="active">
+                           <c:out value="${i }" />
+                        </button>
+                        </li>                     
+                     </c:otherwise>
+                  </c:choose>
+               </c:forEach>
+               	
+               	
+                <c:if test="${next }">
+               <li class="next">
+                  <button type="button" onclick="location.href='${pageContext.request.contextPath}/studyGroup/studyGroupMainOk.sg?page=${endPage+1}'">
+                     <span class="box-sizing">
+                     <img src="${pageContext.request.contextPath}/assets/img/arrow-right-677294.662f8854.svg" alt="">
+                     </span>
+                  </button>
+               </li>
+               </c:if>
+            
+            </ul> 	
+               
+               
+            
+            <%-- <li class="pageBtn">
               <button type="button">1</button>
             </li>
             <li class="pageBtn">
@@ -723,6 +763,8 @@
               </button>
             </li>
           </ul>
+          
+           --%>
         </div>
 
 

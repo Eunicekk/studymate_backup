@@ -9,7 +9,7 @@
 	집어넣는 값 없이, 리스트에 불러오기만 하면 되므로, parameter 타입, 즉 매개 변수 없음 
 	->> DAO로 이동 
 	-->
-	<select id="selectAll" resultType="StudyGroupVO" >
+	<select id="selectAll" resultType="StudyGroupVO" parameterType="map">
 select  j2.study_group_number, j2.study_group_online, j2.study_group_content, j2.study_group_start_date, j2.study_group_title, j2.member_nickname, j2.study_group_read_count, COUNT(sgc.study_group_comment_number) comment_count
 from (
     select sg.study_group_number, sg.study_group_online, sg.study_group_content, sg.study_group_start_date, sg.study_group_title, m.member_nickname, sg.study_group_read_count, gl.member_number
@@ -20,6 +20,15 @@ from (
 left outer join tbl_study_group_comment sgc on j2.study_group_number = sgc.study_group_number and j2.member_number = sgc.member_number
 group by j2.study_group_number, j2.study_group_online, j2.study_group_content, j2.study_group_start_date, j2.study_group_title, j2.member_nickname, j2.study_group_read_count
 order by study_group_number desc
+limit #{startRow}, #{rowCount}
 
 	</select>
+	
+	<select id="getTotal" resultType="_int">
+		select count(study_group_number) from tbl_study_group
+	</select>
+	
+	
+	
+	
 </mapper>
