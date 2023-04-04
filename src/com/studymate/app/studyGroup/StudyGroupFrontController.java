@@ -25,7 +25,7 @@ public class StudyGroupFrontController extends HttpServlet{
 		switch(target) {
 		case "/studyGroup/studyGroupMainOk.sg":
 			System.out.println("okcontrolrt");
-			new StudyGroupMainOkController().execute(req,resp);
+			new StudyGroupMainOkController().execute(req,resp); 
 			break;
 		
 		}

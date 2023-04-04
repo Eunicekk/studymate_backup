@@ -163,7 +163,7 @@
                       <div class="commentItem-title">
                         <div class="commentItem-userNickname">른시룽</div>
                         <div class="commentItem-registerDate">
-                          2143.08.10 13:42:55
+                          2143.08.10 13:42:55 
                         </div>
                       </div>
                     </div>

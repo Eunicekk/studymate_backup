@@ -160,10 +160,7 @@
               스터디 그룹
             </h2>
             <div class="selectOrder">
-              <select >
-                <option value="popularity">
-                  인기순
-                </option>
+              <select >  
                 <option value="interest">
                   관심순
                 </option>
@@ -203,6 +200,7 @@
                   </div>
                 </div>
 
+
                 <!-- 마감일 -->
                 <div class="endDate">
                   <p class="endDateText">모집 마감 |</p>
@@ -241,10 +239,19 @@
                        alt="댓글 이미지">
                        <p>${group.getStudyGroupCommentCount()}</p>
                     </div>
+                    
+                    <div class="groupLikeItems" > 
+                   	<img alt="" src="${pageContext.request.contextPath}/assets/img/btn-large-heart-white.svg" class="groupLikeImg" >
+                   	<p>${group.getStudyGroupLikeCount()}</p>
+                     </div>
+                    
                   </div>
+                  
                 </section>
          
+              
               </li>
+         	<!-- 좋아요 버튼  -->     
               
               <!-- <div > 검색된 게시물이 없습니다.</div> -->
             </a>
