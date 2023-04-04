@@ -1,4 +1,4 @@
-package com.studymate.app.memeber;
+package com.studymate.app.member;
 
 import java.io.IOException;
 
@@ -25,10 +25,10 @@ public class MemberFrontController extends HttpServlet{
 
 		switch (target) {
 		case "/member/join.me":
-			req.getRequestDispatcher("/app/member/join.jsp").forward(req, resp);
+//			req.getRequestDispatcher("/app/member/join.jsp").forward(req, resp);
 			break;
 		case "/member/joinOk.me":
-			new JoinOkController().execute(req, resp);
+//			new JoinOkController().execute(req, resp);
 			break;
 		case "/member/login.me":
 //			new LoginController().execute(req, resp);

@@ -107,7 +107,7 @@
     </div>
   </div>
     </form>
-    <script src="login.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/adminlogin.js"></script>
   </body>
 </html>
     
