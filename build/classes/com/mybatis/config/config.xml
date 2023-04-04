@@ -15,15 +15,16 @@
 		<typeAlias type="com.studymate.app.faq.dto.FaqDTO" alias="FaqDTO"/>
 		<typeAlias type="com.studymate.app.memberLikeCafe.dto.MemberLikeCafeDTO" alias="MemberLikeCafeDTO"/>
 		<typeAlias type="com.studymate.app.memberLikeStudyGroup.dto.MemberLikeStudyGroupDTO" alias="MemberLikeStudyGroupDTO"/>
-		<typeAlias type="com.studymate.app.memberProfile.dto.MemberProfileDTO" alias="MemberProfileDTO"/>
+		<typeAlias type="com.studymate.app.memberprofile.dto.MemberProfileDTO" alias="MemberProfileDTO"/>
 		<typeAlias type="com.studymate.app.reservation.dto.ReservationDTO" alias="ReservationDTO"/>
 		<typeAlias type="com.studymate.app.studyCafeComment.dto.StudyCafeCommentDTO" alias="StudyCafeCommentDTO"/>
 		<typeAlias type="com.studymate.app.studyCafeFile.dto.StudyCafeFileDTO" alias="StudyCafeFileDTO"/>
 		<typeAlias type="com.studymate.app.studyCafe.dto.StudyCafeDTO" alias="StudyCafeDTO"/>
+		<typeAlias type="com.studymate.app.studyCafe.vo.StudyCafeVO" alias="StudyCafeVO"/>
 		<typeAlias type="com.studymate.app.studyGroup.dto.StudyGroupDTO" alias="StudyGroupDTO"/>
 		<typeAlias type="com.studymate.app.studyGroupComment.dto.StudyGroupCommentDTO" alias="StudyGroupCommentDTO"/>
 		<typeAlias type="com.studymate.app.studyGroupFile.dto.StudyGroupFileDTO" alias="StudyGroupFileDTO"/>
-		<typeAlias type="com.studymate.app.sutdyGroupLeader.dto.SutdyGroupLeaderDTO" alias="SutdyGroupLeaderDTO"/>
+		<typeAlias type="com.studymate.app.studyGroupLeader.dto.StudyGroupLeaderDTO" alias="StudyGroupLeaderDTO"/>
 	</typeAliases>
 
 	<environments default="mysql">
@@ -31,7 +32,7 @@
 			<transactionManager type="JDBC"/>
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-				<property name="url" value="jdbc:mysql://localhost:3306/studymate"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/study_mate"/>
 																		   						<!-- 프로젝트 이름 -->
 				<property name="username" value="root"/>																										
 				<property name="password" value="1234"/>
@@ -51,7 +52,7 @@
 		<mapper resource="com/mybatis/mapper/MemberProfileMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/ReservationMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/StudyCafeCommentMapper.xml"/>
-		<mapper resource="com/mybatis/mapper/StudtCafeFileMapper.xml"/>
+		<mapper resource="com/mybatis/mapper/StudyCafeFileMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/StudyCafeMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/StudyGroupCommentMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/StudyGroupFileMapper.xml"/>
