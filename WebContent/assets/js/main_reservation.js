@@ -16,7 +16,7 @@ $(".mainContainer").on("click", function () {
   $(".locationList").toggleClass("none");
 });
 
-// 인워 메뉴
+// 인원 메뉴
 let $person = $(".personnel");
 
 $person.click(() => {

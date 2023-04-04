@@ -476,7 +476,8 @@ var geocoder = new kakao.maps.services.Geocoder();
 
 // 주소로 좌표를 검색합니다
 // $(".address > p").text()
-geocoder.addressSearch("서울 마포구 독막로 147-6", function (result, status) {
+console.log($("#cafe-address").text());
+geocoder.addressSearch($("#cafe-address").text(), function (result, status) {
   // 정상적으로 검색이 완료됐으면
   if (status === kakao.maps.services.Status.OK) {
     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -490,7 +491,7 @@ geocoder.addressSearch("서울 마포구 독막로 147-6", function (result, sta
     // infowindow 장소에 대한 설명을 표시합니다
     var infowindow = new kakao.maps.InfoWindow({
       content:
-        '<div style="width:150px;text-align:center;padding:6px 0;">스터디카페 이름</div>',
+        '<div style="width:150px; text-align:center; padding:6px 0; font-weight: 700;">' + $('.studyCafeTitle').text() + '</div>',
     });
     infowindow.open(map, marker);
 

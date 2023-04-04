@@ -22,7 +22,12 @@ public class StudyCafeFrontController extends HttpServlet{
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 
 		switch(target) {
-		
+		case "/cafe/cafeListOk.sc" : 
+			new CafeListOkController().execute(req, resp);
+			break;
+		case "/cafe/cafeReadOk.sc" :
+			new CafeReadOkController().execute(req, resp);
+			break;
 		}
 	}
 }
