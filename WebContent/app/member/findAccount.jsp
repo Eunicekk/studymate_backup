@@ -29,13 +29,14 @@
   <br>
 
      <!-- 이메일 주소 입력란 -->
-    <form action="#" method="post">
+    <form action="/member/findAccountOk.me" method="post">
       <div class="input-group">
         <div class="login-form">
         <label for="email">이메일 주소</label>
-        <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요"required />
+        <input type="text" id="email" name="memberEmail" placeholder="이메일을 입력해주세요"required />
       </div>
     </div>
+      
 
     <br>
     <br>
@@ -44,41 +45,56 @@
       <div class="buttons">
         <input type="submit" value="계정 찾기" onclick="openModal()"  />
       </div>
+      </form>
       <br>
       <div class="buttons">
-        <input type="button" value="취소" onclick="location.href='http://127.0.0.1:5500/workspace/project/login.html'" />
+        <input type="button" value="취소" onclick="location.href='http://localhost:8085/member/login.me'" />
       </div>
     </div> 
     </div>
 
-<!-- 모달창 -->
-<div id="myModal" class="modal">
+
+<!-- 모달 창 -->
+<div class="modal" id="myModal">
   <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>비밀번호 변경</h2>
-    <label for="new-password">새 비밀번호:</label>
-    <input type="password" id="new-password" name="new-password" required>
-    <label for="confirm-password">새 비밀번호 확인:</label>
-    <input type="password" id="confirm-password" name="confirm-password" required>
-    <button id="submit-btn">확인</button>
-    <button id="cancel-btn">취소</button>
-  </div>
-</div>
-
- 
-
-
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>아이디 및 비밀번호</h2>
     </div>
+    <div class="modal-body">
+      <p>회원님의 아이디는 <strong>${memberId}</strong>이고, 비밀번호는 <strong>${memberPw}</strong>입니다.</p>
     </div>
   </div>
 </div>
-    </form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/findAccount.js"></script>
+<!-- JavaScript 코드 -->
+<script>
+  // 모달 창을 나타내는 함수
+  function openModal() {
+    // 모달 창 요소 가져오기
+    var modal = document.getElementById("myModal");
 
+    // 모달 창이 이미 열려있다면 함수 종료
+    if (modal.style.display === "block") {
+      return;
+    }
 
+    // 모달 창 열기
+    modal.style.display = "block";
 
+    // 모달 창 닫기 버튼 요소 가져오기
+    var span = document.getElementsByClassName("close")[0];
 
-  </body>
-</html>
+    // 모달 창 닫기 버튼 클릭 이벤트 처리
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // 모달 창 외부 클릭 이벤트 처리
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+</script>

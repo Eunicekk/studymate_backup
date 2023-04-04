@@ -1,11 +1,11 @@
 package com.studymate.app.memberLikeStudyGroup.dto;
 //member_number int unsigned,
 //study_group_number int unsigned,
-public class MemberLikeStudyGroup {
+public class MemberLikeStudyGroupDTO {
 	private int memberNumber;
 	private int studyGroupNumber;
 	
-	public MemberLikeStudyGroup() {}
+	public MemberLikeStudyGroupDTO() {}
 
 	public int getMemberNumber() {
 		return memberNumber;
