@@ -1,4 +1,4 @@
-package com.studymate.app.memeber.dto;
+package com.studymate.app.member.dto;
 
 //member_number int unsigned auto_increment primary key,
 //member_id varchar(300),

@@ -20,9 +20,26 @@ public class BoardFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
+		
+		System.out.println(target);
 
 		switch(target) {
-		
+		case "/board/boardListOk.bo":
+//			req.getRequestDispatcher("/app/board/boardList.jsp").forward(req, resp);
+			new BoardListOkController().execute(req, resp);
+//			System.out.println(target);
+			break;
+		case "/board/boardReadOk.bo" :
+//			req.getRequestDispatcher("/app/board/boardRead.jsp").forward(req, resp);
+			new BoardReadOkController().execute(req, resp);
+			break;	
+		case "/board/boardWrite.bo" :
+			req.getRequestDispatcher("/app/board/boardWrite.jsp").forward(req, resp);
+//			new BoardWriteController().execute(req, resp);
+			break;	
+		case "/board/boardWriteOk.bo" :
+			new BoardWriteOkController().execute(req, resp);
+			break;	
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.studymate.app.memeber;
+package com.studymate.app.member;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.studymate.app.Execute;
-import com.studymate.app.memeber.dao.MemberDAO;
-import com.studymate.app.memeber.dto.MemberDTO;
+import com.studymate.app.member.dao.MemberDAO;
+import com.studymate.app.member.dto.MemberDTO;
 
 public class JoinOkController implements Execute {
 

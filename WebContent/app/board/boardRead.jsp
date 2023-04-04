@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="../css/boardRead.css">
-<link rel="stylesheet" href="../resource/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/boardRead.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/resource/reset.css">
 </head>
 <body>
 
@@ -30,7 +31,8 @@
 					</button>
 				</div>
 				<div class="boardContent-title">
-					임시 제목 <br> [포트폴리오] lemon은 어떻게 만들어지는가⭐️
+					<c:out value="${board.getBoardTitle()}" />
+					<!-- 임시 제목 <br> [포트폴리오] lemon은 어떻게 만들어지는가⭐️ -->
 				</div>
 				<div class="boardContent-userAndDate">
 					<div class="boardContent-user">
@@ -40,7 +42,9 @@
 								src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
 								class="userImg" height="3rem" width="3rem">
 						</div>
-						<div class="boardContent-userName">은시룽 /작성자</div>
+						<div class="boardContent-userName">
+						<c:out value="${board.getMemberId() }" />
+						<!-- 은시룽 /작성자 --></div>
 					</div>
 					<div class="boardContent-uploadDate">작성일 2123.08.10</div>
 
