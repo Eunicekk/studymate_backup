@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reservation.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css" />
     <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=288648fa9bcef114f977b6cc3dc07c2d&libraries=services"
@@ -64,7 +66,7 @@
 
             <!-- 작은 이미지 -->
             <div class="ImgThumbnail">
-              <button class="img_more">
+              <button class="img_more">${pageContext.request.contextPath}/assets/img/
                 <figure>
                   <img
                     src="${pageContext.request.contextPath}/assets/img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg"
@@ -95,9 +97,9 @@
           <section class="Infomain">
               <!-- title -->
               <div class="studyCafeTitle">
-                <a href="">
-                  <p>카페이름</p>
-                </a>
+                	<p>
+						<c:out value="${studycafe.getStudyCafeName() }" />
+					</p>
               </div>
 
               <div class="studyCafeLocation">
@@ -105,14 +107,18 @@
                   <span>
                     <img src="${pageContext.request.contextPath}/assets/img/location.f1e61d10.svg" alt="" />
                   </span>
-                  <p>스터디 카페 위치</p>
+                  <p>
+                  	<c:out value="${studycafe.getStudyCafeAddress() }" />
+                  </p>
                 </div>
 
                 <div class="likeCnt">
                   <span>
                     <img src="${pageContext.request.contextPath}/assets/img/heart.1c5c89e6.svg" alt="" />
                   </span>
-                  <p>좋아요 카운터</p>
+                  <p>
+                  	<c:out value="${studycafe.getStudyCafeLikeCount() }" />
+                  </p>
                 </div>
               </div>
 
@@ -120,14 +126,16 @@
                 <div class="start">
                   <img src="${pageContext.request.contextPath}/assets/img/Star_1.svg" alt="" />
                 </div>
-                별점 평균
-                <div class="reviewCnt">댓글 개수</div>
+                <c:out value="${studycafe.getStudyCafeCommentScoreAvg() }" />
+                <div class="reviewCnt">
+                	<c:out value="${studycafe.getStudyCafeCommentCount() }" />
+                </div>
               </div>
 
               <div class="studyCafePrice">
                 <div class="price">
                   <div class="PriceTime">
-                    시간당 가격
+                    <c:out value="${studycafe.getStudyCafePrice() }" />
                     <p>원 1 시간당</p>
                     <span class="MinTime">최소 1시간 기준</span>
                   </div>
@@ -144,15 +152,6 @@
                   </button>
                 </div>
               </div>
-
-              <!-- 가격리스트인데 없어도 될거 같아요 -->
-              <!-- <select>
-              <ul class="PriceList">
-                <div class="preiceItem">
-
-                </div>
-              </ul>
-            </select> -->
 
               <div class="ReserBtn">
                 <button type="button" class="Reservation">예약</button>
@@ -186,13 +185,9 @@
                     <div class="calMain cal_none">
                       <div class="sec_cal">
                         <div class="cal_nav">
-                          <a href="javascript:;" class="nav-btn go-prev"
-                            >prev</a
-                          >
+                          <a href="javascript:;" class="nav-btn go-prev">prev</a>
                           <div class="year-month"></div>
-                          <a href="javascript:;" class="nav-btn go-next"
-                            >next</a
-                          >
+                          <a href="javascript:;" class="nav-btn go-next">next</a>
                         </div>
                         <div class="cal_wrap">
                           <div class="days">
@@ -228,7 +223,7 @@
                     <!-- 시간 박스 열림 -->
                     <div class="TimeContainer time_none">
                       <div class="TextBox">
-                        <p>최소 시간:1시간/최대시간:24시간</p>
+                        <p>최소 시간: 1시간 / 최대시간: 24시간</p>
 
                         <div class="ColorGuide">
                           <div class="impossible">
@@ -260,7 +255,7 @@
                           </div>
 
                           <p class="sliderComment">
-                            시작시간, 선택후,종료시간을 선택해주세요
+                            시작시간, 선택 후 종료시간을 선택해주세요.
                           </p>
 
                           <button class="sliderPrev slider-prev" type="button">
@@ -294,7 +289,9 @@
                   <div class="Price">
                     <p>일반 구매 총 금액</p>
                     <!-- 가격 뿌려주기 -->
-                    <p class="tal">(가격)원</p>
+                    <p class="tal">
+                    <c:out value="${studycafe.getStudyCafePrice() }" />
+                    원</p>
                     <input type="text" class="talInput" name="price" hidden  value=""/>
                   </div>
                 </div>
@@ -305,7 +302,7 @@
                     <div style="display: flex">
                       <p class="PriceBtn">
                         <!-- 가격 뿌려주기 -->
-                        (가격)
+                        <c:out value="${studycafe.getStudyCafePrice() }" />
                       </p>
                       <span>원</span>
                     </div>
@@ -332,33 +329,10 @@
         <!-- 위치 상세설명 -->
         <article class="TapContent">
           <section class="description">
-            <h3>소개</h3>
-            <p>cafe 소개글 넣기</p>
-          </section>
-
-          <section class="SpaceTip">
-            <div class="Tip">
-              <span></span>
-              <h3>공간 이용 팁</h3>
-            </div>
-            <ul class="TipList">
-              <li>
-                <div>
-                  <!-- 제목 옆에 점 이지미 -->
-                  <span class="style"></span>
-                  <p>무인카페 운영</p>
-                </div>
-                <p>각종 음료 및 다과를 실내 무인카페이서 이용가능합니다.</p>
-              </li>
-              <li>
-                <div>
-                  <!-- 제목 옆에 점 이지미 -->
-                  <span class="style"></span>
-                  <p>행사&촬영</p>
-                </div>
-                <p>행사&촬영 용 대관은 가격에서 별도로 선택가능합니다.</p>
-              </li>
-            </ul>
+            <h3>소개 및 활용 팁</h3>
+            <p>
+            	<c:out value="${studycafe.getStudyCafeContent() }" />
+            </p>
           </section>
 
           <section class="CurrentLocation">
@@ -374,6 +348,9 @@
                 <figcaption>카페 위치 주소 보여주기</figcaption>
               </figure>
             </div>
+              <span id="cafe-address">
+              	<c:out value="${studycafe.getStudyCafeAddress() }" />
+              </span>
           </section>
         </article>
         <!-- 위치 상세설명 -->
@@ -384,7 +361,9 @@
           <div class="replyCnt">
             <p class="countTitle">
               댓글
-              <span>(댓글 수)</span>
+              <span>
+              	<c:out value="${studycafe.getStudyCafeCommentCount() }" />
+              </span>
               건
             </p>
           </div>
@@ -396,18 +375,22 @@
                 <img src="${pageContext.request.contextPath}/assets/img/Star_1.svg" alt="" />
               </span>
               <span>별점평균</span>
-              <p>(전체기간 평균 평점)</p>
+              <p>
+              	<c:out value="${studycafe.getStudyCafeCommentScoreAvg() }" />
+              </p>
             </div>
 
             <div class="CardContainer">
               <div>
-                <span>5(댓글 개수)</span>
-                건의 후기중
+                <span>
+                	<c:out value="${studycafe.getStudyCafeCommentCount() }" />
+                </span>
+                건의 후기 중
                 <br />
-                <span>80%</span>
-                의고객이
-                <span>5점(별점 만점)</span>
-                을 주었다.
+                <span>
+                	<c:out value="${studycafe.getStudyCafeCommentScoreProportion() }" />
+                </span>
+                명의 고객이 5점을 주었어요.
               </div>
             </div>
           </div>
@@ -435,7 +418,7 @@
               <div class="rowContainer">
                 <div class="rowbtn">
                   <div class="startReply">
-                    <img src="../img/Star_1.svg" alt="" />
+                    <img src="${pageContext.request.contextPath}/assets/img/Star_1.svg" alt="" />
                     <p class="avg">별점평균</p>
                     <p class="nameDate">
                       <span>이름</span>
@@ -471,8 +454,7 @@
             <ul class="NoticeList">
               <ul>
                 <li class="NoticeItem">
-                  대관 중 시설 훼손이 발생한 경우 손해액을호스트에게
-                  배상해야합니다.
+                  대관 중 시설 훼손이 발생한 경우 손해액을 호스트에게 배상해야 합니다.
                 </li>
                 <li class="NoticeItem">
                   시간 초과시, 추가 요금은 현장 결제합니다. (1시간마다 발생)
