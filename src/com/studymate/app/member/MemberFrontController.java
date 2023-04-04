@@ -1,4 +1,4 @@
-package com.studymate.app.memeber;
+package com.studymate.app.member;
 
 import java.io.IOException;
 

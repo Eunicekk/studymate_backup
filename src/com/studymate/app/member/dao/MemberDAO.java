@@ -1,9 +1,9 @@
-package com.studymate.app.memeber.dao;
+package com.studymate.app.member.dao;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.mybatis.config.MyBatisConfig;
-import com.studymate.app.memeber.dto.MemberDTO;
+import com.studymate.app.member.dto.MemberDTO;
 
 public class MemberDAO {
 	public SqlSession sqlSession;
