@@ -22,7 +22,7 @@ $(document).ready(function () {
     if (confirm("회원 탈퇴 하시겠습니까?")) {
       if (confirm("한번 더 확인하시겠습니까?")) {
         $.ajax({
-          url: "회원탈퇴처리URL", // 회원탈퇴 처리를 위한 URL
+          url: '/mypage/MyPageModifyingProfile.my', // 회원탈퇴 처리를 위한 URL
           method: "POST", // POST 방식으로 요청
           success: function (response) {
             alert("탈퇴가 완료되었습니다.");
@@ -70,13 +70,13 @@ $(document).ready(function () {
     // 새 비밀번호와 확인 비밀번호가 일치하는지 확인합니다.
 
     $.ajax({
-      url: "회원정보수정처리URL", // 회원정보 수정 처리를 위한 URL
+      url: "/mypage/MyPageModifyingProfileOk.my", // 회원정보 수정 처리를 위한 URL
       method: "POST", // POST 방식으로 요청
       data: {
         nickname: nickname,
         phonenumber: phonenumber,
         pw: pw,
-        email: email,
+        email: email
       },
       success: function (response) {
         alert("수정이 완료되었습니다.");
@@ -85,7 +85,7 @@ $(document).ready(function () {
       error: function (xhr, status, error) {
         alert("회원정보 수정 중 오류가 발생했습니다.");
         console.error(error);
-      },
+      }
     });
   });
 });

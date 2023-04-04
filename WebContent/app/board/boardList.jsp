@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/reset.css">
 
+
 </head>
 <body>
 	<header></header>

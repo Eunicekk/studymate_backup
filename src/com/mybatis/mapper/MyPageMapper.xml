@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPage">
+
+	<select id="selectMember" parameterType="_int" resultType="MemberDTO">
+		select member_nickname, member_password, member_phone_number, member_email
+		from tbl_member tb
+		where member_number =#{memberNumber}
+	</select>
+
+	<update id="update" parameterType="MemberDTO" >
+		UPDATE tbl_member set
+		member_password=#{memberPassword},
+		member_email=#{memberEmail},
+		member_phone_number=#{memberPhoneNumber},
+		member_nickname=#{memberNickname}
+		WHERE
+		member_number=#{memberNumber}
+	</update>
+
+	<select id="myPageSelect" parameterType="MyPageVO"
+		resultType="BoardDTO">
+		select board_title , board_read_count from tbl_board tb
+		where member_number =#{memberNumber}
+	</select>
+
+	<select id='myPageCommentCount' parameterType="_int"
+		resultType="MyPageVO">
+		select count(board_comment_number) from tbl_board_comment
+		tbc
+		where board_number =#{boardNumber}
+	</select>
+
+
+
+</mapper>
