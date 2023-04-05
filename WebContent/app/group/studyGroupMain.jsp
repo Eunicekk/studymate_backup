@@ -185,18 +185,15 @@
           <!-- 게시글 -->
           
           <c:choose>
-          
           <c:when test="${not empty studyGroups}">
-          
           <c:forEach var="group" items= "${studyGroups}">
-          
-           <a href="${pageContext.request.contextPath}/app/group/studyGroupRead.jsp" class="studyOpen">
+           <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen">
               <li>
                 <div class="badge">
                   <div class="badgeFiled">
                     <!-- 모집 분야 받아와서 넣어주기 -->
                     <div class="onoffOptions">${group.getStudyGroupOnline()}</div>
-                    <div class="badgeFiledName">${group.getStudyGroupcontent()}</div>
+                    <div class="badgeFiledName">${group.getStudyGroupField()}</div>
                   </div>
                 </div>
 

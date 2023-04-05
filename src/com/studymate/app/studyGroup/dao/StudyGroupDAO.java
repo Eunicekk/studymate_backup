@@ -27,4 +27,11 @@ public class StudyGroupDAO {
 	public int getTotal() {
 		return sqlSession.selectOne("studyGroup.getTotal");
 	}
+	
+//	StudyGroup read 페이지 내용 불러오기. 
+	public StudyGroupVO select (int studyGroupNumber) {
+		return sqlSession.selectOne("studyGroup.select", studyGroupNumber);
+	}
+	
+	
 }

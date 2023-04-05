@@ -92,16 +92,16 @@ public class StudyGroupMainOkController implements Execute {
 		req.setAttribute("prev", prev);
 		req.setAttribute("next", next);
 		
-		req.setAttribute(temp, studyGroups);
+		req.setAttribute("temp", studyGroups);
 		
 		
-//		req.setAttribute("studyGroups", studyGroups);
+		req.setAttribute("studyGroups", studyGroups);
 		
-		System.out.println(studyGroups);
+//		System.out.println(studyGroups);
 		// 파란글씨 이름 지어주고 VO가 저장된 리스트들을 넣어줌. 
 		
 //		System.out.println(req.getParameter("studyGroupLikeCount"));
-		System.out.println((Integer)(req.getAttribute("studyGroupLikeCount")));
+//		System.out.println((Integer)(req.getAttribute("studyGroupLikeCount")));
 
 		req.getRequestDispatcher("/app/group/studyGroupMain.jsp").forward(req, resp);
 		

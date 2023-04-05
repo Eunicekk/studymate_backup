@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,7 +34,7 @@
             </button>
           </div>
           <div class="boardContent-title">
-            [스터디 그룹] 프로젝트 팀원 모집합니다⭐️
+            <c:out value="${group.getStudyGroupTitle()}" />
           </div>
           <div class="boardContent-userAndDate">
             <div class="boardContent-user">
@@ -46,14 +47,21 @@
                   width="3rem"
                 />
               </div>
-              <div class="boardContent-userName">은시룽</div>
+              <!-- 유저 닉네임 -->
+              <div class="boardContent-userName">
+              <c:out value="${group.getMemberNickname()}" />
+              </div>
             </div>
-            <div class="boardContent-uploadDate">2123.08.10</div>
-
+            <!-- 작성일자 -->
+            <div class="boardContent-uploadDate">
+             <c:out value="${group.getStudyGroupStartDate()}" />
+            </div>
+			<!-- 게시글 수정 삭제 -->	
             <div class="boardContent-editButtons">
-              <!-- 현재 로그인한 아이디or멤버넘버, 현재 게시글 아이디or멤버넘버 비교하기 c:if-->
+             <c:if test="${sessionScope.memberNumber == group.getMemberNumber()}">  
               <button type="button" class="boardContent-edit">수정</button>
               <button type="button" class="boardContent-delete">삭제</button>
+               </c:if> 
           </div>
 
           </div>
@@ -64,30 +72,40 @@
           <ul class="studyInfo">
             <li class="studyInfoList">
               <span class="studyTitle">모집 분야</span>
-              <span class="studyFeild">모집(값)</span>
+              <span class="studyFeild">
+              <c:out value="${group.getStudyGroupField()}" />
+              </span>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">진행 방식</span>
-              <span class="studyFeild">진행 방식</span>
+              <span class="studyFeild">
+              <c:out value="${group.getStudyGroupOnline()}" />
+              </span>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">모집 인원</span>
-              <span class="studyFeild">인원</span>
+              <span class="studyFeild">
+               <c:out value="${group.getStudyGroupCapacity()}" />
+              </span>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">모집 마감일</span>
-              <span class="studyFeild">기간</span>
+              <span class="studyFeild"></span>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">연락 방법</span>
                <a href="#" class="studyEmail">
-                <div class="">카카오톡</div>
+                <div class="">
+                 <c:out value="${group.getStudyGroupContact()}" />
+                </div>
                 <img src="https://cdn-icons-png.flaticon.com/512/7268/7268615.png" alt="">
               </a>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">예상 기간</span>
-              <span class="studyFeild">1-6개월 /개월수받아오기</span>
+              <span class="studyFeild">
+               <c:out value="${group.getStudyGroupDuration()}" />
+              </span>
             </li>
           </ul>
         </section>
@@ -96,33 +114,7 @@
         <section class="boardContent-postContent-wrapper">
           <h2 class="boardContent-postInfo">스터디그룹 소개</h2>
           <div class="boardContent-postContent">
-            포트폴리오 본문 내용 [🌏 WINGLE] 프론트엔드 개발자, UI/UX디자이너
-            리크루팅 ⭐️
-
-            <p>안녕하세요, 저희는 숙명여대 학생들로 구성된 WINGLE팀입니다.</p>
-            <br />
-
-            WINGLE은 대학 내 외국인, 한국인 학생을 대상으로 하는 국제교류
-            커뮤니티 개발 프로젝트로,
-            <br />
-            현재 MVP개발 및 베타버전 출시를 앞두고 있습니다. 서비스 형태는
-            <모바일 웹 어플리케이션>이며,
-            <br />
-            23-1학기동안 베타버전 런칭, 운영, 디벨롭 등을 진행하고자 합니다.
-            <br />
-            WINGLE과 함께 글로벌 서비스를 만들어갈 ❗️프론트엔드 개발자,
-            UI/UX디자이너❗️를 구합니다!
-            <br />
-
-            🌏 WINGLE 프로젝트 소개 및 모집공고<br />
-            <br />
-            https://prickle-bergamot-c19.notion.site/WINGLE-PROJECT-5b1c8e024b2744d19306a14a4abebbe6
-
-            <br />
-
-            📌모집분야 및 인원 - 프론트엔드 개발자 - UI/UX 디자이너 📌 모집방법
-            : 노션페이지 - 팀별 모집공고 참고 📌 모집기간 : 3/22 (수) 자정 까지
-            📌 리크루팅 문의 오카방 👉🏼 https://open.kakao.com/o/sIm0WH5e
+           <c:out value="${group.getStudyGroupcontent()}" />
           </div>
         </section>
 
