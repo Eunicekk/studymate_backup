@@ -60,6 +60,10 @@ public class AdminFrontController extends HttpServlet{
 		case "/admin/adminGroupListOk.ad":
 			new adminGroupListOk().execute(req,resp);
 			break;
+		case "/admin/adminGroupDeleteOk.ad":
+			new adminGroupDeleteOk().execute(req,resp);
+			break;
+		
 		}
 	}
 }

@@ -92,10 +92,10 @@ $(document).each(function() {
 			url: "/admin/adminBoardDeleteOk.ad",
 			data: { boardNumber: boardNumber },
 			success: function() {
-				alert("통신성공");
+				alert("삭제되었습니다.");
 			},
 			error: function() {
-				alert("통신 실패");
+				//alert("통신 실패");
 			}
 		});
 	})

@@ -26,6 +26,7 @@ public class adminGroupListOk implements Execute {
 		
 		String temp = req.getParameter("page");
 		String desc = req.getParameter("order");
+		String memberNickname = req.getParameter("memberNickname");
 		
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 		
@@ -53,8 +54,10 @@ public class adminGroupListOk implements Execute {
 		pageMap.put("rowCount", rowCount);
 		
 		
-		if(desc == null ) {
+		if(desc == null && memberNickname == null) {
 			groupList = adminDAO.groupList(pageMap);
+		}else if(memberNickname != null) {
+			groupList = adminDAO.groupSearch(memberNickname);
 		}else {
 			groupList = adminDAO.groupListDate(pageMap);
 		}

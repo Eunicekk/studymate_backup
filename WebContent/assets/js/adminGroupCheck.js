@@ -77,12 +77,36 @@ $groupAlign02.on('click', function() {
 })
 
 // 삭제 버튼 누를 시 경고창으로 삭제하시겠습니까? 알림 후 삭제
-$GroupDelete.on('click', function() {
+/*$GroupDelete.on('click', function() {
 	var isDelete = confirm('해당 회원 데이터를 삭제하시겠습니까?');
 	if (isDelete == true) {
 		$(this).parent().parent().hide();
 	}
-})
+})*/
+
+$(document).each(function() {
+	$('.group-list').on('click', '.delete', function() {
+		/*var isDelete = confirm('해당 회원 데이터를 삭제하시겠습니까?');
+		console.log($(this).prop("id"));
+		if (isDelete == true) {
+			$(this).parent().parent().hide();
+		}*/
+		let groupNumber = $(this).prop("id");
+		console.log(groupNumber);
+		$.ajax({
+			type: "GET",
+			url: "/admin/adminGroupDeleteOk.ad",
+			data: { groupNumber: groupNumber },
+			success: function() {
+				alert("통신성공");
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
+	})
+});
+
 
 // 필터 버튼 클릭 시 드롭다운 div 생성
 $('html').click(function(e) {
@@ -164,4 +188,20 @@ $('#paging').on('click', ".next", function() {
 	}
 });
 
+$('.group-search > form > button').on('click' ,function(){
+	var memberNickname = $('.group-search > form > input').val();
+	console.log(memberNickname);
+	$.ajax({
+			type: "GET",
+			url: "/admin/adminGroupListOk.ad",
+			data: { memberNickname : memberNickname },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
+})
 

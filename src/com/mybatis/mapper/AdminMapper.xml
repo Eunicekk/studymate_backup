@@ -295,11 +295,46 @@
 		group by j1.study_group_number
 		order by j1.study_group_start_date desc ;
 	</select>
+	
+	<select id="groupSearch" resultType="AdminGroupVO">
+		select j1.study_group_number, j1.study_group_title,
+		j1.study_group_field,
+		date_add(j1.study_group_start_date, interval j1.study_group_duration day) study_group_end_date,
+		j1.study_group_duration,like_count,
+		j1.study_group_read_count,
+		j1.member_number, scc.member_nickname
+		from (
+		select
+		sc.study_group_number, sc.study_group_title,
+		sc.study_group_field,
+		sc.study_group_online, sc.study_group_capacity,
+		sc.study_group_start_date, sc.study_group_contact,
+		sc.study_group_duration, sc.study_group_content,
+		sc.study_group_read_count, sc.member_number,
+		count(mlc.study_group_number) like_count
+		from tbl_study_group sc left
+		outer
+		join tbl_member_like_study_group mlc
+		on sc.study_group_number =
+		mlc.study_group_number
+		group by sc.study_group_number
+		) j1 left outer
+		join tbl_member scc
+		on j1.member_number = scc.member_number
+		group by
+		j1.study_group_number having
+		member_nickname like concat('%', #{memberNickname}, '%')
+		order by j1.study_group_number asc
+	</select>
 
 	<select id="groupTotal" resultType="_int">
 		select
 		count(study_group_number) from tbl_study_group;
 	</select>
+	
+	<delete id="groupDelete" parameterType="_int">
+		delete from tbl_study_group where study_group_number = #{studyGroupNumber}
+	</delete>
 
 </mapper>
 

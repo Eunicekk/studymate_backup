@@ -119,4 +119,12 @@ public class AdminDAO {
 		return sqlSession.selectOne("admin.groupTotal");
 	}
 	
+	public void groupDelete(int studyGroupNumber) {
+		sqlSession.delete("admin.groupDelete",studyGroupNumber);
+	}
+	
+	public List<AdminGroupVO> groupSearch(String memberNickname) {
+		return sqlSession.selectList("admin.groupSearch" ,memberNickname);
+	}
+	
 }

@@ -75,7 +75,7 @@
 		<c:choose>
 			<c:when test="${not empty groupList}">
 				<c:forEach var="group" items="${groupList}">
-					<a href="#">
+					<a >
 						<div class="group-content">
 							<div class="group-plus">
 								<div class="field">
@@ -103,7 +103,7 @@
 								</div>
 							</div>
 							<div class="group-delete">
-								<span class="material-symbols-outlined"> close </span>
+								<span class="material-symbols-outlined delete" id="${group.getStudyGroupNumber()}"> close </span>
 							</div>
 							<div class="group-date">
 								<span>모집 마감일 ｜</span> <span>${group.getStudyGroupEndDate()}</span>
