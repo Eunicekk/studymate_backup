@@ -30,7 +30,7 @@ limit #{startRow}, #{rowCount}
 	
 	<select id="select" resultType="StudyGroupVO" parameterType="_int">
 	select study_group_number, study_group_title, m.member_nickname, study_group_start_date, 
-	study_group_field, study_group_capacity, study_group_contact, study_group_online, 
+	study_group_field, study_group_capacity, study_group_contact, study_group_online, date_add(g.study_group_start_date, interval g.study_group_duration day) study_group_end_date,
 	study_group_duration, study_group_content
 	from tbl_member m join tbl_study_group g on study_group_number = #{studyGroupNumber} and m.member_number = g.member_number
 	</select>

@@ -22,7 +22,9 @@ public class StudyGroupCommentFrontController extends HttpServlet{
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 
 		switch(target) {
-		
+		case "/studyGroupComment/studyGroupCommentOk.re":
+			new StudyGroupCommentOkController().execute(req,resp);
+			break;
 		}
 	}
 }

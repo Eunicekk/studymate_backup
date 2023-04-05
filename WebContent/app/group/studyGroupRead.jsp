@@ -58,10 +58,10 @@
             </div>
 			<!-- 게시글 수정 삭제 -->	
             <div class="boardContent-editButtons">
-             <c:if test="${sessionScope.memberNumber == group.getMemberNumber()}">  
+            <%--  <c:if test="${sessionScope.memberNumber == group.getMemberNumber()}">   --%>
               <button type="button" class="boardContent-edit">수정</button>
               <button type="button" class="boardContent-delete">삭제</button>
-               </c:if> 
+             <%--   </c:if> --%> 
           </div>
 
           </div>
@@ -90,7 +90,9 @@
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">모집 마감일</span>
-              <span class="studyFeild"></span>
+              <span class="studyFeild">              
+               <c:out value="${group.getStudyGroupEndDate()}" />
+              </span>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">연락 방법</span>

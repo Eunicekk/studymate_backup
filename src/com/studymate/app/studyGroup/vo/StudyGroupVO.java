@@ -15,6 +15,7 @@ public class StudyGroupVO {
 	private String studyGroupField;
 	private String studyGroupContact;
 	private String studyGroupDuration;
+	private String studyGroupEndDate; 
 	
 	
 	public StudyGroupVO() {
@@ -162,6 +163,16 @@ public class StudyGroupVO {
 	}
 
 
+	public String getStudyGroupEndDate() {
+		return studyGroupEndDate;
+	}
+
+
+	public void setStudyGroupEndDate(String studyGroupEndDate) {
+		this.studyGroupEndDate = studyGroupEndDate;
+	}
+
+
 	@Override
 	public String toString() {
 		return "StudyGroupVO [memberNumber=" + memberNumber + ", studyGroupNumber=" + studyGroupNumber
@@ -170,7 +181,8 @@ public class StudyGroupVO {
 				+ ", memberNickname=" + memberNickname + ", studyGroupReadCount=" + studyGroupReadCount
 				+ ", studyGroupCommentCount=" + studyGroupCommentCount + ", studyGroupLikeCount=" + studyGroupLikeCount
 				+ ", studyGroupCapacity=" + studyGroupCapacity + ", studyGroupField=" + studyGroupField
-				+ ", studyGroupContact=" + studyGroupContact + ", studyGroupDuration=" + studyGroupDuration + "]";
+				+ ", studyGroupContact=" + studyGroupContact + ", studyGroupDuration=" + studyGroupDuration
+				+ ", studyGroupEndDate=" + studyGroupEndDate + "]";
 	}
 
 
