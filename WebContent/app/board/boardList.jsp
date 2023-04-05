@@ -180,7 +180,9 @@
             </c:forEach>
             
             <c:if test="${next}">
-               <li><a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${endPage + 1}" class="next">&gt;</a></li>
+               <li><a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${endPage + 1}" class="next"><img
+									src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png"
+									class="page" width="15px" height="15px" alt=""></a></li>
             </c:if>
             
             
