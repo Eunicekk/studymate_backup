@@ -14,6 +14,7 @@ public class BoardVO {
 	private String memberId;
 	private List<BoardFileDTO> files;
 	private int boardCommentCount;
+	private String boardWriter;
 	
 	public BoardVO() {
 		
@@ -91,12 +92,19 @@ public class BoardVO {
 		this.boardCommentCount = boardCommentCount;
 	}
 	
+	public String getBoardWriter() {
+		return boardWriter;
+	}
+
+	public void setBoardWriter(String boardWriter) {
+		this.boardWriter = boardWriter;
+	}
 	
 	@Override
 	public String toString() {
 		return "BoardVO [boardNumber=" + boardNumber + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", boardDate=" + boardDate + ", boardReadCount=" + boardReadCount + ", memberNumber=" + memberNumber
-				+ ", memberId=" + memberId + ", files=" + files + ", boardCommentCount=" + boardCommentCount + "]";
+				+ ", memberId=" + memberId + ", files=" + files + ", boardCommentCount=" + boardCommentCount + ", boardWriter=" + boardWriter + "]";
 	}
 	
 	

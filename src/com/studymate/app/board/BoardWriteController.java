@@ -19,13 +19,19 @@ public class BoardWriteController implements Execute {
 		Integer memberNumber = (Integer)session.getAttribute("memberNumber");
 		String path = null;
 		
-		if(memberNumber == null) {
-			path = "/app/member/login.jsp";
-		}else {
-			path = "/app/board/boardWrite.jsp";
-			req.setAttribute("memberId", memberDAO.getMemberId(memberNumber));
-		}
+		path = "/app/board/boardWrite.jsp";
+		session.setAttribute("memberNumber", 1);
+//		memberNumber = 2;
+//		req.setAttribute("memberId", memberDAO.getMemberId(memberNumber));
+//		
+//		if(memberNumber == null) {
+//			path = "/app/member/login.jsp";
+//		}else {
+//			path = "/app/board/boardWrite.jsp";
+//			req.setAttribute("memberId", memberDAO.getMemberId(memberNumber));
+//		}
 		
+		System.out.println("write들어왔다");
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 

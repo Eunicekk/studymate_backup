@@ -103,11 +103,13 @@
 										<!-- 이거 필요한지? -->
 										<em class="label-hot"></em>
 										<!-- 게시글 상세로 페이지 이동처리 -->
-										<a href="${pageContext.request.contextPath}/board/boardReadOk.bo?boardNumber=${board.getBoardNumber()}" class="content-subject">
-										<c:out value="${post.getBoardTitle()}"></c:out>			
-										<%-- <c:out value="${BoardVO.getBoardtitle }"></c:out> --%>								
-										[🌏 포트폴리오] lemon은 어떻게
-											만들어지는가⭐️</a>
+										<a href="${pageContext.request.contextPath}/board/boardRead.bo?boardNumber=${post.getBoardNumber()}" class="content-subject">
+  											<c:out value="${post.getBoardTitle()}"></c:out>
+										</a>
+			
+										
+								<!-- 		[🌏 포트폴리오] lemon은 어떻게
+											만들어지는가⭐️</a> -->
 									</div> <!-- 게시글 미리보기 -->  <span class="content-desc">
 										<c:out value="${post.getBoardContent() }"></c:out>
 										
@@ -117,16 +119,15 @@
 										
 										<!-- (1/3) 댓글 수-->
 										<span class="content-info content-reply"> 
-										<c:out value="${post.getBoardCommentCount() }"/>
+										
 										<!-- 댓글이미지 -->
-											<img src="" alt=""> 댓글 <strong>50</strong>
+											<img src="" alt=""> 댓글 <strong> <c:out value="${post.getBoardCommentCount()}"/> </strong>
 										</span>
 
 										<!-- (2/3) 조회수 -->
 										<span class="content-info content-view"> 
-										<c:out value="${post.getBoardReadCount()}"></c:out>
 										<!-- 조회수 눈 이미지 -->
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
+											<img src="" alt=""> 조회수 <strong><c:out value="${post.getBoardReadCount()}"></c:out></strong>
 										</span>
 
 										<!--(3/3) 작성자이름, 작성 날짜-->
@@ -136,10 +137,8 @@
 													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
 													class="content-userImg" height="25px" width="25px">
 											</div>
-											<c:out value="${post.getBoardWriter() }"/>
-											<span class="content-writer">작성자 이름</span> 
-											<c:out value="${post.getBoardDate() }"/>
-											<span class="content-write-date">작성 날짜</span>
+											<span class="content-writer"><c:out value="${post.getBoardWriter() }"/></span> 
+											<span class="content-write-date"><c:out value="${post.getBoardDate() }"/></span>
 										</div>
 										<!-- 프사 -->
 									</div>
@@ -152,354 +151,7 @@
                 				 		
          					      </c:otherwise>
 								</c:choose>
-								<!-- 게시글 (2/10) -->
-								<!-- <li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li>
-
-								게시글 (3/10)
-								<li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li>
-								게시글 (4/10)
-								<li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li>
-								게시글 (5/10)
-								<li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li>
-								게시글 (6/10)
-								<li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li>
-
-
-								게시글 (7/10)
-								<li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li>
-
-
-								게시글 (8/10)
-								<li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li>
-
-
-								게시글 (9/10)
-								<li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li>
-
-
-								게시글 (10/10)
-								<li>
-									<div class="content-subject-wrap">
-										이거 필요한지?
-										<em class="label-hot"></em> <a href="#"
-											class="content-subject">임시제목 입니다</a>
-									</div> 게시글 미리보기 <span class="content-desc">안녕하세욤 이곳은
-										게시글을 미리 볼 수 있는 공간입니당 </span>
-									<div class="content-data-info">
-										좋아요수, 댓글수, 조회수, 글쓴이
-										(1/4) 좋아요 
-										<span class="content-info content-like"> 좋아요이미지
-											<img src="" alt=""> 좋아요 <strong>140</strong>
-										</span>
-										(2/4) 댓글 수
-										<span class="content-info content-reply"> 댓글이미지
-											<img src="" alt=""> 댓글 <strong>50</strong>
-										</span>
-
-										(3/4) 조회수
-										<span class="content-info content-view"> 조회수 눈 이미지
-											<img src="" alt=""> 조회수 <strong>1,200</strong>
-										</span>
-
-										(4/4) 작성자이름, 작성 날짜
-										<div class="content-member-info">
-											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
-											</div>
-											<span class="content-writer">이름이 길면 어케요?</span> <span
-												class="content-write-date">2023.12.25</span>
-										</div>
-									</div> <a href=""></a>
-								</li> -->
-							<!-- </div> -->
-							<!-- 게시글 다음페이지 넘기기 버튼  -->
-							<!-- <div class="pageButtons">
-							
-								<a class="page" href="">1</a> <span class="pageNow">2</span> <a
-									class="page" href="">3</a> <a class="page" href="">4</a> <a
-									class="page" href="">5</a> <a class="page" href="">6</a> <a
-									class="page" href="">7</a> <a class="page" href="">8</a> <a
-									class="page" href="">9</a> <a class="page" href="">10</a> <a
-									class="page" type="button" href="">다음 </a>
-								next button
-								<img
-									src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png"
-									class="page" width="15px" height="15px" alt="">
-							</div> -->
+								
 							<div class="pageButtons">
          <ul>
             <!-- ========== 페이징 처리 예시 ============ -->

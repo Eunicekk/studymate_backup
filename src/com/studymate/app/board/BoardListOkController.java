@@ -71,6 +71,8 @@ public class BoardListOkController implements Execute {
 		
 		List<BoardVO> boards = boardDAO.selectAll(pageMap);
 		
+		System.out.println(boards);
+		
 		req.setAttribute("boardList", boards);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);

@@ -3,10 +3,6 @@
 
 <mapper namespace="member">
 	<insert id="join" parameterType="MemberDTO">
-		insert into tbl_member
-		(member_id, member_password, member_name, member_age, member_gender,
-		member_email, member_phone_number, member_nickname)
-		values(#{memberId},#{memberPassword},#{memberName},#{memberAge},#{memberGender},#{memberEmail},#{memberPhoneNumber},#{memberNickname},#{});
 
 	</insert>
 

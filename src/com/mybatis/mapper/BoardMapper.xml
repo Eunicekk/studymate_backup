@@ -5,11 +5,13 @@
 	<select id="selectAll" resultType="BoardVO" parameterType="map">
 	select board_number, board_title, board_content, board_date,
 		board_read_count,
-		m.member_number, m.member_id, 
+		m.member_number 
 		from tbl_member m join tbl_board b
 		on m.member_number = b.member_number
 		order by board_number desc
 		limit #{startRow}, #{rowCount}
+	
+		
 	</select>
 	
 	<select id="selectMember" parameterType="_int" resultType="MemberDTO">
@@ -29,6 +31,10 @@
 		values(#{boardTitle},#{boardContent},#{memberNumber})
 	</insert>
 	
+	<select id="getSequence" resultType="_int">
+		select last_insert_id()
+	</select>
+	
 	<select id="select" parameterType="_int" resultType="BoardVO">
 		select
 		board_number , board_title , board_content , board_date ,
@@ -37,5 +43,21 @@
 		from tbl_member m join tbl_board b
 		on board_number = #{boardNumber} and m.member_number = b.member_number 
 	</select>
+	
+	<update id="updateReadCount" parameterType="_int">
+		update tbl_board
+		set board_read_count = board_read_count + 1
+		where board_number = #{boardNumber}
+	</update>
+	
+	<delete id="delete" parameterType="_int">
+		delete from tbl_board where board_number = #{boardNumber}
+	</delete>
+
+	<update id="update" parameterType="BoardDTO">
+		update tbl_board
+		set board_title = #{boardTitle}, board_content = #{boardContent}
+		where board_number = #{boardNumber}
+	</update>
 	
 </mapper>

@@ -64,7 +64,8 @@
 			<section class="boardContent-postContent-wrapper">
 				<h2 class="boardContent-postInfo">포트폴리오 소개</h2>
 				<div class="boardContent-postContent">
-					포트폴리오 본문 내용 [🌏 WINGLE] 프론트엔드 개발자, UI/UX디자이너 리크루팅 ⭐️
+				<c:out value="${board.getBoardContent() }" />
+<!-- 					포트폴리오 본문 내용 [🌏 WINGLE] 프론트엔드 개발자, UI/UX디자이너 리크루팅 ⭐️
 
 
 
@@ -91,7 +92,7 @@
 
 
 					📌 모집기간 : 3/22 (수) 자정 까지 📌 리크루팅 문의 오카방 👉🏼
-					https://open.kakao.com/o/sIm0WH5e 
+					https://open.kakao.com/o/sIm0WH5e  -->
 				</div>
 			</section>
 

@@ -2,6 +2,7 @@ package com.studymate.app.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,17 +19,17 @@ import com.studymate.app.board.dto.BoardDTO;
 import com.studymate.app.boardFile.dao.BoardFileDAO;
 import com.studymate.app.boardFile.dto.BoardFileDTO;
 
-public class BoardWriteOkController implements Execute {
+public class BoardUpdateOkController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		  BoardDAO boardDAO = new BoardDAO();
+		 BoardDAO boardDAO = new BoardDAO();
 	      BoardDTO boardDTO = new BoardDTO();
 	      BoardFileDAO fileDAO = new BoardFileDAO();
 	      BoardFileDTO fileDTO = new BoardFileDTO();
 	      int boardNumber = 0;
 	      
-//	      System.out.println("writeOk컨트롤러 들어왔다!!!");
+	      System.out.println("writeOk컨트롤러 들어왔다!!!");
 	      System.out.println(req.getParameter("boardTitle"));
 	      
 	      String uploadPath = req.getSession().getServletContext().getRealPath("/") + "upload/";
@@ -81,18 +82,32 @@ public class BoardWriteOkController implements Execute {
 	               boardDTO.setBoardTitle(paramValue);
 	            }else if(paramName.equals("boardContent")) {
 	               boardDTO.setBoardContent(paramValue);
+	            }else if(paramName.equals("boardNumber")) {
+	               boardNumber = Integer.parseInt(paramValue);
+	               boardDTO.setBoardNumber(boardNumber);
 	            }
 	            
 	            if(boardDTO.getBoardTitle() == null || boardDTO.getBoardContent() == null) { continue; }
 	            
 	            boardDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
-	            boardDAO.insert(boardDTO);
+	            boardDAO.update(boardDTO);
 	            
-	            boardNumber = boardDAO.getSequence();
+//	            =============================
+	            List<BoardFileDTO> files = fileDAO.select(boardNumber);
+	            
+	            files.stream().map(file -> file.getBoardFileSystemName())
+	            .map(name -> new File(uploadPath, name))
+	            .filter(tmp -> tmp.exists())
+	            .forEach(tmp -> tmp.delete());
+	            
+	            fileDAO.delete(boardNumber);
+//	            =============================
 	         }
 	      }
 	      
 	      resp.sendRedirect("/board/boardListOk.bo");
+	   }
+
 	}
 
-}
+

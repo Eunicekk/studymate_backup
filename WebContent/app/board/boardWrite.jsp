@@ -26,6 +26,7 @@
 
 	<!-- 메인 -->
 	<main class="postRegister-postWrapper">
+	<form id="write-form" method="post" action="${pageContext.request.contextPath}/board/boardWriteOk.bo" enctype="multipart/form-data"> 
 		<!-- 포트폴리오 분류 -->
 		<section></section>
 
@@ -41,10 +42,11 @@
 			</div>
 
 			<!-- 글쓰기 기능넣기 -->
-			<form method="post" action="${pageContext.request.contextPath}/board/boardWriteOk.bo">
+			<!-- <form method="post"  > -->
+			
 				<textarea id="summernote-boardWrite" name="editordata">
                     </textarea>
-			</form>
+			<!-- </form> -->
 	
 			<!-- <div class="mainContent-container">
                     <div class="toolBar">툴 바</div>
@@ -61,20 +63,22 @@
 		<!-- 취소, 글 등록 -->
 		<section class="writeButtons-wrap">
 			<!-- 게시판 리스트로 돌아가기? -->
-			<form action="#" method="post">
+			<!-- <form action="" method="post"> -->
 				<button type="button" class="writeButton-cancel">취소</button>
-			</form>
+			<!-- </form> -->
 			<!-- 게시판리스트로 돌아가기 ?? -->
-			<form action="" method="post">
+			<!-- <form action="" method="post"> -->
 				<button type="submit" class="writeButton-register">글 등록</button>
-			</form>
+			<!-- </form> -->
 		</section>
+		</form> 
 	</main>
 
 	<!-- 푸터 -->
 	<footer></footer>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/boardWrite.js"></script>
 	<!-- <script src="../resource/summerNote/summernote-lite.js"></script>
 	<script src="../resource/summerNote/summernote-ko-KR.js"></script>
 	<link rel="stylesheet"
