@@ -3,5 +3,16 @@
 
 <mapper namespace="studyGroupComment">
 	
+	<select id="selectAll" parameterType= "_int" resultType = "StudyGroupCommentVo">
+	select study_group_comment_number, member_nickname, study_group_comment_date, study_group_comment_content, c.member_number, study_group_number 
+	from tbl_member m join tbl_study_group_comment c on study_group_number = #{studyGroupNumber} and m.member_number = c.member_number
+	</select>
+	
+	<insert id="insert" parameterType = "studyGroupCommentDTO">
+	insert into tbl_study_group_comment
+	(study_group_comment_content, study_group_comment_date, member_number, study_group_number)
+	values(#{studyGroupCommentContent}, CURRENT_TIMESTAMP, #{memberNumber} ,#{studyGroupNumber})
+	</insert>
+	
 	
 </mapper>

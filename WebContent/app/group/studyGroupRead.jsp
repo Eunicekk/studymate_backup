@@ -24,7 +24,7 @@
         <section class="boardContent-postHeader">
           <!-- 뒤로가기버튼, 글제목, 글쓴이/날짜 -->
           <div class="currentColor">
-            <button type="button" class="prev-to-list">
+            <button type="button" class="prev-to-list" data-studyGroupNumber = "${group.studyGroupNumber}">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3353/3353056.png"
                 alt=""
@@ -120,21 +120,21 @@
           </div>
         </section>
 
+
+
         <!-- 게시글 댓글 section -->
         <section class="boardContent-postCommentAndViews">
           <div class="boardContent-postComment">
             <div class="commentInput-wrap">
               <!-- 댓글 개수, 댓글 입력, 댓글 등록버튼 -->
-              <h1 class="commentInput-count">100개의 댓글이 있습니다</h1>
-              <textarea
-                class="commentInput-commentText"
-                placeholder="댓글을 입력하세요"
-              >
-                        <!-- 댓글 입력하기 -->
-                    </textarea
-              >
+              <h1 class="commentInput-count"> 
+               <c:out value="${group.getStudyGroupCommentCount()}" />
+              개의 댓글이 있습니다</h1>
+              <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" > 
+              
+              </textarea>
               <div class="commentInput-buttonWrapper">
-                <button class="commentInput-buttonComplete" name="register">
+                <button class="commentInput-buttonComplete" name="register"  data-memberNumber = "${group.memberNumber}" >
                   댓글 등록
                 </button>
               </div>
@@ -144,9 +144,9 @@
 
             <!-- 마진없는 댓글 컨테이너 -->
             <ul class="commentList-CommentList">
-              <!-- 마진 준 댓글 리스트 컨테이너 -->
+             <!--  마진 준 댓글 리스트 컨테이너 -->
               <li class="commentItem-commentContainer">
-                <section class="commentItem-CommentHeader">
+               <!--  <section class="commentItem-CommentHeader">
                   <div class="commentItem-writerWrapper">
                     <img
                       class="commentItem-writerImg"
@@ -171,7 +171,7 @@
                   <p class="commentItem-CommentContent">
                     안녕하세요 미래에서 왔습니데
                   </p>
-                </section>
+                </section> -->
               </li>
             </ul>
           </div>
@@ -181,6 +181,7 @@
       <footer></footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="${pageContext.request.contextPath}/assets/js/groupRead.js"></script> 
   </body>
 </html>
