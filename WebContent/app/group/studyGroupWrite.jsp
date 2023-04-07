@@ -31,15 +31,20 @@
 				<section>
 					<div class="InfoTitle">
 						<span class="WriteNum">1</span>
-						<h2 class="WriteText">프로젝트 기본 정보를 입력해주세요</h2>
+						<h2 class="WriteText">스터디그룹 기본 정보를 입력해주세요</h2>
 					</div>
 
 					<ul class="Infolist" data-role="selectBox">
 						<li class="InfoItems"><label class="FeildName">모집 분야</label>
 							<div class="InputContainer person">
 								<select name="feild" form="myForm">
-									<option value="java">자바</option>
-									<option value="python">파이썬</option>
+									<option value="language">어학</option>
+									<option value="jobHunting">취업</option>
+									<option value="government">고시/공무원</option>
+									<option value="hobby">취미/교양</option>
+									<option value="programming">프로그래밍</option>
+									<option value="autonomy">자율</option>
+									<option value="etc">기타</option>
 								</select></li>
 
 						<!-- 모집 인원 -->
@@ -70,7 +75,7 @@
 							</div></li>
 
 
-						<li class="InfoItems"><label class="FeildName">진행 기간</label>
+						<li class="InfoItems"><label class="FeildName"> 예상 기간</label>
 							<div class="InputContainer person">
 								<select name="date" form="myForm">
 									<option value="">기간미정</option>
@@ -150,7 +155,7 @@
 				<section>
 					<div class="InfoTitle">
 						<span class="WriteNum">2</span>
-						<h2 class="WriteText">프로젝트에 대해 소개해주세요</h2>
+						<h2 class="WriteText">스터디 그룹에 대해 소개해주세요</h2>
 					</div>
 					<!-- 제목 소개 입력 창 -->
 					<section>
