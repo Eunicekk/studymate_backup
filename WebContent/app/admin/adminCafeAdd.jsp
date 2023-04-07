@@ -10,10 +10,15 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/adminCafeAdd.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/summernote-lite.js" defer></script>
+    <script src="${pageContext.request.contextPath}/assets/js/summernote/summernote-ko-KR.js" defer></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css">
+    <script src="${pageContext.request.contextPath}/assets/js/adminCafeAdd.js" defer></script>
 </head>
 
 <body>
-    <form action="">
+    <form action="adminCafeWriteOk.ad" method="post" enctype="multipart/form-data">
         <!-- 스터디 카페 이름 -->
         <div class="title flex">
             <label for="title">스터디 카페 이름</label>
@@ -37,6 +42,11 @@
                     <p>※이미지를 등록하면 즉시 반영됩니다.</p>
                 </div>
             </div>
+            <div class="img-controller-box">
+            	<ul class="file-list">
+            	
+            	</ul>
+            </div>
         </div>
 
         <!-- 스터디 카페 위치 -->
@@ -53,13 +63,10 @@
 
         <!-- summernote -->
         <textarea name="editordata" id="summernote-cafe-add"></textarea>
-        <button type="button" class="signup">스터디 카페 등록</button>
+        <button type="submit" class="signup">스터디 카페 등록</button>
     </form>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/summernote/summernote-lite.js" defer></script>
-    <script src="${pageContext.request.contextPath}/assets/js/summernote/lang/summernote-ko-KR.js" defer></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css">
+    
 </body>
 
 </html>

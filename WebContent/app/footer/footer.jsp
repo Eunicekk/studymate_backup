@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/footer.css">
 </head>
 <body>
 	<footer id="new-footer">
@@ -13,7 +15,8 @@
 			<div class="footer-category">
 				<a href=""><span>회사소개</span></a> <a href=""><span>채용</span></a> <a
 					href=""><span>이용약관</span></a> <a href=""><span
-					class="font-bold">개인정보처리방침</span></a> <a href=""><span>고객센터</span></a>
+					class="font-bold">개인정보처리방침</span></a> 
+					<a href="${pageContext.request.contextPath}/admin/faqListOk.ad"><span>고객센터</span></a>
 			</div>
 			<div class="project-name">studymate 사업자 정보</div>
 			<div class="info">
