@@ -18,6 +18,7 @@
 		<typeAlias type="com.studymate.app.memberprofile.dto.MemberProfileDTO" alias="MemberProfileDTO"/>
 		<typeAlias type="com.studymate.app.reservation.dto.ReservationDTO" alias="ReservationDTO"/>
 		<typeAlias type="com.studymate.app.studyCafeComment.dto.StudyCafeCommentDTO" alias="StudyCafeCommentDTO"/>
+		<typeAlias type="com.studymate.app.studyCafeComment.vo.StudyCafeCommentVO" alias="StudyCafeCommentVO"/>
 		<typeAlias type="com.studymate.app.studyCafeFile.dto.StudyCafeFileDTO" alias="StudyCafeFileDTO"/>
 		<typeAlias type="com.studymate.app.studyCafe.dto.StudyCafeDTO" alias="StudyCafeDTO"/>
 		<typeAlias type="com.studymate.app.studyCafe.vo.StudyCafeVO" alias="StudyCafeVO"/>

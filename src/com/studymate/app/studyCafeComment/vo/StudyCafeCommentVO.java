@@ -1,14 +1,15 @@
-package com.studymate.app.studyCafeComment.dto;
+package com.studymate.app.studyCafeComment.vo;
 
-public class StudyCafeCommentDTO {
+public class StudyCafeCommentVO {
 	private int cafeCommentNumber;
 	private String cafeCommentContent;
 	private String cafeCommentDate;
 	private int cafeCommentScore; 
 	private int memberNumber;
 	private int studyCafeNumber;
+	private String memberNickname;
 	
-	public StudyCafeCommentDTO() {}
+	public StudyCafeCommentVO() {	}
 
 	public int getCafeCommentNumber() {
 		return cafeCommentNumber;
@@ -50,20 +51,28 @@ public class StudyCafeCommentDTO {
 		this.memberNumber = memberNumber;
 	}
 
-	public int getStudyCafeNumber() {
+	public int getSutdyCafeNumber() {
 		return studyCafeNumber;
 	}
 
-	public void setStudyCafeNumber(int studyCafeNumber) {
-		this.studyCafeNumber = studyCafeNumber;
+	public void setSutdyCafeNumber(int sutdyCafeNumber) {
+		this.studyCafeNumber = sutdyCafeNumber;
+	}
+
+	public String getMemberNickname() {
+		return memberNickname;
+	}
+
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
 	}
 
 	@Override
 	public String toString() {
-		return "StudyCafeCommentDTO [cafeCommentNumber=" + cafeCommentNumber + ", cafeCommentContent="
+		return "StudyCafeCommentVO [cafeCommentNumber=" + cafeCommentNumber + ", cafeCommentContent="
 				+ cafeCommentContent + ", cafeCommentDate=" + cafeCommentDate + ", cafeCommentScore=" + cafeCommentScore
-				+ ", memberNumber=" + memberNumber + ", studyCafeNumber=" + studyCafeNumber + "]";
+				+ ", memberNumber=" + memberNumber + ", studyCafeNumber=" + studyCafeNumber + ", memberNickname="
+				+ memberNickname + "]";
 	}
-	
 	
 }
