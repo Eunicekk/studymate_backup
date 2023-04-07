@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +10,14 @@
 <title>Document</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/boardWrite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
-<script rel= "stylesheet" href= "${pageContext.request.contextPath}/assets/js/summernote/summernote-ko-KR.js" defer></script>
-<script rel= "stylesheet" href= "${pageContext.request.contextPath}/assets/js/summernote-lite.js" defer></script>
-<link rel="stylesheet" href= "${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css">
+<script
+   src="${pageContext.request.contextPath}/assets/js/summernote/summernote-ko-KR.js"
+   defer></script>
+<script
+   src="${pageContext.request.contextPath}/assets/js/summernote-lite.js"
+   defer></script>
+<link rel="stylesheet"
+   href="${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css" />
 </head>
 <body>
 	<!-- 헤더 -->
@@ -20,6 +26,7 @@
 
 	<!-- 메인 -->
 	<main class="postRegister-postWrapper">
+	<form id="write-form" method="post" action="${pageContext.request.contextPath}/board/boardWriteOk.bo" enctype="multipart/form-data"> 
 		<!-- 포트폴리오 분류 -->
 		<section></section>
 
@@ -35,11 +42,12 @@
 			</div>
 
 			<!-- 글쓰기 기능넣기 -->
-			<form method="post">
+			<!-- <form method="post"  > -->
+			
 				<textarea id="summernote-boardWrite" name="editordata">
                     </textarea>
-			</form>
-
+			<!-- </form> -->
+	
 			<!-- <div class="mainContent-container">
                     <div class="toolBar">툴 바</div>
                     <div class="mainContent-wrap">
@@ -55,20 +63,22 @@
 		<!-- 취소, 글 등록 -->
 		<section class="writeButtons-wrap">
 			<!-- 게시판 리스트로 돌아가기? -->
-			<form action="#" method="post">
-				<button class="writeButton-cancel">취소</button>
-			</form>
+			<!-- <form action="" method="post"> -->
+				<button type="button" class="writeButton-cancel">취소</button>
+			<!-- </form> -->
 			<!-- 게시판리스트로 돌아가기 ?? -->
-			<form action="" method="post">
-				<button class="writeButton-register">글 등록</button>
-			</form>
+			<!-- <form action="" method="post"> -->
+				<button type="submit" class="writeButton-register">글 등록</button>
+			<!-- </form> -->
 		</section>
+		</form> 
 	</main>
 
 	<!-- 푸터 -->
 	<footer></footer>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/boardWrite.js"></script>
 	<!-- <script src="../resource/summerNote/summernote-lite.js"></script>
 	<script src="../resource/summerNote/summernote-ko-KR.js"></script>
 	<link rel="stylesheet"
