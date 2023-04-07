@@ -9,8 +9,7 @@
 
 .InfoContent {
   width: 1194px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 648px 480px;
   gap: 66px;
@@ -214,16 +213,13 @@ section button {
   height: 100%;
 }
 
-.studyCafeTitle a > p {
+.studyCafeTitle p {
   margin-right: 1px;
-  font-size: 20px;
-  line-height: 20px;
-  letter-spacing: -0.7px;
-  color: rgb(94, 102, 141);
-}
-
-a {
-  text-decoration: none;
+  font-size: 25px;
+  line-height: 36px;
+  color: #242424;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .studyCafeLocation {
@@ -251,7 +247,7 @@ a {
   background: none;
   opacity: 1;
   border: 0px;
-  margin: 0px;
+  margin-right: 2px;
   padding: 0px;
   max-width: 100%;
 }
@@ -260,8 +256,7 @@ a {
   padding: 0px 0px 1px 1px;
   font-size: 14px;
   line-height: 19px;
-  letter-spacing: -0.7px;
-  color: rgb(138, 138, 138);
+  color: #8a8a8a;
   flex-shrink: 0;
 }
 
@@ -292,8 +287,7 @@ a {
   padding-bottom: 1px;
   font-size: 14px;
   line-height: 19px;
-  letter-spacing: -0.7px;
-  color: rgb(94, 102, 141);
+  color: #5e668d;
 }
 
 .studyCafeReply {
@@ -306,9 +300,11 @@ a {
   padding-top: 10px;
 }
 
-.start {
+.start{
+	height: 18px;
+}
+.start img{
   margin-right: 2px;
-  width: 14px !important;
 }
 
 .reviewCnt {
@@ -332,21 +328,18 @@ a {
   flex-direction: column;
 }
 
+
 .PriceTime {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
-  font-size: 19px;
   line-height: 39px;
-  letter-spacing: -0.06em;
-  color: rgb(36, 36, 36);
 }
 
 .PriceTime p {
   margin-left: 2px;
   font-size: 16px;
   line-height: 39px;
-  letter-spacing: -0.01em;
   color: rgb(87, 87, 87);
 }
 
@@ -358,9 +351,16 @@ a {
   border-radius: 2px;
   padding: 1px 4px;
   white-space: nowrap;
-  font-size: 12px !important;
-  line-height: 18px !important;
-  color: rgb(0, 92, 184) !important;
+  font-size: 12px;
+  line-height: 18px;
+  color: #6567AB;
+  margin-left: 8px;
+}
+
+.PriceTime .cafe-price{
+	font-size: 26px;
+	font-weight: bold;
+	color: #242424;
 }
 
 .likeBtn {
@@ -417,6 +417,7 @@ a {
   white-space: nowrap;
   padding: 0px 30px 2px;
   border: none;
+  font-family: 'Pretendard';
 }
 
 .TabPanel {
@@ -447,7 +448,6 @@ ul {
   padding: 15px 0px 18px;
   line-height: 27px;
   font-size: 16px;
-  letter-spacing: -0.9px;
   color: rgb(138, 138, 138);
   text-align: center;
   cursor: pointer;
@@ -458,7 +458,6 @@ ul {
   padding: 15px 0px 18px;
   line-height: 27px;
   font-size: 16px;
-  letter-spacing: -0.9px;
   background-color: rgb(255, 255, 255);
   color: rgb(138, 138, 138);
   text-align: center;
@@ -481,14 +480,13 @@ ul {
 .description h3 {
   font-size: 20px;
   line-height: 29px;
-  letter-spacing: -1px;
-  color: rgb(36, 36, 36);
+  color: #242424;
+  font-weight: 600;
 }
 
 .description p {
   font-size: 14px;
   line-height: 28px;
-  letter-spacing: -0.8px;
   padding-top: 20px;
   white-space: pre-line;
   color: rgb(87, 87, 87);
@@ -519,9 +517,9 @@ ul {
 
 .tip h3 {
   font-size: 20px;
-  letter-spacing: -1px;
   padding-left: 5px;
   line-height: 29px;
+
 }
 
 .TipList li > div {
@@ -542,7 +540,6 @@ ul {
 .TipList > li > div > p {
   font-size: 12px;
   line-height: 22px;
-  letter-spacing: -0.75px;
   padding-left: 11px;
   color: rgb(36, 36, 36);
 }
@@ -550,7 +547,6 @@ ul {
 .TipList > li > p {
   font-size: 12px;
   line-height: 22px;
-  letter-spacing: -0.75px;
   white-space: pre-wrap;
   padding-top: 5px;
   color: rgb(87, 87, 87);
@@ -559,15 +555,15 @@ ul {
 /* 위치 지도 css */
 
 .CurrentLocation {
-  padding-top: 139px;
+  padding-top: 85px;
 }
 
 .CurrentLocation > h3 {
   font-size: 20px;
   line-height: 29px;
-  letter-spacing: -1px;
   padding-bottom: 40px;
-  color: rgb(36, 36, 36);
+  color: #242424;
+  font-weight: 600;
 }
 
 .Map {
@@ -580,7 +576,7 @@ ul {
 .MapLoc {
   position: relative;
   overflow: hidden;
-  background: url("${pageContext.request.contextPath}/assets/img/pattern_1.png") 0px 0px repeat transparent;
+/*   background: url("${pageContext.request.contextPath}/assets/img/pattern_1.png") 0px 0px repeat transparent; */
 }
 
 .Map > div {
@@ -612,30 +608,20 @@ ul {
 }
 
 .Map > figure > figcaption {
-  font-size: 13px;
-  line-height: 22px;
-  letter-spacing: -0.8px;
+  font-size: 14px;
   padding-left: 7.4px;
   word-break: keep-all;
   color: rgb(36, 36, 36);
-  font-weight: bold;
-}
-
-#cafe-address{
- 	display: none;
- 	white-space: nowrap;
 }
 
 .ReplyContent {
-  margin-top: 139px;
   width: 1194px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .replyCnt {
-  height: 60px;
-  padding: 0px 18px;
+  margin-top: 85px;
+  padding: 40px 0;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -644,13 +630,14 @@ ul {
 }
 
 .countTitle {
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: 600;
   line-height: 24px;
   color: rgb(36, 36, 36);
 }
 
 .countTitle > span {
-  color: rgb(0, 117, 235);
+  color: #6567AB;
 }
 
 .startAvg {
@@ -680,9 +667,10 @@ ul {
 
 .RateCardContainer > span {
   font-size: 30px;
-  line-height: 65px;
+  line-height: 45px;
   color: rgb(36, 36, 36);
   margin-left: 3px;
+  font-weight: 700;
 }
 
 .RateCardContainer > p {
@@ -723,21 +711,24 @@ ul {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
-  gap: 6px;
   border: none;
+  font-family: 'Pretendard';
 }
 
 .replyFilter > button > span {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
   color: rgb(36, 36, 36);
   border: none;
+}
+
+.replyFilter > button > span:last-child{
+	height: 24px;
 }
 
 .menuList {
   position: absolute;
   top: 56px;
-  right: 28px;
+  right: 14px;
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
@@ -760,6 +751,7 @@ ul {
   font-size: 14px;
   color: rgb(87, 87, 87);
   border: none;
+  font-family: 'Pretendard';
 }
 
 .select {
@@ -769,10 +761,13 @@ ul {
   font-size: 14px;
   color: rgb(102, 103, 171);
   border: none;
+  font-family: 'Pretendard';
+  font-weight: 600;
 }
 
 .menuList > button:hover {
   color: rgb(102, 103, 171);
+  font-weight: 600;
 }
 
 .replyList {
@@ -798,64 +793,36 @@ ul {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
+  margin-bottom: 8px;
+}
+
+.startReply img{
+	height: 18px;
 }
 
 .avg {
   margin-left: 3px;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 18px;
   color: rgb(36, 36, 36);
+  font-weight: 600;
 }
 
 .nameDate {
-  font-size: 10px;
-  line-height: 20px;
+  font-size: 14px;
   color: rgb(163, 163, 163);
   margin-left: 10px;
 }
 
+.nickname{
+	color: #242424;
+}
+
 .repleyContent {
   text-align: left;
-  font-size: 16px;
-  line-height: 22px;
-  color: rgb(87, 87, 87);
+  font-size: 14px;
+  line-height: 20px;
+  color: #575757;
   white-space: pre-line;
-}
-
-.replyLike {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  justify-content: right;
-  margin-top: 16px;
-}
-
-.likehelp {
-  font-size: 12px;
-  line-height: 24px;
-  margin-right: 6px;
-  color: rgb(87, 87, 87);
-}
-
-.likeImg {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  gap: 3px;
-  height: 24px;
-  width: fit-content;
-  padding: 0px 8px;
-  border-radius: 18px;
-  border: 1px solid rgb(240, 240, 240);
-  cursor: pointer;
-}
-
-.likeImg > span {
-  font-size: 12px;
-  line-height: 11px;
-  color: rgb(36, 36, 36);
 }
 
 .NoticeContent {
@@ -866,7 +833,6 @@ ul {
 .NoticeContent h4 {
   color: rgb(36, 36, 36);
   font-size: 20px;
-  letter-spacing: -1px;
   line-height: 29px;
   font-weight: bold;
 }
@@ -877,11 +843,9 @@ ul {
 
 .NoticeItem {
   color: rgb(87, 87, 87);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 23px;
-  letter-spacing: -0.9px;
   white-space: nowrap;
-  font-weight: bold;
 }
 
 .NoticeItem::before {
@@ -907,23 +871,24 @@ ul {
   margin: 5px 0px;
   display: flex;
   flex-direction: column;
-  gap: 11px;
 }
 
 .RefundTypeList > p {
   color: rgb(87, 87, 87);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 24px;
-  letter-spacing: -0.03em;
   font-weight: bold;
+  margin-bottom: 6px;
 }
 
 .RefundTypeList > ul > li {
   color: rgb(87, 87, 87);
-  font-size: 12px;
-  line-height: 24px;
-  letter-spacing: -0.03em;
-  margin-bottom: 11px;
+  font-size: 14px;
+  line-height: 23px;
+}
+
+.RefundTypeList > ul > li:last-child{
+	margin-bottom: 10px;
 }
 
 .RefundTypeList > ul > li::before {
@@ -1001,13 +966,11 @@ button {
 
 .TitleSelect > p:first-child {
   font-size: 18px;
-  letter-spacing: -0.9px;
   color: rgb(36, 36, 36);
 }
 
 .TitleSelect > p:nth-child(2) {
   font-size: 15px;
-  letter-spacing: -0.45px;
   color: rgb(0, 117, 235);
   margin-left: 14px;
   line-height: 21px;
@@ -1016,7 +979,6 @@ button {
 
 .TitleSelect > p:nth-child(3) {
   font-size: 15px;
-  letter-spacing: -0.45px;
   color: rgb(0, 117, 235);
   margin-left: 14px;
   line-height: 21px;
@@ -1043,7 +1005,6 @@ button {
 
 .TextBox > p {
   font-size: 12px;
-  letter-spacing: -0.42px;
   color: rgb(94, 102, 141);
   margin-bottom: 9px;
 }
@@ -1071,7 +1032,6 @@ button {
 
 .impossible > span {
   font-size: 12px;
-  letter-spacing: -0.36px;
   color: rgb(94, 102, 141);
 }
 
@@ -1091,7 +1051,6 @@ button {
 
 .possible > span {
   font-size: 12px;
-  letter-spacing: -0.36px;
   color: rgb(94, 102, 141);
 }
 
@@ -1111,7 +1070,6 @@ button {
 
 .selected > span {
   font-size: 12px;
-  letter-spacing: -0.36px;
   color: rgb(94, 102, 141);
 }
 
@@ -1192,7 +1150,6 @@ button {
   -webkit-box-pack: center;
   justify-content: center;
   font-size: 12px;
-  letter-spacing: -0.6px;
   cursor: pointer;
   width: 65px;
   margin-left: 1px;
@@ -1225,7 +1182,6 @@ button {
   > .time-swiper-slide
   > .time-swiper-price {
   font-size: 12px;
-  letter-spacing: -0.6px;
 }
 
 .Timeslider
@@ -1237,7 +1193,6 @@ button {
   bottom: -30px;
   left: 0px;
   font-size: 12px;
-  letter-spacing: -0.3px;
   color: rgb(94, 102, 141);
 }
 
@@ -1296,7 +1251,6 @@ button {
 
 .TotalPrice {
   font-size: 18px;
-  letter-spacing: -0.54px;
   line-height: 24px;
   color: rgb(36, 36, 36);
   padding: 22px 39px 20px;
@@ -1497,4 +1451,85 @@ button {
   width: 610px;
   height: 334px;
   border-radius: 3px;
+}
+
+/* 댓글 작성 */
+.comment-form{
+	width: 1194px;
+    border-bottom: 1px solid rgb(212, 219, 226);
+    padding: 20px 0 80px;
+    margin: 0 auto;
+}
+
+.form-group{
+	width: 1122px;
+	margin: 0 auto;
+    position: relative;
+}
+
+.form-group h3{
+    font-size: 18px;
+    font-weight: 600;
+    color: #242424;
+    margin-bottom: 12px;
+}
+
+.form-group fieldset{
+    display: inline-block;
+    margin-bottom: 8px;
+    border: 0;
+    padding: 0;
+}
+
+.star-score{
+    display: flex;
+    align-items: center;
+}
+
+.star-text{
+    letter-spacing: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #999999;
+}
+
+.material-symbols-rounded {
+    color: transparent;
+    text-shadow: 0 0 0 rgb(203, 203, 203);
+    cursor: pointer;
+  font-variation-settings:
+  'FILL' 100,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.star-score input[type=radio]{
+    display: none;
+}
+
+.comment-form textarea{
+    width: 1090px;
+    height: 100px;
+    resize: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Pretendard';
+    color: #757575;
+    padding: 16px;
+    outline: none;
+    border: 1px solid rgb(212, 219, 226);
+}
+
+.submit-btn{
+    font-family: 'Pretendard';
+    font-size: 14px;
+    background-color: #6567AB;
+    padding: 4px 16px;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    position: absolute;
+    right: 0; bottom: -34px;
+    z-index: 20;
 }

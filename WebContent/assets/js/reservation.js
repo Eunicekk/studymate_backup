@@ -500,3 +500,76 @@ geocoder.addressSearch($("#cafe-address").text(), function (result, status) {
   }
 });
 
+// 댓글 별점 주기 디자인
+let $star = $(".star-score label");
+
+$star.on("click", function(){
+    $(this).children().css("text-shadow", "0 0 0 #6567AB");
+    $(this).prevAll('label').children().css("text-shadow", "0 0 0 #6567AB");
+	$(this).nextAll('label').children().css("text-shadow", "0 0 0 rgb(203, 203, 203)");
+})
+
+// 댓글 목록 조회
+let studyCafeNumber = $("#hidden-number").data("studycafenumber");
+console.log(studyCafeNumber);
+
+commentAjax();
+
+function commentAjax(){
+	$.ajax({
+		url: '/cafecomment/cafeCommentListOk.scc',
+		type: 'get',
+		data: {studyCafeNumber: studyCafeNumber},
+		dataType: "json",
+		success: showComment
+	});
+}
+
+function showComment(comments){
+	let text = '';
+	
+	comments.forEach(comment => {
+		text += `
+			<ul class="replyList">
+            <li class="ReplyItemRow">
+              <div class="rowContainer">
+                <div class="rowbtn">
+                  <div class="startReply">
+                    <img src="/assets/img/Star_1.svg" alt="" />
+                    <p class="avg">${comment.cafeCommentScore}</p>
+                    <p class="nameDate">
+                    	<span class="nickname">${comment.memberNickname}</span> |
+						<span>${comment.cafeCommentDate}</span>
+                    </p>
+                  </div>
+                </div>
+                <p class="repleyContent">${comment.cafeCommentContent}</p>
+              </div>
+            </li>
+          </ul>
+		`
+	})
+	
+	$('.replyList').html(text);
+}
+
+// 댓글 작성
+$('.submit-btn').on('click', function(){
+	$.ajax({
+		url: '/cafecomment/cafeCommentWriteOk.scc',
+		type: 'post',
+		data : {
+			studyCafeNumber : studyCafeNumber,
+			memberNumber : memberNumber,
+			cafeCommentScore : $("input[type=radio][name=star]:checked").val(),
+			cafeCommentContent : $('#content').val()
+		},
+		success : function(){
+			commentAjax();
+			$('#content').val('');
+		}
+	});
+})
+
+
+
