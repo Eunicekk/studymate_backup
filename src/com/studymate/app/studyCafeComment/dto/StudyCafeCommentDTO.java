@@ -1,17 +1,12 @@
 package com.studymate.app.studyCafeComment.dto;
-//cafe_comment_number  int unsigned auto_increment primary key,
-//cafe_comment_content varchar(1000),
-//cafe_comment_date datetime default now(),
-//cafe_comment_score tinyint unsigned,
-//member_number int unsigned,
-//study_cafe_number int unsigned,
+
 public class StudyCafeCommentDTO {
 	private int cafeCommentNumber;
 	private String cafeCommentContent;
 	private String cafeCommentDate;
 	private int cafeCommentScore; 
 	private int memberNumber;
-	private int sutdyCafeNumber;
+	private int studyCafeNumber;
 	
 	public StudyCafeCommentDTO() {}
 
@@ -55,19 +50,19 @@ public class StudyCafeCommentDTO {
 		this.memberNumber = memberNumber;
 	}
 
-	public int getSutdyCafeNumber() {
-		return sutdyCafeNumber;
+	public int getStudyCafeNumber() {
+		return studyCafeNumber;
 	}
 
-	public void setSutdyCafeNumber(int sutdyCafeNumber) {
-		this.sutdyCafeNumber = sutdyCafeNumber;
+	public void setStudyCafeNumber(int studyCafeNumber) {
+		this.studyCafeNumber = studyCafeNumber;
 	}
 
 	@Override
 	public String toString() {
 		return "StudyCafeCommentDTO [cafeCommentNumber=" + cafeCommentNumber + ", cafeCommentContent="
 				+ cafeCommentContent + ", cafeCommentDate=" + cafeCommentDate + ", cafeCommentScore=" + cafeCommentScore
-				+ ", memberNumber=" + memberNumber + ", sutdyCafeNumber=" + sutdyCafeNumber + "]";
+				+ ", memberNumber=" + memberNumber + ", studyCafeNumber=" + studyCafeNumber + "]";
 	}
 	
 	

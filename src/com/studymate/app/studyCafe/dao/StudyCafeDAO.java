@@ -30,6 +30,9 @@ public class StudyCafeDAO {
 	public void updateReadCount(int studyCafeNumber) {
 		sqlSession.update("studyCafe.updateReadCount", studyCafeNumber);
 	}
-
+	
+	public List<StudyCafeVO> search(String studyCafeName){
+		return sqlSession.selectList("studyCafe.search", studyCafeName);
+	}
 
 }

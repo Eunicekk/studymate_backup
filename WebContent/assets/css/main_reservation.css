@@ -19,7 +19,6 @@
 }
 
 
-
 /* 검색 창 */
 .searchContainer {
 	position: fixed;
@@ -417,7 +416,8 @@ input {
 
 .personBtn {
 	display: flex;
-	gap: 64px;
+	justify-content: flex-end;
+	gap: 10px;
 	margin-top: 18px;
 }
 
@@ -931,12 +931,12 @@ img {
 }
 
 .wrapper {
-	width: 400px;
+	width: 1000px;
 	background: white;
-	border-radius: 10px;
 	padding: 25px 25px 25px;
 	box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-	margin-left: 650px;
+	position: absolute;
+	left: -600px;
 }
 
 header h2 {
@@ -952,14 +952,20 @@ header p {
 .price-input {
 	width: 100%;
 	display: flex;
+	justify-content: space-around;
 	margin: 30px 0 35px;
 }
 
 .price-input .field {
 	display: flex;
-	width: 100%;
+	/* width: 100%; */
 	height: 45px;
 	align-items: center;
+}
+
+.field .input-max, .field .input-min{
+	width: 300px;
+	margin: 0 24px;
 }
 
 .field input {

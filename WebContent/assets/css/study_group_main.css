@@ -571,6 +571,7 @@ option {
 
 .studyOpen {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   padding: 20px 20px 0;
@@ -589,9 +590,12 @@ option {
   align-items: center;
   grid-gap: 3px;
   gap: 3px;
+
 }
 
 .badgeFiled {
+  display : flex;
+  position: relative;
   height: 28px;
   font-weight: 800;
   font-size: 12px;
@@ -600,11 +604,46 @@ option {
 }
 
 .badgeFiled > div {
+
   border-radius: 20px;
   padding: 4px 12px;
+  margin : 0 5px;
   background: #efefef;
   color: #656565;
 }
+
+
+
+/* 좋아요 버튼 */
+
+.groupLikeItems {
+	position: absolute;
+	top: 10px; 
+	right: 15px;
+}
+
+
+.groupLikeItems > img {
+	width: 40px;
+	height: 40px;
+	margin: 3px;
+}
+
+.groupLikeItems > p {
+	position: absolute; 
+	bottom: 0px; 
+	left: 5px;
+	right: 5px;
+	margin: 0; 
+	font-size: 11px;
+	color: #999999;
+	text-align: center;
+	letter-spacing: -0.05em;
+	 font-weight: 500;
+	
+}
+
+
 
 .endDate {
   display: flex;

@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="studyCafeComment">
+	<select id="selectAll" parameterType="_int" resultType="StudyCafeCommentVO">
+		select cafe_comment_number, m.member_nickname, cafe_comment_content, cafe_comment_date, cafe_comment_score,
+		m.member_number, study_cafe_number
+		from tbl_study_cafe_comment scc join tbl_member m
+		where study_cafe_number = 178 and m.member_number = scc.member_number
+	</select>
 	
-	
+	<insert id="insert" parameterType="StudyCafeCommentDTO">
+		insert into tbl_study_cafe_comment
+		(cafe_comment_content, cafe_comment_score, member_number, study_cafe_number)
+		values(#{cafeCommentContent}, #{cafeCommentScore}, #{#memberNumber}, #{studyCafeNumber})
+	</insert>
 </mapper>

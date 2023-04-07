@@ -23,10 +23,13 @@ public class StudyCafeFrontController extends HttpServlet{
 
 		switch(target) {
 		case "/cafe/cafeListOk.sc" : 
-			new CafeListOkController().execute(req, resp);
+			new StudyCafeListOkController().execute(req, resp);
 			break;
 		case "/cafe/cafeReadOk.sc" :
-			new CafeReadOkController().execute(req, resp);
+			new StudyCafeReadOkController().execute(req, resp);
+			break;
+		case "/cafe/cafeSearchOk.sc" : 
+			new StudyCafeSearchOkController().execute(req, resp);
 			break;
 		}
 	}

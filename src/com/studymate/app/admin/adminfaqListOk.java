@@ -1,4 +1,4 @@
-package com.studymate.app.studyCafe;
+package com.studymate.app.admin;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,44 +10,60 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.studymate.app.Execute;
-import com.studymate.app.studyCafe.dao.StudyCafeDAO;
-import com.studymate.app.studyCafe.vo.StudyCafeVO;
+import com.studymate.app.admin.dao.AdminDAO;
+import com.studymate.app.faq.dto.FaqDTO;
 
-public class CafeListOkController implements Execute {
+public class adminfaqListOk implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		StudyCafeDAO studycafeDAO = new StudyCafeDAO();
-		int total = studycafeDAO.getTotal();
+		AdminDAO adminDAO = new AdminDAO();
+		List<FaqDTO> faqlist = null;
 		
+		int total = adminDAO.faqTotal();
+
 		String temp = req.getParameter("page");
-		int page = temp == null ? 1 : Integer.parseInt(temp);
 		
-		int rowCount = 20;
+
+		int page = temp == null ? 1 : Integer.valueOf(temp);
+
+		int rowCount = 5;
+
 		int pageCount = 5;
+
 		int startRow = (page - 1) * rowCount;
-		int endPage = (int)(Math.ceil(page/(double)pageCount) * pageCount);
+
+		int endPage = (int) (Math.ceil(page / (double) pageCount) * pageCount);
+
 		int startPage = endPage - (pageCount - 1);
-		int realEndPage = (int)Math.ceil(total / (double)rowCount);
+
+		int realEndPage = (int) Math.ceil(total / (double) rowCount);
+
 		endPage = endPage > realEndPage ? realEndPage : endPage;
-		
+
 		boolean prev = startPage > 1;
 		boolean next = endPage != realEndPage;
-		
-		Map<String, Integer> pageMap = new HashMap<>();
+
+		Map<String, Integer> pageMap = new HashMap<String, Integer>();
 		pageMap.put("startRow", startRow);
 		pageMap.put("rowCount", rowCount);
+		System.out.println(pageMap);
+
+		faqlist = adminDAO.faqList(pageMap);	
+			
+		System.out.println(faqlist);
+//		faqlist.get(0).getAdminNumber();
 		
-		List<StudyCafeVO> cafelist = studycafeDAO.selectAll(pageMap);
-		
-		req.setAttribute("cafelist", cafelist);
+		req.setAttribute("faqlist", faqlist);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);
 		req.setAttribute("endPage", endPage);
 		req.setAttribute("prev", prev);
 		req.setAttribute("next", next);
-		
-		req.getRequestDispatcher("/app/cafe/mainReservation.jsp").forward(req, resp);
+		req.setAttribute("total", total);
+
+
+		req.getRequestDispatcher("/app/admin/faq.jsp").forward(req, resp);
 	}
 
 }

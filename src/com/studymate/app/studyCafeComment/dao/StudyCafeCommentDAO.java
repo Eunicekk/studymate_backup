@@ -1,8 +1,12 @@
 package com.studymate.app.studyCafeComment.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.mybatis.config.MyBatisConfig;
+import com.studymate.app.studyCafeComment.dto.StudyCafeCommentDTO;
+import com.studymate.app.studyCafeComment.vo.StudyCafeCommentVO;
 
 public class StudyCafeCommentDAO {
 	public SqlSession sqlSession;
@@ -10,4 +14,13 @@ public class StudyCafeCommentDAO {
 	public StudyCafeCommentDAO(){
 		sqlSession= MyBatisConfig.getSqlSessionFactory().openSession(true);
 	}
+	
+	public List<StudyCafeCommentVO> selectAll(int studyCafeNumber){
+		return sqlSession.selectList("studyCafeComment.selectAll", studyCafeNumber);
+	}
+	
+	public void insert(StudyCafeCommentDTO studyCafeCommentDTO) {
+		sqlSession.insert("studyCafeComment.insert", studyCafeCommentDTO);
+	}
+	
 }

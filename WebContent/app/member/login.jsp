@@ -69,7 +69,7 @@
     <div class="login-form-container">
       <div class="login-form">
         <!-- 로그인폼 -->
-        <form method="post" action="" id="login">
+        <form method="post" action="loginOk.me" id="">
           <div class="input-group">
             <label for="memberId">아이디</label>
             <input type="text" name="memberId" id="memberId" required><br><br>
@@ -81,7 +81,7 @@
     
           <!-- 계정찾기 누르면 계정찾기 findAccount로 이동 -->
           <div class="findAccount">
-            <p><a href="http://127.0.0.1:5500/workspace/project/findAccount.html">계정 찾기</a></p>
+            <p><a href="${pageContext.request.contextPath}/app/member/findAccount.jsp">계정찾기</a></p>
           </div>
           <br>
     
@@ -96,7 +96,8 @@
     <div class="footer">
       <!-- 회원가입 누르면 회원가입페이지 register로 넘어감 -->
       <br>
-      <p>아직 회원이 아니신가요 ? <a href="http://127.0.0.1:5500/workspace/project/register.html">회원가입</a></p>
+   <p>아직 회원이 아니신가요 ? <a href="http://localhost:8085/member/join.me">회원가입</a></p>
+   
     </div>
     
       

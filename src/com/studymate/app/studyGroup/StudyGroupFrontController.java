@@ -16,12 +16,20 @@ public class StudyGroupFrontController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doProcess(req, resp);
+		
 	}
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 
-		switch(target) {
+		switch(target) { 
+		case "/studyGroup/studyGroupMainOk.sg":
+			System.out.println("okcontrolrt");
+			new StudyGroupMainOkController().execute(req,resp); 
+			break;
+		case "/studyGroup/studyGroupReadOk.sg":
+			new studyGroupReadOkController().execute(req,resp); 
+			break;
 		
 		}
 	}
