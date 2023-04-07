@@ -25,16 +25,28 @@ public class MemberDAO {
 		return result;
 	}
 
-	public MemberDTO findAccount(MemberDTO memberDTO) {
-		MemberDTO result=sqlSession.selectOne("member.findAccount",memberDTO);
-		return result;
-	}
+
+
+
 	
 	public boolean checkId(String memberId) {
 		return(Integer)sqlSession.selectOne("member.checkId",memberId)<1;
 	}
 
-	
+	public MemberDTO findAccount(MemberDTO memberDTO) {
+	    List<MemberDTO> resultList = sqlSession.selectList("member.findAccount", memberDTO);
+
+	    // 결과 리스트에서 첫 번째 항목을 반환하거나, 결과가 없는 경우 null을 반환
+	    return resultList.isEmpty() ? null : resultList.get(0);
+	}
+
+
+
+
+	public int updatePassword(MemberDTO memberDTO) {
+	    return sqlSession.update("member.updatePassword", memberDTO);
+	}
+
 
 
 	

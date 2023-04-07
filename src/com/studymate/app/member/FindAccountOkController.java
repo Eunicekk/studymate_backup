@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.studymate.app.Execute;
 import com.studymate.app.member.dao.MemberDAO;
@@ -18,23 +17,32 @@ public class FindAccountOkController implements Execute {
         MemberDAO memberDAO = new MemberDAO();
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setMemberEmail(req.getParameter("memberEmail"));
-        MemberDTO result = memberDAO.findAccount(memberDTO);
+        memberDTO.setMemberId(req.getParameter("memberId"));
 
-        if (result != null) {
-            // 회원 정보에서 아이디와 비밀번호 가져오기
-            String memberId = result.getMemberId();
-            String memberPw = result.getMemberPassword();
-System.out.println(memberId);
-System.out.println(memberPw);
-            // 모달 창에 표시할 아이디와 비밀번호를 HttpServletRequest 객체에 추가
-            req.setAttribute("memberId", memberId);
-            req.setAttribute("memberPw", memberPw);
+        // 이메일과 아이디를 통해 사용자 정보를 가져옴
+        MemberDTO userInfo = memberDAO.findAccount(memberDTO);
 
-            // 모달 창을 표시하는 JSP 페이지로 이동
-            req.getRequestDispatcher("/app/member/findAccount.jsp").forward(req, resp);
+        // 사용자 정보가 존재하는 경우
+        if (userInfo != null) {
+            memberDTO.setMemberPassword(req.getParameter("memberPassword"));
+            memberDTO.setMemberNumber(userInfo.getMemberNumber());
+
+            // 비밀번호 변경
+            int result = memberDAO.updatePassword(memberDTO);
+            if (result == 1) {
+                // 비밀번호 변경 성공
+                resp.sendRedirect(req.getContextPath() + "/member/login.me");
+            } else {
+                // 비밀번호 변경 실패
+                req.setAttribute("error", "비밀번호 변경에 실패했습니다.");
+                req.getRequestDispatcher("/app/member/findAccount.jsp").forward(req, resp);
+
+            }
         } else {
-            // 이메일 주소에 해당하는 회원이 없을 경우 에러 메시지를 띄워주거나 다른 처리를 수행합니다.
-            // ...
+            // 사용자 정보가 존재하지 않는 경우
+            req.setAttribute("error", "이메일 또는 아이디가 일치하지 않습니다.");
+            req.getRequestDispatcher("/app/member/findAccount.jsp").forward(req, resp);
+
         }
     }
 }

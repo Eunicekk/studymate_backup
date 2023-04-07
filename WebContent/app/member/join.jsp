@@ -88,7 +88,7 @@
               <br />
             </div>
           
-            <!-- <div class="input-group">
+            <div class="input-group">
               <label for="memberAge">나이</label>
               <input type="text" id="memberAge" name="memberAge" placeholder="Ex)27살" required>
               <br />
@@ -107,7 +107,7 @@
               <input type="radio" id="male" name="memberGender" value="male" required>
               <label for="female">여성</label>
               <input type="radio" id="female" name="memberGender" value="female" required>
-          </div> -->
+          </div> 
 
 
 
