@@ -14,5 +14,10 @@
 	values(#{studyGroupCommentContent}, CURRENT_TIMESTAMP, #{memberNumber} ,#{studyGroupNumber})
 	</insert>
 	
+	<delete id="delete" parameterType = "_int">
+	delete from tbl_study_group_comment
+	where study_group_comment_number = #{studyGroupCommentNumber}
+	</delete>
+	
 	
 </mapper>

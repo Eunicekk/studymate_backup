@@ -131,8 +131,8 @@
                <c:out value="${group.getStudyGroupCommentCount()}" />
               개의 댓글이 있습니다</h1>
               <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" > 
-              
               </textarea>
+              
               <div class="commentInput-buttonWrapper">
                 <button class="commentInput-buttonComplete" name="register"  data-memberNumber = "${group.memberNumber}" >
                   댓글 등록
@@ -143,10 +143,10 @@
             <!-- 댓글 리스트 -->
 
             <!-- 마진없는 댓글 컨테이너 -->
-            <ul class="commentList-CommentList">
-             <!--  마진 준 댓글 리스트 컨테이너 -->
-              <li class="commentItem-commentContainer">
-               <!--  <section class="commentItem-CommentHeader">
+ <ul class="commentList-CommentList">
+              마진 준 댓글 리스트 컨테이너
+  		       <!--  <li class="commentItem-commentContainer">
+                <section class="commentItem-CommentHeader">
                   <div class="commentItem-writerWrapper">
                     <img
                       class="commentItem-writerImg"
@@ -163,17 +163,20 @@
                     </div>
                   </div>
                   <div class="boardReply-editDelete">
-                    <button type="button" class="boardReply-editor-buttons">수정</button>
-                <button type="button" class="boardReply-editor-buttons">삭제</button>
+                 <button type="button" class="boardReply-editor-buttons-modi">수정</button>
+                <button type="button" class="boardReply-editor-buttons-dele">삭제</button>
                 </div>
+                <div class="boardReply-editor-buttons-done">
+				 <button type="button" class="boardReply-editor-buttons-done">수정완료</button>
+				</div>
                 </section>
                 <section class="commentItem-CommentContent">
                   <p class="commentItem-CommentContent">
                     안녕하세요 미래에서 왔습니데
                   </p>
-                </section> -->
-              </li>
-            </ul>
+                </section>
+              </li>-->
+            </ul> 
           </div>
         </section>
       </main>

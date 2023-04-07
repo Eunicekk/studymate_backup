@@ -6,8 +6,8 @@ let $modifyBtn = $('.boardContent-edit');
 let $deleteBtn = $('.boardContent-delete'); 
 let $uploadReplyBtn = $('.commentInput-buttonComplete');
 
-let $replyModifyBtn = $('.boardReply-editor-buttons');
-let $replyDeleteBtn = $('.boardReply-editor-buttons'); 
+let $replyModifyBtn = $('.boardReply-editor-buttons-modi');
+let $replyDeleteBtn = $('.boardReply-editor-buttons-dele'); 
 
 
 let studyGroupNumber = $prevBtn.data("studygroupnumber");
@@ -71,12 +71,15 @@ function showComment (comments) {
                       </div>
                     </div>
                   </div>
-
-                  <div class="boardReply-editDelete">
-                    <button type="button" class="boardReply-editor-buttons">수정</button>
-                <button type="button" class="boardReply-editor-buttons">삭제</button>
-                </div>
-
+                  <div class="boardReply-editDelete"> 
+                    <button type="button" class="boardReply-editor-buttons-modi" >수정</button>
+                <button type="button" class="boardReply-editor-buttons-dele" data-number = "${comment.studyGroupCommentNumber}">삭제</button>
+				</div>
+				<div class="boardReply-editor-buttons-done">
+				 <button type="button" class="boardReply-editor-buttons-done">수정완료</button>
+				</div>
+				
+				
                 </section>
                 <section class="commentItem-CommentContent">
                   <p class="commentItem-CommentContent">
@@ -118,12 +121,27 @@ $uploadReplyBtn.on('click', ()=>{
 
 
 // 댓글 수정 Ajax 처리
-$replyModifyBtn.on('click', ()=>{
-   // 댓글 수정 Ajax 처리해주세요
-});
+
+
+
 
 // 댓글 삭제 Ajax 처리
-$replyDeleteBtn.on('click', ()=>{
-   // 댓글 수정 Ajax 처리해주세요
+
+$('.commentList-CommentList').on('click','.boardReply-editor-buttons-dele', function(){
+	  console.log('delete!');
+	let commentNumber = $(this).data('number');
+	 console.log(commentNumber);
+	$.ajax({
+		  url : "/studyGroupComment/studyGroupCommentDeleteOk.sgc",
+      type : "get",
+      data : {studyGroupCommentNumber : commentNumber},
+      success : function(){
+         commentAjax();
+	
+
+      }
+	});
 });
+
+console.log('======');
 

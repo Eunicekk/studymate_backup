@@ -22,4 +22,8 @@ public class StudyGroupCommentDAO {
 	public void insert(StudyGroupCommentDTO studyGroupCommentDTO) {
 		sqlSession.insert("studyGroupComment.insert",studyGroupCommentDTO );
 	}
+	
+	public void delete (int studyGroupCommentNumber ) {
+		sqlSession.delete("studyGroupComment.delete",studyGroupCommentNumber );
+	}
 }

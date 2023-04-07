@@ -30,6 +30,10 @@ public class StudyGroupCommentFrontController extends HttpServlet{
 			System.out.println("댓글 작성");
 			new StudyGroupCommentWriteOkController().execute(req,resp);
 			break;
+		case "/studyGroupComment/studyGroupCommentDeleteOk.sgc":
+			System.out.println("댓글 삭제");
+			new StudyGroupCommentDeleteOkController().execute(req,resp);
+			break;
 		}
 	}
 }
