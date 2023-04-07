@@ -22,7 +22,18 @@ public class BoardCommentFrontController extends HttpServlet{
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 
 		switch(target) {
-		
+	     case "/boardComment/boardCommentListOk.re":
+	         new BoardCommentListOkController().execute(req, resp);
+	         break;
+	      case "/board/boardCommentWriteOk.re":
+	    	  new BoardCommentWriteOkController().execute(req, resp);
+	    	  break;
+	      case "/bpard/boardCommentDeleteOk.re":
+	    	  new BoardCommentDeleteOkController().execute(req, resp);
+	    	  break;
+	      case "/board/boardCommentUpdateOk.re":
+	    	  new BoardCommentUpdateOkController().execute(req, resp);
+	    	  break;
 		}
 	}
 }

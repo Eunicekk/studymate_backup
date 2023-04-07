@@ -50,4 +50,7 @@ public class MemberDAO {
 
 
 
+	public String getMemberId(int memberNumber) {
+		return sqlSession.selectOne("member.getMemberId", memberNumber);
+	}
 }
