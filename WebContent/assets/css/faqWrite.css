@@ -36,7 +36,7 @@ label {
 
 input {
     font-family: 'Pretendard';
-    width: 950px;
+    width: auto;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #bdbdbd;
@@ -61,8 +61,27 @@ input {
     background-color: #4E4C8D;
 }
 
+.update {
+    float: right;
+    margin-top: 10px;
+    margin-right: 7px;
+    padding: 11px 24px;
+    border-radius: 4px;
+    border: none;
+    background-color: #65619E;
+    color: white;
+    font-family: 'Pretendard';
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.update {
+    background-color: #4E4C8D;
+}
+
 
 .note-editable, .note-code{
+	width:102%;
     height: 500px; /* custom size */
     min-height: 500px; /* custom size */
     max-height: 500px !important; /* custom size */

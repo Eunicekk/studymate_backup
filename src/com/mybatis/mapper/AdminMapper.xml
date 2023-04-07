@@ -244,7 +244,8 @@
 		resultType="AdminGroupVO">
 		select j1.study_group_number, j1.study_group_title,
 		j1.study_group_field,
-		date_add(j1.study_group_start_date, interval j1.study_group_duration day) study_group_end_date,
+		date_add(j1.study_group_start_date, interval
+		j1.study_group_duration day) study_group_end_date,
 		j1.study_group_duration,like_count,
 		j1.study_group_read_count,
 		j1.member_number, scc.member_nickname
@@ -276,30 +277,40 @@
 		resultType="AdminGroupVO">
 		select j1.study_group_number, j1.study_group_title,
 		j1.study_group_field,
-		date_add(j1.study_group_start_date, interval j1.study_group_duration day) study_group_end_date,
+		date_add(j1.study_group_start_date, interval
+		j1.study_group_duration day) study_group_end_date,
 		j1.study_group_duration,like_count,
-		j1.study_group_read_count, j1.member_number, scc.member_nickname
+		j1.study_group_read_count,
+		j1.member_number, scc.member_nickname
 		from (
-		select sc.study_group_number, sc.study_group_title,
-		sc.study_group_field, sc.study_group_online, sc.study_group_capacity,
+		select
+		sc.study_group_number, sc.study_group_title,
+		sc.study_group_field,
+		sc.study_group_online, sc.study_group_capacity,
 		sc.study_group_start_date, sc.study_group_contact,
 		sc.study_group_duration, sc.study_group_content,
 		sc.study_group_read_count, sc.member_number,
 		count(mlc.study_group_number) like_count
-		from tbl_study_group sc left outer
+		from tbl_study_group sc left
+		outer
 		join tbl_member_like_study_group mlc
-		on sc.study_group_number = mlc.study_group_number
+		on sc.study_group_number =
+		mlc.study_group_number
 		group by sc.study_group_number
-		) j1 left outer join tbl_member scc
+		) j1 left outer
+		join tbl_member scc
 		on j1.member_number = scc.member_number
-		group by j1.study_group_number
+		group by
+		j1.study_group_number
 		order by j1.study_group_start_date desc ;
 	</select>
-	
+
 	<select id="groupSearch" resultType="AdminGroupVO">
-		select j1.study_group_number, j1.study_group_title,
+		select
+		j1.study_group_number, j1.study_group_title,
 		j1.study_group_field,
-		date_add(j1.study_group_start_date, interval j1.study_group_duration day) study_group_end_date,
+		date_add(j1.study_group_start_date, interval j1.study_group_duration
+		day) study_group_end_date,
 		j1.study_group_duration,like_count,
 		j1.study_group_read_count,
 		j1.member_number, scc.member_nickname
@@ -323,7 +334,42 @@
 		on j1.member_number = scc.member_number
 		group by
 		j1.study_group_number having
-		member_nickname like concat('%', #{memberNickname}, '%')
+		member_nickname like concat('%',
+		#{memberNickname}, '%')
+		order by j1.study_group_number asc
+	</select>
+	
+	<select id="listSearch" resultType="AdminGroupVO">
+		select
+		j1.study_group_number, j1.study_group_title,
+		j1.study_group_field,
+		date_add(j1.study_group_start_date, interval j1.study_group_duration
+		day) study_group_end_date,
+		j1.study_group_duration,like_count,
+		j1.study_group_read_count,
+		j1.member_number, scc.member_nickname
+		from (
+		select
+		sc.study_group_number, sc.study_group_title,
+		sc.study_group_field,
+		sc.study_group_online, sc.study_group_capacity,
+		sc.study_group_start_date, sc.study_group_contact,
+		sc.study_group_duration, sc.study_group_content,
+		sc.study_group_read_count, sc.member_number,
+		count(mlc.study_group_number) like_count
+		from tbl_study_group sc left
+		outer
+		join tbl_member_like_study_group mlc
+		on sc.study_group_number =
+		mlc.study_group_number
+		group by sc.study_group_number
+		) j1 left outer
+		join tbl_member scc
+		on j1.member_number = scc.member_number
+		group by
+		j1.study_group_number having
+		study_group_field like concat('%',
+		#{listText}, '%')
 		order by j1.study_group_number asc
 	</select>
 
@@ -331,9 +377,55 @@
 		select
 		count(study_group_number) from tbl_study_group;
 	</select>
-	
+
 	<delete id="groupDelete" parameterType="_int">
-		delete from tbl_study_group where study_group_number = #{studyGroupNumber}
+		delete from
+		tbl_study_group where study_group_number = #{studyGroupNumber}
+	</delete>
+
+	<!--faq 게시판 -->
+	<select parameterType="map" resultType="FaqDTO" id="faqList">
+		select
+		faq_number, faq_title, faq_content, faq_date, admin_number
+		from tbl_faq
+		limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="faqTotal" resultType="_int">
+		select count(faq_number) from
+		tbl_faq;
+	</select>
+
+	<insert id="faqWrite" parameterType="faqDTO">
+		insert into tbl_faq
+		(faq_title, faq_content, admin_number)
+		values(#{faqTitle},
+		#{faqContent}, #{adminNumber});
+	</insert>
+
+	<select id="adminNumber" parameterType="string"
+		resultType="_int">
+		select admin_number from tbl_admin where admin_nickname =
+		#{adminNickname}
+	</select>
+
+	<select id="faqSelect" parameterType="_int" resultType="FaqDTO">
+		select
+		faq_number, faq_title, faq_content, faq_date,
+		admin_number
+		from tbl_faq
+		where faq_number = #{faqNumber};
+	</select>
+
+	<update id="faqUpdate" parameterType="FaqDTO">
+		UPDATE tbl_faq
+		SET faq_title= #{faqTitle}, faq_content= #{faqContent}, admin_number= #{adminNumber}
+		WHERE faq_number=#{faqNumber}
+	</update>
+	
+	<delete id="faqDelete" parameterType="_int">
+		delete from tbl_faq where faq_number = #{faqNumber}
 	</delete>
 
 </mapper>

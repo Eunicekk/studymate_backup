@@ -10,6 +10,7 @@ import com.studymate.app.admin.board.vo.AdminBoardVO;
 import com.studymate.app.admin.cafe.vo.adminCafeVO;
 import com.studymate.app.admin.dto.AdminDTO;
 import com.studymate.app.admin.group.vo.AdminGroupVO;
+import com.studymate.app.faq.dto.FaqDTO;
 import com.studymate.app.member.dto.MemberDTO;
 import com.studymate.app.studyCafe.dto.StudyCafeDTO;
 import com.studymate.app.studyCafeFile.dto.StudyCafeFileDTO;
@@ -127,4 +128,36 @@ public class AdminDAO {
 		return sqlSession.selectList("admin.groupSearch" ,memberNickname);
 	}
 	
+	public List<AdminGroupVO> listSearch(String listText){
+		return sqlSession.selectList("admin.listSearch",listText);
+	}
+	
+	//FAQ
+	public List<FaqDTO> faqList(Map<String,Integer> pageMap) {
+		return sqlSession.selectList("admin.faqList",pageMap);
+	}
+	
+	public int faqTotal() {
+		return sqlSession.selectOne("admin.faqTotal");
+	}
+	
+	public void faqWrite(FaqDTO faqDTO) {
+		sqlSession.insert("admin.faqWrite", faqDTO);
+	}
+	
+	public int adminNumber(String adminNickname) {
+		return sqlSession.selectOne("admin.adminNumber",adminNickname);
+	}
+	
+	public List<FaqDTO> faqSelect(int faqNumber) {
+		return sqlSession.selectList("admin.faqSelect",faqNumber);
+	}
+	
+	public void faqUpdate(FaqDTO faqDTO) {
+		sqlSession.update("admin.faqUpdate",faqDTO);
+	}
+	
+	public void faqDelete(int faqNumber) {
+		sqlSession.delete("admin.faqDelete",faqNumber);
+	}
 }

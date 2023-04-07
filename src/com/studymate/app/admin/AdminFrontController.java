@@ -63,7 +63,28 @@ public class AdminFrontController extends HttpServlet{
 		case "/admin/adminGroupDeleteOk.ad":
 			new adminGroupDeleteOk().execute(req,resp);
 			break;
-		
+		case "/admin/faq.ad":
+//			req.getRequestDispatcher("/app/admin/faq.jsp").forward(req, resp);
+			new adminfaqListOk().execute(req,resp);
+			break;
+		case "/admin/faqListOk.ad":
+			new adminfaqListOk().execute(req,resp);
+			break;
+		case "/admin/faqWrite.ad":
+			req.getRequestDispatcher("/app/admin/faqWrite.jsp").forward(req, resp);
+			break;
+		case "/admin/faqWriteOk.ad":
+			new adminfaqWriteOk().execute(req,resp);
+			break;
+		case "/admin/faqUpdate.ad":
+			new adminUpdate().execute(req,resp);
+			break;
+		case "/admin/faqUpdateOk.ad":
+			new adminFaqUpdateOk().execute(req,resp);
+			break;
+		case "/admin/faqDeleteOk.ad":
+			new adminFaqDeleteOk().execute(req,resp);
+			break;
 		}
 	}
 }

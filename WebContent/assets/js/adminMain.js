@@ -101,3 +101,4 @@ $boardCheck.on('click', function() {
 	$('#list-content').load("/app/admin/adminBoardCheck.jsp");
 	$('#list-content').load("/admin/adminBoardListOk.ad");
 });
+

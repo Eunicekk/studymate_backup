@@ -153,6 +153,46 @@ $('#paging').on('click', ".prev", function() {
 	}
 });
 
+$('#paging').on('click', ".pageBtn", function() {
+	//$('#list-content').load('${pageContext.request.contextPath}/admin/adminMemberCheckOk.ad?page='+$(this).text());
+	//window.location.href='/admin/adminMemberCheckOk.ad?page='+$(this).text().trim();
+
+	page = $(this).text().trim()
+
+
+	console.log($(this).text().trim());
+	if (tmp == 1) {
+
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: '/admin/adminGroupListOk.ad?page=' + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+			}
+
+		});
+	} else if (tmp == 2) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: '/admin/adminGroupListOk.ad?order=desc&page=' + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+			}
+
+		});
+	}
+});
+
 
 //next
 $('#paging').on('click', ".next", function() {
@@ -188,6 +228,7 @@ $('#paging').on('click', ".next", function() {
 	}
 });
 
+/*검색*/
 $('.group-search > form > button').on('click' ,function(){
 	var memberNickname = $('.group-search > form > input').val();
 	console.log(memberNickname);
@@ -204,4 +245,45 @@ $('.group-search > form > button').on('click' ,function(){
 			}
 		});
 })
+
+
+
+//셀렉트 검색
+
+$('.filter-field > ul > li').on("click",function(){
+	var listText = $(this).text();
+	
+	$.ajax({
+			type: "GET",
+			url: "/admin/adminGroupListOk.ad",
+			data: { listText : listText },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				$('.filter-search').text(listText);
+				//alert("통신 데이터 값 : " + Parse_data);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

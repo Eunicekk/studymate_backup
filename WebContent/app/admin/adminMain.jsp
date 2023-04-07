@@ -79,8 +79,18 @@
 
 	<!-- footer 추가하기 -->
 	<footer>
-		<jsp:include
-			page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+		<%-- <jsp:include
+			page="${pageContext.request.contextPath}/app/footer/footer.jsp" /> --%>
+			<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
 	</footer>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
