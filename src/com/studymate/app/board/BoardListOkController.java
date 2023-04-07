@@ -31,7 +31,6 @@ public class BoardListOkController implements Execute {
 		String temp = req.getParameter("page");
 		
 		System.out.println(temp);
-		
 //		null인 경우는 게시판에 처음 이동하는 것이므로 1페이지를 띄어주면 된다.
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 		

@@ -46,13 +46,15 @@
 						<c:out value="${board.getMemberId() }" />
 						<!-- 은시룽 /작성자 --></div>
 					</div>
-					<div class="boardContent-uploadDate">작성일 2123.08.10</div>
+					<div class="boardContent-uploadDate">작성일 "${board.getBoardDate() }"</div>
 
 
 					<div class="boardContent-editButtons">
 						<!-- 현재 로그인한 아이디or멤버넘버, 현재 게시글 아이디or멤버넘버 비교하기 c:if-->
+					 <c:if test="${sessionScope.memberNumber == board.getMemberNumber()}">
 						<button type="button" class="boardContent-edit">수정</button>
 						<button type="button" class="boardContent-delete">삭제</button>
+					 </c:if>
 					</div>
 				</div>
 			</section>
@@ -119,7 +121,8 @@
 
 					<!-- 마진없는 댓글 컨테이너 -->
 					<ul class="commentList-CommentList">
-
+					 
+						<c:forEach var="post" items="${boardRead}" >
 						<!-- 마진 준 댓글 리스트 컨테이너 -->
 						<li class="commentItem-commentContainer">
 							<section class="commentItem-CommentHeader">
@@ -129,9 +132,8 @@
 										alt="">
 									<div class="commentItem-commentInfo">
 										<div class="commentItem-title">
-											<div class="commentItem-userNickname">른시룽</div>
-											<div class="commentItem-registerDate">2143.08.10
-												13:42:55</div>
+											<div class="commentItem-userNickname">${post.getMemberNickname()}</div>
+											<div class="commentItem-registerDate">${post.getBoardCommentDate() }</div>
 										</div>
 									</div>
 								</div>
@@ -142,9 +144,10 @@
 								</div>
 							</section>
 							<section class="commentItem-CommentContent">
-								<p class="commentItem-CommentContent">안녕하세요 미래에서 왔습니데</p>
+								<p class="commentItem-CommentContent">${post.getBoardCommentContent()}</p>
 							</section>
 						</li>
+					</c:forEach>
 					</ul>
 				</div>
 			</section>

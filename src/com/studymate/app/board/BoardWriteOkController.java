@@ -28,7 +28,7 @@ public class BoardWriteOkController implements Execute {
 	      BoardFileDTO fileDTO = new BoardFileDTO();
 	      int boardNumber = 0;
 	      
-//	      System.out.println("writeOk컨트롤러 들어왔다!!!");
+	      System.out.println("writeOk컨트롤러 들어왔다@@@");
 	      System.out.println(req.getParameter("boardTitle"));
 	      
 	      String uploadPath = req.getSession().getServletContext().getRealPath("/") + "upload/";
@@ -87,7 +87,7 @@ public class BoardWriteOkController implements Execute {
 	            
 	            boardDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
 	            boardDAO.insert(boardDTO);
-	            
+//	            System.out.println(boardDTO);
 	            boardNumber = boardDAO.getSequence();
 	         }
 	      }

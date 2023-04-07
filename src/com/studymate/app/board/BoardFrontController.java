@@ -32,6 +32,7 @@ public class BoardFrontController extends HttpServlet{
 		case "/board/boardReadOk.bo" :
 //			req.getRequestDispatcher("/app/board/boardRead.jsp").forward(req, resp);
 			new BoardReadOkController().execute(req, resp);
+			System.out.println("boardRead!!!");
 			break;	
 		case "/board/boardWrite.bo" :
 //			req.getRequestDispatcher("/app/board/boardWrite.jsp").forward(req, resp);

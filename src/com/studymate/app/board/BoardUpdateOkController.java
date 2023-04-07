@@ -29,7 +29,7 @@ public class BoardUpdateOkController implements Execute {
 	      BoardFileDTO fileDTO = new BoardFileDTO();
 	      int boardNumber = 0;
 	      
-	      System.out.println("writeOk컨트롤러 들어왔다!!!");
+	      System.out.println("UpdateOk컨트롤러 들어왔다!!!");
 	      System.out.println(req.getParameter("boardTitle"));
 	      
 	      String uploadPath = req.getSession().getServletContext().getRealPath("/") + "upload/";

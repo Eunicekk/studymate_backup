@@ -25,6 +25,7 @@
 		<typeAlias type="com.studymate.app.studyGroupFile.dto.StudyGroupFileDTO" alias="StudyGroupFileDTO"/>
 		<typeAlias type="com.studymate.app.studyGroupLeader.dto.StudyGroupLeaderDTO" alias="StudyGroupLeaderDTO"/>
 		<typeAlias type="com.studymate.app.board.vo.BoardVO" alias="BoardVO"/>
+		<typeAlias type="com.studymate.app.boardComment.vo.BoardCommentVO" alias="BoardCommentVO"/>
 	</typeAliases>
 
 	<environments default="mysql">

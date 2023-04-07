@@ -39,7 +39,7 @@
 					<section class="search-form">
 						<!-- 전체건수 -->
 						<div class="contents-list-cnt">
-							전체 <strong>1,011</strong> 건
+							전체 <strong>${total}</strong> 건
 						</div>
 						<!-- 검색창 -->
 						<div class="box-search">
@@ -103,7 +103,7 @@
 										<!-- 이거 필요한지? -->
 										<em class="label-hot"></em>
 										<!-- 게시글 상세로 페이지 이동처리 -->
-										<a href="${pageContext.request.contextPath}/board/boardRead.bo?boardNumber=${post.getBoardNumber()}" class="content-subject">
+										<a href="${pageContext.request.contextPath}/board/boardReadOk.bo?boardNumber=${post.getBoardNumber()}" class="content-subject">
   											<c:out value="${post.getBoardTitle()}"></c:out>
 										</a>
 			
@@ -151,49 +151,53 @@
                 				 		
          					      </c:otherwise>
 								</c:choose>
+							</ul>	
 								
 							<div class="pageButtons">
-         <ul>
-            <!-- ========== 페이징 처리 예시 ============ -->
-            <c:if test="${prev}">
-               <li><a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${startPage - 1}" class="prev">&lt;</a></li>
-            </c:if>
-            
-            <c:forEach var="i" begin="${startPage}" end="${endPage}">
-               <c:choose>
-                  <c:when test="${!(i == page) }">
-                     <li>
-                        <a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${i}">
-                         	
-                           <c:out value="${i}"/>
-                        </a>
-                     </li>
-                  </c:when>
-                  <c:otherwise>
-                     <li>
-                        <a href="#" class="active">
-                           <c:out value="${i}"/>
-                        </a>
-                     </li>
-                  </c:otherwise>
-               </c:choose>
-            </c:forEach>
-            
-            <c:if test="${next}">
-               <li><a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${endPage + 1}" class="next"><img
-									src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png"
-									class="page" width="15px" height="15px" alt=""></a></li>
-            </c:if>
-            
-            
-            <!-- ========== /페이징 처리 예시 ============ -->
-         </ul>
-      </div>
-						</ul>
-					</section>
-				</div>
-			</div>
+ 							 <ul class="page-list">
+  							  <!-- ========== 페이징 처리 예시 ============ -->
+  							   <c:if test="${prev}">
+   							   <li>
+    						    <a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${startPage - 1}" class="prev">
+    						     <img
+                    				src="https://shareit.kr/_next/static/media/arrow-left-677294.ae6b1d0b.svg"
+                    				class="page" width="15px" height="15px" alt=""
+                  					/>
+    						    </a>			
+   							   </li>
+ 							   </c:if>		 	
 
+  							  <c:forEach var="i" begin="${startPage}" end="${endPage}">
+   							   <c:choose>
+    						    <c:when test="${!(i == page)}">
+     						     <li class="page-list-container">			
+         						   <a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${i}" class="page">
+         						     <c:out value="${i}"/>
+         						   </a>
+      						    </li>
+      						   </c:when>
+      						  <c:otherwise>
+       						    <li class="page-list-container">
+       						     <a href="#" class="pageNow">
+        					      <c:out value="${i}"/>
+           						 </a>
+         						 </li> 
+      						  </c:otherwise>
+    					  </c:choose>
+  					  </c:forEach>
+
+    						<c:if test="${next}">
+    							  <li>			
+     							   <a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${endPage + 1}" class="next">
+     							     <img src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png" class="page" width="15px" height="15px" alt="">
+     							   </a>
+    							  </li>
+   							 </c:if>
+  						  <!-- ========== /페이징 처리 예시 ============ -->
+  						</ul>
+					</div>
+				</section>
+			</div>
 		</div>
 	</main>
 
