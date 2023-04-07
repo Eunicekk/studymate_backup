@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPage">
+
+	<select id="selectMember" parameterType="_int"
+		resultType="MemberDTO">
+		select member_nickname, member_password,
+		member_phone_number, member_email
+		from tbl_member tb
+		where member_number
+		=#{memberNumber}
+	</select>
+
+	<update id="update" parameterType="MemberDTO">
+		update tbl_member
+		set
+		member_password=#{memberPassword},
+		member_email=#{memberEmail},
+		member_phone_number=#{memberPhoneNumber},
+		member_nickname=#{memberNickname}
+		where
+		member_number=#{memberNumber}
+	</update>
+
+	<delete id="deleteMember" parameterType="_int">
+		delete from tbl_member
+		where member_number=#{memberNumber}
+	</delete>
+
+	<select id="getTotal" resultType="_int">
+		select count(board_number) from
+		tbl_board
+	</select>
+
+	<select id="myPortfolio" parameterType="int"
+		resultType="MyPageVO">
+		select b.board_number,
+		b.board_title,
+		count(c.board_comment_number) as comment_count,
+		b.board_read_count,
+		b.member_number
+		from tbl_board b
+		left outer join tbl_board_comment c on
+		b.board_number = c.board_number
+		where b.member_number =#{memberNumber}
+		group by b.board_number, b.board_title, b.board_read_count,
+		b.member_number
+		order by b.board_number
+	</select>
+
+	<select id="myLikeCafe" parameterType="_int"
+		resultType="MyPageVO">
+		select j2.member_number, j2.study_cafe_number,
+		j2.like_count cafe_like_count, c.study_cafe_name,
+		c.study_cafe_address, c.study_cafe_price , c.study_cafe_content,
+		count(cc.cafe_comment_number) cafe_comment_count
+		from (
+		select
+		j.member_number, j.study_cafe_number, count(l2.member_number)
+		like_count
+		from (
+		select member_number , study_cafe_number from
+		tbl_member_like_cafe l
+		where l.member_number =#{memberNumber}
+		)j join
+		tbl_member_like_cafe l2
+		on j.study_cafe_number = l2.study_cafe_number
+		group by j.study_cafe_number
+		)j2 join tbl_study_cafe c
+		on
+		j2.study_cafe_number = c.study_cafe_number
+		left outer join
+		tbl_study_cafe_comment cc
+		on j2.study_cafe_number =
+		cc.study_cafe_number
+		group by j2.study_cafe_number;
+	</select>
+
+	<select id="myReservation" parameterType="_int"
+		resultType="MyPageVO">
+		select tscf.cafe_file_system_name , sc.study_cafe_address
+		,tm.member_number ,sc.study_cafe_number , sc.study_cafe_content ,
+		sc.study_cafe_name ,sc.study_cafe_price ,
+		tr.reservation_number , tr.reservation_start , tr.reservation_end , count(tr.member_number)
+		count_member
+		from tbl_study_cafe sc
+		left outer join tbl_reservation tr
+		on sc.study_cafe_number = tr.study_cafe_number
+		left join tbl_member tm
+		on tr.member_number = tm.member_number
+		left join tbl_study_cafe_file tscf
+		on sc.study_cafe_number = tscf.study_cafe_number
+		where tm.member_number =${memberNumber}
+		group by sc.study_cafe_number , tr.reservation_number, tm.member_number,
+		tscf.cafe_file_system_name
+	</select>
+
+</mapper>

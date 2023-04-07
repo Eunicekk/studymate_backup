@@ -36,7 +36,6 @@ public class JoinOkController implements Execute {
 		req.getRequestDispatcher("/app/member/login.jsp").forward(req, resp);
 
 		
-
 	}
 
 }

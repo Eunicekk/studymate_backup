@@ -21,27 +21,39 @@
       <div class="container">
         <!-- 사이드 바 영역 -->
         <div class="sidebar">
-          <ul>
-            <li class="active"><a href="#">내 정보</a></li>
-            <li class="side">
-              <a href="ModifyingInformation.jsp">정보 수정</a>
-            </li>
-            <li class="side">
-              <a href="portfolioList.jsp">내 포트폴리오</a>
-            </li>
-            <li class="active"><a href="#">카페 예약 정보</a></li>
-            <li class="side"><a href="interestPlace.jsp">관심 장소</a></li>
-            <li class="side"><a href="reserve.jsp">예약 정보</a></li>
-            <li class="side"><a href="UsageDetails.jsp">이용 내역</a></li>
-            <li class="side"><a href="cancel.jsp">취소/환불</a></li>
-            <li class="active"><a href="#">그룹 참여 정보</a></li>
-            <li class="side"><a href="leaderGroup.jsp">내 그룹</a></li>
-            <li class="side"><a href="interestGroup.jsp">관심 그룹</a></li>
-            <li class="side">
-              <a href="participatingGroup.jsp">참여 그룹</a>
-            </li>
-            <li class="side"><a href="endGroup.jsp">종료 그룹</a></li>
-          </ul>
+          	<ul>
+					<li class="active"><a href="#">내 정보</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/mypage/MyPageModifyingProfile.my">정보
+							수정</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my">내
+							포트폴리오</a></li>
+					<li class="active"><a href="#">카페 예약 정보</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/mypage/MyPageInterestPlaceOk.my">관심
+							장소</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/mypage/MyPageReserveOk.my">예약
+							정보</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/mypage/MyPageUsaDetailsOk.my">이용
+							내역</a></li>
+					<!-- <li class="side"><a href="cancel.jsp">취소/환불</a></li> -->
+					<li class="active"><a href="#">그룹 참여 정보</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/app/mypage/leaderGroup.jsp">내
+							그룹</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/app/mypage/interestGroup.jsp">관심
+							그룹</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/app/mypage/participatingGroup.jsp">참여
+							그룹</a></li>
+					<li class="side"><a
+						href="${pageContext.request.contextPath}/app/mypage/endGroup.jsp">종료
+							그룹</a></li>
+				</ul>
         </div>
         <!-- 메인 컨텐츠 영역 -->
         <div class="main-container">
