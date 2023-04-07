@@ -248,6 +248,8 @@ button {
 /* 나중에 헤더 푸터 다 완성되면 한번에 수정하기. 
 } */
 
+
+/* 댓글 창 묶음 (부모) */
 .commentItem-commentContainer {
   display: flex;
   flex-direction: column;
@@ -257,19 +259,31 @@ button {
 }
 
 
+
 /* 댓글 작성자 정보 */
 .commentItem-CommentHeader {
   display: flex;
-  justify-content: space-between;
+  position: relative;
 }
 
-
-/* 댓글 수정 삭제 버튼*/
+/* 댓글 수정 삭제 버튼 (자식)*/
 .boardReply-editDelete {
   display: flex;
+  position: absolute;
+  right: 30px;
   align-items: center;
   margin-right: 10px;
+
   }
+
+
+/* 수정완료 댓글 (자식) */
+.boardReply-editor-buttons-done {
+ position: absolute;
+ right: 20px;
+ display: flex;
+ align-items: center;
+}
 
 .boardReply-editor-buttons {
   margin-right: 10px;

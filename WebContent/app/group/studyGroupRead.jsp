@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +24,7 @@
         <section class="boardContent-postHeader">
           <!-- 뒤로가기버튼, 글제목, 글쓴이/날짜 -->
           <div class="currentColor">
-            <button type="button" class="prev-to-list">
+            <button type="button" class="prev-to-list" data-studyGroupNumber = "${group.studyGroupNumber}">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3353/3353056.png"
                 alt=""
@@ -33,7 +34,7 @@
             </button>
           </div>
           <div class="boardContent-title">
-            [스터디 그룹] 프로젝트 팀원 모집합니다⭐️
+            <c:out value="${group.getStudyGroupTitle()}" />
           </div>
           <div class="boardContent-userAndDate">
             <div class="boardContent-user">
@@ -46,14 +47,21 @@
                   width="3rem"
                 />
               </div>
-              <div class="boardContent-userName">은시룽</div>
+              <!-- 유저 닉네임 -->
+              <div class="boardContent-userName">
+              <c:out value="${group.getMemberNickname()}" />
+              </div>
             </div>
-            <div class="boardContent-uploadDate">2123.08.10</div>
-
+            <!-- 작성일자 -->
+            <div class="boardContent-uploadDate">
+             <c:out value="${group.getStudyGroupStartDate()}" />
+            </div>
+			<!-- 게시글 수정 삭제 -->	
             <div class="boardContent-editButtons">
-              <!-- 현재 로그인한 아이디or멤버넘버, 현재 게시글 아이디or멤버넘버 비교하기 c:if-->
+            <%--  <c:if test="${sessionScope.memberNumber == group.getMemberNumber()}">   --%>
               <button type="button" class="boardContent-edit">수정</button>
               <button type="button" class="boardContent-delete">삭제</button>
+             <%--   </c:if> --%> 
           </div>
 
           </div>
@@ -64,30 +72,42 @@
           <ul class="studyInfo">
             <li class="studyInfoList">
               <span class="studyTitle">모집 분야</span>
-              <span class="studyFeild">모집(값)</span>
+              <span class="studyFeild">
+              <c:out value="${group.getStudyGroupField()}" />
+              </span>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">진행 방식</span>
-              <span class="studyFeild">진행 방식</span>
+              <span class="studyFeild">
+              <c:out value="${group.getStudyGroupOnline()}" />
+              </span>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">모집 인원</span>
-              <span class="studyFeild">인원</span>
+              <span class="studyFeild">
+               <c:out value="${group.getStudyGroupCapacity()}" />
+              </span>
             </li>
             <li class="studyInfoList">
-              <span class="studyTitle">시작예정</span>
-              <span class="studyFeild">기간</span>
+              <span class="studyTitle">모집 마감일</span>
+              <span class="studyFeild">              
+               <c:out value="${group.getStudyGroupEndDate()}" />
+              </span>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">연락 방법</span>
                <a href="#" class="studyEmail">
-                <div class="">카카오톡</div>
+                <div class="">
+                 <c:out value="${group.getStudyGroupContact()}" />
+                </div>
                 <img src="https://cdn-icons-png.flaticon.com/512/7268/7268615.png" alt="">
               </a>
             </li>
             <li class="studyInfoList">
               <span class="studyTitle">예상 기간</span>
-              <span class="studyFeild">장기</span>
+              <span class="studyFeild">
+               <c:out value="${group.getStudyGroupDuration()}" />
+              </span>
             </li>
           </ul>
         </section>
@@ -96,51 +116,25 @@
         <section class="boardContent-postContent-wrapper">
           <h2 class="boardContent-postInfo">스터디그룹 소개</h2>
           <div class="boardContent-postContent">
-            포트폴리오 본문 내용 [🌏 WINGLE] 프론트엔드 개발자, UI/UX디자이너
-            리크루팅 ⭐️
-
-            <p>안녕하세요, 저희는 숙명여대 학생들로 구성된 WINGLE팀입니다.</p>
-            <br />
-
-            WINGLE은 대학 내 외국인, 한국인 학생을 대상으로 하는 국제교류
-            커뮤니티 개발 프로젝트로,
-            <br />
-            현재 MVP개발 및 베타버전 출시를 앞두고 있습니다. 서비스 형태는
-            <모바일 웹 어플리케이션>이며,
-            <br />
-            23-1학기동안 베타버전 런칭, 운영, 디벨롭 등을 진행하고자 합니다.
-            <br />
-            WINGLE과 함께 글로벌 서비스를 만들어갈 ❗️프론트엔드 개발자,
-            UI/UX디자이너❗️를 구합니다!
-            <br />
-
-            🌏 WINGLE 프로젝트 소개 및 모집공고<br />
-            <br />
-            https://prickle-bergamot-c19.notion.site/WINGLE-PROJECT-5b1c8e024b2744d19306a14a4abebbe6
-
-            <br />
-
-            📌모집분야 및 인원 - 프론트엔드 개발자 - UI/UX 디자이너 📌 모집방법
-            : 노션페이지 - 팀별 모집공고 참고 📌 모집기간 : 3/22 (수) 자정 까지
-            📌 리크루팅 문의 오카방 👉🏼 https://open.kakao.com/o/sIm0WH5e
+           <c:out value="${group.getStudyGroupcontent()}" />
           </div>
         </section>
+
+
 
         <!-- 게시글 댓글 section -->
         <section class="boardContent-postCommentAndViews">
           <div class="boardContent-postComment">
             <div class="commentInput-wrap">
               <!-- 댓글 개수, 댓글 입력, 댓글 등록버튼 -->
-              <h1 class="commentInput-count">100개의 댓글이 있습니다</h1>
-              <textarea
-                class="commentInput-commentText"
-                placeholder="댓글을 입력하세요"
-              >
-                        <!-- 댓글 입력하기 -->
-                    </textarea
-              >
+              <h1 class="commentInput-count"> 
+               <c:out value="${group.getStudyGroupCommentCount()}" />
+              개의 댓글이 있습니다</h1>
+              <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" > 
+              </textarea>
+              
               <div class="commentInput-buttonWrapper">
-                <button class="commentInput-buttonComplete" name="register">
+                <button class="commentInput-buttonComplete" name="register"  data-memberNumber = "${group.memberNumber}" >
                   댓글 등록
                 </button>
               </div>
@@ -149,9 +143,9 @@
             <!-- 댓글 리스트 -->
 
             <!-- 마진없는 댓글 컨테이너 -->
-            <ul class="commentList-CommentList">
-              <!-- 마진 준 댓글 리스트 컨테이너 -->
-              <li class="commentItem-commentContainer">
+ <ul class="commentList-CommentList">
+              마진 준 댓글 리스트 컨테이너
+  		       <!--  <li class="commentItem-commentContainer">
                 <section class="commentItem-CommentHeader">
                   <div class="commentItem-writerWrapper">
                     <img
@@ -163,23 +157,26 @@
                       <div class="commentItem-title">
                         <div class="commentItem-userNickname">른시룽</div>
                         <div class="commentItem-registerDate">
-                          2143.08.10 13:42:55
+                          2143.08.10 13:42:55 
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="boardReply-editDelete">
-                    <button type="button" class="boardReply-editor-buttons">수정</button>
-                <button type="button" class="boardReply-editor-buttons">삭제</button>
+                 <button type="button" class="boardReply-editor-buttons-modi">수정</button>
+                <button type="button" class="boardReply-editor-buttons-dele">삭제</button>
                 </div>
+                <div class="boardReply-editor-buttons-done">
+				 <button type="button" class="boardReply-editor-buttons-done">수정완료</button>
+				</div>
                 </section>
                 <section class="commentItem-CommentContent">
                   <p class="commentItem-CommentContent">
                     안녕하세요 미래에서 왔습니데
                   </p>
                 </section>
-              </li>
-            </ul>
+              </li>-->
+            </ul> 
           </div>
         </section>
       </main>
@@ -187,6 +184,7 @@
       <footer></footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="${pageContext.request.contextPath}/assets/js/groupRead.js"></script> 
   </body>
 </html>
