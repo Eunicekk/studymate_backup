@@ -22,11 +22,11 @@ $(document).ready(function () {
     if (confirm("회원 탈퇴 하시겠습니까?")) {
       if (confirm("한번 더 확인하시겠습니까?")) {
         $.ajax({
-          url: '/mypage/MyPageModifyingProfile.my', // 회원탈퇴 처리를 위한 URL
+          url: '/mypage/MyPageMemberDeleteOk.my', // 회원탈퇴 처리를 위한 URL
           method: "POST", // POST 방식으로 요청
           success: function (response) {
             alert("탈퇴가 완료되었습니다.");
-            // 여기에 회원 탈퇴 처리 이후의 코드를 추가할 수 있습니다.
+             window.location.href = '/';// 여기에 회원 탈퇴 처리 이후의 코드를 추가할 수 있습니다.
           },
           error: function (xhr, status, error) {
             alert("회원 탈퇴 처리 중 오류가 발생했습니다.");
@@ -80,7 +80,7 @@ $(document).ready(function () {
       },
       success: function (response) {
         alert("수정이 완료되었습니다.");
-        // 여기에 수정 이후의 코드를 추가할 수 있습니다.
+        location.reload();
       },
       error: function (xhr, status, error) {
         alert("회원정보 수정 중 오류가 발생했습니다.");

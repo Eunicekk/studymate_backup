@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,7 +61,7 @@
           <!-- 예약 목록 영역 -->
           <ul class="reserve-tab-panel">
             <li class="reserve-tab-li">
-              <button class="reserve-tab-button-selected">전체(1)</button>
+              <button class="reserve-tab-button-selected">전체</button>
             </li>
           </ul>
           <!-- 예약번호 정보 조회 영역 -->
@@ -75,6 +76,10 @@
           </form>
           <!-- 예약 카페 정보 영역  -->
           <ul class="reserve-list">
+          
+          <c:choose>
+          <c:when test="${not empty myReservation}">
+          <c:forEach var="myReservation" items="${myReservation }">
             <li class="reserve-item">
               <div class="info-box">
                 <img
@@ -82,14 +87,14 @@
                   alt="스터디"
                 />
                 <div>
-                  <div class="info-box-host-name">토즈 양재센터</div>
-                  <div class="info-box-product-name">1인 독립형</div>
-                  <p class="info-box-reserve-detail">
+                  <div class="info-box-host-name">${myReservation.getStudyCafeAddress()}</div>
+                  <div class="info-box-product-name">${myReservation.getStudyCafeName()}</div>
+                  <!-- <p class="info-box-reserve-detail">
                     <img
                       src="https://shareit.kr/image/myPage/ico-estimate.svg"
                     />
                     승인 대기
-                  </p>
+                  </p> -->
                 </div>
               </div>
               <section class="sub-info-box">
@@ -97,39 +102,43 @@
                   <div>
                     <p>상품명</p>
                     <div>
-                      <span class="sub-info-status-info">승인</span>
-                      <p>1인 동립형 일반</p>
+                      <span class="sub-info-status-info">예약</span>
+                      <p>${myReservation.getStudyCafeName()}</p>
                     </div>
                   </div>
                   <div>
                     <p>예약 번호</p>
-                    <p>61091</p>
+                    <p>${myReservation.getReservationNumber()}</p>
                   </div>
                   <div>
                     <p>사용 시간</p>
                     <p>
-                      2023-03-31 (금) 13:00 시작 <br />
-                      2023-03-31 (금) 15:00 종료
+                      ${myReservation.getReservationStart()} <br />
+                      ${myReservation.getReservationEnd()}
                     </p>
                   </div>
                   <div>
                     <p>인원</p>
-                    <p>1명</p>
+                    <p>${myReservation.getCountMember()} 명</p>
                   </div>
-                  <div>
+                 <!--  <div>
                     <p>행사 목적</p>
                     <p>스터디</p>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="payment-box">
                   <p>총 금액</p>
-                  <p>10,000원</p>
+                  <p>${myReservation.getStudyCafePrice()} 원</p>
                 </div>
               </section>
               <div class="cancel-button-box">
                 <button class="cancel-button">대여 취소</button>
               </div>
             </li>
+            
+            </c:forEach>
+            </c:when>
+            </c:choose>
           </ul>
           <!-- 페이지 리스트 -->
           <ul class="pagenation-list">

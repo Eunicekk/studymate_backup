@@ -25,8 +25,12 @@ public class MyPageFrontController extends HttpServlet {
 		case "/mypage/MyPageModifyingProfile.my":
 			new MyPageModifyingProfileController().execute(req, resp);
 			break;
+			// 임시 페이지
 		case "/mypage/MyPageModifyingProfileOk.my":
 			new MyPageModifyingProfileOkController().execute(req, resp);
+			break;
+		case "/mypage/MyPageMemberDeleteOk.my":
+			new MyPageMemberDeleteOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPagePortfolioOk.my":
 			new MyPagePortfolioOkController().execute(req, resp);
@@ -35,6 +39,7 @@ public class MyPageFrontController extends HttpServlet {
 			new MyPageInterestPlaceOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageReserveOk.my":
+			System.out.println("@@@체크체크체크체크@@@");
 			new MyPageReserveOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageUsaDetailsOk.my":

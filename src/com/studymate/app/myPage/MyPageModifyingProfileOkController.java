@@ -22,13 +22,17 @@ public class MyPageModifyingProfileOkController implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberDTO memberDTO = new MemberDTO();
 		MyPageDAO myPageDAO = new MyPageDAO();
-		memberDTO.setMemberNumber(2);
+		
+		memberDTO.setMemberNumber(12);
 		memberDTO.setMemberNickname(req.getParameter("nickname"));
 		memberDTO.setMemberPhoneNumber(req.getParameter("phonenumber"));
 		memberDTO.setMemberEmail(req.getParameter("email"));
 		memberDTO.setMemberPassword(req.getParameter("pw"));
 		 System.out.println(memberDTO);
-		new MyPageDAO().update(memberDTO);
+//		new MyPageDAO().update(memberDTO);
 		
+		myPageDAO.update(memberDTO);
+		 
 		resp.sendRedirect("/mypage/MyPageModifyingProfile.my");
+		// 임시 url => 메인 url로 변경 해야함
 }}

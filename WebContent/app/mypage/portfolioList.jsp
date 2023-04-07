@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +68,37 @@
 					<div class="portfolio-list-reply">댓글</div>
 					<div class="portfolio-list-view">조회수</div>
 				</div>
-				<div class="portfolio-conatiner">
+
+				<c:choose>
+					<c:when test="${not empty boardList}">
+					<c:set var="i" value="0"/>
+						<c:forEach var="myPortfolio" items="${boardList}">
+							<c:set var="i" value="${i + 1}"/>
+							<div class="portfolio-conatiner">
+								<div class="portfolio-number-container">
+									<span>
+										<c:out value="${i}"/>
+									</span>
+								</div>
+								<div class="portfolio-info-container">
+									<a
+										href="${pageContext.request.contextPath}/board/boardReadOk.bo?boardNumber=${myPortfolio.getBoardNumber()}">
+										<!--       해당 보드로 이동처리                                   -->
+										${myPortfolio.getBoardTitle() } </a>
+								</div>
+								<div class="portfolio-reply">${myPortfolio.getCommentCount()}</div>
+								<div class="view-number">${myPortfolio.getBoardReadCount()}</div>
+							</div>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+
+				<%-- 				<div class="portfolio-conatiner">
 					<div class="portfolio-number-container">
 						<!-- <span>1</span> -->
 						<span>${myPage.getBoardNumber()}</span>
@@ -80,7 +111,7 @@
 					<!-- <div class="portfolio-like">140</div> -->
 					<div class="portfolio-reply"></div>
 					<div class="view-number">${myPage.getBoardReadCount() }</div>
-				</div>
+				</div> --%>
 				<ul class="pagenation-list">
 					<li class="prev">
 						<button type="button">
