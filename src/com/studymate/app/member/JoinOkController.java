@@ -16,23 +16,26 @@ public class JoinOkController implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberDAO memberDAO =new MemberDAO();
 		MemberDTO memberDTO =new MemberDTO();
-		
+
 		req.setCharacterEncoding("utf-8");
+		System.out.println("안녕");
 		 
 		memberDTO.setMemberId(req.getParameter("memberId"));
-		memberDTO.setMemberId(req.getParameter("memberPassword"));
-		memberDTO.setMemberId(req.getParameter("memberName"));
-		memberDTO.setMemberId(req.getParameter("memberAge"));
-		memberDTO.setMemberId(req.getParameter("memberGender"));
-		memberDTO.setMemberId(req.getParameter("memberEamil"));
-		memberDTO.setMemberId(req.getParameter("memberPhoneNumber"));
-		memberDTO.setMemberId(req.getParameter("memberNickname"));
+		memberDTO.setMemberPassword(req.getParameter("memberPassword"));
+		memberDTO.setMemberName(req.getParameter("memberName"));
+		memberDTO.setMemberAge(15);
+		memberDTO.setMemberGender("m");
+		memberDTO.setMemberEmail(req.getParameter("memberEmail"));
+		memberDTO.setMemberPhoneNumber("5050050");
+		memberDTO.setMemberNickname(req.getParameter("memberNickname"));
 		
-		
+		System.out.println(memberDTO);
 		
 		memberDAO.join(memberDTO);
 		
-		resp.sendRedirect("/member/login.me");
+		req.getRequestDispatcher("/app/member/login.jsp").forward(req, resp);
+
+		
 	}
 
 }

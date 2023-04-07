@@ -24,24 +24,32 @@ public class MemberFrontController extends HttpServlet{
 		
 
 		switch (target) {
-		case "/member/join.me":
-			req.getRequestDispatcher("/app/member/join.jsp").forward(req, resp);
-			break;
-		case "/member/joinOk.me":
-			new JoinOkController().execute(req, resp);
-			break;
-		case "/member/login.me":
-//			new LoginController().execute(req, resp);
-			break;
-		case "/member/loginOk.me":
-//			new LoginOkController().execute(req, resp);
-			break;
-		case "/member/checkIdOk.me":
-//			new CheckIdOkController().execute(req, resp);
-			break;
-		case "/member/logoutOk.me":
-//			new LogoutController().execute(req,resp);
-			break;
+		  case "/member/join.me":
+	            req.getRequestDispatcher("/app/member/join.jsp").forward(req, resp);
+	            break;
+	        case "/member/joinOk.me":
+	            new JoinOkController().execute(req, resp);
+	            break;
+	    	case "/member/login.me":
+				new LoginController().execute(req, resp);
+				break;
+	        case "/member/loginOk.me":
+	            new LoginOkController().execute(req, resp);
+	            break;
+	        case "/member/checkIdOk.me":
+	             new CheckIdOkController().execute(req, resp);
+	            break;
+	        case "/member/logoutOk.me":
+	            // new LogoutController().execute(req,resp);
+	            break;
+	        case "/member/findAccount.me":
+	        	req.getRequestDispatcher("/app/member/findAccount.jsp").forward(req, resp);
+	        	break;
+	        case "/member/findAccountOk.me":
+	        	new FindAccountOkController().execute(req,resp);
+	        	break;
+	        	
+	        	
 		}
 		}
 }
