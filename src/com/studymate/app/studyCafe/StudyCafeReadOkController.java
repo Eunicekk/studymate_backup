@@ -10,7 +10,7 @@ import com.studymate.app.Execute;
 import com.studymate.app.studyCafe.dao.StudyCafeDAO;
 import com.studymate.app.studyCafe.vo.StudyCafeVO;
 
-public class CafeReadOkController implements Execute {
+public class StudyCafeReadOkController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,7 +19,7 @@ public class CafeReadOkController implements Execute {
 		StudyCafeVO studyCafeVO = studyCafeDAO.select(studyCafeNumber);
 		studyCafeDAO.updateReadCount(studyCafeNumber);
 		
-		req.setAttribute("studycafe", studyCafeVO);
+		req.setAttribute("studyCafe", studyCafeVO);
 		
 		req.getRequestDispatcher("/app/cafe/reservation.jsp").forward(req, resp);
 	}

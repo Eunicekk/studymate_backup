@@ -13,7 +13,7 @@ import com.studymate.app.Execute;
 import com.studymate.app.studyCafe.dao.StudyCafeDAO;
 import com.studymate.app.studyCafe.vo.StudyCafeVO;
 
-public class CafeListOkController implements Execute {
+public class StudyCafeListOkController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

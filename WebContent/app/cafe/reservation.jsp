@@ -10,6 +10,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reservation.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css" />
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=288648fa9bcef114f977b6cc3dc07c2d&libraries=services"
@@ -66,7 +67,7 @@
 
             <!-- 작은 이미지 -->
             <div class="ImgThumbnail">
-              <button class="img_more">${pageContext.request.contextPath}/assets/img/
+              <button class="img_more">
                 <figure>
                   <img
                     src="${pageContext.request.contextPath}/assets/img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg"
@@ -98,7 +99,7 @@
               <!-- title -->
               <div class="studyCafeTitle">
                 	<p>
-						<c:out value="${studycafe.getStudyCafeName() }" />
+						<c:out value="${studyCafe.getStudyCafeName() }" />
 					</p>
               </div>
 
@@ -108,7 +109,7 @@
                     <img src="${pageContext.request.contextPath}/assets/img/location.f1e61d10.svg" alt="" />
                   </span>
                   <p>
-                  	<c:out value="${studycafe.getStudyCafeAddress() }" />
+                  	<c:out value="${studyCafe.getStudyCafeAddress() }" />
                   </p>
                 </div>
 
@@ -117,7 +118,7 @@
                     <img src="${pageContext.request.contextPath}/assets/img/heart.1c5c89e6.svg" alt="" />
                   </span>
                   <p>
-                  	<c:out value="${studycafe.getStudyCafeLikeCount() }" />
+                  	<c:out value="${studyCafe.getStudyCafeLikeCount() }" />
                   </p>
                 </div>
               </div>
@@ -126,17 +127,19 @@
                 <div class="start">
                   <img src="${pageContext.request.contextPath}/assets/img/Star_1.svg" alt="" />
                 </div>
-                <c:out value="${studycafe.getStudyCafeCommentScoreAvg() }" />
+                <c:out value="${studyCafe.getStudyCafeCommentScoreAvg() }" />
                 <div class="reviewCnt">
-                	<c:out value="${studycafe.getStudyCafeCommentCount() }" />
+                	(후기 <c:out value="${studyCafe.getStudyCafeCommentCount() }" />)
                 </div>
               </div>
 
               <div class="studyCafePrice">
                 <div class="price">
                   <div class="PriceTime">
-                    <c:out value="${studycafe.getStudyCafePrice() }" />
-                    <p>원 1 시간당</p>
+                  	<p class="cafe-price">
+                    	<c:out value="${studyCafe.getStudyCafePrice() }" />                  	
+                  	</p>
+                    <p>원 / 1시간당</p>
                     <span class="MinTime">최소 1시간 기준</span>
                   </div>
                 </div>
@@ -290,7 +293,7 @@
                     <p>일반 구매 총 금액</p>
                     <!-- 가격 뿌려주기 -->
                     <p class="tal">
-                    <c:out value="${studycafe.getStudyCafePrice() }" />
+                    <c:out value="${studyCafe.getStudyCafePrice() }" />
                     원</p>
                     <input type="text" class="talInput" name="price" hidden  value=""/>
                   </div>
@@ -302,7 +305,7 @@
                     <div style="display: flex">
                       <p class="PriceBtn">
                         <!-- 가격 뿌려주기 -->
-                        <c:out value="${studycafe.getStudyCafePrice() }" />
+                        <c:out value="${studyCafe.getStudyCafePrice() }" />
                       </p>
                       <span>원</span>
                     </div>
@@ -331,7 +334,7 @@
           <section class="description">
             <h3>소개 및 활용 팁</h3>
             <p>
-            	<c:out value="${studycafe.getStudyCafeContent() }" />
+            	<c:out value="${studyCafe.getStudyCafeContent() }" />
             </p>
           </section>
 
@@ -345,12 +348,11 @@
                 <span>
                   <img src="${pageContext.request.contextPath}/assets/img/location-pin.4a78e1c2.svg" alt="" />
                 </span>
-                <figcaption>카페 위치 주소 보여주기</figcaption>
+                <figcaption id="cafe-address">
+                	<c:out value="${studyCafe.getStudyCafeAddress() }" />
+                </figcaption>
               </figure>
             </div>
-              <span id="cafe-address">
-              	<c:out value="${studycafe.getStudyCafeAddress() }" />
-              </span>
           </section>
         </article>
         <!-- 위치 상세설명 -->
@@ -360,9 +362,9 @@
           <!-- 댓글 수 -->
           <div class="replyCnt">
             <p class="countTitle">
-              댓글
+              후기
               <span>
-              	<c:out value="${studycafe.getStudyCafeCommentCount() }" />
+              	<c:out value="${studyCafe.getStudyCafeCommentCount() }" />
               </span>
               건
             </p>
@@ -374,21 +376,21 @@
               <span>
                 <img src="${pageContext.request.contextPath}/assets/img/Star_1.svg" alt="" />
               </span>
-              <span>별점평균</span>
-              <p>
-              	<c:out value="${studycafe.getStudyCafeCommentScoreAvg() }" />
-              </p>
+              <span>
+              	<c:out value="${studyCafe.getStudyCafeCommentScoreAvg() }" />
+              </span>
+              <p>(전체기간 평균 평점)</p>
             </div>
 
             <div class="CardContainer">
               <div>
                 <span>
-                	<c:out value="${studycafe.getStudyCafeCommentCount() }" />
+                	<c:out value="${studyCafe.getStudyCafeCommentCount() }" />
                 </span>
                 건의 후기 중
                 <br />
                 <span>
-                	<c:out value="${studycafe.getStudyCafeCommentScoreProportion() }" />
+                	<c:out value="${studyCafe.getStudyCafeCommentScoreProportion() }" />
                 </span>
                 명의 고객이 5점을 주었어요.
               </div>
@@ -407,11 +409,11 @@
             <div class="menuList none">
               <!-- js로 클릭하면 메뉴 나오게, 글자 바뀌게, 올려놓으면 색 바뀌게 -->
               <button type="button" class="select">최신순</button>
-              <button type="button" class="none_select">과거순</button>
               <button type="button" class="none_select">별점 높은 순</button>
               <button type="button" class="none_select">별점 낮은 순</button>
             </div>
           </div>
+          
           <!-- 댓글 리스트 -->
           <ul class="replyList">
             <li class="ReplyItemRow">
@@ -428,25 +430,57 @@
                   </div>
                 </div>
                 <p class="repleyContent">댓글 내용</p>
-                <div class="replyLike">
-                  <p class="likehelp">도움이 됐어요</p>
-                  <div class="likeImg">
-                    <span>
-                      <img
-                        src="${pageContext.request.contextPath}/assets/img/thumbs-up_line_1B_24.9d1ec32f.svg"
-                        alt=""
-                      />
-                    </span>
-                    <!-- 좋아요 개수 뿌려주기 -->
-                    <span>0</span>
-                  </div>
-                </div>
               </div>
             </li>
           </ul>
+          <input id="hidden-number" type="hidden" data-studyCafeNumber = "${studyCafe.getStudyCafeNumber() }" />
         </section>
         <!-- 댓글 -->
-
+        
+        <!-- 댓글 작성 -->
+        <c:if test="${sessionScope.memberNumber == reservation.getMemberNumber() }">
+        
+        </c:if>
+		<div class="comment-form">
+        <form id="comment-form">
+           <input type="hidden" name="studyCafeNumber"
+              value="${studyCafe.getStudyCafeNumber()}">
+           <div class="form-group">
+              <h3>후기 작성</h3>
+              <fieldset>
+                  <div class="star-score">
+                    <span class="star-text">별점&nbsp;|&nbsp;</span>
+                    <label for="star1">
+                        <span class="material-symbols-rounded">star</span>
+                    </label>
+                    <label for="star2">
+                        <span class="material-symbols-rounded">star</span>
+                    </label>
+                    <label for="star3">
+                        <span class="material-symbols-rounded">star</span>
+                    </label>
+                    <label for="star4">
+                        <span class="material-symbols-rounded">star</span>
+                    </label>
+                    <label for="star5">
+                        <span class="material-symbols-rounded">star</span>
+                    </label>
+                    <input type="radio" value="1" id="star1" name="star">
+                    <input type="radio" value="2" id="star2" name="star">
+                    <input type="radio" value="3" id="star3" name="star">
+                    <input type="radio" value="4" id="star4" name="star">
+                    <input type="radio" value="5" id="star5" name="star">
+                  </div>
+              </fieldset>
+              <div>
+                  <textarea name="content" id="content" placeholder="사용 후기를 입력하세요."></textarea>
+              </div>
+           <button type="button" class="submit-btn">후기 작성</button>
+           </div>
+        </form>
+     </div>
+        <!-- 댓글 작성 -->
+        
         <!-- 환불규정, 주의 사항 -->
         <article class="NoticeContent">
           <section>
@@ -513,8 +547,10 @@
     <script
       src="https://code.jquery.com/jquery-3.6.3.js"
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
+      <script>
+    	let memberNumber = "${sessionScope.memberNumber}";
+    </script>
     <script src="${pageContext.request.contextPath}/assets/js/reservation.js"></script>
   </body>
 </html>
