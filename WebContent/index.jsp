@@ -927,6 +927,6 @@
 	<script src="https://kit.fontawesome.com/7ad89ef4e0.js"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-	<script src="../js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </body>
 </html>

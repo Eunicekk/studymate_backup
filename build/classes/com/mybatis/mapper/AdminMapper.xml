@@ -2,6 +2,431 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
+	<select id="adminLogin" parameterType="AdminDTO"
+		resultType="string">
+		select admin_nickname from tbl_admin
+		where admin_id =
+		#{adminId} and admin_password = #{adminPassword}
+	</select>
+
+	<select parameterType="map" resultType="MemberDTO"
+		id="memberSelectAll">
+		select member_number, member_id, member_password, member_name,
+		member_age, member_gender, member_email, member_phone_number,
+		member_nickname from tbl_member
+		order by member_number asc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select parameterType="map" resultType="MemberDTO"
+		id="memberSelectAllDesc">
+		select member_number, member_id, member_password, member_name,
+		member_age, member_gender, member_email, member_phone_number,
+		member_nickname from tbl_member
+		order by member_number desc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select parameterType="string" resultType="MemberDTO"
+		id="memberSearch">
+		select member_number, member_id, member_password, member_name,
+		member_age, member_gender, member_email, member_phone_number,
+		member_nickname from tbl_member where member_id like concat('%',
+		#{memberId}, '%')
+		order by member_number asc
+	</select>
+
+	<select resultType="_int" id="getTotal">select count(member_number)
+		from
+		tbl_member
+	</select>
+
+	<delete id="memberDelete" parameterType="_int">
+		delete from
+		tbl_member
+		where member_number = #{memberNumber};
+	</delete>
+	<!--스터디 카페 관련 메퍼 -->
+	<insert id="cafeInsert" parameterType="StudyCafeDTO">
+		insert into tbl_study_cafe
+		(study_cafe_name, study_cafe_address, study_cafe_price,
+		study_cafe_avaliable_date, study_cafe_available_capacity,
+		study_cafe_content)
+		values(#{studyCafeName}, #{studyCafeAddress},
+		#{studyCafePrice},
+		#{studyCafeAvaliableDate},
+		#{studyCafeAvaliableCapacity}, #{studyCafeContent})
+	</insert>
+
+	<select resultType="_int" id="getSequence">select last_insert_id() </select>
+
+	<select id="cafeList" resultType="AdminCafeVO"
+		parameterType="Map">
+		select j1.study_cafe_number, j1.study_cafe_name,
+		j1.study_cafe_address,
+		j1.study_cafe_price, j1.study_cafe_read_count,
+		j1.like_count,
+		count(scc.cafe_comment_number),
+		round(avg(scc.cafe_comment_score), 1)
+		from (
+		select
+		sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address,
+		sc.study_cafe_price, sc.study_cafe_read_count,
+		count(mlc.member_number) like_count from tbl_study_cafe sc left outer
+		join tbl_member_like_cafe mlc
+		on sc.study_cafe_number =
+		mlc.study_cafe_number
+		group by sc.study_cafe_number
+		) j1 left outer join
+		tbl_study_cafe_comment scc
+		on j1.study_cafe_number =
+		scc.study_cafe_number
+		group by j1.study_cafe_number
+		order by
+		j1.study_cafe_number asc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="cafeLikeDesc" resultType="AdminCafeVO"
+		parameterType="Map">
+		select j1.study_cafe_number, j1.study_cafe_name,
+		j1.study_cafe_address,
+		j1.study_cafe_price, j1.study_cafe_read_count,
+		j1.like_count,
+		count(scc.cafe_comment_number),
+		round(avg(scc.cafe_comment_score), 1)
+		from (
+		select
+		sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address,
+		sc.study_cafe_price, sc.study_cafe_read_count,
+		count(mlc.member_number) like_count from tbl_study_cafe sc left outer
+		join tbl_member_like_cafe mlc
+		on sc.study_cafe_number =
+		mlc.study_cafe_number
+		group by sc.study_cafe_number
+		) j1 left outer join
+		tbl_study_cafe_comment scc
+		on j1.study_cafe_number =
+		scc.study_cafe_number
+		group by j1.study_cafe_number
+		order by
+		j1.like_count desc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="cafeCommentNumber" resultType="AdminCafeVO"
+		parameterType="Map">
+		select j1.study_cafe_number, j1.study_cafe_name,
+		j1.study_cafe_address,
+		j1.study_cafe_price, j1.study_cafe_read_count,
+		j1.like_count,
+		count(scc.cafe_comment_number),
+		round(avg(scc.cafe_comment_score), 1)
+		from (
+		select
+		sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address,
+		sc.study_cafe_price, sc.study_cafe_read_count,
+		count(mlc.member_number) like_count from tbl_study_cafe sc left outer
+		join tbl_member_like_cafe mlc
+		on sc.study_cafe_number =
+		mlc.study_cafe_number
+		group by sc.study_cafe_number
+		) j1 left outer join
+		tbl_study_cafe_comment scc
+		on j1.study_cafe_number =
+		scc.study_cafe_number
+		group by j1.study_cafe_number
+		order by
+		count(scc.cafe_comment_number) desc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="cafeSearch" resultType="AdminCafeVO">
+		select j1.study_cafe_number,
+		j1.study_cafe_name,
+		j1.study_cafe_address,
+		j1.study_cafe_price,
+		j1.study_cafe_read_count, j1.like_count,
+		count(scc.cafe_comment_number), round(avg(scc.cafe_comment_score), 1)
+		from (
+		select sc.study_cafe_number, sc.study_cafe_name,
+		sc.study_cafe_address,
+		sc.study_cafe_price, sc.study_cafe_read_count,
+		count(mlc.member_number) like_count from tbl_study_cafe sc left outer
+		join tbl_member_like_cafe mlc
+		on sc.study_cafe_number =
+		mlc.study_cafe_number
+		group by sc.study_cafe_number
+		) j1 left outer join
+		tbl_study_cafe_comment scc
+		on j1.study_cafe_number =
+		scc.study_cafe_number
+		group by j1.study_cafe_number HAVING
+		study_cafe_name like concat('%', #{studyCafeName}, '%')
+		order by
+		j1.study_cafe_number
+	</select>
+
+	<select id="cafeTotal" resultType="_int">
+		select
+		count(study_cafe_number) from tbl_study_cafe
+	</select>
+
+	<delete id="cafeDelete" parameterType="_int">
+		delete from tbl_study_cafe
+		where study_cafe_number = #{studyCafeNumber}
+	</delete>
+
+
+	<!-- 스터디 카페 이미지? 그럼 파일 추가 -->
+	<insert id="cafeFileInsert" parameterType="StudyCafeFileDTO">
+		insert into
+		tbl_study_cafe_file
+		(cafe_file_system_name, cafe_file_original_name,
+		study_cafe_number)
+		values(#{cafeFileSystemName},
+		#{cafeFileOriginalName}, #{studyCafeNumber})
+	</insert>
+
+	<select id="cafeFileSelect" parameterType="int"
+		resultType="StudyCafeFileDTO">
+		select cafe_file_system_name, cafe_file_original_name,
+		study_cafe_number
+		from tbl_study_cafe_file where study_cafe_number =
+		#{studyCafeNumber}
+	</select>
+
+	<!--포트폴리오 게시판 -->
+	<select id="boardList" parameterType="Map"
+		resultType="AdminBoardVo">
+		select tb.board_number ,tb.board_title
+		,tb.board_date,tb.board_read_count,tm.member_id,tm.member_nickname
+		from tbl_board tb join tbl_member tm on tb.member_number =
+		tm.member_number
+		order by tb.board_number asc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="boardListDesc" parameterType="Map"
+		resultType="AdminBoardVo">
+		select tb.board_number ,tb.board_title
+		,tb.board_date,tb.board_read_count,tm.member_id,tm.member_nickname
+		from tbl_board tb join tbl_member tm on
+		tb.member_number =
+		tm.member_number order by tb.board_number desc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="boardTotal" resultType="_int">
+		select count(board_number)
+		from tbl_board tb
+	</select>
+
+	<delete id="boardDelete" parameterType="_int">
+		delete from tbl_board
+		where board_number = #{boarNumber};
+	</delete>
+
+	<select id="boardSearch" resultType="AdminBoardVo"
+		parameterType="string">
+		select tb.board_number
+		,tb.board_title
+		,tb.board_date,tb.board_read_count,tm.member_id,tm.member_nickname
+		from tbl_board tb join tbl_member tm on
+		tb.member_number =
+		tm.member_number where member_id like concat('%', #{memberId}, '%')
+		order by
+		tb.board_number asc
+	</select>
+
+	<!--스터디 그룹 -->
+	<select id="groupList" parameterType="map"
+		resultType="AdminGroupVO">
+		select j1.study_group_number, j1.study_group_title,
+		j1.study_group_field,
+		date_add(j1.study_group_start_date, interval
+		j1.study_group_duration day) study_group_end_date,
+		j1.study_group_duration,like_count,
+		j1.study_group_read_count,
+		j1.member_number, scc.member_nickname
+		from (
+		select
+		sc.study_group_number, sc.study_group_title,
+		sc.study_group_field,
+		sc.study_group_online, sc.study_group_capacity,
+		sc.study_group_start_date, sc.study_group_contact,
+		sc.study_group_duration, sc.study_group_content,
+		sc.study_group_read_count, sc.member_number,
+		count(mlc.study_group_number) like_count
+		from tbl_study_group sc left
+		outer
+		join tbl_member_like_study_group mlc
+		on sc.study_group_number =
+		mlc.study_group_number
+		group by sc.study_group_number
+		) j1 left outer
+		join tbl_member scc
+		on j1.member_number = scc.member_number
+		group by
+		j1.study_group_number
+		order by j1.study_group_number asc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="groupListDate" parameterType="map"
+		resultType="AdminGroupVO">
+		select j1.study_group_number, j1.study_group_title,
+		j1.study_group_field,
+		date_add(j1.study_group_start_date, interval
+		j1.study_group_duration day) study_group_end_date,
+		j1.study_group_duration,like_count,
+		j1.study_group_read_count,
+		j1.member_number, scc.member_nickname
+		from (
+		select
+		sc.study_group_number, sc.study_group_title,
+		sc.study_group_field,
+		sc.study_group_online, sc.study_group_capacity,
+		sc.study_group_start_date, sc.study_group_contact,
+		sc.study_group_duration, sc.study_group_content,
+		sc.study_group_read_count, sc.member_number,
+		count(mlc.study_group_number) like_count
+		from tbl_study_group sc left
+		outer
+		join tbl_member_like_study_group mlc
+		on sc.study_group_number =
+		mlc.study_group_number
+		group by sc.study_group_number
+		) j1 left outer
+		join tbl_member scc
+		on j1.member_number = scc.member_number
+		group by
+		j1.study_group_number
+		order by j1.study_group_start_date desc ;
+	</select>
+
+	<select id="groupSearch" resultType="AdminGroupVO">
+		select
+		j1.study_group_number, j1.study_group_title,
+		j1.study_group_field,
+		date_add(j1.study_group_start_date, interval j1.study_group_duration
+		day) study_group_end_date,
+		j1.study_group_duration,like_count,
+		j1.study_group_read_count,
+		j1.member_number, scc.member_nickname
+		from (
+		select
+		sc.study_group_number, sc.study_group_title,
+		sc.study_group_field,
+		sc.study_group_online, sc.study_group_capacity,
+		sc.study_group_start_date, sc.study_group_contact,
+		sc.study_group_duration, sc.study_group_content,
+		sc.study_group_read_count, sc.member_number,
+		count(mlc.study_group_number) like_count
+		from tbl_study_group sc left
+		outer
+		join tbl_member_like_study_group mlc
+		on sc.study_group_number =
+		mlc.study_group_number
+		group by sc.study_group_number
+		) j1 left outer
+		join tbl_member scc
+		on j1.member_number = scc.member_number
+		group by
+		j1.study_group_number having
+		member_nickname like concat('%',
+		#{memberNickname}, '%')
+		order by j1.study_group_number asc
+	</select>
 	
+	<select id="listSearch" resultType="AdminGroupVO">
+		select
+		j1.study_group_number, j1.study_group_title,
+		j1.study_group_field,
+		date_add(j1.study_group_start_date, interval j1.study_group_duration
+		day) study_group_end_date,
+		j1.study_group_duration,like_count,
+		j1.study_group_read_count,
+		j1.member_number, scc.member_nickname
+		from (
+		select
+		sc.study_group_number, sc.study_group_title,
+		sc.study_group_field,
+		sc.study_group_online, sc.study_group_capacity,
+		sc.study_group_start_date, sc.study_group_contact,
+		sc.study_group_duration, sc.study_group_content,
+		sc.study_group_read_count, sc.member_number,
+		count(mlc.study_group_number) like_count
+		from tbl_study_group sc left
+		outer
+		join tbl_member_like_study_group mlc
+		on sc.study_group_number =
+		mlc.study_group_number
+		group by sc.study_group_number
+		) j1 left outer
+		join tbl_member scc
+		on j1.member_number = scc.member_number
+		group by
+		j1.study_group_number having
+		study_group_field like concat('%',
+		#{listText}, '%')
+		order by j1.study_group_number asc
+	</select>
+
+	<select id="groupTotal" resultType="_int">
+		select
+		count(study_group_number) from tbl_study_group;
+	</select>
+
+	<delete id="groupDelete" parameterType="_int">
+		delete from
+		tbl_study_group where study_group_number = #{studyGroupNumber}
+	</delete>
+
+	<!--faq 게시판 -->
+	<select parameterType="map" resultType="FaqDTO" id="faqList">
+		select
+		faq_number, faq_title, faq_content, faq_date, admin_number
+		from tbl_faq
+		limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="faqTotal" resultType="_int">
+		select count(faq_number) from
+		tbl_faq;
+	</select>
+
+	<insert id="faqWrite" parameterType="faqDTO">
+		insert into tbl_faq
+		(faq_title, faq_content, admin_number)
+		values(#{faqTitle},
+		#{faqContent}, #{adminNumber});
+	</insert>
+
+	<select id="adminNumber" parameterType="string"
+		resultType="_int">
+		select admin_number from tbl_admin where admin_nickname =
+		#{adminNickname}
+	</select>
+
+	<select id="faqSelect" parameterType="_int" resultType="FaqDTO">
+		select
+		faq_number, faq_title, faq_content, faq_date,
+		admin_number
+		from tbl_faq
+		where faq_number = #{faqNumber};
+	</select>
+
+	<update id="faqUpdate" parameterType="FaqDTO">
+		UPDATE tbl_faq
+		SET faq_title= #{faqTitle}, faq_content= #{faqContent}, admin_number= #{adminNumber}
+		WHERE faq_number=#{faqNumber}
+	</update>
 	
+	<delete id="faqDelete" parameterType="_int">
+		delete from tbl_faq where faq_number = #{faqNumber}
+	</delete>
+
 </mapper>
+

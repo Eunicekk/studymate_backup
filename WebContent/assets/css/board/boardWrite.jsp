@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/boradWrite.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/boardWrite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
 <script rel= "stylesheet" href= "${pageContext.request.contextPath}/assets/js/summernote/summernote-ko-KR.js" defer></script>
 <script rel= "stylesheet" href= "${pageContext.request.contextPath}/assets/js/summernote-lite.js" defer></script>
@@ -69,9 +69,9 @@
 	<footer></footer>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="../resource/summerNote/summernote-lite.js"></script>
+	<!-- <script src="../resource/summerNote/summernote-lite.js"></script>
 	<script src="../resource/summerNote/summernote-ko-KR.js"></script>
 	<link rel="stylesheet"
-		href="../resource/summerNote/summernote-lite.css">
+		href="../resource/summerNote/summernote-lite.css"> -->
 </body>
 </html>

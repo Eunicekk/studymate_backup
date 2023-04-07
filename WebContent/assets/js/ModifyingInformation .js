@@ -15,32 +15,7 @@ function updateUser() {
   const profileImage = $("#user-profile-input").val();
 
   $.ajax({
-    url: "주소입력",
-    type: "PUT",
-    dataType: "json",
-    data: {
-      name: name,
-      password: password,
-      profileImage: profileImage,
-    },
-    success: function (data) {
-      // 사용자 정보를 업데이트하는 데 성공한 경우
-      alert("사용자 정보가 업데이트되었습니다.");
-    },
-    error: function (error) {
-      // 사용자 정보를 업데이트하는 데 실패한 경우
-      console.log(error);
-    },
-  });
-}
-// 사용자 정보 수정 버튼 클릭 시 호출되는 함수
-function updateUser() {
-  const name = $("#user-name-input").val();
-  const password = $("#user-password-input").val();
-  const profileImage = $("#user-profile-input").val();
-
-  $.ajax({
-    url: "주소입력",
+    url: "/mypage/MyPageModifyingProfile.my",
     type: "PUT",
     dataType: "json",
     data: {

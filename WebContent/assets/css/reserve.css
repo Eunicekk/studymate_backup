@@ -179,7 +179,7 @@ body {
 
 .reserve-item {
   margin-bottom: 30px;
-  border-bottom: 8px solid rgb(250, 250, 250);
+  /* border-bottom: 8px solid rgb(250, 250, 250); */
 }
 
 .info-box {
