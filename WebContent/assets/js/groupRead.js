@@ -11,11 +11,11 @@ let $replyDeleteBtn = $('.boardReply-editor-buttons-dele');
 
 
 let studyGroupNumber = $prevBtn.data("studygroupnumber");
-console.log(studyGroupNumber);
+/*console.log(studyGroupNumber);*/
 
 
 let memberNumber = $uploadReplyBtn.data("membernumber");
-console.log(memberNumber);
+/*console.log(memberNumber);*/
 
 
 
@@ -36,8 +36,9 @@ $deleteBtn.on('click', ()=>{
 });
 
 
-commentAjax();
 
+
+commentAjax();
 function commentAjax() {
 	$.ajax({
 	url: '/studyGroupComment/studyGroupCommentOk.sgc',
@@ -72,12 +73,11 @@ function showComment (comments) {
                     </div>
                   </div>
                   <div class="boardReply-editDelete"> 
-                    <button type="button" class="boardReply-editor-buttons-modi" >수정</button>
-                <button type="button" class="boardReply-editor-buttons-dele" data-number = "${comment.studyGroupCommentNumber}">삭제</button>
+                    <button type="button" class="boardReply-editor-buttons-modi" data-comment-number = "${comment.studyGroupCommentNumber}">수정</button>
+                	<button type="button" class="boardReply-editor-buttons-dele" data-number = "${comment.studyGroupCommentNumber}">삭제</button>
 				</div>
-				<div class="boardReply-editor-buttons-done">
-				 <button type="button" class="boardReply-editor-buttons-done">수정완료</button>
-				</div>
+				 <button type="button" class="boardReply-editor-buttons-done"  data-number = "${comment.studyGroupCommentNumber}">
+			수정완료</button>
 				
 				
                 </section>
@@ -91,11 +91,16 @@ function showComment (comments) {
 	});
 	
 	$('.commentList-CommentList').html(text);
+	let length = $('.commentItem-commentContainer').length;
+	
+	$('.cnt').text(length);
+	
+	/*inner text 하면 기존 지움 */
 }
 
 	
-console.log('======');
-
+/*console.log('======');
+*/
 
 
 // 댓글 등록 Ajax 처리
@@ -117,14 +122,6 @@ $uploadReplyBtn.on('click', ()=>{
 
 
 
-
-
-
-// 댓글 수정 Ajax 처리
-
-
-
-
 // 댓글 삭제 Ajax 처리
 
 $('.commentList-CommentList').on('click','.boardReply-editor-buttons-dele', function(){
@@ -142,6 +139,63 @@ $('.commentList-CommentList').on('click','.boardReply-editor-buttons-dele', func
       }
 	});
 });
+
+
+// 댓글 수정 Ajax 처리 (수정 삭제 버튼 , 수정완료 버튼 뜨게 한 후에 list 통째로 없애고 수정 데이터 채워주기. )
+
+$('.commentList-CommentList').on('click','.boardReply-editor-buttons-modi', function(){
+
+
+	let commentNumber = $(this).data('comment-number');
+
+/* closest = 부모 조상 모두 포함하여 그 안에서 요소 가져옴*/
+	let $parent = $(this).closest('.boardReply-editDelete');
+	 /*console.log($parent);*/
+
+/* find = closest와 반대. 자식 중에서 찾아옴*/
+	let $children = $parent.next();
+	 console.log('=======');
+	 console.log($children);
+	 console.log('======');
+
+
+	$parent.eq(0).hide();
+	$children.eq(0).show();
+	
+	let $content = $(this).parent().parent().next().children();
+	console.log($content);
+	
+	
+	// 기존 요소를 가져옴. 교체한다. 
+	$content.replaceWith(`<textarea class = 'modify-content' data-comment-number ='${commentNumber}'> ${$content.text()}</textarea>`);
+});
+
+
+	$('.commentList-CommentList').on('click','.boardReply-editor-buttons-done', function(){
+	let commentNumber = $('.modify-content').data('comment-number');
+/*	console.log(commentNumber);*/
+	   $.ajax({
+      url : '/studyGroupComment/studyGroupCommentUpdateOk.sgc',
+      type : 'get',
+      data : {
+         studyGroupCommentNumber : commentNumber,
+         studyGroupCommentContent : $('.modify-content').val()
+      },
+      success : function(){
+         commentAjax();
+      }
+   });
+	
+	});
+
+
+
+
+
+
+
+
+
 
 console.log('======');
 

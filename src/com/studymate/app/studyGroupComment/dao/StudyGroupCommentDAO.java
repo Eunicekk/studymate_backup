@@ -26,4 +26,8 @@ public class StudyGroupCommentDAO {
 	public void delete (int studyGroupCommentNumber ) {
 		sqlSession.delete("studyGroupComment.delete",studyGroupCommentNumber );
 	}
+	
+	public void update (StudyGroupCommentDTO studyGroupCommentDTO) {
+		sqlSession.update("studyGroupComment.update", studyGroupCommentDTO);
+	}
 }
