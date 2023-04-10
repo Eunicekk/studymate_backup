@@ -633,7 +633,7 @@ option {
 	position: absolute; 
 	bottom: 0px; 
 	left: 5px;
-	right: 5px;
+	right: 3px;
 	margin: 0; 
 	font-size: 11px;
 	color: #999999;
@@ -643,6 +643,11 @@ option {
 	
 }
 
+
+.groupLikeItems > button {
+	 border: 0;
+  background-color: transparent;
+}
 
 
 .endDate {

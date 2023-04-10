@@ -30,7 +30,7 @@ $modifyBtn.on('click', ()=>{
     window.location.href ='#'
 }); 
 
-//  게시글 삭제 boardList로 이동
+;//  게시글 삭제 boardList로 이동
 $deleteBtn.on('click', ()=>{
     window.location.href ='#'
 });
@@ -111,11 +111,11 @@ $uploadReplyBtn.on('click', ()=>{
       data : {
          studyGroupNumber : studyGroupNumber,
          memberNumber : memberNumber,
-         studyGroupCommentContent : $('#commentContent').val()
+         studyGroupCommentContent : $('.commentItem-CommentContent').val()
       },
       success : function(){
          commentAjax();
-         $('#commentContent').val('');
+         $('.commentItem-CommentContent').val('');
       }
 });
 });
@@ -157,7 +157,7 @@ $('.commentList-CommentList').on('click','.boardReply-editor-buttons-modi', func
 	 console.log('=======');
 	 console.log($children);
 	 console.log('======');
-
+ 
 
 	$parent.eq(0).hide();
 	$children.eq(0).show();
@@ -167,13 +167,13 @@ $('.commentList-CommentList').on('click','.boardReply-editor-buttons-modi', func
 	
 	
 	// 기존 요소를 가져옴. 교체한다. 
-	$content.replaceWith(`<textarea class = 'modify-content' data-comment-number ='${commentNumber}'> ${$content.text()}</textarea>`);
+	$content.replaceWith(`<textarea class = 'modify-content' data-comment-number ='${commentNumber}'> ${$content.text().trim()}</textarea>`);
 });
 
 
 	$('.commentList-CommentList').on('click','.boardReply-editor-buttons-done', function(){
 	let commentNumber = $('.modify-content').data('comment-number');
-/*	console.log(commentNumber);*/
+	console.log(commentNumber);
 	   $.ajax({
       url : '/studyGroupComment/studyGroupCommentUpdateOk.sgc',
       type : 'get',
@@ -187,8 +187,6 @@ $('.commentList-CommentList').on('click','.boardReply-editor-buttons-modi', func
    });
 	
 	});
-
-
 
 
 

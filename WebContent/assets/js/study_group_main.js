@@ -45,6 +45,56 @@ $filed.click(() => {
 $(document).ready(function () {
   calendarInit();
 });
+
+
+/*
+let memberNumber = document.getElementById('likeMemberNumber');
+let studyGroupNumber = document.getElementById('likeStudyGroupNumber');
+likeAjax();
+
+// 좋아요 하트를 먼저 ajax로 띄운다. 
+function likeAjax(){
+	$.ajax({
+		url: '/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg', 
+		type: 'get',
+		data: { studyGroupNumber: studyGroupNumber,
+				memberNumer : memberNumber 
+				},
+		success : showLike
+	});
+	
+	function showLike (likeButton) {
+		let text='';
+		likeButton.forEach(likeButton => {
+			text += `
+			  <button class= "groupLikeItems">
+                   	<img alt="" src="${pageContext.request.contextPath}/assets/img/btn-large-heart-white.svg" class="groupLikeImg" >
+                   	<p>${group.getStudyGroupLikeCount()}</p>
+                    </button> `
+		});
+		$('.groupLikeItems').html(text);
+		
+	}
+	
+}
+
+// 클릭하면 좋아요 추가하는 ajax를 추가한다. 
+$('.groupLikeItems').on('click', function () {
+	$.ajax({
+		url: '/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg',
+      type: 'get',
+      data: { studyGroupNumber: studyGroupNumber,
+				memberNumer : memberNumber },	
+	succeess: function() {
+			showLike();
+	}
+	
+	});
+});
+
+*/
+
+
 /*
     달력 렌더링 할 때 필요한 정보 목록 
 

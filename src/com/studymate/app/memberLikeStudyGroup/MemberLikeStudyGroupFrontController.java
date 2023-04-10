@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.studymate.app.studyGroupComment.StudyGroupCommentOkController;
+
 public class MemberLikeStudyGroupFrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,6 +24,10 @@ public class MemberLikeStudyGroupFrontController extends HttpServlet{
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 
 		switch(target) {
+		case "/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg":
+			System.out.println("좋아요누르기");
+			new MemberLikeStudyGroupOkController().execute(req,resp);
+			break;
 		
 		}
 	}

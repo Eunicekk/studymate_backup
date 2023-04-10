@@ -37,4 +37,11 @@ limit #{startRow}, #{rowCount}
 	</select>
 	
 	
+	<update id="updateReadCount" parameterType= "_int" >
+	update tbl_study_group 
+	set study_group_read_count = study_group_read_count +1
+	where study_group_number = #{studyGroupNumber}
+	</update>
+	
+	
 </mapper>

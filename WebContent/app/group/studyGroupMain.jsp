@@ -237,9 +237,14 @@
                        <p>${group.getStudyGroupCommentCount()}</p>
                     </div>
                     
+                    <!-- 좋아요 -->
                     <div class="groupLikeItems" > 
+                    <input type="hidden" id= "likeStudyGroupNumber" value= "${group.getStudyGroupNumber()}">
+                    <input type="hidden" id= "likeMemberNumber" value= "${group.getMemberNumber()}" >
+          		     <button class= "groupLikeItems">
                    	<img alt="" src="${pageContext.request.contextPath}/assets/img/btn-large-heart-white.svg" class="groupLikeImg" >
                    	<p>${group.getStudyGroupLikeCount()}</p>
+                    </button> 
                      </div>
                     
                   </div>

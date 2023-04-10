@@ -132,8 +132,7 @@
                <c:out value="${group.getStudyGroupCommentCount()}" />
                </span>
               개의 댓글이 있습니다</h1>
-              <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" > 
-              </textarea>
+              <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" ></textarea>
               
               <div class="commentInput-buttonWrapper">
                 <button class="commentInput-buttonComplete" name="register"  data-memberNumber = "${group.memberNumber}" >
@@ -164,7 +163,7 @@
                     </div>
                   </div>
                   <div class="boardReply-editDelete">
-                 <button type="button" class="boardReply-editor-buttons-modi"  data-number = "${comment.studyGroupCommentNumber}">수정</button>
+                 <button type="button" class="boardReply-editor-buttons-modi"  data-comment-number = "${comment.studyGroupCommentNumber}">수정</button>
                 <button type="button" class="boardReply-editor-buttons-dele"  data-number = "${comment.studyGroupCommentNumber}">삭제</button>
                 </div>
 				 <button type="button" class="boardReply-editor-buttons-done"  data-number = "${comment.studyGroupCommentNumber}" >수정완료</button>

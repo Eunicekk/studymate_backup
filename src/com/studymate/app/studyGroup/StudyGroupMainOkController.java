@@ -84,6 +84,7 @@ public class StudyGroupMainOkController implements Execute {
 				
 		
 		List<StudyGroupVO> studyGroups = studyGroupDAO.selectAll(pageMap);	
+		System.out.println(studyGroups);
 		req.setAttribute("studyGroups", studyGroups);
 
 		req.setAttribute("page", page);
@@ -95,7 +96,7 @@ public class StudyGroupMainOkController implements Execute {
 		req.setAttribute("temp", studyGroups);
 		
 		
-		req.setAttribute("studyGroups", studyGroups);
+//		req.setAttribute("studyGroups", studyGroups);
 		
 //		System.out.println(studyGroups);
 		// 파란글씨 이름 지어주고 VO가 저장된 리스트들을 넣어줌. 
@@ -106,6 +107,11 @@ public class StudyGroupMainOkController implements Execute {
 		req.getRequestDispatcher("/app/group/studyGroupMain.jsp").forward(req, resp);
 		
 		// 여기서 jsp로 간다. 
+		
+		
+		
+		
+		// 좋아요 추가하기. 좋아요 삭제하기. 
 		
 		
 	}
