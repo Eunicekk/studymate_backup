@@ -1,6 +1,7 @@
 package com.studymate.app.memberLikeStudyGroup;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,20 +33,20 @@ public class MemberLikeStudyGroupOkController implements Execute {
 		
 	
 		int result = memberLikeStudyGroupDAO.likeCheck(likeCheck);
-		
 		if(result == 0) { // 추천을 안했으면 추천해주고 
 			memberLikeStudyGroupDAO.insert(likeCheck);
 		} else { // 추천 했으면 삭제 해주기 
 			memberLikeStudyGroupDAO.delete(likeCheck);
 		}
 	
+//		PrintWriter out = req.get
 		
 //		int memberNumber = Integer.valueOf(req.getParameter("memberNumber"));
 //		int studyGroupNumber = Integer.valueOf(req.getParameter("studyGroupNumber"));
 		
 		
 		req.setAttribute("memberLikeStudyGroup", likeCheck);
-		
+
 		req.getRequestDispatcher("/app/group/studyGroupMain.jsp").forward(req, resp);
 		
 	}

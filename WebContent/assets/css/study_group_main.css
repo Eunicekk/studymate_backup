@@ -624,16 +624,17 @@ option {
 
 
 .groupLikeItems > img {
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	margin: 3px;
+	
 }
 
 .groupLikeItems > p {
 	position: absolute; 
-	bottom: 0px; 
+	bottom: -10px; 
 	left: 5px;
-	right: 3px;
+	right: 5px;
 	margin: 0; 
 	font-size: 11px;
 	color: #999999;
@@ -722,12 +723,14 @@ option {
   display: flex;
   align-items: center;
   position: relative;
+  
 }
 
 .userImg > img {
   display: block;
   border-radius: 50%;
   object-fit: cover;
+  opacity:0.5; 
 }
 
 img {

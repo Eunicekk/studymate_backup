@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="memberLikeStudyGroup">
-
-
+	<mapper namespace="memberLikeStudyGroup">
 	<select id="likeCheck" parameterType= "map" resultType="_int">
 	select count(member_number, study_group_number) from tbl_member_like_study_group 
 	where member_number = #{memberNumber} and study_group_number = #{studyGroupNumber};  
@@ -20,6 +18,10 @@
 	where member_number = #{memberNumber} and study_group_number = #{studyGroupNumber}
 	</delete>
 	
-	
+	<select id="likeCnt" parameterType = "map" resultType = "_int" >
+	select count(study_group_number) from tbl_member_like_study_group 
+	where study_group_number = #{studyGroupNumber}
+	</select>
+
 	
 </mapper>

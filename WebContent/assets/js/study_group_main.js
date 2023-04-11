@@ -47,36 +47,27 @@ $(document).ready(function () {
 });
 
 
-/*
-let memberNumber = document.getElementById('likeMemberNumber');
-let studyGroupNumber = document.getElementById('likeStudyGroupNumber');
+
+let $memberNumber = $('#likeMemberNumber').value;
+let $studyGroupNumber =$('#likeStudyGroupNumber').value;
+
+console.log($studyGroupNumber);
+
 likeAjax();
+
+
 
 // 좋아요 하트를 먼저 ajax로 띄운다. 
 function likeAjax(){
-	$.ajax({
-		url: '/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg', 
-		type: 'get',
-		data: { studyGroupNumber: studyGroupNumber,
-				memberNumer : memberNumber 
-				},
-		success : showLike
-	});
+  if ($memberNumber != 257){
+    $('.groupLikeImg').attr('src', "https://cdn-icons-png.flaticon.com/512/833/833472.png");
 	
-	function showLike (likeButton) {
-		let text='';
-		likeButton.forEach(likeButton => {
-			text += `
-			  <button class= "groupLikeItems">
-                   	<img alt="" src="${pageContext.request.contextPath}/assets/img/btn-large-heart-white.svg" class="groupLikeImg" >
-                   	<p>${group.getStudyGroupLikeCount()}</p>
-                    </button> `
-		});
-		$('.groupLikeItems').html(text);
-		
-	}
-	
+ } else {
+    $('.groupLikeImg').attr('src', "https://cdn-icons-png.flaticon.com/512/833/833386.png");
+	$('.groupLikeImg').css('opacity', '0.2'); // 투명도 조정  
+ }
 }
+
 
 // 클릭하면 좋아요 추가하는 ajax를 추가한다. 
 $('.groupLikeItems').on('click', function () {
@@ -86,13 +77,25 @@ $('.groupLikeItems').on('click', function () {
       data: { studyGroupNumber: studyGroupNumber,
 				memberNumer : memberNumber },	
 	succeess: function() {
-			showLike();
+		
+		
 	}
 	
 	});
 });
 
-*/
+
+
+
+
+
+
+
+// 클릭 버튼 에 이벤트 주고, ajax를 거기에만 걸어주면 된다 텍스트 안불러와도 됨. 이미 화면에 있으니까 그냥 클릭 이벤트만 주고, 
+// 전송하고 설공하면, 화면에 전체 개수를 뿌려주면 됨. 그게 다임 ㅋㅋㅋ ㄹㅇ,,, 암것도 아님 진심.. 
+// 매개 변수 받고 반환을 받아서 텍스트 꽂아주는게 success 에 들어갈 내용. 
+
+
 
 
 /*

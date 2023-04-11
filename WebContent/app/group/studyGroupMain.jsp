@@ -242,7 +242,7 @@
                     <input type="hidden" id= "likeStudyGroupNumber" value= "${group.getStudyGroupNumber()}">
                     <input type="hidden" id= "likeMemberNumber" value= "${group.getMemberNumber()}" >
           		     <button class= "groupLikeItems">
-                   	<img alt="" src="${pageContext.request.contextPath}/assets/img/btn-large-heart-white.svg" class="groupLikeImg" >
+                   	<img alt="" src="" class="groupLikeImg" >
                    	<p>${group.getStudyGroupLikeCount()}</p>
                     </button> 
                      </div>
@@ -775,8 +775,8 @@
           
            --%>
         </div>
-
-
+	
+	
       </div>
 
     </main>
@@ -787,6 +787,9 @@
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
       crossorigin="anonymous"
     ></script>
+    <script>
+    let $result = $('result');
+    </script>
     <script src="${pageContext.request.contextPath}/assets/js/study_group_main.js"></script>
   </body>
 </html>

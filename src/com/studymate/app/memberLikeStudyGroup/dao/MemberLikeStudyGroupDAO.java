@@ -15,7 +15,7 @@ public class MemberLikeStudyGroupDAO {
 	}
 	
 	
-// studyGroup 좋아요 여부 확인하기 위해서 멤버 넘버 가져오기 
+// studyGroup 좋아요 여부 확인하기 위해서 멤버 넘버 가져오기 result 에 반환값을 담아주기만 함. 
 	public int likeCheck(Map<String, Object> likeCheck) {
 		
 		 int result = 0;
@@ -41,5 +41,9 @@ public class MemberLikeStudyGroupDAO {
 		sqlSession.delete("memberLikeStudyGroup.delete", likeCheck);
 	}
 	
+//	좋아요 클릭 후 좋아요 수 재업로드 
+	public int likeCnt(Map<String, Object> likeCheck) {
+		return sqlSession.selectOne("memberLikeStudyGroup.select", likeCheck);
+	}
 
 }
