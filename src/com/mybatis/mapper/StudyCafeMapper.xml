@@ -43,14 +43,14 @@
 		where study_cafe_number = #{studyCafeNumber}
 	</update>
 	
-	<select id="search" parameterType="String" resultType="StudyCafeVO">
+	<select id="search" parameterType="string" resultType="StudyCafeVO">
 		select j1.study_cafe_number, j1.study_cafe_name, j1.study_cafe_address, j1.study_cafe_price, j1.study_cafe_read_count, j1.study_cafe_like_count,
 		count(scc.cafe_comment_number) study_cafe_comment_count, round(avg(scc.cafe_comment_score), 1) study_cafe_comment_score
 		from (select sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address, sc.study_cafe_price,
 		sc.study_cafe_read_count, count(mlc.member_number) study_cafe_like_count
 		from tbl_study_cafe sc left outer join tbl_member_like_cafe mlc 
 		on sc.study_cafe_number = mlc.study_cafe_number 
-		where sc.study_cafe_name like '%#{studyCafeName}%'
+		where sc.study_cafe_name like concat('%', #{studyCafeName}, '%')
 		group by sc.study_cafe_number
 		) j1 left outer join tbl_study_cafe_comment scc
 		on j1.study_cafe_number = scc.study_cafe_number
@@ -58,7 +58,7 @@
 		order by j1.study_cafe_number desc;
 	</select>
 	
-<!-- 	<select id="arrayByScore">
+	<select id="arrayByScore" parameterType="map" resultType="StudyCafeVO">
 		select j1.study_cafe_number, j1.study_cafe_name, j1.study_cafe_address, j1.study_cafe_price, j1.study_cafe_read_count, j1.study_cafe_like_count,
 		count(scc.cafe_comment_number) study_cafe_comment_count, round(avg(scc.cafe_comment_score), 1) study_cafe_comment_score from (
 		select sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address, sc.study_cafe_price, sc.study_cafe_read_count, 
@@ -69,6 +69,32 @@
 		group by j1.study_cafe_number
 		order by study_cafe_comment_score desc, j1.study_cafe_number desc
 		limit #{startRow}, #{rowCount}
-	</select> -->
+	</select>
+	
+	<select id="arrayByLike" parameterType="map" resultType="StudyCafeVO">
+		select j1.study_cafe_number, j1.study_cafe_name, j1.study_cafe_address, j1.study_cafe_price, j1.study_cafe_read_count, j1.study_cafe_like_count,
+		count(scc.cafe_comment_number) study_cafe_comment_count, round(avg(scc.cafe_comment_score), 1) study_cafe_comment_score from (
+		select sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address, sc.study_cafe_price, sc.study_cafe_read_count, 
+		count(mlc.member_number) study_cafe_like_count from tbl_study_cafe sc left outer join tbl_member_like_cafe mlc 
+		on sc.study_cafe_number = mlc.study_cafe_number 
+		group by sc.study_cafe_number) j1 left outer join tbl_study_cafe_comment scc
+		on j1.study_cafe_number = scc.study_cafe_number 
+		group by j1.study_cafe_number
+		order by study_cafe_like_count desc, j1.study_cafe_number desc
+		limit #{startRow}, #{rowCount}
+	</select>
+	
+	<select id="arrayByRead" parameterType="map" resultType="StudyCafeVO">
+		select j1.study_cafe_number, j1.study_cafe_name, j1.study_cafe_address, j1.study_cafe_price, j1.study_cafe_read_count, j1.study_cafe_like_count,
+		count(scc.cafe_comment_number) study_cafe_comment_count, round(avg(scc.cafe_comment_score), 1) study_cafe_comment_score from (
+		select sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address, sc.study_cafe_price, sc.study_cafe_read_count, 
+		count(mlc.member_number) study_cafe_like_count from tbl_study_cafe sc left outer join tbl_member_like_cafe mlc 
+		on sc.study_cafe_number = mlc.study_cafe_number 
+		group by sc.study_cafe_number) j1 left outer join tbl_study_cafe_comment scc
+		on j1.study_cafe_number = scc.study_cafe_number 
+		group by j1.study_cafe_number
+		order by study_cafe_read_count desc, j1.study_cafe_number desc
+		limit #{startRow}, #{rowCount}
+	</select>
 
 </mapper>

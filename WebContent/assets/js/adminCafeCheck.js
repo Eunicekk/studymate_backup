@@ -189,7 +189,7 @@ $('#paging').on('click', ".prev", function() {
 			}
 
 		});
-	}else{
+	} else {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: '/admin/adminCafeListOk.ad?order=like&page=' + (startPage),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
