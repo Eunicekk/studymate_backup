@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="memberLikeCafe">
+		<select id="checkLike" parameterType="memberLikeCafeDTO" resultType="_int">
+		select count(member_number) from tbl_member_like_cafe
+		where member_number = #{memberNumber} and study_cafe_number = #{studyCafeNumber}
+	</select>
 	
+	<insert id="plusLike" parameterType="memberLikeCafeDTO">
+		insert into tbl_member_like_cafe (member_number, study_cafe_number)
+		values(#{memberNumber}, #{studyCafeNumber})
+	</insert>
 	
+	<delete id="minusLike" parameterType="memberLikeCafeDTO">
+		delete from tbl_member_like_cafe
+		where member_number=#{memberNumber} and study_cafe_number=#{studyCafeNumber}
+	</delete>
+	
+	<select id="countLike" parameterType="_int" resultType="_int">
+		select count(study_cafe_number) from tbl_member_like_cafe
+		where study_cafe_number = #{studyCafeNumber};
+	</select>
 </mapper>
