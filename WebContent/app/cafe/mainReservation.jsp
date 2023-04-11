@@ -601,33 +601,37 @@
 		</div>
 
 			<!-- 스터디 카페 메인  -->
-			<div class="mainSpace">
-				<div class="titleOrder">
-					<h2 class="title">스터디카페 예약</h2>
-					<form action="" method="get" name="order">
-						<div class="selectOrder">
-							<select name="order">
+		<div class="mainSpace">
+			<div class="titleOrder">
+				<h2 class="title">스터디카페 예약</h2>
+				<input type="hidden" class="cafe-count" value="${total }">
+				<form action="/cafe/cafeListOk.sc" method="get" name="order">
+					<div class="selectOrder">
+						<select id="order"  name="order">
 							<!-- onchange="this.form.submit()" -->
-								<option value="latest">최신 등록순</option>
-								<option value="interest">별점순</option>
-								<option value="popularity">관심순</option>
-								<option value="viewCount">조회순</option>
-							</select>
-						</div>
-					</form>
-				</div>
-
+							<option id="new" value="new">최신 등록순</option>
+							<option id="score" value="score">별점순</option>
+							<option id="like" value="like">관심순</option>
+							<option id="read" value="read">조회순</option>
+						</select>
+					</div>
+				</form>
+			</div>
+			
+			<div id="ajax-list">
 				<ul class="spaceList">
 					<c:choose>
 						<c:when test="${not empty cafelist }">
 							<c:forEach var="studyCafe" items="${cafelist}">
 
-								<li>
-								<a href="${pageContext.request.contextPath}/cafe/cafeReadOk.sc?studyCafeNumber=${studyCafe.getStudyCafeNumber()}" class="cafeOpen">
+								<li><a
+									href="${pageContext.request.contextPath}/cafe/cafeReadOk.sc?studyCafeNumber=${studyCafe.getStudyCafeNumber()}"
+									class="cafeOpen">
 										<div class="spaceImg">
 											<img class="imgInfo"
 												src="${pageContext.request.contextPath}/assets/img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg"
-												alt="뉴욕감성"> <input type="button" class="favoritButton">
+												alt="뉴욕감성">
+											<input type="button" class="favoritButton">
 										</div>
 
 										<div class="spaceItem">
@@ -635,18 +639,29 @@
 												<!-- 카페이름 -->
 												<div class="cafename">
 													<span>${studyCafe.getStudyCafeName() }</span>
+													<input type="hidden" class="cafe-number-count" value=${studyCafe.getStudyCafeNumber() }>
 												</div>
 
 												<!-- 조회순 좋아요  -->
 												<div class="readContLike">
 													<!-- 조회순 -->
 													<span class="CntLikeStyle"> <span class="box-sizing">
-															<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#BEC2C8" height="18" width="18" xmlns="http://www.w3.org/2000/svg" style="color: rgb(153, 153, 153);"><path d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 0 0 0 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"></path></svg>
+															<svg stroke="currentColor" fill="currentColor"
+																stroke-width="0" viewBox="0 0 1024 1024" color="#BEC2C8"
+																height="18" width="18"
+																xmlns="http://www.w3.org/2000/svg"
+																style="color: rgb(153, 153, 153);">
+																<path
+																	d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 0 0 0 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"></path></svg>
 													</span>${studyCafe.getStudyCafeReadCount() }</span>
 													<!-- like수 -->
 													<span class="CntLikeStyle"> <span class="box-sizing">
-															<img src="${pageContext.request.contextPath}/assets/img/icn-heart-filled-lightgray.c71bc69d.svg" alt="">
-													</span>${studyCafe.getStudyCafeLikeCount() }</span>
+															<img
+															src="${pageContext.request.contextPath}/assets/img/icn-heart-filled-lightgray.c71bc69d.svg"
+															alt="">
+													</span>
+													<span id="like-count" class="like-count">${studyCafe.getStudyCafeLikeCount() }</span>
+													</span>
 												</div>
 											</div>
 											<!-- 카페 위치 -->
@@ -663,14 +678,16 @@
 											<!-- 댓글 -->
 											<div class="studyCafeReply">
 												<div class="startImg">
-													<img src="${pageContext.request.contextPath}/assets/img/Star_1.svg" alt="별점">
+													<img
+														src="${pageContext.request.contextPath}/assets/img/Star_1.svg"
+														alt="별점">
 												</div>
 												${studyCafe.getStudyCafeCommentScoreAvg() }
-												<div class="replyInfo">&#40;후기 ${studyCafe.getStudyCafeCommentCount() }&#41;</div>
+												<div class="replyInfo">&#40;후기
+													${studyCafe.getStudyCafeCommentCount() }&#41;</div>
 											</div>
 										</div>
-								</a>
-								</li>
+								</a></li>
 
 							</c:forEach>
 						</c:when>
@@ -679,47 +696,54 @@
 						</c:otherwise>
 					</c:choose>
 				</ul>
-				
+		</div>
+
 				<!-- 페이징 처리 -->
 				<ul class="pageNumber">
-				
+
 					<c:if test="${prev }">
-					<li class="prev">
-						<button type="button" onclick="location.href='${pageContext.request.contextPath}/cafe/cafeListOk.sc?page=${startPage-1}'">
-							<span class="box-sizing">
-							<img src="${pageContext.request.contextPath}/assets/img/arrow-left-677294.ae6b1d0b.svg" alt="">
-							</span>
-						</button>
-					</li>					
+						<li class="prev">
+							<button type="button"
+								onclick="location.href='${pageContext.request.contextPath}/cafe/cafeListOk.sc?page=${startPage-1}'">
+								<span class="box-sizing"> <img
+									src="${pageContext.request.contextPath}/assets/img/arrow-left-677294.ae6b1d0b.svg"
+									alt="">
+								</span>
+							</button>
+						</li>
 					</c:if>
-					
+
 					<c:forEach var="i" begin="${startPage }" end="${endPage }">
 						<c:choose>
 							<c:when test="${!(i==page) }">
 								<li class="pageBtn">
-								<button type="button" onclick="location.href='${pageContext.request.contextPath}/cafe/cafeListOk.sc?page=${i}'">
-									<c:out value="${i }" />
-								</button>
+									<button type="button"
+										onclick="location.href='${pageContext.request.contextPath}/cafe/cafeListOk.sc?page=${i}'">
+										<c:out value="${i }" />
+									</button>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="pageBtn">
-								<button type="button" onclick="location.href='#'" class="active">
-									<c:out value="${i }" />
-								</button>
-								</li>							
+									<button type="button" onclick="location.href='#'"
+										class="active">
+										<c:out value="${i }" />
+									</button>
+								</li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-					
+
 					<c:if test="${next }">
-					<li class="next">
-						<button type="button" onclick="location.href='${pageContext.request.contextPath}/cafe/cafeListOk.sc?page=${endPage+1}'">
-							<span class="box-sizing">
-							<img src="${pageContext.request.contextPath}/assets/img/arrow-right-677294.662f8854.svg" alt="">
-							</span>
-						</button>
-					</li>
+						<li class="next">
+							<button type="button"
+								onclick="location.href='${pageContext.request.contextPath}/cafe/cafeListOk.sc?page=${endPage+1}'">
+								<span class="box-sizing"> <img
+									src="${pageContext.request.contextPath}/assets/img/arrow-right-677294.662f8854.svg"
+									alt="">
+								</span>
+							</button>
+						</li>
 					</c:if>
 				</ul>
 			</div>
@@ -730,7 +754,11 @@
 	<script src="https://code.jquery.com/jquery-3.6.3.js"
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/js/main_reservation.js"></script>
+	<script>
+		let $memberNumber = 1;
+		
+		let $result = "${result}"
+	</script>
+	<script src="${pageContext.request.contextPath}/assets/js/main_reservation.js"></script>
 </body>
 </html>

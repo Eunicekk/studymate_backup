@@ -34,5 +34,17 @@ public class StudyCafeDAO {
 	public List<StudyCafeVO> search(String studyCafeName){
 		return sqlSession.selectList("studyCafe.search", studyCafeName);
 	}
+	
+	public List<StudyCafeVO> arrayByScore(Map<String, Integer> pageMap){
+		return sqlSession.selectList("studyCafe.arrayByScore", pageMap);
+	}
+	
+	public List<StudyCafeVO> arrayByLike(Map<String, Integer> pageMap){
+		return sqlSession.selectList("studyCafe.arrayByLike", pageMap);
+	}
+	
+	public List<StudyCafeVO> arrayByRead(Map<String, Integer> pageMap){
+		return sqlSession.selectList("studyCafe.arrayByRead", pageMap);
+	}
 
 }
