@@ -21,15 +21,13 @@ public class StudyCafeFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 
+			System.out.println(target);
 		switch(target) {
 		case "/cafe/cafeListOk.sc" : 
 			new StudyCafeListOkController().execute(req, resp);
 			break;
 		case "/cafe/cafeReadOk.sc" :
 			new StudyCafeReadOkController().execute(req, resp);
-			break;
-		case "/cafe/cafeSearchOk.sc" : 
-			new StudyCafeSearchOkController().execute(req, resp);
 			break;
 		}
 	}

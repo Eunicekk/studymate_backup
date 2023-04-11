@@ -16,22 +16,34 @@ let $replyDeleteBtn = $('.boardReply-editor-buttons');
 
 // 뒤로 가기 boardList로 이동 
 $prevBtn.on('click', ()=>{
-    window.location.href ='#'
+    window.location.href ='/board/boardListOk.bo';
 });
 
 // 게시글 수정 write로 이동 
 $modifyBtn.on('click', ()=>{
-    window.location.href ='#'
+    window.location.href ='/board/boardUpdate.bo?boardNumber=' + boardNumber;
 }); 
 
 // 게시글 삭제 boardList로 이동
 $deleteBtn.on('click', ()=>{
-    window.location.href ='#'
+    window.location.href ='/board/boardDeleteOk.bo?boardNumber=' + boardNumber;
 });
 
 // 댓글 등록 Ajax 처리
 $uploadReplyBtn.on('click', ()=>{
-    // 댓글 등록 Ajax 처리해주세요
+    $.ajax({
+      url : '/reply/replyWriteOk.re',
+      type : 'post',
+      data : {
+         boardNumber : boardNumber,
+         memberNumber : memberNumber,
+         replyContent : $('#content').val()
+      },
+      success : function(){
+         replyAjax();
+         $('#content').val('');
+      }
+   });
 });
 
 

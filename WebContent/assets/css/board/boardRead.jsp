@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="../css/boardRead.css">
-<link rel="stylesheet" href="../resource/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/boardRead.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/resource/reset.css">
 </head>
 <body>
 
@@ -30,7 +31,8 @@
 					</button>
 				</div>
 				<div class="boardContent-title">
-					임시 제목 <br> [포트폴리오] lemon은 어떻게 만들어지는가⭐️
+					<c:out value="${board.getBoardTitle()}" />
+					<!-- 임시 제목 <br> [포트폴리오] lemon은 어떻게 만들어지는가⭐️ -->
 				</div>
 				<div class="boardContent-userAndDate">
 					<div class="boardContent-user">
@@ -40,15 +42,19 @@
 								src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
 								class="userImg" height="3rem" width="3rem">
 						</div>
-						<div class="boardContent-userName">은시룽 /작성자</div>
+						<div class="boardContent-userName">
+						<c:out value="${board.getMemberId() }" />
+						<!-- 은시룽 /작성자 --></div>
 					</div>
-					<div class="boardContent-uploadDate">작성일 2123.08.10</div>
+					<div class="boardContent-uploadDate">작성일 "${board.getBoardDate() }"</div>
 
 
 					<div class="boardContent-editButtons">
 						<!-- 현재 로그인한 아이디or멤버넘버, 현재 게시글 아이디or멤버넘버 비교하기 c:if-->
+					 <c:if test="${sessionScope.memberNumber == board.getMemberNumber()}">
 						<button type="button" class="boardContent-edit">수정</button>
 						<button type="button" class="boardContent-delete">삭제</button>
+					 </c:if>
 					</div>
 				</div>
 			</section>
@@ -60,7 +66,8 @@
 			<section class="boardContent-postContent-wrapper">
 				<h2 class="boardContent-postInfo">포트폴리오 소개</h2>
 				<div class="boardContent-postContent">
-					포트폴리오 본문 내용 [🌏 WINGLE] 프론트엔드 개발자, UI/UX디자이너 리크루팅 ⭐️
+				<c:out value="${board.getBoardContent() }" />
+<!-- 					포트폴리오 본문 내용 [🌏 WINGLE] 프론트엔드 개발자, UI/UX디자이너 리크루팅 ⭐️
 
 
 
@@ -87,7 +94,7 @@
 
 
 					📌 모집기간 : 3/22 (수) 자정 까지 📌 리크루팅 문의 오카방 👉🏼
-					https://open.kakao.com/o/sIm0WH5e 
+					https://open.kakao.com/o/sIm0WH5e  -->
 				</div>
 			</section>
 
@@ -114,7 +121,8 @@
 
 					<!-- 마진없는 댓글 컨테이너 -->
 					<ul class="commentList-CommentList">
-
+					 
+						<c:forEach var="post" items="${boardRead}" >
 						<!-- 마진 준 댓글 리스트 컨테이너 -->
 						<li class="commentItem-commentContainer">
 							<section class="commentItem-CommentHeader">
@@ -124,9 +132,8 @@
 										alt="">
 									<div class="commentItem-commentInfo">
 										<div class="commentItem-title">
-											<div class="commentItem-userNickname">른시룽</div>
-											<div class="commentItem-registerDate">2143.08.10
-												13:42:55</div>
+											<div class="commentItem-userNickname">${post.getMemberNickname()}</div>
+											<div class="commentItem-registerDate">${post.getBoardCommentDate() }</div>
 										</div>
 									</div>
 								</div>
@@ -137,9 +144,10 @@
 								</div>
 							</section>
 							<section class="commentItem-CommentContent">
-								<p class="commentItem-CommentContent">안녕하세요 미래에서 왔습니데</p>
+								<p class="commentItem-CommentContent">${post.getBoardCommentContent()}</p>
 							</section>
 						</li>
+					</c:forEach>
 					</ul>
 				</div>
 			</section>

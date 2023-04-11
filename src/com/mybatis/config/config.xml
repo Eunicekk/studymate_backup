@@ -32,6 +32,8 @@
 		<typeAlias type="com.studymate.app.admin.board.vo.AdminBoardVO" alias="AdminBoardVO"/>
 		<typeAlias type="com.studymate.app.admin.group.vo.AdminGroupVO" alias="AdminGroupVO"/>
 		<typeAlias type="com.studymate.app.myPage.vo.MyPageVO" alias="MyPageVO"/>
+		<typeAlias type="com.studymate.app.board.vo.BoardVO" alias="BoardVO"/>
+		<typeAlias type="com.studymate.app.boardComment.vo.BoardCommentVO" alias="BoardCommentVO"/>
 	</typeAliases>
 
 	<environments default="mysql">

@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="boardComment">
+
+	 <select id="selectAll" parameterType="_int" resultType="BoardCommentVO">
+      select board_comment_number, board_comment_content, board_comment_date, member_number, board_number, member_nickname
+      from tbl_member m join tbl_board_comment r
+      on board_number = #{boardNumber} and m.member_number = r.member_number
+   </select>
+	
 	
 	
 </mapper>

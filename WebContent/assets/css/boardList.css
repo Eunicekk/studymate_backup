@@ -10,6 +10,7 @@
     margin-bottom: 80px;
 }
 
+
 .contents-container {
     margin: 0 auto;
     width: 1260px;
@@ -332,7 +333,18 @@ height: 42px;
     text-align: center;
 }
 
+.page-list{
+	display: flex;
+/*     height: 32px;
+    width: 32px;
+ */	justify-content: center;
+    align-items: center;
+    
+}
 
+.page-list-container{
+	padding: 0 5px 0 0;
+}
 
 .page {
     display: inline-block;
@@ -354,7 +366,7 @@ height: 42px;
 
 /* 임시 !!!!!  */
 .pageNow {
-    display: inline-block;
+    display: flex;
     margin: 0 5px 0 0;
     padding: 0 2px;
     height: 32px;
@@ -366,4 +378,8 @@ height: 42px;
     background-color: #fff;
     text-decoration: none;
     border: 1px solid #dfdfdf;
+    color: rgb(255, 255, 255);
+  	background-color: rgb(0, 78, 235);
+ 	border-radius: 50%;
+ 	justify-content: center;
 }
