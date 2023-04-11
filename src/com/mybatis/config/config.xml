@@ -32,6 +32,8 @@
 		<typeAlias type="com.studymate.app.admin.board.vo.AdminBoardVO" alias="AdminBoardVO"/>
 		<typeAlias type="com.studymate.app.admin.group.vo.AdminGroupVO" alias="AdminGroupVO"/>
 		<typeAlias type="com.studymate.app.myPage.vo.MyPageVO" alias="MyPageVO"/>
+		<typeAlias type="com.studymate.app.admin.search.vo.SearchVO" alias="SearchVO"/>
+		
 	</typeAliases>
 
 	<environments default="mysql">
@@ -65,6 +67,7 @@
 		<mapper resource="com/mybatis/mapper/StudyGroupLeaderMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/StudyGroupMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/MyPageMapper.xml"/>
+		<mapper resource="com/mybatis/mapper/MainMapper.xml"/>
       
 	</mappers>
 	

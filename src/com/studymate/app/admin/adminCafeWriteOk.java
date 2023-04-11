@@ -90,6 +90,7 @@ public class adminCafeWriteOk implements Execute {
 	            		studyCafeDTO.getStudyCafeAddress() == null || studyCafeDTO.getStudyCafePrice() == null) { continue; }
 	            
 //	            studyCafeDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
+	            studyCafeDTO.setCafeFileSystemName(systemName.get(0));
 	            adminDAO.cafeInsert(studyCafeDTO);
 	            
 //	         boardNumber 칼럼에 마지막으로 저장된 값을 가져온다.
@@ -101,12 +102,19 @@ public class adminCafeWriteOk implements Execute {
 //		System.out.println(systemName);
 		
 		for(int i =0;i < systemName.size(); i++) {			
+			
+			if(i ==0) {
+				studyCafeDTO.setCafeFileSystemName(systemName.get(0));
+			}
 			studyCafeFileDTO.setCafeFileOriginalName(originalName.get(i));
 			studyCafeFileDTO.setCafeFileSystemName(systemName.get(i));
 			studyCafeFileDTO.setStudyCafeNumber(studyCafeNumber);
 			adminDAO.cafeFileInsert(studyCafeFileDTO);
 		}		        
-         
+        
+//		System.out.println(studyCafeDTO);
+//		System.out.println(studyCafeFileDTO);
+		
 		resp.sendRedirect("/admin/adminMain.ad");
 	}
 }

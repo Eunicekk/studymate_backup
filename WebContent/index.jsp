@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,39 +13,172 @@
 	href="${pageContext.request.contextPath}/assets/css/reset.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/main.css" />
+<%-- <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/main_reservation.css" /> --%>
 <title>스터디 메이트</title>
 </head>
 <body>
 	<header id="header-main">
-		<div>
-			<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="logo" />
-		</div>
-		<div class="header-left">
-			<a href="#" class="content-cafe">스터디카페 예약</a> <a href="#"
-				class="content-group">스터디그룹 모집</a>
-		</div>
-		<div class="header-right">
-			<div class="login">
-				<a href="#">로그인</a>
-			</div>
-			<div class="join">
-				<a href="#">회원가입</a>
-			</div>
-		</div>
+
+
+		<c:choose>
+			<c:when test="${empty sessionScope.memberNumber}">
+				<div>
+					<img src="${pageContext.request.contextPath}/assets/img/logo.png"
+						alt="" class="logo" />
+				</div>
+				<div class="header-left">
+					<a href="/cafe/cafeListOk.sc" class="content-cafe">스터디카페 예약</a> <a
+						href="/studyGroup/studyGroupMainOk.sg" class="content-group">스터디그룹
+						모집</a>
+				</div>
+				<div class="header-right">
+					<div class="login">
+						<a href="/member/login.me">로그인</a>
+					</div>
+					<div class="join">
+						<a href="/member/join.me">회원가입</a>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/haederafter.jsp" />
+			</c:otherwise>
+		</c:choose>
+
 	</header>
 	<section>
-		<a href=""><img
+		<a href="/cafe/cafeListOk.sc"><img
 			src="${pageContext.request.contextPath}/assets/img/cafeRV.png" alt=""
 			style="width: 1500px; margin-top: 15px" /></a>
 	</section>
 	<div class="tag-study">
 		<div class="cafe-list">스터디카페 목록</div>
-		<a class="show-all-btn"><div class="move-btn">전체보기</div> <img
+		<a href="/cafe/cafeListOk.sc" class="show-all-btn"><div
+				class="move-btn">전체보기</div> <img
 			src="https://shareit.kr/_next/static/media/arrow-right-677294.662f8854.svg"
 			alt="" class="cafe-arrow" /></a>
 	</div>
 	<section class="study-cafe">
 		<!-- 8개만 화면 출력 -> 전체보기 페이지이동 -->
+		<c:choose>
+			<c:when test="${not empty cafelist }">
+				<c:forEach var="studyCafe" items="${cafelist}">
+					<a href=""><figure class="new-figure">
+							<img
+								src="${pageContext.request.contextPath}/upload/${studyCafe.getCafeFileSystemName()}"
+								alt="" />
+							<figcaption>
+								<div class="spaceItem">
+									<div class="studyCafeName">
+										<!-- 카페이름 -->
+										<div class="cafename">
+											<span>${studyCafe.getStudyCafeName() }</span>
+										</div>
+
+										<!-- 조회순 좋아요  -->
+										<div class="readContLike">
+											<!-- 조회순 -->
+											<span class="CntLikeStyle"> <span class="box-sizing">
+													<svg stroke="currentColor" fill="currentColor"
+														stroke-width="0" viewBox="0 0 1024 1024" color="#BEC2C8"
+														height="18" width="18" xmlns="http://www.w3.org/2000/svg"
+														style="color: rgb(153, 153, 153);">
+														<path
+															d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 0 0 0 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"></path></svg>
+											</span>${studyCafe.getStudyCafeReadCount() }</span>
+											<!-- like수 -->
+											<span class="CntLikeStyle"> <span class="box-sizing">
+													<img
+													src="${pageContext.request.contextPath}/assets/img/icn-heart-filled-lightgray.c71bc69d.svg"
+													alt="">
+											</span>${studyCafe.getLikeCount() }</span>
+										</div>
+									</div>
+									<!-- 카페 위치 -->
+									<p class="studyCafeLocation">${studyCafe.getStudyCafeAddress() }</p>
+
+									<!-- 카페 가격 -->
+									<div class="studyCafePrice">
+										<div class="priceText">
+											${studyCafe.getStudyCafePrice() }
+											<p>원~ / 1시간당</p>
+										</div>
+									</div>
+
+									<!-- 댓글 -->
+									<div class="studyCafeReply">
+										<div class="startImg">
+											<img
+												src="${pageContext.request.contextPath}/assets/img/Star_1.svg"
+												alt="별점">
+										</div>
+										${studyCafe.getStudyCafeCommentScore() }
+										<div class="replyInfo">&#40;후기 &#41;</div>
+									</div>
+								</div>
+							</figcaption>
+						</figure> </a>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<div>등록된 게시물이 없습니다.</div>
+			</c:otherwise>
+		</c:choose>
+		<%-- <a href=""><figure class="new-figure">
+				<img
+					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
+					alt="" />
+				<figcaption>
+					<div class="spaceItem">
+						<div class="studyCafeName">
+							<!-- 카페이름 -->
+							<div class="cafename">
+								<span>케페이름</span>
+							</div>
+
+							<!-- 조회순 좋아요 -->
+							<div class="readContLike">
+								<!-- 조회순 -->
+								<span class="CntLikeStyle"> <span class="box-sizing">
+										<img src="../img/icn-chat-filled-lightgray.d59bfd98.svg"
+										alt="">
+								</span> 156
+								</span>
+								<!-- like수 -->
+								<span class="CntLikeStyle"> <span class="box-sizing">
+										<img src="../img/icn-heart-filled-lightgray.c71bc69d.svg"
+										alt="">
+								</span> 156
+								</span>
+							</div>
+						</div>
+						<!-- 카페 위치 -->
+						<p class="studyCafeLocation">서울시 강남구 사가정로 148 sk스포트상가 토모집</p>
+
+						<!-- 카페 가격 -->
+						<div class="studyCafePrice">
+							<div class="priceText">
+								68000
+								<p>원~ / 1시간당</p>
+							</div>
+						</div>
+
+						<!-- 댓글 -->
+						<div class="studyCafeReply">
+							<div class="startImg">
+								<img
+									src="${pageContext.request.contextPath}/assets/img/Star_1.svg"
+									alt="별점">
+							</div>
+							4.8
+							<div class="replyInfo">(후기5)</div>
+						</div>
+					</div>
+					<img src="" alt="" />
+				</figcaption>
+			</figure></a>
 		<a href=""><figure class="new-figure">
 				<img
 					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
@@ -58,108 +193,10 @@
 					</div>
 					<img src="" alt="" />
 				</figcaption>
-			</figure></a><a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="cafe-name">카페이름</div>
-					<div class="cafe-nickname">카페이름</div>
-					<div class="cafe-address">주소</div>
-					<div class="cafe-price">
-						<div class="price">25000</div>
-						<div class="price-by-hours">원~/1시간당</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a><a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="cafe-name">카페이름</div>
-					<div class="cafe-nickname">카페이름</div>
-					<div class="cafe-address">주소</div>
-					<div class="cafe-price">
-						<div class="price">25000</div>
-						<div class="price-by-hours">원~/1시간당</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a><a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="cafe-name">카페이름</div>
-					<div class="cafe-nickname">카페이름</div>
-					<div class="cafe-address">주소</div>
-					<div class="cafe-price">
-						<div class="price">25000</div>
-						<div class="price-by-hours">원~/1시간당</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a><a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="cafe-name">카페이름</div>
-					<div class="cafe-nickname">카페이름</div>
-					<div class="cafe-address">주소</div>
-					<div class="cafe-price">
-						<div class="price">25000</div>
-						<div class="price-by-hours">원~/1시간당</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a><a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="cafe-name">카페이름</div>
-					<div class="cafe-nickname">카페이름</div>
-					<div class="cafe-address">주소</div>
-					<div class="cafe-price">
-						<div class="price">25000</div>
-						<div class="price-by-hours">원~/1시간당</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a><a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="cafe-name">카페이름</div>
-					<div class="cafe-nickname">카페이름</div>
-					<div class="cafe-address">주소</div>
-					<div class="cafe-price">
-						<div class="price">25000</div>
-						<div class="price-by-hours">원~/1시간당</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a><a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="cafe-name">카페이름</div>
-					<div class="cafe-nickname">카페이름</div>
-					<div class="cafe-address">주소</div>
-					<div class="cafe-price">
-						<div class="price">25000</div>
-						<div class="price-by-hours">원~/1시간당</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a>
+			</figure></a> --%>
 	</section>
 	<section>
-		<a href=""><img
+		<a href="/studyGroup/studyGroupMainOk.sg"><img
 			src="${pageContext.request.contextPath}/assets/img/groupRT.png"
 			alt="" style="width: 1500px; height: 300px; margin-top: 40px" /></a>
 	</section>
@@ -186,548 +223,96 @@
 	<section class="show-group">
 		<div class="slide-box">
 			<div class="slide-new-line">
-				<a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
+				<c:choose>
+					<c:when test="${not empty groupList}">
+						<c:forEach var="group" items="${groupList}">
+							<input type="hidden" class="total" value="${total}">
+							<a>
+								<div class="group-content">
+									<div class="group-plus">
+										<div class="field">
+											<svg xmlns="http://www.w3.org/2000/svg" width="12"
+												height="12" fill="currentColor" class="bi bi-pencil-fill"
+												viewBox="0 0 16 16">
+                            <path
+													d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z">
+                            </path>
+                        </svg>
+											<span>${group.getStudyGroupField()}</span>
+										</div>
+										<fmt:parseDate var="dateStr2"
+											value="${group.getStudyGroupEndDate() }"
+											pattern="yyyy-MM-dd HH:mm:ss" />
+										<fmt:formatDate var="dateFom2" value="${dateStr2}"
+											pattern="yyyyMMdd" />
+										<fmt:parseNumber var="todayDelay"
+											value="${dateStr2.time / (1000*60*60*24)}" integerOnly="true" />
 
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a>
-			</div>
-			<div class="slide-new-line">
-				<a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
+										<c:set var="now" value="<%=new java.util.Date()%>" />
+										<fmt:formatDate var="sysYear" value="${now}"
+											pattern="yyyyMMdd" />
+										<fmt:parseNumber var="today"
+											value="${now.time /(1000*60*60*24)}" integerOnly="true" />
 
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a>
-			</div>
 
-			<div class="slide-new-line">
-				<a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
+										<c:if
+											test="${(todayDelay - today) - group.getStudyGroupDuration() < 7}">
+											<div class="new">
+												<svg xmlns="http://www.w3.org/2000/svg" width="12"
+													height="12" fill="currentColor" class="bi bi-cup-hot-fill"
+													viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+														d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z">
+                            </path>
+                            <path
+														d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z">
+                            </path>
+                        </svg>
+												<span>따끈따끈한 새 글</span>
+											</div>
+										</c:if>
+										<c:if test="${group.getLikeCount() >= 10}">
+											<div class="hot">
+												<span class="material-symbols-outlined"> favorite </span> <span>인기</span>
+											</div>
+										</c:if>
+										<c:if test="${todayDelay - today < 14}">
+											<div class="finish">
+												<span class="material-symbols-outlined">
+													clock_loader_90 </span> <span>마감코앞</span>
+											</div>
+										</c:if>
+									</div>
 
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a><a href="#">
-					<div class="group-content">
-						<div class="group-plus">
-							<div class="field">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-pencil-fill"
-									viewBox="0 0 16 16">
-                    <path
-										d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"></path>
-                  </svg>
-								<span>진행 분야</span>
-							</div>
-							<div class="new">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-									fill="currentColor" class="bi bi-cup-hot-fill"
-									viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-										d="M.5 6a.5.5 0 0 0-.488.608l1.652 7.434A2.5 2.5 0 0 0 4.104 16h5.792a2.5 2.5 0 0 0 2.44-1.958l.131-.59a3 3 0 0 0 1.3-5.854l.221-.99A.5.5 0 0 0 13.5 6H.5ZM13 12.5a2.01 2.01 0 0 1-.316-.025l.867-3.898A2.001 2.001 0 0 1 13 12.5Z"></path>
-                    <path
-										d="m4.4.8-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 3.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 3.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 3 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 4.4.8Zm3 0-.003.004-.014.019a4.167 4.167 0 0 0-.204.31 2.327 2.327 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.31 3.31 0 0 1-.202.388 5.444 5.444 0 0 1-.253.382l-.018.025-.005.008-.002.002A.5.5 0 0 1 6.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 6.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 6 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 7.4.8Zm3 0-.003.004-.014.019a4.077 4.077 0 0 0-.204.31 2.337 2.337 0 0 0-.141.267c-.026.06-.034.092-.037.103v.004a.593.593 0 0 0 .091.248c.075.133.178.272.308.445l.01.012c.118.158.26.347.37.543.112.2.22.455.22.745 0 .188-.065.368-.119.494a3.198 3.198 0 0 1-.202.388 5.385 5.385 0 0 1-.252.382l-.019.025-.005.008-.002.002A.5.5 0 0 1 9.6 4.2l.003-.004.014-.019a4.149 4.149 0 0 0 .204-.31 2.06 2.06 0 0 0 .141-.267c.026-.06.034-.092.037-.103a.593.593 0 0 0-.09-.252A4.334 4.334 0 0 0 9.6 2.8l-.01-.012a5.099 5.099 0 0 1-.37-.543A1.53 1.53 0 0 1 9 1.5c0-.188.065-.368.119-.494.059-.138.134-.274.202-.388a5.446 5.446 0 0 1 .253-.382l.025-.035A.5.5 0 0 1 10.4.8Z"></path>
-                  </svg>
-								<span>따끈따끈한 새 글</span>
-							</div>
-						</div>
-						<div class="group-delete">
-							<span class="material-symbols-outlined"> </span>
-						</div>
-						<div class="group-date">
-							<span>모집 마감일 ｜</span> <span>2023-03-22</span>
-						</div>
-						<div class="group-title">
-							<span>JAVA 코딩 테스트 스터디 모집 합니다냥 가나다라마바사아 우와아아앙 자차카타파하 걍아아악</span>
-						</div>
-						<div class="group-keyword">
-							<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
-						</div>
-						<div class="group-info">
-							<div class="user">
-								<img
-									src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-									alt="그룹 프로필 사진" width="30px" /> <span>작성자 닉네임</span> <span>｜</span>
-								<span>abc123</span>
-							</div>
-						</div>
-					</div>
-				</a>
+
+									<div class="group-date">
+										<span>모집 마감일 ｜</span> <span>${group.getStudyGroupEndDate()}</span>
+									</div>
+									<div class="group-title">
+										<span>${group.getStudyGroupTitle()}</span>
+									</div>
+									<div class="group-keyword">
+										<span>#JAVA</span> <span>#코딩테스트</span> <span>#개발자취업</span> <span>#IT직군</span>
+									</div>
+									<div class="group-info">
+										<div class="user">
+											<img
+												src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
+												alt="그룹 프로필 사진" width="30px"> <span>${group.getMemberNickname()}</span>
+										</div>
+									</div>
+								</div>
+							</a>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
+
+
 			</div>
 		</div>
 		<!--  -->
@@ -743,150 +328,53 @@
 		<ul class="content-list">
 			<div class="content-listWrap">
 				<!-- 게시글 (1/10) -->
-				<li>
-					<div class="content-subject-wrap">
-						<!-- 이거 필요한지? -->
-						<em class="label-hot"></em> <a href=""><span
-							class="content-subject">[🌏 포트폴리오] lemon은 어떻게 만들어지는가⭐️</span></a>
-					</div> <!-- 게시글 미리보기 --> <span class="content-desc">안녕하세욤 이곳은 게시글을
-						미리 볼 수 있는 공간입니당 </span>
-					<div class="content-data-info">
-						<!-- 좋아요수, 댓글수, 조회수, 글쓴이 -->
-						<!--(1/4) 좋아요  -->
-						<span class="content-info content-like"> <!-- 좋아요이미지 --> <img
-							src="" alt="" /> 좋아요 <strong>140</strong>
-						</span>
-						<!-- (2/4) 댓글 수-->
-						<span class="content-info content-reply"> <!-- 댓글이미지 --> <img
-							src="" alt="" /> 댓글 <strong>50</strong>
-						</span>
+				<c:choose>
+					<c:when test="${not empty boardList}">
+						<c:forEach var="board" items="${boardList}">
+							<li>
+								<div class="content-subject-wrap">
+									<!-- 이거 필요한지? -->
+									<em class="label-hot"></em> <a href=""><span
+										class="content-subject">${board.getBoardTitle()}</span></a>
+								</div> <!-- 게시글 미리보기 --> <span class="content-desc">안녕하세욤 이곳은
+									게시글을 미리 볼 수 있는 공간입니당 </span>
+								<div class="content-data-info">
+									<!-- 좋아요수, 댓글수, 조회수, 글쓴이 -->
+									<!--(1/4) 좋아요  -->
+									<span class="content-info content-like"> <!-- 좋아요이미지 -->
+										<img src="" alt="" /> 좋아요 <strong>140</strong>
+									</span>
+									<!-- (2/4) 댓글 수-->
+									<span class="content-info content-reply"> <!-- 댓글이미지 -->
+										<img src="" alt="" /> 댓글 <strong>50</strong>
+									</span>
 
-						<!-- (3/4) 조회수 -->
-						<span class="content-info content-view"> <!-- 조회수 눈 이미지 -->
-							<img src="" alt="" /> 조회수 <strong>1,200</strong>
-						</span>
+									<!-- (3/4) 조회수 -->
+									<span class="content-info content-view"> <!-- 조회수 눈 이미지 -->
+										<img src="" alt="" /> 조회수 <strong>${board.getBoardReadCount()}</strong>
+									</span>
 
-						<!--(4/4) 작성자이름, 작성 날짜-->
-						<div class="content-member-info">
-							<div>
-								<img
-									src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-									class="content-userImg" height="25px" width="25px" />
-							</div>
-							<span class="content-writer">이름이 길면 어케요?</span> <span
-								class="content-write-date">2023.12.25</span>
-						</div>
-						<!-- 프사 -->
-					</div>
-				</li>
-				<li>
-					<div class="content-subject-wrap">
-						<!-- 이거 필요한지? -->
-						<em class="label-hot"></em> <a href=""><span
-							class="content-subject">[🌏 포트폴리오] lemon은 어떻게 만들어지는가⭐️</span></a>
-					</div> <!-- 게시글 미리보기 --> <span class="content-desc">안녕하세욤 이곳은 게시글을
-						미리 볼 수 있는 공간입니당 </span>
-					<div class="content-data-info">
-						<!-- 좋아요수, 댓글수, 조회수, 글쓴이 -->
-						<!--(1/4) 좋아요  -->
-						<span class="content-info content-like"> <!-- 좋아요이미지 --> <img
-							src="" alt="" /> 좋아요 <strong>140</strong>
-						</span>
-						<!-- (2/4) 댓글 수-->
-						<span class="content-info content-reply"> <!-- 댓글이미지 --> <img
-							src="" alt="" /> 댓글 <strong>50</strong>
-						</span>
-
-						<!-- (3/4) 조회수 -->
-						<span class="content-info content-view"> <!-- 조회수 눈 이미지 -->
-							<img src="" alt="" /> 조회수 <strong>1,200</strong>
-						</span>
-
-						<!--(4/4) 작성자이름, 작성 날짜-->
-						<div class="content-member-info">
-							<div>
-								<img
-									src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-									class="content-userImg" height="25px" width="25px" />
-							</div>
-							<span class="content-writer">이름이 길면 어케요?</span> <span
-								class="content-write-date">2023.12.25</span>
-						</div>
-						<!-- 프사 -->
-					</div>
-				</li>
-				<li>
-					<div class="content-subject-wrap">
-						<!-- 이거 필요한지? -->
-						<em class="label-hot"></em> <a href=""><span
-							class="content-subject">[🌏 포트폴리오] lemon은 어떻게 만들어지는가⭐️</span></a>
-					</div> <!-- 게시글 미리보기 --> <span class="content-desc">안녕하세욤 이곳은 게시글을
-						미리 볼 수 있는 공간입니당 </span>
-					<div class="content-data-info">
-						<!-- 좋아요수, 댓글수, 조회수, 글쓴이 -->
-						<!--(1/4) 좋아요  -->
-						<span class="content-info content-like"> <!-- 좋아요이미지 --> <img
-							src="" alt="" /> 좋아요 <strong>140</strong>
-						</span>
-						<!-- (2/4) 댓글 수-->
-						<span class="content-info content-reply"> <!-- 댓글이미지 --> <img
-							src="" alt="" /> 댓글 <strong>50</strong>
-						</span>
-
-						<!-- (3/4) 조회수 -->
-						<span class="content-info content-view"> <!-- 조회수 눈 이미지 -->
-							<img src="" alt="" /> 조회수 <strong>1,200</strong>
-						</span>
-
-						<!--(4/4) 작성자이름, 작성 날짜-->
-						<div class="content-member-info">
-							<div>
-								<img
-									src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-									class="content-userImg" height="25px" width="25px" />
-							</div>
-							<span class="content-writer">이름이 길면 어케요?</span> <span
-								class="content-write-date">2023.12.25</span>
-						</div>
-						<!-- 프사 -->
-					</div>
-				</li>
-				<li>
-					<div class="content-subject-wrap">
-						<!-- 이거 필요한지? -->
-						<em class="label-hot"></em> <a href=""> <span
-							class="content-subject">[🌏 포트폴리오] lemon은 어떻게 만들어지는가⭐️</span></a>
-					</div> <!-- 게시글 미리보기 --> <span class="content-desc">안녕하세욤 이곳은 게시글을
-						미리 볼 수 있는 공간입니당 </span>
-					<div class="content-data-info">
-						<!-- 좋아요수, 댓글수, 조회수, 글쓴이 -->
-						<!--(1/4) 좋아요  -->
-						<span class="content-info content-like"> <!-- 좋아요이미지 --> <img
-							src="" alt="" /> 좋아요 <strong>140</strong>
-						</span>
-						<!-- (2/4) 댓글 수-->
-						<span class="content-info content-reply"> <!-- 댓글이미지 --> <img
-							src="" alt="" /> 댓글 <strong>50</strong>
-						</span>
-
-						<!-- (3/4) 조회수 -->
-						<span class="content-info content-view"> <!-- 조회수 눈 이미지 -->
-							<img src="" alt="" /> 조회수 <strong>1,200</strong>
-						</span>
-
-						<!--(4/4) 작성자이름, 작성 날짜-->
-						<div class="content-member-info">
-							<div>
-								<img
-									src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-									class="content-userImg" height="25px" width="25px" />
-							</div>
-							<span class="content-writer">이름이 길면 어케요?</span> <span
-								class="content-write-date">2023.12.25</span>
-						</div>
-						<!-- 프사 -->
-					</div>
-				</li>
+									<!--(4/4) 작성자이름, 작성 날짜-->
+									<div class="content-member-info">
+										<div>
+											<img
+												src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
+												class="content-userImg" height="25px" width="25px" />
+										</div>
+										<span class="content-writer">${board.getMemberNickname()}</span> <span
+											class="content-write-date">${board.getBoardDate()}</span>
+									</div>
+									<!-- 프사 -->
+								</div>
+							</li>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 				<!--  -->
 			</div>
 		</ul>

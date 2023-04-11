@@ -67,9 +67,9 @@
 								<div class="cafe-image">
 								 	<c:set var = "cafeNumber" value = "${cafe.getStudyCafeNumber()}" />
 									
-										<%-- <img
-											src="${pageContext.request.contextPath}/upload/${files.get(0).getCafeFileSystemName()}"
-											alt="스터디 카페" height="200px"> --%>
+										 <img
+											src="${pageContext.request.contextPath}/upload/${cafe.getCafeFileSystemName()}"
+											alt="스터디 카페" height="200px">
 									
 								</div>
 								<div class="cafe-title">${cafe.getStudyCafeName()}</div>

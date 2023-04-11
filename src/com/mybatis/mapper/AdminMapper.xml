@@ -27,18 +27,25 @@
 		#{startRow},#{rowCount}
 	</select>
 
-	<select parameterType="string" resultType="MemberDTO"
+	<select parameterType="SearchVO" resultType="MemberDTO"
 		id="memberSearch">
 		select member_number, member_id, member_password, member_name,
 		member_age, member_gender, member_email, member_phone_number,
 		member_nickname from tbl_member where member_id like concat('%',
-		#{memberId}, '%')
-		order by member_number asc
+		#{searchText}, '%')
+		order by member_number asc limit
+		#{startRow},#{rowCount}
 	</select>
 
 	<select resultType="_int" id="getTotal">select count(member_number)
 		from
 		tbl_member
+	</select>
+
+	<select resultType="_int" id="memberSearchTotal">
+		select count(member_number)
+		from
+		tbl_member where member_id like concat('%', #{searchText}, '%')
 	</select>
 
 	<delete id="memberDelete" parameterType="_int">
@@ -48,14 +55,16 @@
 	</delete>
 	<!--스터디 카페 관련 메퍼 -->
 	<insert id="cafeInsert" parameterType="StudyCafeDTO">
-		insert into tbl_study_cafe
+		insert into
+		tbl_study_cafe
 		(study_cafe_name, study_cafe_address, study_cafe_price,
-		study_cafe_avaliable_date, study_cafe_available_capacity,
-		study_cafe_content)
+		study_cafe_available_capacity,
+		study_cafe_content,
+		cafe_file_system_name)
 		values(#{studyCafeName}, #{studyCafeAddress},
 		#{studyCafePrice},
-		#{studyCafeAvaliableDate},
-		#{studyCafeAvaliableCapacity}, #{studyCafeContent})
+		#{studyCafeAvaliableCapacity}, #{studyCafeContent},
+		#{cafeFileSystemName});
 	</insert>
 
 	<select resultType="_int" id="getSequence">select last_insert_id() </select>
@@ -65,13 +74,15 @@
 		select j1.study_cafe_number, j1.study_cafe_name,
 		j1.study_cafe_address,
 		j1.study_cafe_price, j1.study_cafe_read_count,
-		j1.like_count,
+		j1.like_count, j1.cafe_file_system_name,
 		count(scc.cafe_comment_number),
 		round(avg(scc.cafe_comment_score), 1)
 		from (
 		select
-		sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address,
-		sc.study_cafe_price, sc.study_cafe_read_count,
+		sc.study_cafe_number, sc.study_cafe_name,
+		sc.study_cafe_address,
+		sc.study_cafe_price,
+		sc.study_cafe_read_count,cafe_file_system_name,
 		count(mlc.member_number) like_count from tbl_study_cafe sc left outer
 		join tbl_member_like_cafe mlc
 		on sc.study_cafe_number =
@@ -92,13 +103,15 @@
 		select j1.study_cafe_number, j1.study_cafe_name,
 		j1.study_cafe_address,
 		j1.study_cafe_price, j1.study_cafe_read_count,
-		j1.like_count,
+		j1.like_count, j1.cafe_file_system_name,
 		count(scc.cafe_comment_number),
 		round(avg(scc.cafe_comment_score), 1)
 		from (
 		select
-		sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address,
-		sc.study_cafe_price, sc.study_cafe_read_count,
+		sc.study_cafe_number, sc.study_cafe_name,
+		sc.study_cafe_address,
+		sc.study_cafe_price,
+		sc.study_cafe_read_count,cafe_file_system_name,
 		count(mlc.member_number) like_count from tbl_study_cafe sc left outer
 		join tbl_member_like_cafe mlc
 		on sc.study_cafe_number =
@@ -119,13 +132,15 @@
 		select j1.study_cafe_number, j1.study_cafe_name,
 		j1.study_cafe_address,
 		j1.study_cafe_price, j1.study_cafe_read_count,
-		j1.like_count,
+		j1.like_count, j1.cafe_file_system_name,
 		count(scc.cafe_comment_number),
 		round(avg(scc.cafe_comment_score), 1)
 		from (
 		select
-		sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address,
-		sc.study_cafe_price, sc.study_cafe_read_count,
+		sc.study_cafe_number, sc.study_cafe_name,
+		sc.study_cafe_address,
+		sc.study_cafe_price,
+		sc.study_cafe_read_count,cafe_file_system_name,
 		count(mlc.member_number) like_count from tbl_study_cafe sc left outer
 		join tbl_member_like_cafe mlc
 		on sc.study_cafe_number =
@@ -146,12 +161,16 @@
 		j1.study_cafe_name,
 		j1.study_cafe_address,
 		j1.study_cafe_price,
-		j1.study_cafe_read_count, j1.like_count,
-		count(scc.cafe_comment_number), round(avg(scc.cafe_comment_score), 1)
+		j1.study_cafe_read_count,
+		j1.like_count, j1.cafe_file_system_name,
+		count(scc.cafe_comment_number),
+		round(avg(scc.cafe_comment_score), 1)
 		from (
-		select sc.study_cafe_number, sc.study_cafe_name,
+		select
+		sc.study_cafe_number, sc.study_cafe_name,
 		sc.study_cafe_address,
-		sc.study_cafe_price, sc.study_cafe_read_count,
+		sc.study_cafe_price,
+		sc.study_cafe_read_count,cafe_file_system_name,
 		count(mlc.member_number) like_count from tbl_study_cafe sc left outer
 		join tbl_member_like_cafe mlc
 		on sc.study_cafe_number =
@@ -338,10 +357,11 @@
 		#{memberNickname}, '%')
 		order by j1.study_group_number asc
 	</select>
-	
+
 	<select id="listSearch" resultType="AdminGroupVO">
 		select
-		j1.study_group_number, j1.study_group_title,
+		j1.study_group_number,
+		j1.study_group_title,
 		j1.study_group_field,
 		date_add(j1.study_group_start_date, interval j1.study_group_duration
 		day) study_group_end_date,
@@ -420,12 +440,15 @@
 
 	<update id="faqUpdate" parameterType="FaqDTO">
 		UPDATE tbl_faq
-		SET faq_title= #{faqTitle}, faq_content= #{faqContent}, admin_number= #{adminNumber}
+		SET
+		faq_title= #{faqTitle}, faq_content= #{faqContent}, admin_number=
+		#{adminNumber}
 		WHERE faq_number=#{faqNumber}
 	</update>
-	
+
 	<delete id="faqDelete" parameterType="_int">
-		delete from tbl_faq where faq_number = #{faqNumber}
+		delete from tbl_faq where
+		faq_number = #{faqNumber}
 	</delete>
 
 </mapper>

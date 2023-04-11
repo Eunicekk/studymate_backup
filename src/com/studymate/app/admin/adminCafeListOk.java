@@ -67,11 +67,11 @@ public class adminCafeListOk implements Execute {
 		
 //		System.out.println(cafeList.get(1).getStudyCafeNumber());
 //		cafeList.get(0).setFiles(null);
-		for(int i =1 ; i<= cafeList.size(); i++) {
-			files = adminDAO.cafeFileSelect(i);
-//			System.out.println(files);
-			cafeList.get(i-1).setFiles(files);
-		}
+//		for(int i =1 ; i<= cafeList.size(); i++) {
+//			files = adminDAO.cafeFileSelect(i);
+////			System.out.println(files);
+//			cafeList.get(i-1).setFiles(files);
+//		}
 //		System.out.println(cafeList);
 //		System.out.println(cafeList.get(0).getFiles().get(0).getCafeFileSystemName());
 		

@@ -305,7 +305,8 @@ $(document).each(function() {
 			url: "/admin/adminCafeDeleteOk.ad",
 			data: { studyCafeNumber: studyCafenumber },
 			success: function() {
-				alert("통신성공");
+				//alert("통신성공");
+				location.reload();
 			},
 			error: function() {
 				alert("통신 실패");

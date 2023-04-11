@@ -13,7 +13,7 @@ $searchInput.on('blur', function() {
 	$(this).css('border', '1px solid #bdbdbd');
 });
 
-var tmp = 1;
+var tmp;
 
 var page = 1;
 
@@ -75,6 +75,26 @@ $align02.on('click', function() {
 	tmp = 2;
 })
 
+// 검색
+
+$('.member-search > form > button').on('click', function() {
+	var memberId = $('.member-search > form > input').val();
+	$.ajax({
+		type: "GET",
+		//url: "/admin/adminMemberCheckOk.ad",
+		url: "/admin/adminMemberSearchOk.ad",
+		data: { memberId: memberId },
+		success: function(Parse_data) {
+			$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+			//alert("통신 데이터 값 : " + Parse_data);
+		},
+		error: function() {
+			alert("통신 실패");
+		}
+	});
+	tmp = 3;
+})
+
 console.log(tmp);
 /*페이지 버튼 눌렀을때 주소 보내주기*/
 $('#paging').on('click', ".pageBtn", function() {
@@ -114,6 +134,21 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
+	}else if (tmp == 3) {
+		var memberId = $('.member-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			//url: "/admin/adminMemberCheckOk.ad",
+			url: "/admin/adminMemberSearchOk.ad?page=" + $(this).text().trim(),
+			data: { memberId: memberId },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
 	}
 });
 
@@ -148,6 +183,21 @@ $('#paging').on('click', ".prev", function() {
 				//alert("통신 데이터 값 : " + Parse_data);
 			}
 
+		});
+	}else if (tmp == 3) {
+		var memberId = $('.member-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			//url: "/admin/adminMemberCheckOk.ad",
+			url: "/admin/adminMemberSearchOk.ad?page=" +(startPage),
+			data: { memberId: memberId },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
 		});
 	}
 });
@@ -184,6 +234,21 @@ $('#paging').on('click', ".next", function() {
 			}
 
 		});
+	} else if (tmp == 3) {
+		var memberId = $('.member-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			//url: "/admin/adminMemberCheckOk.ad",
+			url: "/admin/adminMemberSearchOk.ad?page=" +(endPage + 3),
+			data: { memberId: memberId },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
 	}
 });
 
@@ -210,7 +275,8 @@ $(document).each(function() {
 			url: "/admin/adminMemberDeleteOk.ad",
 			data: { memberNumber: memberNumber },
 			success: function() {
-				alert("통신성공");
+				//alert("통신성공");
+				location.reload();
 			},
 			error: function() {
 				alert("통신 실패");
@@ -220,23 +286,7 @@ $(document).each(function() {
 });
 
 
-// 검색
 
-$('.member-search > form > button').on('click' ,function(){
-	var memberId = $('.member-search > form > input').val();
-	$.ajax({
-			type: "GET",
-			url: "/admin/adminMemberCheckOk.ad",
-			data: { memberId : memberId },
-			success: function(Parse_data) {
-				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
-				//alert("통신 데이터 값 : " + Parse_data);
-			},
-			error: function() {
-				alert("통신 실패");
-			}
-		});
-})
 
 /*$(document).ready(function() {
 	$(".member-search > form > input").on("keyup", function() {

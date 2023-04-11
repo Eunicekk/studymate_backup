@@ -98,7 +98,8 @@ $(document).each(function() {
 			url: "/admin/adminGroupDeleteOk.ad",
 			data: { groupNumber: groupNumber },
 			success: function() {
-				alert("통신성공");
+				//alert("통신성공");
+				location.reload();
 			},
 			error: function() {
 				alert("통신 실패");
