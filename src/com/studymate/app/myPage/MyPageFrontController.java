@@ -39,7 +39,6 @@ public class MyPageFrontController extends HttpServlet {
 			new MyPageInterestPlaceOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageReserveOk.my":
-			System.out.println("@@@체크체크체크체크@@@");
 			new MyPageReserveOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageUsaDetailsOk.my":
@@ -49,6 +48,7 @@ public class MyPageFrontController extends HttpServlet {
 			new MyPageLeaderGroupOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageInterestGroupOk.my":
+			System.out.println("@@@체크체크체크체크@@@");
 			new MyPageInterestGroupOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageParticipatingGroupOk.my":

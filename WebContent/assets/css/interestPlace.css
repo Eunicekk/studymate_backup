@@ -152,7 +152,7 @@ body {
 }
 
 .Space-container {
-  margin-top: 5px;
+  /* margin-top: 5px; */
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
@@ -185,7 +185,7 @@ body {
 }
 
 .Space-name {
-  margin-top: 5px;
+  margin-top: -15px;
   display: flex;
   -webkit-box-pack: start;
   justify-content: flex-start;

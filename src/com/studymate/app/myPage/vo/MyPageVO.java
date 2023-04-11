@@ -1,22 +1,130 @@
 package com.studymate.app.myPage.vo;
 
+import java.util.Date;
 import java.util.List;
 
 public class MyPageVO {
 	private int boardComment;
 	private int boardReadCount;
 	private int boardNumber;
+	private String boardTitle;
 	private int memberNumber;
-	private int commentCount;
 	private int reservationNumber;
-	private int studyCafePrice;
-	private int cafeCommentCount;
-	private String reservationStart;
-	private String reservationEnd;
+	private Date reservationStart;
+	private Date reservationEnd;
 	private int countMember;
+	private String formatStartDate;
+	private String formatEndDate;
+	private int studyCafePrice;
+	private String studyCafeTitle;
+	private String studyCafeAddress;
+	private String studyCafeName;
+	private int commentCount;
+	private int cafeCommentCount;
+	private int cafeLikeCount;
+	private List<MyPageVO> boards;
+	private int groupCommentCount;
+	private int studyGroupReadCount;
+	private String studyGroupTitle;
+	private String studyGroupField;
+	private String studyGroupOnline;
+	private String studyGroupContent;
+	private String memberNickname;
+	private Date studyGroupStartDate;
+	private Date studyGroupEndDate;
+	
+	
+	
+	public Date getStudyGroupEndDate() {
+		return studyGroupEndDate;
+	}
+
+	public void setStudyGroupEndDate(Date studyGroupEndDate) {
+		this.studyGroupEndDate = studyGroupEndDate;
+	}
+
+	public Date getStudyGroupStartDate() {
+		return studyGroupStartDate;
+	}
+
+	public void setStudyGroupStartDate(Date studyGroupStartDate) {
+		this.studyGroupStartDate = studyGroupStartDate;
+	}
+
+	public String getMemberNickname() {
+		return memberNickname;
+	}
+
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
+	}
+
+	public int getGroupCommentCount() {
+		return groupCommentCount;
+	}
+
+	public void setGroupCommentCount(int groupCommentCount) {
+		this.groupCommentCount = groupCommentCount;
+	}
+
+	public int getStudyGroupReadCount() {
+		return studyGroupReadCount;
+	}
+
+	public void setStudyGroupReadCount(int studyGroupReadCount) {
+		this.studyGroupReadCount = studyGroupReadCount;
+	}
+
+	public String getStudyGroupTitle() {
+		return studyGroupTitle;
+	}
+
+	public void setStudyGroupTitle(String studyGroupTitle) {
+		this.studyGroupTitle = studyGroupTitle;
+	}
+
+	public String getStudyGroupField() {
+		return studyGroupField;
+	}
+
+	public void setStudyGroupField(String studyGroupField) {
+		this.studyGroupField = studyGroupField;
+	}
+
+	public String getStudyGroupOnline() {
+		return studyGroupOnline;
+	}
+
+	public void setStudyGroupOnline(String studyGroupOnline) {
+		this.studyGroupOnline = studyGroupOnline;
+	}
+
+	public String getStudyGroupContent() {
+		return studyGroupContent;
+	}
+
+	public void setStudyGroupContent(String studyGroupContent) {
+		this.studyGroupContent = studyGroupContent;
+	}
 
 	public int getCountMember() {
 		return countMember;
+	}
+
+	public String getFormatStartDate() {
+		return formatStartDate;
+	}
+
+	public void setFormatStartDate(String formatStartDate) {
+		this.formatStartDate = formatStartDate;
+	}
+
+	public String getFormatEndDate() {
+		return formatEndDate;
+	}
+
+	public void setFormatEndDate(String formatEndDate) {
+		this.formatEndDate = formatEndDate;
 	}
 
 	public void setCountMember(int countMember) {
@@ -31,26 +139,22 @@ public class MyPageVO {
 		this.reservationNumber = reservationNumber;
 	}
 
-	public String getReservationStart() {
+	public Date getReservationStart() {
 		return reservationStart;
 	}
 
-	public void setReservationStart(String reservationStart) {
+	public void setReservationStart(Date reservationStart) {
 		this.reservationStart = reservationStart;
 	}
 
-	public String getReservationEnd() {
+	public Date getReservationEnd() {
 		return reservationEnd;
 	}
 
-	public void setReservationEnd(String reservationEnd) {
+	public void setReservationEnd(Date reservationEnd) {
 		this.reservationEnd = reservationEnd;
 	}
 
-	private String boardTitle;
-	private String studyCafeTitle;
-	private String studyCafeAddress;
-	private String studyCafeName;
 
 	public String getStudyCafeName() {
 		return studyCafeName;
@@ -76,8 +180,6 @@ public class MyPageVO {
 		this.cafeLikeCount = cafeLikeCount;
 	}
 
-	private int cafeLikeCount;
-	private List<MyPageVO> boards;
 
 	public String getStudyCafeTitle() {
 		return studyCafeTitle;
@@ -175,12 +277,17 @@ public class MyPageVO {
 	@Override
 	public String toString() {
 		return "MyPageVO [boardComment=" + boardComment + ", boardReadCount=" + boardReadCount + ", boardNumber="
-				+ boardNumber + ", memberNumber=" + memberNumber + ", commentCount=" + commentCount
-				+ ", reservationNumber=" + reservationNumber + ", studyCafePrice=" + studyCafePrice
-				+ ", cafeCommentCount=" + cafeCommentCount + ", reservationStart=" + reservationStart
-				+ ", reservationEnd=" + reservationEnd + ", countMember=" + countMember + ", boardTitle=" + boardTitle
-				+ ", studyCafeTitle=" + studyCafeTitle + ", studyCafeAddress=" + studyCafeAddress + ", studyCafeName="
-				+ studyCafeName + ", cafeLikeCount=" + cafeLikeCount + ", boards=" + boards + "]";
+				+ boardNumber + ", boardTitle=" + boardTitle + ", memberNumber=" + memberNumber + ", reservationNumber="
+				+ reservationNumber + ", reservationStart=" + reservationStart + ", reservationEnd=" + reservationEnd
+				+ ", countMember=" + countMember + ", formatStartDate=" + formatStartDate + ", formatEndDate="
+				+ formatEndDate + ", studyCafePrice=" + studyCafePrice + ", studyCafeTitle=" + studyCafeTitle
+				+ ", studyCafeAddress=" + studyCafeAddress + ", studyCafeName=" + studyCafeName + ", commentCount="
+				+ commentCount + ", cafeCommentCount=" + cafeCommentCount + ", cafeLikeCount=" + cafeLikeCount
+				+ ", boards=" + boards + ", groupCommentCount=" + groupCommentCount + ", studyGroupReadCount="
+				+ studyGroupReadCount + ", studyGroupTitle=" + studyGroupTitle + ", studyGroupField=" + studyGroupField
+				+ ", studyGroupOnline=" + studyGroupOnline + ", studyGroupContent=" + studyGroupContent
+				+ ", memberNickname=" + memberNickname + ", studyGroupStartDate=" + studyGroupStartDate
+				+ ", studyGroupEndDate=" + studyGroupEndDate + "]";
 	}
 
 }

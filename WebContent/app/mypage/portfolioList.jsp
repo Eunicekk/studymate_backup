@@ -39,16 +39,16 @@
 					<!-- <li class="side"><a href="cancel.jsp">취소/환불</a></li> -->
 					<li class="active"><a href="#">그룹 참여 정보</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/leaderGroup.jsp">내
+						href="${pageContext.request.contextPath}/mypage/MyPageLeaderGroupOk.my">내
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/interestGroup.jsp">관심
+						href="${pageContext.request.contextPath}/mypage/MyPageInterestGroupOk.my">관심
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/participatingGroup.jsp">참여
+						href="${pageContext.request.contextPath}/mypage/MyPageParticipatingGroupOk.my">참여
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/endGroup.jsp">종료
+						href="${pageContext.request.contextPath}/mypage/MyPageEndGroupOk.my">종료
 							그룹</a></li>
 				</ul>
 			</div>
@@ -98,21 +98,7 @@
 					</c:otherwise>
 				</c:choose>
 
-				<%-- 				<div class="portfolio-conatiner">
-					<div class="portfolio-number-container">
-						<!-- <span>1</span> -->
-						<span>${myPage.getBoardNumber()}</span>
-					</div>
-					<div class="portfolio-info-container">
-						<a
-							href="${pageContext.request.contextPath}/board/boardReadOk.bo?boardNumber=${board.getBoardNumber()}">
-							${board.getBoardTitle() } </a>
-					</div>
-					<!-- <div class="portfolio-like">140</div> -->
-					<div class="portfolio-reply"></div>
-					<div class="view-number">${myPage.getBoardReadCount() }</div>
-				</div> --%>
-				<ul class="pagenation-list">
+				<!-- <ul class="pagenation-list">
 					<li class="prev">
 						<button type="button">
 							<span class="prev-button"> <img
@@ -132,19 +118,19 @@
 							</span>
 						</button>
 					</li>
-				</ul>
+				</ul> -->
 
 				<!-- ========== 페이징 처리 예시 ============ -->
 
-				<%--             <c:if test="${prev}">
-               <li><a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${startPage - 1}" class="prev">&lt;</a></li>
+				<c:if test="${prev}">
+               <li><a href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my=${startPage - 1}" class="prev">&lt;</a></li>
             </c:if>
             
             <c:forEach var="i" begin="${startPage}" end="${endPage}">
                <c:choose>
                   <c:when test="${!(i == page) }">
                      <li>
-                        <a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${i}">
+                        <a href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my?page=${i}">
                            <c:out value="${i}"/>
                         </a>
                      </li>
@@ -160,10 +146,8 @@
             </c:forEach>
             
             <c:if test="${next}">
-               <li><a href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${endPage + 1}" class="next">&gt;</a></li>
+               <li><a href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my?page=${endPage + 1}" class="next">&gt;</a></li>
             </c:if>
-            
- --%>
 				<!-- ========== /페이징 처리 예시 ============ -->
 
 			</div>

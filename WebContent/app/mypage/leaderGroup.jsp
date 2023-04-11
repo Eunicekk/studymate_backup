@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,16 +43,16 @@
 					<!-- <li class="side"><a href="cancel.jsp">취소/환불</a></li> -->
 					<li class="active"><a href="#">그룹 참여 정보</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/leaderGroup.jsp">내
+						href="${pageContext.request.contextPath}/mypage/MyPageLeaderGroupOk.my">내
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/interestGroup.jsp">관심
+						href="${pageContext.request.contextPath}/mypage/MyPageInterestGroupOk.my">관심
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/participatingGroup.jsp">참여
+						href="${pageContext.request.contextPath}/mypage/MyPageParticipatingGroupOk.my">참여
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/endGroup.jsp">종료
+						href="${pageContext.request.contextPath}/mypage/MyPageEndGroupOk.my">종료
 							그룹</a></li>
 				</ul>
         </div>
@@ -64,6 +65,10 @@
           <!-- 리더 그룹 section -->
           <div class="main-container-section">
             <!-- 리더 그룹 목록 -->
+            
+            <c:choose>
+            <c:when test="${not empty myLeaderGroup}">
+				<c:forEach var="myLeaderGroup" items="${myLeaderGroup}">            
             <ul class="study-list">
               <a href="" class="study-item-open">
                 <li>
@@ -74,22 +79,22 @@
                     </div>
                     <!-- 스터디 그룹 정보 -->
                     <div class="badge-badge">
-                      <div class="study-badge">🗂 프로젝트</div>
+                      <div class="study-badge">${myLeaderGroup.getStudyGroupOnline() }</div>
                     </div>
                     <div class="badge-badge">
-                      <div class="study-badge-new">🍞 따끈따끈 새 글</div>
+                      <div class="study-badge-new">${myLeaderGroup.getStudyCafeAddress() }</div>
                     </div>
                   </div>
                   <div class="study-schedule">
                     <p>마감일</p>
-                    <p>2023.03.31</p>
+                    <p>${myLeaderGroup.getStudyGroupStartDate() }</p>
                   </div>
                   <h1 class="study-title">
-                    프론트앤드 개발자, 웹디자이너분 구인합니다!
+                    ${myLeaderGroup.getStudyGroupTitle() }
                   </h1>
                   <ul class="study-item-position-list">
-                    <li class="study-item-position">프론트엔드</li>
-                    <li class="study-item-position">디자이너</li>
+                    <li class="study-item-position">${myLeaderGroup.getStudyGroupContent() }</li>
+                    <!-- <li class="study-item-position">디자이너</li> -->
                   </ul>
                   <div class="study-item-border"></div>
                   <section class="study-item-info">
@@ -101,7 +106,7 @@
                           alt="avatar"
                         />
                       </div>
-                      <div class="leader">CodeWave</div>
+                      <div class="leader">${myLeaderGroup.getMemberNumber() }</div>
                     </div>
                     <div class="studyItem-viewsAndComment">
                       <div class="studyItem-view">
@@ -113,7 +118,7 @@
                             ></i>
                           </span>
                         </div>
-                        <p>36</p>
+                        <p>${myLeaderGroup.getStudyGroupReadCount()}</p>
                       </div>
                       <div class="studyItem-comment">
                         <div class="comment">
@@ -123,7 +128,7 @@
                               style="color: #c0c0c0"
                             ></i>
                           </span>
-                          <p>0</p>
+                          <p>${myLeaderGroup.getGroupCommentCount() }</p>
                         </div>
                       </div>
                     </div>
@@ -131,6 +136,9 @@
                 </li>
               </a>
             </ul>
+              </c:forEach>
+              </c:when>
+              </c:choose>
           </div>
           <!-- 페이지 리스트 -->
           <ul class="pagenation-list">

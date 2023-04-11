@@ -33,12 +33,12 @@ public SqlSession sqlSession;
 		return sqlSession.selectOne("myPage.getTotal");
 	}
 	
-	public List<MyPageVO> selectAll(Map<String, Integer> pageMap) {
-		return sqlSession.selectList("myPage.selectAll", pageMap);
+	public List<MyPageVO> selectPortfolio(Map<String, Integer> pageMap) {
+		return sqlSession.selectList("myPage.selectPortfolio", pageMap);
 	}
 
-	public List<MyPageVO> myPortfolio(int memberNumber, Map<String, Integer> pageMap) {
-		return sqlSession.selectList("myPage.myPortfolio", memberNumber);
+	public List<MyPageVO> myPortfolio(Map<String, Integer> pageMap) {
+		return sqlSession.selectList("myPage.myPortfolio", pageMap);
 	}
 	
 	public List<MyPageVO> myLikeCafe(int memberNumber){
@@ -47,6 +47,22 @@ public SqlSession sqlSession;
 	
 	public List<MyPageVO> myReservation(int memberNumber){
 		return sqlSession.selectList("myPage.myReservation", memberNumber);
+	}
+	public List<MyPageVO> myUsaDetails(int memberNumber){
+		return sqlSession.selectList("myPage.myUsaDetails", memberNumber);
+	}
+	
+	public List<MyPageVO> myLeaderGroup(int memberNumber){
+		return sqlSession.selectList("myPage.myLeaderGroup", memberNumber);
+	}
+	public List<MyPageVO> myInterestGroup(int memberNumber){
+		return sqlSession.selectList("myPage.myInterestGroup", memberNumber);
+	}
+	public List<MyPageVO> myJoinGroup(int memberNumber){
+		return sqlSession.selectList("myPage.myJoinGroup", memberNumber);
+	}
+	public List<MyPageVO> myEndGroup(int memberNumber){
+		return sqlSession.selectList("myPage.myEndGroup", memberNumber);
 	}
 //	public List<MyPageVO> myPortfolio(int memberNumber, Map<String, Integer> pageMap) {
 //		return sqlSession.selectList("myPage.myPortfolio", memberNumber); // MyBatis 매퍼 호출

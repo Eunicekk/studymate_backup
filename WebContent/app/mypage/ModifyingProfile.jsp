@@ -39,16 +39,16 @@
 					<!-- <li class="side"><a href="cancel.jsp">취소/환불</a></li> -->
 					<li class="active"><a href="#">그룹 참여 정보</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/leaderGroup.jsp">내
+						href="${pageContext.request.contextPath}/mypage/MyPageLeaderGroupOk.my">내
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/interestGroup.jsp">관심
+						href="${pageContext.request.contextPath}/mypage/MyPageInterestGroupOk.my">관심
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/participatingGroup.jsp">참여
+						href="${pageContext.request.contextPath}/mypage/MyPageParticipatingGroupOk.my">참여
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/endGroup.jsp">종료
+						href="${pageContext.request.contextPath}/mypage/MyPageEndGroupOk.my">종료
 							그룹</a></li>
 				</ul>
 			</div>

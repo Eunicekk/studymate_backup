@@ -16,7 +16,6 @@ public class MyPageInterestPlaceOkController implements Execute {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MyPageDAO myPageDAO = new MyPageDAO();
-		MyPageVO myPageVO = null;
 		
 		
 		int memberNumber = 1;

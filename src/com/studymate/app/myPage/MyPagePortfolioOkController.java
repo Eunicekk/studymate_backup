@@ -16,14 +16,10 @@ import com.studymate.app.myPage.vo.MyPageVO;
 public class MyPagePortfolioOkController implements Execute {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		MyPageVO myPageVO = new MyPageVO();
 		MyPageDAO myPageDAO = new MyPageDAO();
-		
-		// 멤버 번호, 원하는 값으로 설정
-		myPageVO.setMemberNumber(1);
-		
 		// 페이지 정보 설정
 		int total = myPageDAO.getTotal();
+		int memberNumber = 1;
 		String temp = req.getParameter("page");
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 		int rowCount = 10; // 한 페이지에 보여줄 게시물 수
@@ -39,10 +35,9 @@ public class MyPagePortfolioOkController implements Execute {
 		Map<String, Integer> pageMap = new HashMap<>();
 		pageMap.put("startRow", startRow);
 		pageMap.put("rowCount", rowCount);
-		
-		List<MyPageVO> boards = myPageDAO.myPortfolio(myPageVO.getMemberNumber(), pageMap); // DAO 메소드 호출
+		pageMap.put("memberNumber", memberNumber);
+		List<MyPageVO> boards = myPageDAO.myPortfolio(pageMap);
 		System.out.println(boards);
-		
 		req.setAttribute("boardList", boards);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);

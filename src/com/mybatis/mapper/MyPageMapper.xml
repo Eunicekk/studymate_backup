@@ -28,12 +28,27 @@
 		where member_number=#{memberNumber}
 	</delete>
 
-	<select id="getTotal" resultType="_int">
-		select count(board_number) from
-		tbl_board
+	<select id="selectPortfolio" resultType="MyPageVO"
+		parameterType="map">
+		select b.board_number, b.board_title,
+		count(bc.board_comment_number) comment_count,
+		b.board_read_count
+		from tbl_board b join tbl_member m
+		on m.member_number = b.member_number
+		left outer join tbl_board_comment bc
+		on b.board_number = bc.board_number
+		group by board_number
+		limit #{startRow}, #{rowCount}
 	</select>
 
-	<select id="myPortfolio" parameterType="int"
+	<select id="getTotal" parameterType="_int" resultType="_int">
+		select count(board_number) from
+		tbl_board b join tbl_member m 
+		on b.member_number = m.member_number 
+		where m.member_number =#{memberNumber}
+	</select>
+
+	<select id="myPortfolio" parameterType="map"
 		resultType="MyPageVO">
 		select b.board_number,
 		b.board_title,
@@ -82,18 +97,190 @@
 		select tscf.cafe_file_system_name , sc.study_cafe_address
 		,tm.member_number ,sc.study_cafe_number , sc.study_cafe_content ,
 		sc.study_cafe_name ,sc.study_cafe_price ,
-		tr.reservation_number , tr.reservation_start , tr.reservation_end , count(tr.member_number)
+		tr.reservation_number ,
+		tr.reservation_start , tr.reservation_end , count(tr.member_number)
 		count_member
 		from tbl_study_cafe sc
 		left outer join tbl_reservation tr
 		on sc.study_cafe_number = tr.study_cafe_number
 		left join tbl_member tm
 		on tr.member_number = tm.member_number
-		left join tbl_study_cafe_file tscf
+		left join tbl_study_cafe_file
+		tscf
 		on sc.study_cafe_number = tscf.study_cafe_number
-		where tm.member_number =${memberNumber}
-		group by sc.study_cafe_number , tr.reservation_number, tm.member_number,
+		where
+		tm.member_number =#{memberNumber} and tr.reservation_end > curdate()
+		group by sc.study_cafe_number , tr.reservation_number,
+		tm.member_number,
 		tscf.cafe_file_system_name
 	</select>
 
+	<select id="myUsaDetails" parameterType="_int"
+		resultType="MyPageVO">
+		select tscf.cafe_file_system_name , sc.study_cafe_address
+		,tm.member_number
+		,sc.study_cafe_number , sc.study_cafe_content ,
+		sc.study_cafe_name
+		,sc.study_cafe_price ,
+		tr.reservation_number ,
+		tr.reservation_start ,
+		tr.reservation_end , count(tr.member_number)
+		count_member
+		from
+		tbl_study_cafe sc
+		left outer join tbl_reservation tr
+		on
+		sc.study_cafe_number = tr.study_cafe_number
+		left join tbl_member tm
+		on
+		tr.member_number = tm.member_number
+		left join tbl_study_cafe_file
+		tscf
+		on sc.study_cafe_number = tscf.study_cafe_number
+		where
+		tm.member_number
+		=#{memberNumber} and curdate() > tr.reservation_end
+		group by
+		sc.study_cafe_number , tr.reservation_number,
+		tm.member_number,
+		tscf.cafe_file_system_name
+	</select>
+
+	<select id="myLeaderGroup" parameterType="_int"
+		resultType="MyPageVO">
+		select count(tsgc.study_group_comment_number)
+		group_comment_count,
+		tsgf.group_file_system_name, sg.study_group_number
+		,
+		sg.study_group_title , sg.study_group_field , sg.study_group_online ,
+		sg.study_group_start_date , sg.study_group_content ,
+		sg.study_group_read_count,
+		sg.member_number
+		from tbl_study_group sg
+		join
+		tbl_study_group_leader sgl
+		on sgl.study_group_number =
+		sg.study_group_number
+		left outer join tbl_study_group_comment tsgc
+		on
+		tsgc.study_group_number = sg.study_group_number
+		left outer join
+		tbl_study_group_file tsgf
+		on tsgf .study_group_number =
+		sg.study_group_number
+		where sgl.member_number =#{memberNumber}
+		group by
+		sg.study_group_number, tsgf.group_file_system_name
+	</select>
+
+	<select id="myInterestGroup" parameterType="_int"
+		resultType="MyPageVO">
+		select tm.member_nickname
+		,count(sgc.study_group_comment_number) comment_count,
+		sg.study_group_number ,
+		sg.study_group_title , sg.study_group_field ,
+		sg.study_group_online ,
+		sg.study_group_start_date ,
+		sg.study_group_content ,
+		sg.study_group_read_count,
+		sg.member_number,
+		sgf.group_file_system_name from tbl_study_group sg
+		join
+		tbl_member_like_study_group lsg
+		on sg.study_group_number =
+		lsg.study_group_number
+		left outer join tbl_study_group_comment sgc
+		on
+		sg.study_group_number = sgc.study_group_number
+		left outer join
+		tbl_study_group_file sgf
+		on sg.study_group_number =
+		sgf.study_group_number
+		join tbl_member tm
+		on sg.member_number =
+		tm.member_number
+		where lsg.member_number = #{memberNumber}
+		group by
+		sg.study_group_number, sgf.group_file_system_name
+	</select>
+
+	<select id="myJoinGroup" parameterType="_int"
+		resultType="MyPageVO">
+		select count(sgc.study_group_comment_number)
+		comment_count,
+		sgf.group_file_system_name ,
+		tm.member_nickname ,
+		sg.study_group_number
+		,
+		sg.study_group_title ,
+		sg.study_group_field ,
+		sg.study_group_online ,
+		sg.study_group_start_date ,
+		sg.study_group_content ,
+		sg.study_group_read_count,
+		sg.member_number
+		from tbl_study_group sg
+		join
+		tbl_study_group_leader sgj
+		on sg.study_group_number =
+		sgj.study_group_number
+		left outer join tbl_study_group_comment sgc
+		on
+		sg.study_group_number = sgc.study_group_number
+		left outer join
+		tbl_study_group_file sgf
+		on sg.study_group_number =
+		sgf.study_group_number
+		join tbl_member tm
+		on sgj.member_number =
+		tm.member_number
+		where sgj.member_number = #{memberNumber} and
+		curdate() > sg.study_group_end_date
+		group by
+		sg.study_group_number,
+		sgf.group_file_system_name
+	</select>
+
+	<select id="myEndGroup" parameterType="_int"
+		resultType="MyPageVO">
+		select count(sgc.study_group_comment_number)
+		comment_count,
+		sgf.group_file_system_name ,
+		tm.member_nickname ,
+		sg.study_group_number
+		,
+		sg.study_group_title ,
+		sg.study_group_field ,
+		sg.study_group_online ,
+		sg.study_group_start_date ,
+		sg.study_group_end_date ,
+		sg.study_group_content ,
+		sg.study_group_read_count,
+		sg.member_number
+		from tbl_study_group sg
+		join
+		tbl_study_group_leader sgj
+		on
+		sg.study_group_number =
+		sgj.study_group_number
+		left outer join
+		tbl_study_group_comment sgc
+		on
+		sg.study_group_number =
+		sgc.study_group_number
+		left outer join
+		tbl_study_group_file sgf
+		on
+		sg.study_group_number =
+		sgf.study_group_number
+		join tbl_member tm
+		on
+		sgj.member_number =
+		tm.member_number
+		where sgj.member_number =
+		#{memberNumber} and
+		sg.study_group_end_date > curdate()
+		group by
+		sg.study_group_number, sgf.group_file_system_name
+	</select>
 </mapper>

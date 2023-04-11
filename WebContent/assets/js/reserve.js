@@ -8,8 +8,8 @@ $(document).ready(function () {
   });
 });
 
-// 예약 취소 버튼
+/*// 예약 취소 버튼
 $(".cancel-button").click(function () {
   // 예약 정보를 담고 있는 li 태그를 찾아서 삭제
   $(this).closest(".reserve-item").remove();
-});
+});*/

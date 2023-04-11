@@ -39,16 +39,16 @@
 					<!-- <li class="side"><a href="cancel.jsp">취소/환불</a></li> -->
 					<li class="active"><a href="#">그룹 참여 정보</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/leaderGroup.jsp">내
+						href="${pageContext.request.contextPath}/mypage/MyPageLeaderGroupOk.my">내
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/interestGroup.jsp">관심
+						href="${pageContext.request.contextPath}/mypage/MyPageInterestGroupOk.my">관심
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/participatingGroup.jsp">참여
+						href="${pageContext.request.contextPath}/mypage/MyPageParticipatingGroupOk.my">참여
 							그룹</a></li>
 					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/endGroup.jsp">종료
+						href="${pageContext.request.contextPath}/mypage/MyPageEndGroupOk.my">종료
 							그룹</a></li>
 				</ul>
         </div>
@@ -65,7 +65,7 @@
             </li>
           </ul>
           <!-- 예약번호 정보 조회 영역 -->
-          <form class="reserve-search-form">
+          <!-- <form class="reserve-search-form">
             <label class="reserve-search-label"
               ><input
                 type="text"
@@ -73,7 +73,7 @@
                 placeholder="예약 번호를 입력해주세요."
             /></label>
             <button class="reserve-search-button">검색</button>
-          </form>
+          </form> -->
           <!-- 예약 카페 정보 영역  -->
           <ul class="reserve-list">
           
@@ -113,8 +113,8 @@
                   <div>
                     <p>사용 시간</p>
                     <p>
-                      ${myReservation.getReservationStart()} <br />
-                      ${myReservation.getReservationEnd()}
+                      ${myReservation.getFormatStartDate()} <br />
+                      ${myReservation.getFormatEndDate()}
                     </p>
                   </div>
                   <div>
