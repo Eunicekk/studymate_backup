@@ -685,7 +685,7 @@ $('a .favoritButton').on('click', function(event){
 			$(event.target).css("background-image", "url(https://shareit.kr/image/btn-large-heart-white.svg)");								
 			}
 		}
-	})
+//	})
 });
 
 function updateLikeCount(number, target){
@@ -703,8 +703,3 @@ function updateLikeCount(number, target){
 }
 
 let cafeNumber = $(".cafe-number-count")
-
-
-
-
-

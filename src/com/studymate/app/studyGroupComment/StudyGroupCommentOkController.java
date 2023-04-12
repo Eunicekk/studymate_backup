@@ -83,7 +83,7 @@ public class StudyGroupCommentOkController implements Execute {
 //		 
 //	     out.print(comments.toString());
 //	     out.close();
-		 
+
 	}
 		
 	

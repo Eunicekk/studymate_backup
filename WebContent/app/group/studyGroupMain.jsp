@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/study_group_main.css" />
   </head>
-  <body>
+  <body>=
     <header></header>
     <main id="main">
       <!--nav 검색창, 필터버튼 -->
@@ -161,14 +161,17 @@
             </h2>
             <div class="selectOrder">
               <select >  
-                <option value="interest">
-                  관심순
-                </option>
-                <option value="latest">
+               <option value="latest">
                   최신순
                 </option>
                 <option value="viewCount">
                   조회순
+                </option>
+                <option value="interest">
+                  좋아요순
+                </option>
+                <option value="commentCount">
+                  댓글순
                 </option>
               </select>
             </div>
@@ -239,10 +242,10 @@
                     
                     <!-- 좋아요 -->
                     <div class="groupLikeItems" > 
-                    <input type="hidden" id= "likeStudyGroupNumber" value= "${group.getStudyGroupNumber()}">
-                    <input type="hidden" id= "likeMemberNumber" value= "${group.getMemberNumber()}" >
-          		     <button class= "groupLikeItems">
-                   	<img alt="" src="" class="groupLikeImg" >
+                    <input type="hidden" class= "like-study-group-number" >
+                    <input type="hidden" class= "like-member-number" value= "${group.getMemberNumber()}" >
+          		     <button class= "groupLikeButton" data-study-group-number= "${group.getStudyGroupNumber()}">
+                   	<img alt="" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" class="groupLikeImg" >
                    	<p>${group.getStudyGroupLikeCount()}</p>
                     </button> 
                      </div>
@@ -788,7 +791,8 @@
       crossorigin="anonymous"
     ></script>
     <script>
-    let $result = $('result');
+    let memberNumber = 2;
+    
     </script>
     <script src="${pageContext.request.contextPath}/assets/js/study_group_main.js"></script>
   </body>

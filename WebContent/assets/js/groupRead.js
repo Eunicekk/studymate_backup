@@ -11,11 +11,14 @@ let $replyDeleteBtn = $('.boardReply-editor-buttons-dele');
 
 
 let studyGroupNumber = $prevBtn.data("studygroupnumber");
-/*console.log(studyGroupNumber);*/
+console.log(studyGroupNumber);
+console.log("댓글 작성용 그룹넘버");
+
 
 
 let memberNumber = $uploadReplyBtn.data("membernumber");
-/*console.log(memberNumber);*/
+console.log(memberNumber);
+console.log("댓글 작성용 멤버 넘버");
 
 
 
@@ -102,20 +105,23 @@ function showComment (comments) {
 /*console.log('======');
 */
 
-
 // 댓글 등록 Ajax 처리
 $uploadReplyBtn.on('click', ()=>{
+	
+	console.log($('#commentContent').val());
+	
   $.ajax({
 	url: '/studyGroupComment/studyGroupCommentWriteOk.sgc',
 	  type : 'post',
       data : {
          studyGroupNumber : studyGroupNumber,
          memberNumber : memberNumber,
-         studyGroupCommentContent : $('.commentItem-CommentContent').val()
+         studyGroupCommentContent : $('#commentContent').val()
       },
       success : function(){
+	console.log('댓글 어디감,, ㅋ 성공?? ');
+          $('#commentContent').val('');
          commentAjax();
-         $('.commentItem-CommentContent').val('');
       }
 });
 });
