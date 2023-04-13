@@ -143,8 +143,8 @@
 							<div class="group-info">
 								<div class="user">
 									<img
-										src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-										alt="그룹 프로필 사진" width="30px"> <span>작성자 닉네임</span> <span>｜</span>
+										src="${pageContext.request.contextPath}/upload/${group.getProfileSystemName()}"
+										 width="30px"> <span>작성자 닉네임</span> <span>｜</span>
 									<span>${group.getMemberNickname()}</span>
 								</div>
 							</div>

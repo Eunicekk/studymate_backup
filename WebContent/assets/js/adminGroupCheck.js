@@ -3,7 +3,7 @@ var $groupaAlign01 = $('.align01');
 var $groupAlign02 = $('.align02');
 var $GroupDelete = $('.group-delete');
 var $groupFilter = $('.filter');
-var tmp = 1;
+
 
 var page;
 
@@ -25,6 +25,20 @@ var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 
 
+if(tmp == 1){
+	$groupaAlign01.children().css('color', '#000000');
+	$groupaAlign01.children('material-symbols-outlined').css('color', '#65619E');
+	$groupAlign02.children().css('color', '#bdbdbd');
+}
+
+if(tmp == 2){
+	$groupAlign02.children().css('color', '#000000');
+	$groupAlign02.children('material-symbols-outlined').css('color', '#65619E');
+	$groupaAlign01.children().css('color', '#bdbdbd');
+}
+
+var tmp;
+
 // 검색창 클릭 시 css 변화
 $searchGroupInput.on('focus', function() {
 	$('.group-search .material-symbols-outlined').css('color', '#65619E')
@@ -37,9 +51,6 @@ $searchGroupInput.on('blur', function() {
 
 // 정렬 버튼 클릭 시 css 변화
 $groupaAlign01.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$groupAlign02.children().css('color', '#bdbdbd');
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminGroupListOk.ad',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -57,9 +68,6 @@ $groupaAlign01.on('click', function() {
 })
 
 $groupAlign02.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$groupaAlign01.children().css('color', '#bdbdbd');
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminGroupListOk.ad?order=desc',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.

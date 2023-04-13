@@ -268,8 +268,8 @@
 									<!-- 이거 필요한지? -->
 									<em class="label-hot"></em> <a href=""><span
 										class="content-subject">${board.getBoardTitle()}</span></a>
-								</div> <!-- 게시글 미리보기 --> <span class="content-desc">안녕하세욤 이곳은
-									게시글을 미리 볼 수 있는 공간입니당 </span>
+								</div> <!-- 게시글 미리보기 --> 
+								<span class="content-desc"> ${board.getBoardContent()} </span>
 								<div class="content-data-info">
 									<!-- 좋아요수, 댓글수, 조회수, 글쓴이 -->
 									<!-- (3/4) 조회수 -->

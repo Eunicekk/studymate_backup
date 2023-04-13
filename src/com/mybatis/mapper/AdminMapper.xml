@@ -219,7 +219,7 @@
 	<select id="boardList" parameterType="Map"
 		resultType="AdminBoardVo">
 		select tb.board_number ,tb.board_title
-		,tb.board_date,tb.board_read_count,tm.member_id,tm.member_nickname
+		,tb.board_date,tb.board_content,tb.board_read_count,tm.member_id,tm.member_nickname
 		from tbl_board tb join tbl_member tm on tb.member_number =
 		tm.member_number
 		order by tb.board_number asc limit
@@ -229,7 +229,7 @@
 	<select id="boardListDesc" parameterType="Map"
 		resultType="AdminBoardVo">
 		select tb.board_number ,tb.board_title
-		,tb.board_date,tb.board_read_count,tm.member_id,tm.member_nickname
+		,tb.board_date,tb.board_content,tb.board_read_count,tm.member_id,tm.member_nickname
 		from tbl_board tb join tbl_member tm on
 		tb.member_number =
 		tm.member_number order by tb.board_number desc limit
@@ -267,12 +267,10 @@
 		j1.study_group_duration day) study_group_end_date,
 		j1.study_group_duration,like_count,
 		j1.study_group_read_count,
-		j1.member_number, scc.member_nickname
+		j1.member_number, scc.member_nickname, tmp.profile_system_name
 		from (
-		select
-		sc.study_group_number, sc.study_group_title,
-		sc.study_group_field,
-		sc.study_group_online, sc.study_group_capacity,
+		select sc.study_group_number, sc.study_group_title,
+		sc.study_group_field, sc.study_group_online, sc.study_group_capacity,
 		sc.study_group_start_date, sc.study_group_contact,
 		sc.study_group_duration, sc.study_group_content,
 		sc.study_group_read_count, sc.member_number,
@@ -286,8 +284,9 @@
 		) j1 left outer
 		join tbl_member scc
 		on j1.member_number = scc.member_number
-		group by
-		j1.study_group_number
+		left outer
+		join tbl_member_profile tmp on scc.member_number =
+		tmp.member_number
 		order by j1.study_group_number asc limit
 		#{startRow},#{rowCount}
 	</select>
@@ -300,12 +299,10 @@
 		j1.study_group_duration day) study_group_end_date,
 		j1.study_group_duration,like_count,
 		j1.study_group_read_count,
-		j1.member_number, scc.member_nickname
+		j1.member_number, scc.member_nickname, tmp.profile_system_name
 		from (
-		select
-		sc.study_group_number, sc.study_group_title,
-		sc.study_group_field,
-		sc.study_group_online, sc.study_group_capacity,
+		select sc.study_group_number, sc.study_group_title,
+		sc.study_group_field, sc.study_group_online, sc.study_group_capacity,
 		sc.study_group_start_date, sc.study_group_contact,
 		sc.study_group_duration, sc.study_group_content,
 		sc.study_group_read_count, sc.member_number,
@@ -319,9 +316,11 @@
 		) j1 left outer
 		join tbl_member scc
 		on j1.member_number = scc.member_number
-		group by
-		j1.study_group_number
-		order by j1.study_group_start_date desc ;
+		left outer
+		join tbl_member_profile tmp on scc.member_number =
+		tmp.member_number
+		order by j1.study_group_start_date desc limit
+		#{startRow},#{rowCount} ;
 	</select>
 
 	<select id="groupSearch" resultType="AdminGroupVO">
@@ -332,7 +331,8 @@
 		day) study_group_end_date,
 		j1.study_group_duration,like_count,
 		j1.study_group_read_count,
-		j1.member_number, scc.member_nickname
+		j1.member_number,
+		scc.member_nickname,tmp.profile_system_name
 		from (
 		select
 		sc.study_group_number, sc.study_group_title,
@@ -351,6 +351,8 @@
 		) j1 left outer
 		join tbl_member scc
 		on j1.member_number = scc.member_number
+		left outer
+		join tbl_member_profile tmp on scc.member_number = tmp.member_number
 		group by
 		j1.study_group_number having
 		member_nickname like concat('%',
@@ -367,7 +369,8 @@
 		day) study_group_end_date,
 		j1.study_group_duration,like_count,
 		j1.study_group_read_count,
-		j1.member_number, scc.member_nickname
+		j1.member_number,
+		scc.member_nickname,tmp.profile_system_name
 		from (
 		select
 		sc.study_group_number, sc.study_group_title,
@@ -386,6 +389,8 @@
 		) j1 left outer
 		join tbl_member scc
 		on j1.member_number = scc.member_number
+		left outer
+		join tbl_member_profile tmp on scc.member_number = tmp.member_number
 		group by
 		j1.study_group_number having
 		study_group_field like concat('%',
@@ -439,11 +444,11 @@
 	</select>
 
 	<update id="faqUpdate" parameterType="FaqDTO">
-		UPDATE tbl_faq
-		SET
+		update tbl_faq
+		set
 		faq_title= #{faqTitle}, faq_content= #{faqContent}, admin_number=
 		#{adminNumber}
-		WHERE faq_number=#{faqNumber}
+		where faq_number=#{faqNumber}
 	</update>
 
 	<delete id="faqDelete" parameterType="_int">

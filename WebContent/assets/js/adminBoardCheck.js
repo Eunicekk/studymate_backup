@@ -13,7 +13,7 @@ $boardSearchInput.on('blur', function() {
 	$(this).css('border', '1px solid #bdbdbd');
 });
 
-var tmp = 1;
+
 
 var page;
 
@@ -34,13 +34,22 @@ var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 
+if(tmp ==1){
+	$boardAlign01.children().css('color', '#000000');
+	$boardAlign01.children('material-symbols-outlined').css('color', '#65619E');
+	$boardAlign02.children().css('color', '#bdbdbd');
+}
+
+if(tmp ==2){
+	$boardAlign02.children().css('color', '#000000');
+	$boardAlign02.children('material-symbols-outlined').css('color', '#65619E');
+	$boardAlign01.children().css('color', '#bdbdbd');
+}
+
+var tmp;
 
 // 정렬 버튼 클릭 시 css 변화
 $boardAlign01.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$boardAlign02.children().css('color', '#bdbdbd');
-
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminBoardListOk.ad',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -57,9 +66,6 @@ $boardAlign01.on('click', function() {
 	tmp = 1;
 })
 $boardAlign02.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$boardAlign01.children().css('color', '#bdbdbd');
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminBoardListOk.ad?order=desc',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.

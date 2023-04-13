@@ -10,6 +10,7 @@ public class AdminGroupVO {
 	private int studyGroupReadCount;
 	private int memberNumber;
 	private String memberNickname;
+	private String profileSystemName;
 	
 	public AdminGroupVO() {}
 
@@ -84,15 +85,27 @@ public class AdminGroupVO {
 	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
 	}
+	
+	
+	
+	public String getProfileSystemName() {
+		return profileSystemName;
+	}
+
+	public void setProfileSystemName(String profileSystemName) {
+		this.profileSystemName = profileSystemName;
+	}
 
 	@Override
 	public String toString() {
 		return "AdminGroupVO [studyGroupNumber=" + studyGroupNumber + ", studyGroupTitle=" + studyGroupTitle
 				+ ", studyGroupField=" + studyGroupField + ", studyGroupEndDate=" + studyGroupEndDate
 				+ ", studyGroupDuration=" + studyGroupDuration + ", likeCount=" + likeCount + ", studyGroupReadCount="
-				+ studyGroupReadCount + ", memberNumber=" + memberNumber + ", memberNickname=" + memberNickname + "]";
+				+ studyGroupReadCount + ", memberNumber=" + memberNumber + ", memberNickname=" + memberNickname
+				+ ", profileSystemName=" + profileSystemName + "]";
 	}
 
+	
 	
 	
 	

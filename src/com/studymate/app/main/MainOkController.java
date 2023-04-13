@@ -53,18 +53,10 @@ public class MainOkController implements Execute {
 
 		int grouptotal = adminDAO.groupTotal();
 
-		String temp2 = req.getParameter("page");
-		String desc = req.getParameter("order");
-		String memberNickname = req.getParameter("memberNickname");
-		String listText = req.getParameter("listText");
-
-//		pageMap.put("startRow", startRow);
-//		pageMap.put("rowCount", rowCount);
-
-		groupList = adminDAO.groupListDate(pageMap);
-
-//		groupList = adminDAO.groupList(pageMap);
-		System.out.println(groupList);
+		Map<String, Integer> pageMap3 = new HashMap<>();
+		pageMap3.put("startRow", startRow);
+		pageMap3.put("rowCount", 25);
+		groupList = adminDAO.groupListDate(pageMap3);
 
 		req.setAttribute("groupList", groupList);
 		req.setAttribute("total", grouptotal);
@@ -79,7 +71,7 @@ public class MainOkController implements Execute {
 
 		boardList = adminDAO.boardListDesc(pageMap2);
 
-
+		System.out.println(boardList);
 		req.setAttribute("boardList", boardList);
 
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);

@@ -4,6 +4,7 @@ var $cafeAlign02 = $('.align02');
 var $cafeAlign03 = $('.align03');
 var $cafeDelete = $('.delete');
 
+
 // 검색창 클릭 시 css 변화
 $searchCafeInput.on('focus', function() {
 	$('.cafe-search .material-symbols-outlined').css('color', '#65619E')
@@ -14,15 +15,30 @@ $searchCafeInput.on('blur', function() {
 	$(this).css('border', '1px solid #bdbdbd');
 });
 
-var tmp = 1;
+if(tmp == 1){
+	$cafeAlign01.children().css('color', '#000000');
+	$cafeAlign01.children('material-symbols-outlined').css('color', '#65619E');
+	$cafeAlign02.children().css('color', '#bdbdbd');
+	$cafeAlign03.children().css('color', '#bdbdbd');
+}
+
+if(tmp ==2 ){
+	$cafeAlign02.children().css('color', '#000000');
+	$cafeAlign02.children('material-symbols-outlined').css('color', '#65619E');
+	$cafeAlign01.children().css('color', '#bdbdbd');
+	$cafeAlign03.children().css('color', '#bdbdbd');
+}
+
+if(tmp ==3){
+	$cafeAlign03.children().css('color', '#000000');
+	$cafeAlign03.children('material-symbols-outlined').css('color', '#65619E');
+	$cafeAlign01.children().css('color', '#bdbdbd');
+	$cafeAlign02.children().css('color', '#bdbdbd');
+}
+
 
 // 정렬 버튼 클릭 시 css 변화
 $cafeAlign01.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$cafeAlign02.children().css('color', '#bdbdbd');
-	$cafeAlign03.children().css('color', '#bdbdbd');
-
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminCafeListOk.ad',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -40,10 +56,6 @@ $cafeAlign01.on('click', function() {
 
 })
 $cafeAlign02.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$cafeAlign01.children().css('color', '#bdbdbd');
-	$cafeAlign03.children().css('color', '#bdbdbd');
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminCafeListOk.ad?order=comment',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -61,10 +73,6 @@ $cafeAlign02.on('click', function() {
 
 })
 $cafeAlign03.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$cafeAlign01.children().css('color', '#bdbdbd');
-	$cafeAlign02.children().css('color', '#bdbdbd');
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminCafeListOk.ad?order=like',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -82,7 +90,7 @@ $cafeAlign03.on('click', function() {
 
 })
 
-
+var tmp;
 var page;
 
 var total = $('.cafe-count').text();
