@@ -575,7 +575,7 @@ body {
   margin-right: 16px;
   display: inline-block;
   position: relative;
-  padding-left: 28px;
+  /* padding-left: 28px; */
   height: 24px;
   box-sizing: border-box;
   color: #5c667b;

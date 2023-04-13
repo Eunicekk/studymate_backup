@@ -15,7 +15,7 @@ $searchInput.on('blur', function() {
 
 var tmp;
 
-var page = 1;
+var page;
 
 var total = $('.cafe-count').text();
 
@@ -159,7 +159,7 @@ $('#paging').on('click', ".prev", function() {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminMemberCheckOk.ad?page=' + (startPage),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminMemberCheckOk.ad?page=' + (startPage-1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -173,7 +173,7 @@ $('#paging').on('click', ".prev", function() {
 	} else if (tmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminMemberCheckOk.ad?order=desc&page=' + (startPage),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminMemberCheckOk.ad?order=desc&page=' + (startPage-1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -189,7 +189,7 @@ $('#paging').on('click', ".prev", function() {
 		$.ajax({
 			type: "GET",
 			//url: "/admin/adminMemberCheckOk.ad",
-			url: "/admin/adminMemberSearchOk.ad?page=" +(startPage),
+			url: "/admin/adminMemberSearchOk.ad?page=" +(startPage-1),
 			data: { memberId: memberId },
 			success: function(Parse_data) {
 				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
@@ -209,7 +209,7 @@ $('#paging').on('click', ".next", function() {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminMemberCheckOk.ad?page=' + (endPage + 3),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminMemberCheckOk.ad?page=' + (endPage +1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -223,7 +223,7 @@ $('#paging').on('click', ".next", function() {
 	} else if (tmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminMemberCheckOk.ad?order=desc&page=' + (endPage + 3),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminMemberCheckOk.ad?order=desc&page=' + (endPage + 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -239,7 +239,7 @@ $('#paging').on('click', ".next", function() {
 		$.ajax({
 			type: "GET",
 			//url: "/admin/adminMemberCheckOk.ad",
-			url: "/admin/adminMemberSearchOk.ad?page=" +(endPage + 3),
+			url: "/admin/adminMemberSearchOk.ad?page=" +(endPage + 1),
 			data: { memberId: memberId },
 			success: function(Parse_data) {
 				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.

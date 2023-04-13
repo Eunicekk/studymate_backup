@@ -31,7 +31,7 @@ public class adminCafeListOk implements Execute {
 		
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 		
-		int rowCount = 20;
+		int rowCount = 21;
 		
 		int pageCount = 5;
 		

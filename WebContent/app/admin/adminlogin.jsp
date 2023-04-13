@@ -21,7 +21,7 @@
       <img src="${pageContext.request.contextPath}/assets/img/studymatelogo.png" alt="">
       <br>
         <ul>
-          <p>고객님 환영합니다! 기다리고 있었습니다</p>
+          <p>관리자님 환영합니다! 기다리고 있었습니다</p>
         </ul>
       </div>
 
@@ -52,12 +52,12 @@
 
 <br>
 
-      <!-- studymate 아이디로 로그인 -->
+      <!-- studymate 관리자 로그인 -->
       
      <div class="wrapHr">
       <div class="hr">
       </div>
-     <span class="studymateLogin">studymate 아이디로 로그인</span>
+     <span class="studymateLogin">studymate 관리자 로그인</span>
      <div class="hr">
      </div>
       <br>

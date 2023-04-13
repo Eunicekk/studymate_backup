@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.studymate.app.admin.adminFaqDeleteOk;
+import com.studymate.app.admin.adminFaqUpdateOk;
+import com.studymate.app.admin.adminUpdate;
+import com.studymate.app.admin.adminfaqListOk;
+import com.studymate.app.admin.adminfaqWriteOk;
+
 public class FaqFrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +28,6 @@ public class FaqFrontController extends HttpServlet{
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 
 		switch(target) {
-		
 		}
 	}
 }

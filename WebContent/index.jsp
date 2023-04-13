@@ -65,7 +65,7 @@
 		<c:choose>
 			<c:when test="${not empty cafelist }">
 				<c:forEach var="studyCafe" items="${cafelist}">
-					<a href=""><figure class="new-figure">
+					<a href="${pageContext.request.contextPath}/cafe/cafeReadOk.sc?studyCafeNumber=${studyCafe.getStudyCafeNumber()}"><figure class="new-figure">
 							<img
 								src="${pageContext.request.contextPath}/upload/${studyCafe.getCafeFileSystemName()}"
 								alt="" />
@@ -126,74 +126,6 @@
 				<div>등록된 게시물이 없습니다.</div>
 			</c:otherwise>
 		</c:choose>
-		<%-- <a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="spaceItem">
-						<div class="studyCafeName">
-							<!-- 카페이름 -->
-							<div class="cafename">
-								<span>케페이름</span>
-							</div>
-
-							<!-- 조회순 좋아요 -->
-							<div class="readContLike">
-								<!-- 조회순 -->
-								<span class="CntLikeStyle"> <span class="box-sizing">
-										<img src="../img/icn-chat-filled-lightgray.d59bfd98.svg"
-										alt="">
-								</span> 156
-								</span>
-								<!-- like수 -->
-								<span class="CntLikeStyle"> <span class="box-sizing">
-										<img src="../img/icn-heart-filled-lightgray.c71bc69d.svg"
-										alt="">
-								</span> 156
-								</span>
-							</div>
-						</div>
-						<!-- 카페 위치 -->
-						<p class="studyCafeLocation">서울시 강남구 사가정로 148 sk스포트상가 토모집</p>
-
-						<!-- 카페 가격 -->
-						<div class="studyCafePrice">
-							<div class="priceText">
-								68000
-								<p>원~ / 1시간당</p>
-							</div>
-						</div>
-
-						<!-- 댓글 -->
-						<div class="studyCafeReply">
-							<div class="startImg">
-								<img
-									src="${pageContext.request.contextPath}/assets/img/Star_1.svg"
-									alt="별점">
-							</div>
-							4.8
-							<div class="replyInfo">(후기5)</div>
-						</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a>
-		<a href=""><figure class="new-figure">
-				<img
-					src="https://img.shareit.kr:13443/tempspaceauth/img/2023-03-21/3496f7f5-4eea-441b-9c93-c67c18995006.jpg"
-					alt="" />
-				<figcaption>
-					<div class="cafe-name">카페이름</div>
-					<div class="cafe-nickname">카페이름</div>
-					<div class="cafe-address">주소</div>
-					<div class="cafe-price">
-						<div class="price">25000</div>
-						<div class="price-by-hours">원~/1시간당</div>
-					</div>
-					<img src="" alt="" />
-				</figcaption>
-			</figure></a> --%>
 	</section>
 	<section>
 		<a href="/studyGroup/studyGroupMainOk.sg"><img
@@ -227,7 +159,7 @@
 					<c:when test="${not empty groupList}">
 						<c:forEach var="group" items="${groupList}">
 							<input type="hidden" class="total" value="${total}">
-							<a>
+							<a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}">
 								<div class="group-content">
 									<div class="group-plus">
 										<div class="field">
@@ -340,15 +272,6 @@
 									게시글을 미리 볼 수 있는 공간입니당 </span>
 								<div class="content-data-info">
 									<!-- 좋아요수, 댓글수, 조회수, 글쓴이 -->
-									<!--(1/4) 좋아요  -->
-									<span class="content-info content-like"> <!-- 좋아요이미지 -->
-										<img src="" alt="" /> 좋아요 <strong>140</strong>
-									</span>
-									<!-- (2/4) 댓글 수-->
-									<span class="content-info content-reply"> <!-- 댓글이미지 -->
-										<img src="" alt="" /> 댓글 <strong>50</strong>
-									</span>
-
 									<!-- (3/4) 조회수 -->
 									<span class="content-info content-view"> <!-- 조회수 눈 이미지 -->
 										<img src="" alt="" /> 조회수 <strong>${board.getBoardReadCount()}</strong>
@@ -384,7 +307,7 @@
 			<div class="footer-category">
 				<a href=""><span>회사소개</span></a> <a href=""><span>채용</span></a> <a
 					href=""><span>이용약관</span></a> <a href=""><span
-					class="font-bold">개인정보처리방침</span></a> <a href=""><span>고객센터</span></a>
+					class="font-bold">개인정보처리방침</span></a> <a href="/admin/faq.ad"><span>고객센터</span></a>
 			</div>
 			<div class="project-name">studymate 사업자 정보</div>
 			<div class="info">

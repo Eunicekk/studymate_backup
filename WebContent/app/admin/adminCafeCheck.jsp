@@ -82,9 +82,7 @@
 									<span>${cafe.getStudyCafePrice()}</span> 원 ~ / 1시간 당
 								</div>
 								<div class="cafe-info">
-									<div class="reservation-count">
-										<span>예약 건수 ｜</span> <span>10</span>
-									</div>
+									
 									<div class="counts">
 										<div class="read-count">
 											<span class="material-symbols-rounded"> visibility </span> <span>${cafe.getStudyCafeReadCount()}</span>

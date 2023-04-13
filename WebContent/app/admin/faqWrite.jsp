@@ -13,6 +13,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/faqWrite.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css">
 </head>
 
 <header>
@@ -39,7 +40,7 @@
 		</div>
 
 		<!-- summernote -->
-		<textarea name="editordata" id="summernote-faq" style="width: 100%"></textarea>
+		<textarea name="editordata" id="summernote-faq" style="width: 1060px"></textarea>
 		<button type="submit" class="signup">FAQ 등록</button>
 	</form>
 
@@ -48,9 +49,23 @@
 		src="${pageContext.request.contextPath}/assets/js/summernote-lite.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/js/summernote/summernote-ko-KR.js"></script>
+
 	<script src="${pageContext.request.contextPath}/assets/js/faqWrite.js"></script>
-	<link rel="stylesheet"
-		href="${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css">
+	<script type="text/javascript">
+		$('#summernote-faq').summernote({
+			placeholder : '최대 500자 작성 가능합니다.',
+			height : 300,
+			width : 1060,
+			lang : 'ko-KR',
+			callbacks : {
+				onImageUpload : function(files, editor, welEditable) {
+					for (var i = files.length - 1; i >= 0; i--) {
+						sendFile(files[i], this);
+					}
+				}
+			}
+		});
+	</script>
 </body>
 
 <footer>
