@@ -48,7 +48,9 @@ public class MemberFrontController extends HttpServlet{
 	        case "/member/findAccountOk.me":
 	        	new FindAccountOkController().execute(req,resp);
 	        	break;
-	        	
+	        case "/member/PwAccountOk.me":
+	        	new PwChange().execute(req, resp);
+	        	break;
 
 		}
 		}

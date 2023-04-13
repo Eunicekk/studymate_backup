@@ -101,13 +101,13 @@
                 <br />
             </div>
 
-            <div class="input-group">
+        <!--   <div class="input-group">
               <label>성별</label>
               <label for="male">남성</label>
               <input type="radio" id="male" name="memberGender" value="male" required>
               <label for="female">여성</label>
               <input type="radio" id="female" name="memberGender" value="female" required>
-          </div> 
+          </div> -->   
 
 
 

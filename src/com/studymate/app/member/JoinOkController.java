@@ -24,14 +24,15 @@ public class JoinOkController implements Execute {
 		memberDTO.setMemberPassword(req.getParameter("memberPassword"));
 		memberDTO.setMemberName(req.getParameter("memberName"));
 		memberDTO.setMemberAge(15);
-		memberDTO.setMemberGender("m");
+	//	memberDTO.setMemberGender("m");
 		memberDTO.setMemberEmail(req.getParameter("memberEmail"));
-		memberDTO.setMemberPhoneNumber("5050050");
+		memberDTO.setMemberPhoneNumber("memberPhoneNumber");
 		memberDTO.setMemberNickname(req.getParameter("memberNickname"));
 		
 		System.out.println(memberDTO);
 		
 		memberDAO.join(memberDTO);
+//		memberDTO 객체를 memberDAO 객체의 join 메서드를 호출하여 데이터베이스에 저장하는 것입니다.
 		
 		req.getRequestDispatcher("/app/member/login.jsp").forward(req, resp);
 
