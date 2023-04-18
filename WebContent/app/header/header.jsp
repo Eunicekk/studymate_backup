@@ -18,10 +18,10 @@
 		</div>
 		<div class="header-right">
 			<div class="login">
-				<a href="#">로그인</a>
+				<a href="/member/login.me">로그인</a>
 			</div>
 			<div class="join">
-				<a href="#" style="color: white">회원가입</a>
+				<a href="/member/join.me" style="color: white">회원가입</a>
 			</div>
 		</div>
 	</header>

@@ -32,7 +32,7 @@
         type="text"
         name="memberId"
         id="memberId"
-        placeholder="4~15자 이내로 입력해주세요"
+        placeholder="아이디"
         required
       />
       <br />
@@ -46,7 +46,7 @@
                 type="password"
                 name="memberPassword"
                 id="password"
-                placeholder="최소 6자리 이상(알파벳,숫자 필수)"
+                placeholder="비밀번호"
                 required
               />
               <br />

@@ -40,7 +40,7 @@ public class MemberFrontController extends HttpServlet{
 	             new CheckIdOkController().execute(req, resp);
 	            break;
 	        case "/member/logoutOk.me":
-	            // new LogoutController().execute(req,resp);
+	            new LogoutController().execute(req,resp);
 	            break;
 	        case "/member/findAccount.me":
 	        	req.getRequestDispatcher("/app/member/findAccount.jsp").forward(req, resp);

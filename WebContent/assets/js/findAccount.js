@@ -10,8 +10,6 @@ window.onload = function() {
     const memberId = document.getElementById('Id').value;
 
 
-    console.log("memberEmail: ", memberEmail);
-    console.log("memberId: ", memberId);
 
     // Ajax를 사용하여 서버에 이메일과 아이디가 존재하는지 확인 요청
     $.ajax({
@@ -49,12 +47,27 @@ window.onload = function() {
 
 
 
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/*
 
+});*/
 
+$(document).ready(function() {
+    $("#passwordChangeForm").submit(function(event) {
+        event.preventDefault();
 
-
-
-
-
-
-
+        $.ajax({
+            type: "POST",
+            url: "/member/PwAccountOk.me",
+            data: $(this).serialize(),
+            success: function(response) {
+                if (response == "success") {
+                    alert("비밀번호 변경이 성공하였습니다.");
+                    location.href = "/app/member/login.jsp";
+                } else {
+                    alert("비밀번호 변경에 실패하였습니다.");
+                }
+            }
+        });
+    });
+});

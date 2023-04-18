@@ -20,7 +20,7 @@
 				<img
 					src="${pageContext.request.contextPath}/assets/img/studymatelogo.png"
 					alt="" />
-				<h2>비밀번호 찾기</h2>
+				<h2>원하는 비밀번호로 변경</h2>
 				<br> <span>회원 가입시 입력하신 이메일 주소와 아이디를 입력하시면, <br>
 					비밀번호 변경이 가능합니다 !
 				</span>
@@ -60,28 +60,30 @@
 		</div>
 	</div>
 
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>비밀번호변경</h2>
-    <br>
-    <form action="/member/PwAccountOk.me" method="post">
-      <label for="oldPassword">기존 비밀번호</label>
-      <input type="password" id="oldPassword" name="oldMemberPassword" required>
-      <br>
-      <label for="newPassword">새 비밀번호</label>
-      <input type="password" id="newPassword" name="newMemberPassword" required>
-      <button type="submit">비밀번호 변경</button>
-    </form>
-  </div>
-</div>
- 
+	<!--                                     아래는 모달창                                      -->
+
+	<div id="modal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2>원하는 비밀번호로 변경</h2>
+			<br>
+			<form action="/member/PwAccountOk.me" method="post" id="passwordChangeForm">
+				<label for="origin">변경할 비밀번호</label> <input type="password"
+					id="origin" name="OriginPw" required> <br>
+				<label for="confirm">변경할 비밀번호 확인</label> <input type="password"
+					id="confirm" name="ConfirmOriginPw" required>
+				<button type="submit">비밀번호 변경</button>
+			</form>
+		</div>
+	</div>
+
 
 
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/findAccount.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/findAccount.js"></script>
 
 
 

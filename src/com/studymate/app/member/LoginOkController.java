@@ -42,7 +42,7 @@ public class LoginOkController implements Execute {
 		  try { // 아이디와 비밀번호를 입력받고 넘겨받은 memberNumber을 가져온다 // 가져왔는데 null이면 login=fail을
 		  //주소에 넣어서 반환 // 값이 있으면 메인 페이지로 이동 
 			memberNumber = memberDAO.login(memberDTO);
-		  System.out.println(memberNumber); path = "/";
+		  System.out.println(memberNumber); path = "/app/member/mainLogin.jsp";
 		  session.setAttribute("memberNumber", memberNumber); } catch
 		  (NullPointerException e) { path = "/member/login.me?login=fail";
 		  e.printStackTrace(); } catch(Exception e) { e.printStackTrace(); }

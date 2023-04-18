@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+session.setAttribute("memberNickname", member.getNickname());
+
 	<header id="header-main">
 		<div>
 			<img src="../img/로고.png" alt="" class="logo" />
@@ -18,10 +20,11 @@
 		</div>
 		<div class="header-right">
 			<div class="logout">
-				<a href="#">로그아웃</a>
+				<a href="/member/logoutOk.me">로그아웃</a>
 			</div>
-			<div class="member-name">
-				<a href="#">이름</a>
+		<div class="member-name">
+    <a href="#"><% out.print(session.getAttribute("memberNumber")); %></a>
+</div> 
 			</div>
 			<div class="mypage">
 				<a href="#">마이페이지</a>
