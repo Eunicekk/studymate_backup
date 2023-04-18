@@ -23,4 +23,12 @@ public class StudyCafeCommentDAO {
 		sqlSession.insert("studyCafeComment.insert", studyCafeCommentDTO);
 	}
 	
+	public List<StudyCafeCommentVO> arrayByScoreAsc(int studyCafeNumber){
+		return sqlSession.selectList("studyCafeComment.arrayByScoreAsc", studyCafeNumber);
+	}
+	
+	public List<StudyCafeCommentVO> arrayByScoreDesc(int studyCafeNumber){
+		return sqlSession.selectList("studyCafeComment.arrayByScoreDesc", studyCafeNumber);
+	}
+	
 }

@@ -1,5 +1,7 @@
 package com.studymate.app.memberLikeCafe.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.mybatis.config.MyBatisConfig;
@@ -10,6 +12,10 @@ public class MemberLikeCafeDAO {
 	
 	public MemberLikeCafeDAO(){
 		sqlSession= MyBatisConfig.getSqlSessionFactory().openSession(true);
+	}
+	
+	public List<Integer> haveLike(int memberNumber) {
+		return sqlSession.selectList("memberLikeCafe.haveLike", memberNumber);
 	}
 	
 	public int checkLike(MemberLikeCafeDTO memberLikeCafeDTO) {

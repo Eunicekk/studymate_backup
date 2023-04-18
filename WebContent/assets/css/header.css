@@ -1,45 +1,49 @@
 #header-main {
-  display: flex;
-  width: 100%;
-  font-size: 22px;
-  font-weight: bold;
   height: 80px;
-  background-color: rgb(250, 250, 250);
+  background-color: white;
+  border-bottom: 2px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+}
+
+.header-center{
+	display: flex;
+	align-items: center;
+	width: 1200px;
+	margin: 0 auto;
+	position: relative;
 }
 
 .logo {
-  width: 350px;
-  height: 90px;
+  width: 200px;
+  margin: 0 20px;
 }
 
-.content-cafe,
-.content-group {
-  margin: 20px;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  width: 800px;
-  margin: 10px;
+.content-cafe, .content-group{
+	margin-left: 10px;
+	font-size: 16px;
+ 	font-weight: 700;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  width: 100%;
-  justify-content: right;
-  font-size: 15px;
+  position: absolute;
+  right: 10px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .login {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
-  border: solid 2px cornflowerblue;
-  height: 35px;
-  width: 110px;
+  border: solid 2px rgb(102, 103, 171);
+  height: 34px;
+  width: 100px;
   border-radius: 40px;
 }
 
@@ -47,16 +51,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
-  background-color: cornflowerblue;
-  border: solid 3px cornflowerblue;
-  height: 35px;
-  width: 110px;
+  background-color: rgb(102, 103, 171);
+  border: solid 2px rgb(102, 103, 171);
+  height: 34px;
+  width: 100px;
   border-radius: 40px;
   color: white;
-  
 }
 
 .header-right > div {
-  margin: 20px;
+  margin-right: 10px;
 }
