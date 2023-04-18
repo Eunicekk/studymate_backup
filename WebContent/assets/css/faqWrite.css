@@ -7,10 +7,11 @@
 }
 
 body {
-    width: 980px;
+    width: 1060px;
     margin: 20px auto 0;
     font-family: 'Pretendard';
 }
+
 
 /* 총 개수 */
 h1 {
@@ -78,7 +79,11 @@ input {
 .update {
     background-color: #4E4C8D;
 }
-
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
 
 .note-editable, .note-code{
 	width:102%;

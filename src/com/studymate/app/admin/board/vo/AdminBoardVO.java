@@ -9,6 +9,7 @@ public class AdminBoardVO {
 	private int memberNumber;
 	private String memberId;
 	private String memberNickname;
+	private String profileSystemName;
 	
 	public AdminBoardVO() {}
 
@@ -76,12 +77,25 @@ public class AdminBoardVO {
 		this.memberNickname = memberNickname;
 	}
 
+	
+	
+	public String getProfileSystemName() {
+		return profileSystemName;
+	}
+
+	public void setProfileSystemName(String profileSystemName) {
+		this.profileSystemName = profileSystemName;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminBoardVO [boardNumber=" + boardNumber + ", boardTitle=" + boardTitle + ", boardContent="
 				+ boardContent + ", boardReadCount=" + boardReadCount + ", boardDate=" + boardDate + ", memberNumber="
-				+ memberNumber + ", memberId=" + memberId + ", memberNickname=" + memberNickname + "]";
+				+ memberNumber + ", memberId=" + memberId + ", memberNickname=" + memberNickname
+				+ ", profileSystemName=" + profileSystemName + "]";
 	}
+
+	
 	
 	
 }

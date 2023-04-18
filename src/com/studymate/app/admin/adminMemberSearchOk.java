@@ -15,7 +15,7 @@ import com.studymate.app.admin.search.vo.SearchVO;
 import com.studymate.app.member.dao.MemberDAO;
 import com.studymate.app.member.dto.MemberDTO;
 
-public class adminMemberCheckOk implements Execute {
+public class adminMemberSearchOk implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,13 +24,13 @@ public class adminMemberCheckOk implements Execute {
 		List<MemberDTO> members = null;
 		SearchVO searchVO = new SearchVO();
 		
-		int total = adminDAO.getTotal();
 
 		String temp = req.getParameter("page");
 		String desc = req.getParameter("order");
 		String memberId = req.getParameter("memberId");
 		searchVO.setSearchText(req.getParameter("memberId")); 
 		
+		int total = adminDAO.memberSearchTotal(memberId);
 
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 
@@ -52,20 +52,23 @@ public class adminMemberCheckOk implements Execute {
 		boolean next = endPage != realEndPage;
 
 		Map<String, Integer> pageMap = new HashMap<String, Integer>();
-		pageMap.put("startRow", startRow);
-		pageMap.put("rowCount", rowCount);
-		
+		searchVO.setStartRow(startRow);
+		searchVO.setRowCount(rowCount);
+		System.out.println(searchVO);
 
-		if(desc == null && memberId == null) {
-			members = adminDAO.adminMemberCheck(pageMap);				
-		}else if(memberId != null) {
+//		if(desc == null && memberId == null) {
+//			members = adminDAO.adminMemberCheck(pageMap);				
+//		}else if(memberId != null) {
 //			members = adminDAO.MemberSearch(searchVO);
-		}else {
-			members = adminDAO.adminMemberCheckDesc(pageMap);			
-			
-		}
+//		}else {
+//			members = adminDAO.adminMemberCheckDesc(pageMap);			
+//		}
+		
+		members = adminDAO.MemberSearch(searchVO);
+		
 //		System.out.println(searchVO);
 		System.out.println(members);
+		System.out.println(page);
 		req.setAttribute("memberList", members);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);
@@ -76,7 +79,7 @@ public class adminMemberCheckOk implements Execute {
 
 
 		req.getRequestDispatcher("/app/admin/adminMemberCheck.jsp").forward(req, resp);
-
+		
 	}
 
 }
