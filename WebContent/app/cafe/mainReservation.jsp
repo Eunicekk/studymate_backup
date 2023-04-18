@@ -781,7 +781,7 @@
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
 	<script>
-		/* let memberNumber = 1; */
+		let memberNumber = 1;
 	</script>
 	<script src="${pageContext.request.contextPath}/assets/js/main_reservation.js"></script>
 </body>

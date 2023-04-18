@@ -14,4 +14,8 @@ public class StudyCafeFileDAO {
 		sqlSession= MyBatisConfig.getSqlSessionFactory().openSession(true);
 	}
 	
+	public List<StudyCafeFileDTO> select(int studyCafeNumber){
+		return sqlSession.selectList("studyCafeFile.select", studyCafeNumber);
+	}
+	
 }

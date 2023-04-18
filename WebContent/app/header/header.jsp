@@ -12,20 +12,20 @@
 	<header id="header-main">
 	<div class="header-center">
 		<div>
-		<a href="${pageContext.request.contextPath}/index.jsp">
+		<a href="${pageContext.request.contextPath}/">
 			<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="logo" />
 		</a>
 		</div>
 		<div class="header-left">
-			<a href="${pageContext.request.contextPath}/app/cafe/mainReservation.jsp" class="content-cafe">스터디카페 예약</a>
-			<a href="${pageContext.request.contextPath}/app/group/studyGroupMain.jsp" class="content-group">스터디그룹 모집</a>
+			<a href="${pageContext.request.contextPath}/cafe/cafeListOk.sc" class="content-cafe">스터디카페 예약</a>
+			<a href="${pageContext.request.contextPath}/studyGroup/studyGroupMainOk.sg" class="content-group">스터디그룹 모집</a>
 		</div>
 		<div class="header-right">
 			<div class="login">
-				<a href="${pageContext.request.contextPath}/app/member/login.jsp">로그인</a>
+				<a href="#">로그인</a>
 			</div>
 			<div class="join">
-				<a href="${pageContext.request.contextPath}/app/member/join.jsp" style="color: white">회원가입</a>
+				<a href="#" style="color: white">회원가입</a>
 			</div>
 		</div>	
 	</div>

@@ -2,5 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="studyCafeFile">
-	
+	<select id="select" parameterType="_int" resultType="StudyCafeFileDTO">
+		select cafe_file_system_name, cafe_file_original_name, study_cafe_number
+		from tbl_study_cafe_file
+		where study_cafe_number = #{studyCafeNumber}
+	</select>
 </mapper>
