@@ -152,7 +152,7 @@ for (let i = 0; i <= 24; i++) {
   timer.innerHTML =
     timer.innerHTML +
     '<div class="swiper-slider time-swiper-slide time-swiper-group-buying">' +
-    "<span>10000</span>" +
+    "<span>" + hourPrice + "</span>" +
     '<span class="time-swiper-time">' +
     i +
     ":00</span>" +
@@ -164,7 +164,7 @@ let $swiperBox = $(".Timeslider > .swiper .swiper-wrapper");
 
 let currentIdx = 0;
 
-let slideWidth = 65;
+let slideWidth = 71;
 
 checkEnd();
 
@@ -500,6 +500,12 @@ geocoder.addressSearch($("#cafe-address").text(), function (result, status) {
   }
 });
 
+// 모달 창 클릭 시 active 적용
+$('.time-swiper-group-buying').on('click', function(){
+	$(this).css("background-color", "rgb(102, 103, 171)");
+	$(this).css("color", "white");
+})
+
 // 댓글 별점 주기 디자인
 let $star = $(".star-score label");
 
@@ -527,10 +533,8 @@ function commentAjax(){
 
 function showComment(comments){
 	let text = '';
-	
 	comments.forEach(comment => {
 		text += `
-			<ul class="replyList">
             <li class="ReplyItemRow">
               <div class="rowContainer">
                 <div class="rowbtn">
@@ -545,13 +549,53 @@ function showComment(comments){
                 </div>
                 <p class="repleyContent">${comment.cafeCommentContent}</p>
               </div>
-            </li>
-          </ul>
-		`
+            </li>`
 	})
 	
 	$('.replyList').html(text);
 }
+
+// 댓글 정렬
+$('#order').on('change',function(){
+	var a = $('#order').val();
+	if(a == "new"){
+		console.log($(this));
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/cafecomment/cafeCommentListOk.scc?order=new",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			data: {studyCafeNumber: studyCafeNumber},
+			dataType: "json",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: showComment
+		});
+	} else if(a == "scoreAsc") {
+		console.log($(this));
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/cafecomment/cafeCommentListOk.scc?order=scoreAsc",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			data: {studyCafeNumber: studyCafeNumber},
+			dataType: "json",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: showComment
+		});
+	} else if(a == "scoreDesc") {
+		console.log($(this));
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/cafecomment/cafeCommentListOk.scc?order=scoreDesc",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			data: {studyCafeNumber: studyCafeNumber},
+			dataType: "json",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: showComment
+		});
+	}
+})
 
 // 댓글 작성
 $('.submit-btn').on('click', function(){
@@ -571,5 +615,63 @@ $('.submit-btn').on('click', function(){
 	});
 })
 
+// 좋아요 기능
+$(document).ready(like);
 
+function like() {
+    $.ajax({
+		url: "/cafelike/cafeLikeCheckOk.mlc",
+		type: "get",
+		data: {
+			memberNumber: memberNumber
+		},
+		dataType: "json",
+		success: function(cafelike){
+			console.log(cafelike);
+			var arr = cafelike;
+			console.log(arr.length);
+			for(var j=0; j<arr.length; j++){
+				console.log(arr[j]);
+				$('input[value='+ arr[j] +'].cafe-num').closest('main').find('#favor').css('font-variation-settings', "'FILL' 100, 'wght' 400, 'GRAD' 0, 'opsz' 48");
+			}		
+		}
+	});
+};
+
+$('.likeBtn').on('click', function(){
+	let target = $(this);
+	let studyCafeNumber = target.closest('main').find('.cafe-num').val();
+	
+	$.ajax({
+		url: "/cafelike/cafeLikeUpadateOk.mlc",
+		type: "get",
+		data: {
+			studyCafeNumber: studyCafeNumber,
+			memberNumber: memberNumber
+		},
+		success: function(result){
+			console.log(result);
+			updateLikeCount(studyCafeNumber, target);
+			if(result == 0){
+				target.find('#favor').css('font-variation-settings', "'FILL' 100, 'wght' 400, 'GRAD' 0, 'opsz' 48");
+			}else{
+				target.find('#favor').css('font-variation-settings', "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48");
+			}
+		}
+	})
+});
+
+function updateLikeCount(studyCafeNumber, target){
+	$.ajax({
+		url: "/cafelike/cafeLikeCountOk.mlc",
+		type: "get",
+		data: {
+			studyCafeNumber: studyCafeNumber
+		},
+		success: function(count){
+			console.log(target.closest('.main').find('.likeCnt').children('p'));
+			target.closest('main').find('.likeCnt').children('p').html(count);
+		}
+	})
+}
 

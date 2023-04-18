@@ -695,79 +695,21 @@ ul {
   font-weight: bold;
 }
 
-.replyFilter {
-  position: relative;
-  height: 65px;
-  border-bottom: 1px solid rgb(212, 219, 226);
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: end;
-  justify-content: flex-end;
-  padding: 0px 18px;
+.selectOrder{
+	width: 1194px;
+	height: 50px;
+	position: relative;
 }
 
-.replyFilter > button {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  border: none;
-  font-family: 'Pretendard';
-}
-
-.replyFilter > button > span {
-  font-size: 14px;
-  color: rgb(36, 36, 36);
-  border: none;
-}
-
-.replyFilter > button > span:last-child{
-	height: 24px;
-}
-
-.menuList {
-  position: absolute;
-  top: 56px;
-  right: 14px;
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(240, 240, 240);
-  border-radius: 4px;
-  box-shadow: rgb(240, 240, 240) 0px 1px 8px 0px;
-  z-index: 1070;
-  border: none;
-}
-
-.menuList > button:first-child {
-  border-radius: 4px 4px 0px 0px;
-  border: none;
-}
-
-.none_select {
-  border-bottom: 1px solid rgb(240, 240, 240);
-  text-align: left;
-  padding: 13px 12px;
-  font-size: 14px;
-  color: rgb(87, 87, 87);
-  border: none;
-  font-family: 'Pretendard';
-}
-
-.select {
-  border-bottom: 1px solid rgb(240, 240, 240);
-  text-align: left;
-  padding: 13px 12px;
-  font-size: 14px;
-  color: rgb(102, 103, 171);
-  border: none;
-  font-family: 'Pretendard';
-  font-weight: 600;
-}
-
-.menuList > button:hover {
-  color: rgb(102, 103, 171);
-  font-weight: 600;
+#order{
+	position: absolute;
+	right: 10px;
+	border: none;
+	width: 90px;
+	height: 30px;
+	font-family: 'Pretendard';
+	font-size: 14px;
+	box-sizing: border-box;
 }
 
 .replyList {
@@ -902,8 +844,8 @@ ul {
 }
 
 .ReserveFormContent {
-  position: fixed;
-  width: 606px;
+  /* position: fixed; */
+  width: 480px;
   top: 0px;
   right: 114px;
   bottom: 0px;
@@ -1001,6 +943,7 @@ button {
   -webkit-box-align: center;
   align-items: center;
   margin-bottom: 40px;
+  position: relative;
 }
 
 .TextBox > p {
@@ -1046,7 +989,7 @@ button {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background-color: rgb(133, 235, 255);
+  background-color: #BFC1E8;
 }
 
 .possible > span {
@@ -1065,7 +1008,7 @@ button {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background-color: rgb(0, 117, 235);
+  background-color: #6567AB;
 }
 
 .selected > span {
@@ -1074,6 +1017,7 @@ button {
 }
 
 .TimeItem {
+	width: 380px;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
@@ -1081,18 +1025,14 @@ button {
 
 .Timeslider {
   position: relative;
-  width: 500px;
+  width: 380px;
+  left: 20px;
 }
 
 .TimeItem {
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
-}
-
-.Timeslider {
-  position: relative;
-  width: 500px;
 }
 
 .Timeslider > .swiper {
@@ -1133,11 +1073,21 @@ button {
 } */
 
 .swiper-slider {
-  background-color: rgb(133, 235, 255);
+  background-color: #BFC1E9;
 }
 
 .Timeslider > .swiper > .swiper-wrapper > .time-swiper-group-buying:hover {
   background-color: rgb(102, 103, 171);
+  color: white;
+}
+
+.color-reset{
+	padding: 2px 6px;
+	font-family: 'Pretendard';
+	font-size: 12px;
+	border: none;
+	position: absolute;
+	right: 8px; top: 50px;
 }
 
 .Timeslider > .swiper > .swiper-wrapper > .time-swiper-slide {
@@ -1219,8 +1169,8 @@ button {
 
 .sliderPrev {
   display: flex;
-  width: 43px;
-  height: 43px;
+  width: 35px;
+  height: 35px;
   position: absolute;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(212, 219, 226);
@@ -1235,8 +1185,8 @@ button {
 
 .sliderNext {
   display: flex;
-  width: 43px;
-  height: 43px;
+  width: 35px;
+  height: 35px;
   position: absolute;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(212, 219, 226);
@@ -1290,6 +1240,8 @@ button {
 .BuyBtn {
   height: 52px;
   width: 100%;
+  position: relative;
+  top: 70px;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -1320,6 +1272,7 @@ button {
   width: 100%;
   background-color: white;
   box-shadow: rgba(186, 184, 200, 0.16) 0px 34px 42px 0px;
+  padding: 20px 0;
 }
 
 .sec_cal {
@@ -1435,8 +1388,8 @@ button {
 }
 
 .sec_cal .cal_wrap .day:hover {
-  border-bottom: 5px solid #5a5597;
-  color: #5a5597;
+  background-color: #65619E;
+  color: white;
 }
 
 .cal_none {
@@ -1533,3 +1486,13 @@ button {
     right: 0; bottom: -34px;
     z-index: 20;
 }
+
+.likeBtn #favor{
+	color: #6567AB;
+  	font-variation-settings:
+  		'FILL' 0,
+  		'wght' 400,
+  		'GRAD' 0,
+  		'opsz' 48
+}
+

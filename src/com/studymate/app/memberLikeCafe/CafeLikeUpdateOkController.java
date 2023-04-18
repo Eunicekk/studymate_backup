@@ -23,14 +23,13 @@ public class CafeLikeUpdateOkController implements Execute {
 		memberLikeCafeDTO.setStudyCafeNumber(Integer.parseInt(req.getParameter("studyCafeNumber")));
 		int result = memberLikeCafeDAO.checkLike(memberLikeCafeDTO);
 		
+		System.out.println(req.getParameter("memberNumber"));
+		System.out.println(req.getParameter("studyCafeNumber"));
 		System.out.println(result);
 		
-		
 		if(result == 0) {
-			System.out.println("0이다");
 			memberLikeCafeDAO.plusLike(memberLikeCafeDTO);
 		}else {
-			System.out.println("0아니다!");
 			memberLikeCafeDAO.minusLike(memberLikeCafeDTO);
 		}
 		

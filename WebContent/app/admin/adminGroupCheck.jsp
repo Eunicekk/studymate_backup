@@ -143,8 +143,8 @@
 							<div class="group-info">
 								<div class="user">
 									<img
-										src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-										alt="그룹 프로필 사진" width="30px"> <span>작성자 닉네임</span> <span>｜</span>
+										src="${pageContext.request.contextPath}/upload/${group.getProfileSystemName()}"
+										 width="30px"> <span>작성자 닉네임</span> <span>｜</span>
 									<span>${group.getMemberNickname()}</span>
 								</div>
 							</div>
@@ -161,46 +161,53 @@
 
 	</section>
 
-	<section id="paging">
+	<c:choose>
+		<c:when test="${groupList.size() != 21}">
+
+		</c:when>
+		<c:otherwise>
+			<section id="paging">
 
 
-		<c:if test="${prev}">
-			<a class="prev"> <svg xmlns="http://www.w3.org/2000/svg"
-					width="16" height="12" fill="currentColor"
-					class="bi bi-chevron-left" viewBox="0 0 16 16">
+				<c:if test="${prev}">
+					<a class="prev"> <svg xmlns="http://www.w3.org/2000/svg"
+							width="16" height="12" fill="currentColor"
+							class="bi bi-chevron-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
-						d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+								d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
             </svg></a>
-		</c:if>
+				</c:if>
 
 
-		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<c:choose>
-				<c:when test="${!(i == page) }">
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<c:choose>
+						<c:when test="${!(i == page) }">
 
-					<a class="pageBtn"> <c:out value="${i}" /> <!-- <svg
+							<a class="pageBtn"> <c:out value="${i}" /> <!-- <svg
 							xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16"></svg> -->
-					</a>
-				</c:when>
-				<c:otherwise>
-					<a class="active"> <c:out value="${i}" />
-					</a>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a class="active"> <c:out value="${i}" />
+							</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 
-		<c:if test="${next}">
-			<a class="next"> <svg xmlns="http://www.w3.org/2000/svg"
-					width="16" height="12" fill="currentColor"
-					class="bi bi-chevron-right" viewBox="0 0 16 16">
+				<c:if test="${next}">
+					<a class="next"> <svg xmlns="http://www.w3.org/2000/svg"
+							width="16" height="12" fill="currentColor"
+							class="bi bi-chevron-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
-						d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+								d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
             </svg>
-			</a>
-		</c:if>
+					</a>
+				</c:if>
 
-	</section>
+			</section>
+		</c:otherwise>
+	</c:choose>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script

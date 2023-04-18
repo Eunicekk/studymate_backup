@@ -39,6 +39,9 @@ public class AdminFrontController extends HttpServlet{
 		case "/admin/adminMemberCheckOk.ad":
 			new adminMemberCheckOk().execute(req,resp);
 			break;
+		case "/admin/adminMemberSearchOk.ad":
+			new adminMemberSearchOk().execute(req,resp);
+			break;
 		case "/admin/adminMemberDeleteOk.ad":
 			new adminMemberDeleteOk().execute(req,resp);
 			break;

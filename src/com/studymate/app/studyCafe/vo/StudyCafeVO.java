@@ -108,12 +108,12 @@ public class StudyCafeVO {
 		this.studyCafeAvailableCapacity = studyCafeAvailableCapacity;
 	}
 
-	public int getStudyCafeCommentScoreProportion() {
+	public int getStudyCafeCommentScoreCount() {
 		return studyCafeCommentScoreCount;
 	}
 
-	public void setStudyCafeCommentScoreProportion(int studyCafeCommentScoreProportion) {
-		this.studyCafeCommentScoreCount = studyCafeCommentScoreProportion;
+	public void setStudyCafeCommentScoreCount(int studyCafeCommentScoreCount) {
+		this.studyCafeCommentScoreCount = studyCafeCommentScoreCount;
 	}
 
 	@Override
