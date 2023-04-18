@@ -28,10 +28,7 @@ $prevBtn.on('click', ()=>{
     window.location.href = '/studyGroup/studyGroupMainOk.sg';
 });
 
-// 게시글 수정 write로 이동 
-$modifyBtn.on('click', ()=>{
-    window.location.href ='#'
-}); 
+
 
 ;//  게시글 삭제 boardList로 이동
 $deleteBtn.on('click', ()=>{
@@ -93,6 +90,8 @@ function showComment (comments) {
 		`
 	});
 	
+	
+	console.log('comment가 뽑히는지');
 	$('.commentList-CommentList').html(text);
 	let length = $('.commentItem-commentContainer').length;
 	
@@ -119,7 +118,7 @@ $uploadReplyBtn.on('click', ()=>{
          studyGroupCommentContent : $('#commentContent').val()
       },
       success : function(){
-	console.log('댓글 어디감,, ㅋ 성공?? ');
+	console.log('댓글 ');
           $('#commentContent').val('');
          commentAjax();
       }
@@ -194,7 +193,10 @@ $('.commentList-CommentList').on('click','.boardReply-editor-buttons-modi', func
 	
 	});
 
-
+// 게시글 수정 write로 이동 
+$modifyBtn.on('click', ()=>{
+    window.location.href ='#'
+}); 
 
 
 

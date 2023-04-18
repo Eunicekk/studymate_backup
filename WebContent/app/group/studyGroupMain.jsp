@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/study_group_main.css" />
   </head>
-  <body>=
+  <body>
     <header></header>
     <main id="main">
       <!--nav 검색창, 필터버튼 -->
@@ -153,24 +153,25 @@
         </div>
 
         <!-- 스터디 카페 메인  -->
-      <form action="" method="post" id="Sort">
+      <form action="/studyGroup/studyGroupMainOk.sg" method="get" name="order">
         <div class="mainSpace">
           <div class="titleOrder">
             <h2 class="title">
               스터디 그룹
             </h2>
+            <input type="hidden" class="studygroup-count" value="${total }">
             <div class="selectOrder">
-              <select >  
-               <option value="latest">
+              <select id="order"  name="order" >  
+               <option id="latest" value="latest">
                   최신순
                 </option>
-                <option value="viewCount">
+                <option id="viewCount" value="viewCount">
                   조회순
                 </option>
-                <option value="interest">
+                <option id="interest" value="interest">
                   좋아요순
                 </option>
-                <option value="commentCount">
+                <option id="commentCount" value="commentCount">
                   댓글순
                 </option>
               </select>
@@ -180,7 +181,7 @@
       </form>
 
           <!-- 그룹모집 메인 -->
-        <div class="mainContainer">
+        <div class="mainContainer2">
           <ul class="spaceList">
           
           
@@ -190,7 +191,8 @@
           <c:choose>
           <c:when test="${not empty studyGroups}">
           <c:forEach var="group" items= "${studyGroups}">
-           <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen">
+           <%-- <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen"> --%>
+              <a href="" class="studyOpen">
               <li>
                 <div class="badge">
                   <div class="badgeFiled">
@@ -791,8 +793,7 @@
       crossorigin="anonymous"
     ></script>
     <script>
-    let memberNumber = 2;
-    
+    let memberNumber = 1;
     </script>
     <script src="${pageContext.request.contextPath}/assets/js/study_group_main.js"></script>
   </body>

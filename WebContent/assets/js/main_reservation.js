@@ -377,6 +377,8 @@ var startPage = endPage - (pageCount - 1);
 var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 
+
+	
 $('#order').on('change',function(){
 	var a = $('#order').val();
 	if(a == "new"){

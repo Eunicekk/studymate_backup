@@ -43,15 +43,356 @@ $filed.click(() => {
 	$(".selectFiled").toggleClass("none");
 });
 
+
 // 켈린더
-$(document).ready(function() {
+/*$(document).ready(function() {
 	calendarInit();
+});
+*/
+
+// 최신순(기본정렬) 조회순 좋아요순 댓글순 정렬 
+
+let $latest = $('#latest');
+let $viewCount = $('#viewCount');
+let $interest = $('#interest');
+let $commentCount = $('#commentCount');
+
+
+var sort = 1;
+var page = 1;
+
+var total = $('.studygroup-count').val();
+var rowCount = 20;
+var pageCount = 5;
+var startRow = (parseInt(page) - 1) * rowCount;
+var endPage = parseInt(Math.ceil(parseInt(page) / parseFloat(pageCount)) * pageCount);
+var startPage = endPage - (pageCount - 1);
+var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
+var endPage = endPage > realEndPage ? realEndPage : endPage;
+let $mainContain = $('.mainContainer2');
+console.log( $mainContain);
+console.log('바로 위의 것은 메인 컨테이너 입니다 게시글 ul 을 감싼 메인컨테이너입니다');
+
+var a = $('#order').children();
+/*console.log(a);
+console.log($latest);
+console.log('===========');
+console.log($('.mainContainer'));
+console.log($('#order option').eq(0));
+console.log('===========================');*/
+
+var a = $('#order option');
+console.log(a);
+
+$('#order').on('change', function () {
+	var selectOption = $(this).val();
+	
+	console.log('=========== select option');
+	console.log(selectOption);
+	console.log('========== select option');
+	/*console.log( $('#order option').eq(0));*/
+		$.ajax({
+			url: "/studyGroup/studyGroupOrderOk.sg",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			dataType: "json",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			data : {order : selectOption },
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: showOrder 
+		});
+		var sort = 1;
+		
+		function showOrder (orderContents) {
+			console.log(orderContents);
+			let text= '';
+			/* orderContents가 각각 VO 하나씩을 담고 있고, 
+			자바스크립트 객체로 담고 있음. 그거 리스트이고 내가 gson 으로 가져왔잖아. 
+			일단 list 형태임. 그걸 group이라는 이름으로 가져와서 forEach 로 뿌리겠다. 
+			orderContent 하나하나가 group. 즉 studyGroupVO  
+			그 안에서 변수를 가져오겠다. 자바 스크립트 문법으로 가져와야 함. 
+			 */
+			orderContents.forEach(group => {
+				text +=`
+				<a href="${location.origin}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.studyGroupNumber}" class="studyOpen">
+				 <li>
+                <div class="badge">
+                  <div class="badgeFiled">
+                    <!-- 모집 분야 받아와서 넣어주기 -->
+                    <div class="onoffOptions">${group.studyGroupOnline}</div>
+                    <div class="badgeFiledName">${group.studyGroupField}</div>
+                  </div>
+                </div>
+
+
+                <!-- 마감일 -->
+                <div class="endDate">
+                  <p class="endDateText">모집 마감 |</p>
+                  <!-- 날짜 받아오기 -->
+                  <p>${group.studyGroupStartDate}</p>
+                </div>
+
+                <!-- 이름 -->
+                <h1 class="groupTitle">${group.studyGroupTitle}</h1>
+                <ul class="positionList">
+                  <!-- 분야 넣어주기 -->
+                  <li class="positionItem">백엔드</li>
+                  <li class="positionItem">데이터베이스</li>
+                </ul>
+
+                <div class="studyBorder"></div>
+
+                <section class="ReadReviewCnt">
+                  <div class="userInfo">
+                    <div class="userImg">
+                      <img src="${location.origin}/assets/img/인공지능팩토리_2022-06-20_15-25-27.png" alt="유저 프로필사진">
+                    </div>
+                    <div>${group.memberNickname}</div>
+                  </div>
+
+                  <div class="ReadReview">
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icon-search-input.svg"
+                       alt="조회수 이미지"
+                       style="width: 10px;">
+                       <p>${group.studyGroupReadCount}</p>
+                    </div>
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icn-chat-filled-lightgray.d59bfd98.svg"
+                       alt="댓글 이미지">
+                       <p>${group.studyGroupCommentCount}</p>
+                    </div>
+                    
+                    <!-- 좋아요 -->
+                    <div class="groupLikeItems" > 
+                    <input type="hidden" class= "like-study-group-number" >
+                    <input type="hidden" class= "like-member-number" value= "${group.memberNumber}" >
+          		     <button class= "groupLikeButton" data-study-group-number= "${group.studyGroupNumber}">
+                   	<img alt="" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" class="groupLikeImg" >
+                   	<p>${group.studyGroupLikeCount}</p>
+                    </button> 
+                     </div>
+                    
+                  </div>
+                  
+                </section>
+         
+              
+              </li>
+				</a>
+				 `
+			
+			});
+		
+				
+				$('.spaceList').html(text);
+				
+			}
+	
 });
 
 
-// 좋아요 기능 
+// 페이징 처리 
 
-$('.groupLikeImg').on('click', function(event) {
+/*$('.pageNumber').on('click', ".pageBtn", function() {
+	page = $(this).text.trim();
+	
+			if(sort == 1){
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?page=" + $(this).text().trim(), //호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "json",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(0).prop("selected", true);
+			}
+		});
+	} else if (sort == 2) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?order=new&page=" + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(1).prop("selected", true);
+				page = 1;
+			}
+		});
+	} else if (sort == 3) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?order=like&page=" + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(2).prop("selected", true);
+			}
+		});
+	} else if (sort == 4) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?order=read&page=" + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(3).prop("selected", true);
+			}
+		});
+	}
+})
+
+$('.pageNumber').on('click', ".prev", function() {
+	page = $(this).text.trim(); 
+	
+	if(sort == 1) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?page=" + (startPage), //호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "json",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+					var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(0).prop("selected", true);
+			}
+			
+		});
+	} else if (sort == 2) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?order=new&page=" + (startPage),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+						var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(1).prop("selected", true);
+			page = 1;
+			}
+		});
+	} else if (sort == 3) {
+		
+	$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?order=like&page=" + (startPage),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+						var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(2).prop("selected", true);
+			}
+		});
+	} else if (sort == 4) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?order=read&page=" + (startPage),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(2).prop("selected", true);
+			}
+		});
+	}
+})
+
+
+$('.pageNumber').on('click', ".next", function(){
+	page = $(this).text.trim();
+	
+	if(sort == 1){
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?page=" + (endPage + 3), //호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "json",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+			var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(0).prop("selected", true);
+			}
+		});
+	} else if (sort == 2) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?order=new&page=" + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(1).prop("selected", true);
+				page = 1;
+			}
+		});
+	} else if (sort == 3) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url:  "/studyGroup/studyGroupMainOk.sg?order=like&page=" + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(2).prop("selected", true);
+			}
+		});
+	}  else if (sort == 4) {
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/studyGroup/studyGroupMainOk.sg?order=read&page=" + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+			var e = $(Parse_data).find('.spaceList');
+				$(".spaceList").html(e);
+				 $('#order option').eq(3).prop("selected", true);
+			}
+		});
+	}
+	
+	
+})
+*/
+
+
+// 좋아요 기능 
+//$('.groupLikeImg').on('click', function(event) {
+$('.spaceList').on('click', '.groupLikeImg', function(event) {
 	event.preventDefault();
 	let target = this;
 	let studyGroupNumber = $(this).closest(".groupLikeItems").find('.groupLikeButton').data('study-group-number');
@@ -102,22 +443,20 @@ function updateGroupLikeCount (studyGroupNumber, target) {
 		 console.log($(target).closest('.groupLikeItems').find('p'));
 	$(target).closest('.groupLikeItems').find('p').html(count);
 	  }
-})
+});
 
 }
 
-
+/*
 
 let studyGroupNumber = $('.groupLikeButton').data('study-group-number');
 console.log (studyGroupNumber + 'js 마지막에 있음');
+*/
 
 
 
 
-
-
-/*let $memberNumber = $('#likeMemberNumber').value;
-let $studyGroupNumber =$('#likeStudyGroupNumber').value;
+/*
 
 console.log($studyGroupNumber);
 
@@ -286,6 +625,7 @@ $(document).ready(function() {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 		});
 	});
+
 });
 
 // /////////////////////////////////////////
@@ -312,5 +652,5 @@ $(".filed").on("click", function() {
 		let filed = filedList[i];
 		console.log(filed);
 		filed.addEventListener("click", onClickFiled);
-	}
+}
 });

@@ -39,5 +39,19 @@ public class StudyGroupDAO {
 		sqlSession.update("studyGroup.updateReadCount", studyGroupNumber);
 	}
 	
+//	메인 - 조회수 정렬 
+	public List<StudyGroupVO> arrayReadCount(Map <String, Integer> pageMap) {
+		return sqlSession.selectList("studyGroup.arrayReadCount", pageMap);
+	}
+	
+//	메인 - 좋아요 정렬 
+	public List<StudyGroupVO> arrayLikeCount(Map <String, Integer> pageMap) {
+		return sqlSession.selectList("studyGroup.arrayLikeCount", pageMap);
+	}
+	
+//	메인 - 댓글수 정렬 
+	public List<StudyGroupVO> arrayCommentCount(Map <String, Integer> pageMap) {
+		return sqlSession.selectList("studyGroup.arrayCommentCount", pageMap);
+	}
 	
 }

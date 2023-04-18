@@ -30,7 +30,9 @@ public class StudyGroupFrontController extends HttpServlet{
 		case "/studyGroup/studyGroupReadOk.sg":
 			new StudyGroupReadOkController().execute(req,resp); 
 			break;
-		
+		case "/studyGroup/studyGroupOrderOk.sg":
+			new StudyGroupOrderOkController().execute(req,resp); 
+			break;
 		}
 	}
 }
