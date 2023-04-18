@@ -128,10 +128,11 @@
             <div class="commentInput-wrap">
               <!-- 댓글 개수, 댓글 입력, 댓글 등록버튼 -->
               <h1 class="commentInput-count"> 
+              <span class="cnt">
                <c:out value="${group.getStudyGroupCommentCount()}" />
+               </span>
               개의 댓글이 있습니다</h1>
-              <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" > 
-              </textarea>
+              <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" ></textarea>
               
               <div class="commentInput-buttonWrapper">
                 <button class="commentInput-buttonComplete" name="register"  data-memberNumber = "${group.memberNumber}" >
@@ -143,9 +144,8 @@
             <!-- 댓글 리스트 -->
 
             <!-- 마진없는 댓글 컨테이너 -->
- <ul class="commentList-CommentList">
-              마진 준 댓글 리스트 컨테이너
-  		       <!--  <li class="commentItem-commentContainer">
+ 		<ul class="commentList-CommentList">
+  		        <!-- <li class="commentItem-commentContainer">
                 <section class="commentItem-CommentHeader">
                   <div class="commentItem-writerWrapper">
                     <img
@@ -163,19 +163,17 @@
                     </div>
                   </div>
                   <div class="boardReply-editDelete">
-                 <button type="button" class="boardReply-editor-buttons-modi">수정</button>
-                <button type="button" class="boardReply-editor-buttons-dele">삭제</button>
+                 <button type="button" class="boardReply-editor-buttons-modi"  data-comment-number = "${comment.studyGroupCommentNumber}">수정</button>
+                <button type="button" class="boardReply-editor-buttons-dele"  data-number = "${comment.studyGroupCommentNumber}">삭제</button>
                 </div>
-                <div class="boardReply-editor-buttons-done">
-				 <button type="button" class="boardReply-editor-buttons-done">수정완료</button>
-				</div>
+				 <button type="button" class="boardReply-editor-buttons-done"  data-number = "${comment.studyGroupCommentNumber}" >수정완료</button>
                 </section>
                 <section class="commentItem-CommentContent">
                   <p class="commentItem-CommentContent">
                     안녕하세요 미래에서 왔습니데
                   </p>
                 </section>
-              </li>-->
+              </li> -->
             </ul> 
           </div>
         </section>

@@ -73,17 +73,8 @@ public class StudyGroupCommentOkController implements Execute {
 		 out.print(comments.toString());
 		 out.close();
 	
-//		 studyGroupCommentDAO.selectAll(StudyGroupNumber).stream()
-//		 .map(gson :: toJson)
-//		 .map(JsonParser :: parseString)
-//		 .forEach(comments :: add);
-//		 
-//		 
-//		 PrintWriter out = resp.getWriter();
-//		 
-//	     out.print(comments.toString());
-//	     out.close();
-		 
+
+
 	}
 		
 	

@@ -391,6 +391,8 @@ var startPage = endPage - (pageCount - 1);
 var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 
+
+	
 $('#order').on('change',function(){
 	var a = $('#order').val();
 	if(a == "new"){
@@ -695,7 +697,7 @@ $('a .favoritButton').on('click', function(event){
 			$(event.target).css("background-image", "url(https://shareit.kr/image/btn-large-heart-white.svg)");								
 			}
 		}
-	})
+//	})
 });
 
 function updateLikeCount(studyCafeNumber, target){
@@ -711,4 +713,4 @@ function updateLikeCount(studyCafeNumber, target){
 		}
 	})
 }
-
+})

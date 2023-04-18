@@ -10,7 +10,7 @@ import com.studymate.app.Execute;
 import com.studymate.app.studyGroup.dao.StudyGroupDAO;
 import com.studymate.app.studyGroup.vo.StudyGroupVO;
 
-public class studyGroupReadOkController implements Execute {
+public class StudyGroupReadOkController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,6 +19,8 @@ public class studyGroupReadOkController implements Execute {
 		int studyGroupNumber = Integer.valueOf(req.getParameter("studyGroupNumber"));
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO();
 		StudyGroupVO studyGroupVO = studyGroupDAO.select(studyGroupNumber);
+	
+		studyGroupDAO.updateReadCount(studyGroupNumber);
 		
 		req.setAttribute("group", studyGroupVO); 
 		// 통째로 넘겨놓은 뒤 getter로 뽑으면 됨. 

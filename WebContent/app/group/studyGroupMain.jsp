@@ -153,22 +153,26 @@
         </div>
 
         <!-- 스터디 카페 메인  -->
-      <form action="" method="post" id="Sort">
+      <form action="/studyGroup/studyGroupMainOk.sg" method="get" name="order">
         <div class="mainSpace">
           <div class="titleOrder">
             <h2 class="title">
               스터디 그룹
             </h2>
+            <input type="hidden" class="studygroup-count" value="${total }">
             <div class="selectOrder">
-              <select >  
-                <option value="interest">
-                  관심순
-                </option>
-                <option value="latest">
+              <select id="order"  name="order" >  
+               <option id="latest" value="latest">
                   최신순
                 </option>
-                <option value="viewCount">
+                <option id="viewCount" value="viewCount">
                   조회순
+                </option>
+                <option id="interest" value="interest">
+                  좋아요순
+                </option>
+                <option id="commentCount" value="commentCount">
+                  댓글순
                 </option>
               </select>
             </div>
@@ -177,7 +181,7 @@
       </form>
 
           <!-- 그룹모집 메인 -->
-        <div class="mainContainer">
+        <div class="mainContainer2">
           <ul class="spaceList">
           
           
@@ -187,7 +191,8 @@
           <c:choose>
           <c:when test="${not empty studyGroups}">
           <c:forEach var="group" items= "${studyGroups}">
-           <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen">
+           <%-- <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen"> --%>
+              <a href="" class="studyOpen">
               <li>
                 <div class="badge">
                   <div class="badgeFiled">
@@ -237,9 +242,14 @@
                        <p>${group.getStudyGroupCommentCount()}</p>
                     </div>
                     
+                    <!-- 좋아요 -->
                     <div class="groupLikeItems" > 
-                   	<img alt="" src="${pageContext.request.contextPath}/assets/img/btn-large-heart-white.svg" class="groupLikeImg" >
+                    <input type="hidden" class= "like-study-group-number" >
+                    <input type="hidden" class= "like-member-number" value= "${group.getMemberNumber()}" >
+          		     <button class= "groupLikeButton" data-study-group-number= "${group.getStudyGroupNumber()}">
+                   	<img alt="" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" class="groupLikeImg" >
                    	<p>${group.getStudyGroupLikeCount()}</p>
+                    </button> 
                      </div>
                     
                   </div>
@@ -770,8 +780,8 @@
           
            --%>
         </div>
-
-
+	
+	
       </div>
 
     </main>
@@ -782,6 +792,9 @@
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
       crossorigin="anonymous"
     ></script>
+    <script>
+    let memberNumber = 1;
+    </script>
     <script src="${pageContext.request.contextPath}/assets/js/study_group_main.js"></script>
   </body>
 </html>
