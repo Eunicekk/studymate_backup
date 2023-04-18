@@ -28,7 +28,7 @@
 		where member_number=#{memberNumber}
 	</delete>
 
-	<select id="selectPortfolio" resultType="MyPageVO"
+	<!-- <select id="selectPortfolio" resultType="MyPageVO"
 		parameterType="map">
 		select b.board_number, b.board_title,
 		count(bc.board_comment_number) comment_count,
@@ -39,14 +39,17 @@
 		on b.board_number = bc.board_number
 		group by board_number
 		limit #{startRow}, #{rowCount}
-	</select>
+	</select> -->
 
 	<select id="getTotal" parameterType="_int" resultType="_int">
 		select count(board_number) from
-		tbl_board b join tbl_member m 
-		on b.member_number = m.member_number 
-		where m.member_number =#{memberNumber}
-	</select>
+		tbl_board 
+		where member_number =#{memberNumber}
+	</select> 
+	
+	<!-- <select id="getTotal resultType="_int">
+		select count(board_number)  from tbl_board tb
+	</select> -->
 
 	<select id="myPortfolio" parameterType="map"
 		resultType="MyPageVO">
@@ -61,7 +64,8 @@
 		where b.member_number =#{memberNumber}
 		group by b.board_number, b.board_title, b.board_read_count,
 		b.member_number
-		order by b.board_number
+		order by b.board_number asc limit
+		#{startRow},#{rowCount}
 	</select>
 
 	<select id="myLikeCafe" parameterType="_int"
@@ -109,7 +113,7 @@
 		tscf
 		on sc.study_cafe_number = tscf.study_cafe_number
 		where
-		tm.member_number =#{memberNumber} and tr.reservation_end > curdate()
+		tm.member_number =#{memberNumber}<!--  and tr.reservation_end > curdate() -->
 		group by sc.study_cafe_number , tr.reservation_number,
 		tm.member_number,
 		tscf.cafe_file_system_name

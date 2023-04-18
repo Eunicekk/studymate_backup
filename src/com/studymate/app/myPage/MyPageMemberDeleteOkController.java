@@ -25,7 +25,7 @@ public class MyPageMemberDeleteOkController implements Execute {
 		memberDTO.setMemberNumber(memberNumber);		
 		myPageDAO.delete(memberNumber);
 		
-		resp.sendRedirect("/mypage/MyPageMemberDeleteOk.my");
+		resp.sendRedirect("/assets/index.jsp");
 	}
 
 }

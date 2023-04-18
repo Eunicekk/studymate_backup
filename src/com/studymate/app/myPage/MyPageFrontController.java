@@ -22,10 +22,13 @@ public class MyPageFrontController extends HttpServlet {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 		System.out.println(target);
 		switch (target) {
+		case "/mypage/myPageMain.my":
+			req.getRequestDispatcher("/app/mypage/myPageMain.jsp").forward(req, resp);
+			break;
+			// 임시 페이지
 		case "/mypage/MyPageModifyingProfile.my":
 			new MyPageModifyingProfileController().execute(req, resp);
 			break;
-			// 임시 페이지
 		case "/mypage/MyPageModifyingProfileOk.my":
 			new MyPageModifyingProfileOkController().execute(req, resp);
 			break;

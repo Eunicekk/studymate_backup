@@ -29,13 +29,13 @@ public SqlSession sqlSession;
 		sqlSession.delete("myPage.deleteMember", memberNumber);
 	}
 	
-	public int getTotal() {
-		return sqlSession.selectOne("myPage.getTotal");
+	public int getTotal(int memberNumber) {
+		return sqlSession.selectOne("myPage.getTotal", memberNumber);
 	}
 	
-	public List<MyPageVO> selectPortfolio(Map<String, Integer> pageMap) {
-		return sqlSession.selectList("myPage.selectPortfolio", pageMap);
-	}
+//	public List<MyPageVO> selectPortfolio(Map<String, Integer> pageMap) {
+//		return sqlSession.selectList("myPage.selectPortfolio", pageMap);
+//	}
 
 	public List<MyPageVO> myPortfolio(Map<String, Integer> pageMap) {
 		return sqlSession.selectList("myPage.myPortfolio", pageMap);

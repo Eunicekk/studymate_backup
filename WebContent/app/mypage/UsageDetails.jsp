@@ -12,59 +12,22 @@
 	href="${pageContext.request.contextPath}/assets/css/reset.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/UsageDetails.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/reset.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/myPageMain.css">
 </head>
+<div class="header"></div>
 <body>
-	<div class="main">
-		<div class="header"></div>
-		<div class="container">
-			<div class="sidebar">
-				<ul>
-					<li class="active"><a href="#">내 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageModifyingProfile.my">정보
-							수정</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my">내
-							포트폴리오</a></li>
-					<li class="active"><a href="#">카페 예약 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageInterestPlaceOk.my">관심
-							장소</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageReserveOk.my">예약
-							정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageUsaDetailsOk.my">이용
-							내역</a></li>
-					<!-- <li class="side"><a href="cancel.jsp">취소/환불</a></li> -->
-					<li class="active"><a href="#">그룹 참여 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageLeaderGroupOk.my">내
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageInterestGroupOk.my">관심
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageParticipatingGroupOk.my">참여
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageEndGroupOk.my">종료
-							그룹</a></li>
-				</ul>
-			</div>
 			<div class="main-container">
-				<div class="main-container-title">
-					<h1>이용 내역</h1>
-				</div>
 				<ul class="reserve-tab-panel">
 					<li class="reserve-tab-li">
 						<button class="reserve-tab-button-selected">전체</button>
 					</li>
 				</ul>
 				<form class="reserve-search-form">
-					<label class="reserve-search-label"><input
-						type="text" class="reserve-search-input"
-						placeholder="예약 번호를 입력해주세요." /></label>
+					<label class="reserve-search-label"><input type="text"
+						class="reserve-search-input" placeholder="예약 번호를 입력해주세요." /></label>
 					<button class="reserve-search-button">검색</button>
 				</form>
 				<ul class="reserve-list">
@@ -104,7 +67,7 @@
 												<p>사용 시간</p>
 												<p>
 													${myUsaDetails.getFormatStartDate() } <br />
-													 ${myUsaDetails.getFormatEndDate() }
+													${myUsaDetails.getFormatEndDate() }
 												</p>
 											</div>
 											<div>
@@ -118,7 +81,7 @@
 										</div>
 										<div class="payment-box">
 											<p>총 금액</p>
-											<p>${myUsaDetails.getStudyCafePrice() } 원</p>
+											<p>${myUsaDetails.getStudyCafePrice() }원</p>
 										</div>
 									</section>
 								</li>
@@ -148,10 +111,8 @@
 					</li>
 				</ul>
 			</div>
-		</div>
 
 		<div class="footer"></div>
-	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/js/UsageDetails.js"></script>

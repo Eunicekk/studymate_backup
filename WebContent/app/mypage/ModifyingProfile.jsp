@@ -12,51 +12,14 @@
 	href="${pageContext.request.contextPath}/assets/css/reset.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/ModifyingProfile.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/reset.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/myPageMain.css">
 </head>
 <body>
-	<div class="main">
-		<div class="header"></div>
-		<div class="container">
-			<div class="sidebar">
-				<ul>
-					<li class="active"><a href="#">내 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageModifyingProfile.my">정보
-							수정</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my">내
-							포트폴리오</a></li>
-					<li class="active"><a href="#">카페 예약 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageInterestPlaceOk.my">관심
-							장소</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageReserveOk.my">예약
-							정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageUsaDetailsOk.my">이용
-							내역</a></li>
-					<!-- <li class="side"><a href="cancel.jsp">취소/환불</a></li> -->
-					<li class="active"><a href="#">그룹 참여 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageLeaderGroupOk.my">내
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageInterestGroupOk.my">관심
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageParticipatingGroupOk.my">참여
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageEndGroupOk.my">종료
-							그룹</a></li>
-				</ul>
-			</div>
-			<form action="${pageContext.request.contextPath}/mypage/MyPageModifyingProfile.my" method="POST">
+		<div class="my-content">
 				<div class="main-container">
-				<div class="main-container-title">
-					<h1>개인 정보 수정</h1>
-				</div>
 				<div class="presonal-info">
 					<figure class="profile-form">
 						<img src="https://img.shareit.kr:13443/data/character/1.png"
@@ -71,7 +34,7 @@
 						<div class="presonal-info-item">
 							<span>닉네임</span> 
 							<input type="text" name="nickname" id="nickname" placeholder="변경할 닉네임 입력" />
-							<span class="check-msg" id="check-id-msg"></span>
+							<!-- <span class="check-msg" id="check-id-msg"></span> -->
 						</div>
 						<div class="presonal-info-item">
 							<span>휴대 전화</span> 
@@ -101,11 +64,8 @@
 					</div>
 				</div>
 			</div>
-			</form> 
 		</div>
 
-		<div class="footer"></div>
-	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/js/ModifyingProfile.js"></script>

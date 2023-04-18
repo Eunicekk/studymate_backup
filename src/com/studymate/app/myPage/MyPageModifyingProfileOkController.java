@@ -23,7 +23,7 @@ public class MyPageModifyingProfileOkController implements Execute {
 		MemberDTO memberDTO = new MemberDTO();
 		MyPageDAO myPageDAO = new MyPageDAO();
 		
-		memberDTO.setMemberNumber(12);
+		memberDTO.setMemberNumber(1);
 		memberDTO.setMemberNickname(req.getParameter("nickname"));
 		memberDTO.setMemberPhoneNumber(req.getParameter("phonenumber"));
 		memberDTO.setMemberEmail(req.getParameter("email"));

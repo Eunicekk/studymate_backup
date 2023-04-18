@@ -18,7 +18,7 @@ public class MyPageModifyingProfileController implements Execute {
 		MemberDTO memberDTO = new MemberDTO(); 
 //		HttpSession session = req.getSession();
 //		int number = session.getAttribute("memberNumber");
-		Integer memberNumber =12;
+		Integer memberNumber =1;
 		
 
 		memberDTO = myPageDAO.selectMember(memberNumber);
