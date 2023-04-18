@@ -30,7 +30,7 @@ public class StudyGroupOrderOkController implements Execute {
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO();
 		String order = req.getParameter("order");
 		String studyGroupNumber = req.getParameter("studyGroupNumber");
-		String studyGroupTitle = req.getParameter("studyGroupTitle");
+		
 		int total = studyGroupDAO.getTotal();
 		
 		String temp= req.getParameter("page"); 

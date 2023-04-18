@@ -22,11 +22,12 @@
             <input
               type="text"
               autocomplete="off"
-              id="searchInput"
+              id="searchInput" 
+              name="searchInput" 
               placeholder="찾으시는 키워드를 입력하세요"
               value=""
             />
-            <input type="submit" value="" />
+            <input type="submit" id="search-btn" value="" />
           </form>
           <a href="${pageContext.request.contextPath}/app/group/studyGroupWrite.jsp" class="newWriteBtn">새 글 쓰기</a>
         </div>

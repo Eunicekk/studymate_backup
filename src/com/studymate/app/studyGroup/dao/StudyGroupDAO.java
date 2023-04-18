@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mybatis.config.MyBatisConfig;
+import com.studymate.app.studyCafe.vo.StudyCafeVO;
 import com.studymate.app.studyGroup.dto.StudyGroupDTO;
 import com.studymate.app.studyGroup.vo.StudyGroupVO;
 
@@ -52,6 +53,11 @@ public class StudyGroupDAO {
 //	메인 - 댓글수 정렬 
 	public List<StudyGroupVO> arrayCommentCount(Map <String, Integer> pageMap) {
 		return sqlSession.selectList("studyGroup.arrayCommentCount", pageMap);
+	}
+	
+//	메인 - 검색기능 
+	public List<StudyGroupVO> search(String keyword){
+		return sqlSession.selectList("studyGroup.search", keyword);
 	}
 	
 }
