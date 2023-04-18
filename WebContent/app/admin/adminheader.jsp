@@ -22,9 +22,6 @@
 			<div class="login">
 				<a href="${pageContext.request.contextPath}/admin/adminlogin.ad">로그인</a>
 			</div>
-			<div class="join">
-				<a href="#" style="color: white">회원가입</a>
-			</div>
 		</div>
 	</header>
 

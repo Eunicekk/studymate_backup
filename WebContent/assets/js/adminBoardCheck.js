@@ -3,6 +3,10 @@ var $boardAlign01 = $('.align01');
 var $boardAlign02 = $('.align02');
 var $boardDelete = $('.delete');
 
+window.onload = function() {
+	$('.board-search .material-symbols-outlined').css('color', '#65619E')
+	$(this).css('border', '1px solid #65619E');
+};
 // 검색창 클릭 시 css 변화
 $boardSearchInput.on('focus', function() {
 	$('.board-search .material-symbols-outlined').css('color', '#65619E')
@@ -34,19 +38,19 @@ var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 
-if(tmp ==1){
+if (boardTmp == 1) {
 	$boardAlign01.children().css('color', '#000000');
 	$boardAlign01.children('material-symbols-outlined').css('color', '#65619E');
 	$boardAlign02.children().css('color', '#bdbdbd');
 }
 
-if(tmp ==2){
+if (boardTmp == 2) {
 	$boardAlign02.children().css('color', '#000000');
 	$boardAlign02.children('material-symbols-outlined').css('color', '#65619E');
 	$boardAlign01.children().css('color', '#bdbdbd');
 }
 
-var tmp;
+var boardTmp;
 
 // 정렬 버튼 클릭 시 css 변화
 $boardAlign01.on('click', function() {
@@ -63,7 +67,7 @@ $boardAlign01.on('click', function() {
 		}
 
 	});
-	tmp = 1;
+	boardTmp = 1;
 })
 $boardAlign02.on('click', function() {
 	$.ajax({
@@ -79,7 +83,7 @@ $boardAlign02.on('click', function() {
 		}
 
 	});
-	tmp = 2;
+	boardTmp = 2;
 
 })
 
@@ -109,20 +113,21 @@ $(document).each(function() {
 });
 
 //검색
-$('.board-search > form > button').on('click' ,function(){
+$('.board-search > form > button').on('click', function() {
 	var memberId = $('.board-search > form > input').val();
 	$.ajax({
-			type: "GET",
-			url: "/admin/adminBoardListOk.ad",
-			data: { memberId : memberId },
-			success: function(Parse_data) {
-				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
-				//alert("통신 데이터 값 : " + Parse_data);
-			},
-			error: function() {
-				alert("통신 실패");
-			}
-		});
+		type: "GET",
+		url: "/admin/adminBoardListOk.ad?search=name",
+		data: { memberId: memberId },
+		success: function(Parse_data) {
+			$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+			//alert("통신 데이터 값 : " + Parse_data);
+		},
+		error: function() {
+			alert("통신 실패");
+		}
+	});
+	boardTmp=3;
 })
 
 
@@ -136,7 +141,7 @@ $('#paging').on('click', ".pageBtn", function() {
 
 
 	console.log($(this).text().trim());
-	if (tmp == 1) {
+	if (boardTmp == 1) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -151,7 +156,7 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
-	} else if (tmp == 2) {
+	} else if (boardTmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: '/admin/adminBoardListOk.ad?order=desc&page=' + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -165,17 +170,30 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
+	} else if(boardTmp == 3){
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: '/admin/adminBoardListOk.ad?search=name&page=' + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+			}
+
+		});
 	}
 });
 
 
 //prev버튼
 $('#paging').on('click', ".prev", function() {
-	if (tmp == 1) {
+	if (boardTmp == 1) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminBoardListOk.ad?page=' + (startPage -1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminBoardListOk.ad?page=' + (startPage - 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -186,10 +204,10 @@ $('#paging').on('click', ".prev", function() {
 			}
 
 		});
-	} else if (tmp == 2) {
+	} else if (boardTmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminBoardListOk.ad?order=desc&page=' + (startPage -1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminBoardListOk.ad?order=desc&page=' + (startPage - 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -206,7 +224,7 @@ $('#paging').on('click', ".prev", function() {
 
 //next
 $('#paging').on('click', ".next", function() {
-	if (tmp == 1) {
+	if (boardTmp == 1) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -221,7 +239,7 @@ $('#paging').on('click', ".next", function() {
 			}
 
 		});
-	} else if (tmp == 2) {
+	} else if (boardTmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: '/admin/adminBoardListOk.ad?order=desc&page=' + (endPage + 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.

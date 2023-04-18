@@ -15,21 +15,21 @@ $searchCafeInput.on('blur', function() {
 	$(this).css('border', '1px solid #bdbdbd');
 });
 
-if(tmp == 1){
+if(cafeTmp == 1){
 	$cafeAlign01.children().css('color', '#000000');
 	$cafeAlign01.children('material-symbols-outlined').css('color', '#65619E');
 	$cafeAlign02.children().css('color', '#bdbdbd');
 	$cafeAlign03.children().css('color', '#bdbdbd');
 }
 
-if(tmp ==2 ){
+if(cafeTmp ==2 ){
 	$cafeAlign02.children().css('color', '#000000');
 	$cafeAlign02.children('material-symbols-outlined').css('color', '#65619E');
 	$cafeAlign01.children().css('color', '#bdbdbd');
 	$cafeAlign03.children().css('color', '#bdbdbd');
 }
 
-if(tmp ==3){
+if(cafeTmp ==3){
 	$cafeAlign03.children().css('color', '#000000');
 	$cafeAlign03.children('material-symbols-outlined').css('color', '#65619E');
 	$cafeAlign01.children().css('color', '#bdbdbd');
@@ -52,7 +52,7 @@ $cafeAlign01.on('click', function() {
 		}
 
 	});
-	tmp = 1;
+	cafeTmp = 1;
 
 })
 $cafeAlign02.on('click', function() {
@@ -69,7 +69,7 @@ $cafeAlign02.on('click', function() {
 		}
 
 	});
-	tmp = 2;
+	cafeTmp = 2;
 
 })
 $cafeAlign03.on('click', function() {
@@ -86,11 +86,11 @@ $cafeAlign03.on('click', function() {
 		}
 
 	});
-	tmp = 3;
+	cafeTmp = 3;
 
 })
 
-var tmp;
+var cafeTmp;
 var page;
 
 var total = $('.cafe-count').text();
@@ -118,7 +118,7 @@ $('#paging').on('click', ".pageBtn", function() {
 	page = $(this).text().trim()
 
 	console.log($(this).text());
-	if (tmp == 1) {
+	if (cafeTmp == 1) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -133,7 +133,7 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
-	} else if (tmp == 2) {
+	} else if (cafeTmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: '/admin/adminCafeListOk.ad?order=comment&page=' + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -169,7 +169,7 @@ console.log(startPage + "start 출력");
 //prev 버튼
 $('#paging').on('click', ".prev", function() {
 	 
-	if (tmp == 1) {
+	if (cafeTmp == 1) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -184,7 +184,7 @@ $('#paging').on('click', ".prev", function() {
 			}
 
 		});
-	} else if (tmp == 2) {
+	} else if (cafeTmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: '/admin/adminCafeListOk.ad?order=comment&page=' + (startPage-1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -218,7 +218,7 @@ console.log(endPage + " end출력");
 //next
 $('#paging').on('click', ".next", function() {
 	
-	if (tmp == 1) {
+	if (cafeTmp == 1) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -233,7 +233,7 @@ $('#paging').on('click', ".next", function() {
 			}
 
 		});
-	} else if (tmp == 2) {
+	} else if (cafeTmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: '/admin/adminCafeListOk.ad?order=comment&page=' + (endPage + 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.

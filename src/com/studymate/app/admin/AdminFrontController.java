@@ -33,9 +33,6 @@ public class AdminFrontController extends HttpServlet{
 		case "/admin/adminlogoutOk.ad":
 			new adminLogoutOkCotroller().execute(req, resp);
 			break;
-//		case "/admin/adminJoinOk.ad":
-//			new adminJoinOkCotroller().execute(req, resp);
-//			break;
 		case "/admin/adminMain.ad":
 			req.getRequestDispatcher("/app/admin/adminMain.jsp").forward(req, resp);
 			break;

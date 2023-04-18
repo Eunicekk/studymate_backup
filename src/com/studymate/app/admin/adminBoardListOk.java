@@ -25,6 +25,7 @@ public class adminBoardListOk implements Execute {
 		
 		String temp = req.getParameter("page");
 		String desc = req.getParameter("order");
+		String search = req.getParameter("search");
 		String memberId = req.getParameter("memberId");
 		
 		int page = temp == null ? 1 : Integer.valueOf(temp);
@@ -55,9 +56,8 @@ public class adminBoardListOk implements Execute {
 		
 		if(desc == null && memberId == null) {
 			boardList = adminDAO.boardList(pageMap);
-		}else if(memberId != null) {
+		}else if(memberId != null && search !=null ) {
 			boardList = adminDAO.boardSearch(memberId);
-			
 		}
 		else {
 			boardList = adminDAO.boardListDesc(pageMap);

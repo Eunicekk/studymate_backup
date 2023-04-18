@@ -65,10 +65,6 @@ public class adminGroupListOk implements Execute {
 			groupList = adminDAO.groupListDate(pageMap);
 		}
 		
-//		groupList = adminDAO.groupList(pageMap);
-		System.out.println(groupList);
-
-		
 		req.setAttribute("groupList", groupList);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);

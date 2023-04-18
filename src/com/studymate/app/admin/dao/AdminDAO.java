@@ -108,6 +108,7 @@ public class AdminDAO {
 	
 	public List<AdminBoardVO> boardSearch(String memberId) {
 		return sqlSession.selectList("admin.boardSearch",memberId);
+		
 	}
 	
 	public List<MemberDTO> MemberSearch(SearchVO searchText) {

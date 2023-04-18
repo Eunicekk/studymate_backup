@@ -54,6 +54,7 @@ public class adminMemberSearchOk implements Execute {
 		Map<String, Integer> pageMap = new HashMap<String, Integer>();
 		searchVO.setStartRow(startRow);
 		searchVO.setRowCount(rowCount);
+		System.out.println(searchVO);
 
 //		if(desc == null && memberId == null) {
 //			members = adminDAO.adminMemberCheck(pageMap);				

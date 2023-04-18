@@ -229,8 +229,8 @@
 									<div class="group-info">
 										<div class="user">
 											<img
-												src="https://hola-post-image.s3.ap-northeast-2.amazonaws.com/default.PNG"
-												alt="그룹 프로필 사진" width="30px"> <span>${group.getMemberNickname()}</span>
+												src="${pageContext.request.contextPath}/upload/${group.getProfileSystemName()}"
+												 width="30px"> <span>${group.getMemberNickname()}</span>
 										</div>
 									</div>
 								</div>
@@ -281,7 +281,7 @@
 									<div class="content-member-info">
 										<div>
 											<img
-												src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
+												src="${pageContext.request.contextPath}/upload/${board.getProfileSystemName()}"
 												class="content-userImg" height="25px" width="25px" />
 										</div>
 										<span class="content-writer">${board.getMemberNickname()}</span> <span

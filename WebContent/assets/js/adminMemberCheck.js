@@ -95,6 +95,7 @@ $('.member-search > form > button').on('click', function() {
 		success: function(Parse_data) {
 			$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
 			//alert("통신 데이터 값 : " + Parse_data);
+			$('.member-search > form > input').val(memberId);
 		},
 		error: function() {
 			alert("통신 실패");
@@ -151,7 +152,7 @@ $('#paging').on('click', ".pageBtn", function() {
 			data: { memberId: memberId },
 			success: function(Parse_data) {
 				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
-				//alert("통신 데이터 값 : " + Parse_data);
+				$('.member-search > form > input').val(memberId);
 			},
 			error: function() {
 				alert("통신 실패");
@@ -201,7 +202,7 @@ $('#paging').on('click', ".prev", function() {
 			data: { memberId: memberId },
 			success: function(Parse_data) {
 				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
-				//alert("통신 데이터 값 : " + Parse_data);
+				$('.member-search > form > input').val(memberId);
 			},
 			error: function() {
 				alert("통신 실패");
@@ -251,7 +252,7 @@ $('#paging').on('click', ".next", function() {
 			data: { memberId: memberId },
 			success: function(Parse_data) {
 				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
-				//alert("통신 데이터 값 : " + Parse_data);
+				$('.member-search > form > input').val(memberId);
 			},
 			error: function() {
 				alert("통신 실패");
