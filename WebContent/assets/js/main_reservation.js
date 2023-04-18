@@ -3,7 +3,7 @@ let $li = $(".location");
 let font = document.querySelector(".fontColor");
 
 $li.click(() => {
-	$(".locationList").toggleClass("none");
+	$(".locationList").toggleClass("none"); 
 });
 
 let $ReginCencle = $(".locationSubmit > button:first-child");
@@ -262,18 +262,6 @@ $(document).ready(function() {
 	});
 });
 
-//검색기능
-$(document).ready(function() {
-	$("#searchInput").on("keyup", function() {
-		var value = $(this).val().toLowerCase();
-		console.log(value);
-		// 클래스로 어디 검색 할지 정할수있다.
-		$(".spaceList > li").filter(function() {
-			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-		});
-	});
-});
-
 // 가격 설정하기
 const rangeInput = document.querySelectorAll(".range-input input"),
 	priceInput = document.querySelectorAll(".price-input input"),
@@ -359,12 +347,38 @@ $(document).ready(function() {
 //   });
 // });
 
+//검색기능
+
+/*$("#search-input").on("keyup", function() {
+	var value = $(this).val().toLowerCase();
+	console.log(value);
+	// 클래스로 어디 검색 할지 정할수있다.
+	$(".spaceList > li").filter(function() {
+		$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+	});
+});*/
+
+$('#search').submit(function(event){
+	event.preventDefault();
+	var studyCafeName = $("input[name='search-input']").val();
+	
+	console.log(studyCafeName);
+	$.ajax({
+		type: "GET",
+		url: "/cafe/cafeListOk.sc",
+		data: { studyCafeName : studyCafeName },
+		success: function(Parse_data) {
+			var e = $(Parse_data).find('#ajax-list');
+			$("#ajax-list").html(e);
+		},
+		error: function() {
+			alert("통신 실패");
+		}
+	});
+});
+
 
 // 정렬 기능
-let $new = $('#new');
-let $score = $('#score');
-let $like = $('#like');
-let $read = $('#read');
 var sort = 1;
 
 var page = 1;
@@ -383,22 +397,6 @@ $('#order').on('change',function(){
 		console.log($(this));
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: "/cafe/cafeListOk.sc",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
-			error: function() {
-				alert("통신실패!!!!");
-			},
-			success: function(Parse_data) {
-				var e = $(Parse_data).find('#ajax-list');
-				$("#ajax-list").html(e);
-				$('#order').val("new").prop("selected", true);
-			}
-		});
-		var sort = 1;
-	} else if(a == "score") {
-		console.log($(this));
-		$.ajax({
-			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: "/cafe/cafeListOk.sc?order=new",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
@@ -407,7 +405,25 @@ $('#order').on('change',function(){
 			success: function(Parse_data) {
 				var e = $(Parse_data).find('#ajax-list');
 				$("#ajax-list").html(e);
+				$('#order').val("new").prop("selected", true);
+				like();
+			}
+		});
+		var sort = 1;
+	} else if(a == "score") {
+		console.log($(this));
+		$.ajax({
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/cafe/cafeListOk.sc?order=score",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('#ajax-list');
+				$("#ajax-list").html(e);
 				$('#order').val("score").prop("selected", true);
+				like();
 			}
 		});
 		var sort = 2;
@@ -424,6 +440,7 @@ $('#order').on('change',function(){
 				var e = $(Parse_data).find('#ajax-list');
 				$("#ajax-list").html(e);
 				$('#order').val("like").prop("selected", true);
+				like();
 			}
 		});
 		var sort = 3;
@@ -440,6 +457,7 @@ $('#order').on('change',function(){
 				var e = $(Parse_data).find('#ajax-list');
 				$("#ajax-list").html(e);
 				$('#order').val("read").prop("selected", true);
+				like();
 			}
 		});
 		var sort = 4;
@@ -467,7 +485,7 @@ $('.pageNumber').on('click', ".pageBtn", function(){
 	} else if (sort == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: "/cafe/cafeListOk.sc?order=new&page=" + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: "/cafe/cafeListOk.sc?order=score&page=" + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -476,7 +494,6 @@ $('.pageNumber').on('click', ".pageBtn", function(){
 				var e = $(Parse_data).find('#ajax-list');
 				$("#ajax-list").html(e);
 				$('#order').val("score").prop("selected", true);
-				page = 1;
 			}
 		});
 	} else if (sort == 3) {
@@ -636,50 +653,43 @@ $('.pageNumber').on('click', ".next", function(){
 	}
 })
 
+// 좋아요 기능
+$(document).ready(like);
 
-// 검색 기능 넣기
-/*$('#search-btn').click(function() {
-	var $searchValue = $('#search-input').val();
-	$.ajax({
-		url: '/cafe/cafeSearchOk.sc?search=' + $searchValue,
-		type: 'get',
-		dataType: 'json',
-		success: function(response) {
-			searchResult();
+function like() {
+    $.ajax({
+		url: "/cafelike/cafeLikeCheckOk.mlc",
+		type: "get",
+		data: {
+			memberNumber: memberNumber
+		},
+		dataType: "json",
+		success: function(cafelike){
+			var arr = cafelike;
+			for(var j=0; j<arr.length; j++){
+				console.log(arr[j]);
+				$('.cafename').find('input[value='+ arr[j] +']').closest('a').find('.favoritButton').css("background-image", "url(https://shareit.kr/image/btn-large-heart-filled-white.svg)");
+			}		
 		}
 	});
-});
-
-function showSearchResults(results) {
-	var $results = $('#search-results');
-	$results.empty();
-	$.each(results, function(index, result) {
-		var $title = $('<h3>').text(result.title);
-		$results.append($title);
-	});
-}*/
-
-
-// 좋아요 기능...
-
+};
 
 $('a .favoritButton').on('click', function(event){
 	event.preventDefault();
 	let target = this;
-	let  cafeNumber = $(this).closest('a').find('.cafe-number-count').val();
-	
+	let studyCafeNumber = $(this).closest('a').find('.cafe-number-count').val();
 	
 	$.ajax({
 		url: "/cafelike/cafeLikeUpadateOk.mlc",
 		type: "get",
 		data: {
-			studyCafeNumber: cafeNumber,
-			memberNumber: $memberNumber
+			studyCafeNumber: studyCafeNumber,
+			memberNumber: memberNumber
 		},
-		success: function(resp){
-			console.log(resp);
-			updateLikeCount(cafeNumber, target);
-			if(resp == 0){
+		success: function(result){
+			console.log(result);
+			updateLikeCount(studyCafeNumber, target);
+			if(result == 0){
 			$(event.target).css("background-image", "url(https://shareit.kr/image/btn-large-heart-filled-white.svg)");
 			}else{
 			$(event.target).css("background-image", "url(https://shareit.kr/image/btn-large-heart-white.svg)");								
@@ -688,12 +698,12 @@ $('a .favoritButton').on('click', function(event){
 	})
 });
 
-function updateLikeCount(number, target){
+function updateLikeCount(studyCafeNumber, target){
 	$.ajax({
 		url: "/cafelike/cafeLikeCountOk.mlc",
-		type: "POST",
+		type: "get",
 		data: {
-			studyCafeNumber: number
+			studyCafeNumber: studyCafeNumber
 		},
 		success: function(count){
 			console.log($(target).closest('a').find('#like-count'));
@@ -701,10 +711,4 @@ function updateLikeCount(number, target){
 		}
 	})
 }
-
-let cafeNumber = $(".cafe-number-count")
-
-
-
-
 

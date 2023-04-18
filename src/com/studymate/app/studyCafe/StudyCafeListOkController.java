@@ -29,7 +29,7 @@ public class StudyCafeListOkController implements Execute {
 		
 		String temp = req.getParameter("page");
 		String order = req.getParameter("order");
-		String StudyCafeName = req.getParameter("studyCafeName");
+		String studyCafeName = req.getParameter("studyCafeName");
 		
 		int page = temp == null ? 1 : Integer.parseInt(temp);
 		
@@ -48,15 +48,21 @@ public class StudyCafeListOkController implements Execute {
 		pageMap.put("startRow", startRow);
 		pageMap.put("rowCount", rowCount);
 		
-		 if(order == null || order.equals("new")) {
+		System.out.println(order);
+		
+		 if((order == null || order.equals("new")) && studyCafeName == null) {
 			cafelist = studyCafeDAO.selectAll(pageMap);
-		 }else if(order.equals("score")) {
+		 }else if(studyCafeName != null) {
+			 cafelist = studyCafeDAO.search(studyCafeName);
+		 }else  if(order.equals("score") && studyCafeName == null) {
 		 	cafelist = studyCafeDAO.arrayByScore(pageMap);
-		 }else if(order.equals("like")) {
+		 }else if(order.equals("like") && studyCafeName == null) {
 			 cafelist =studyCafeDAO.arrayByLike(pageMap); 
-		 }else if(order.equals("read")) {
+		 }else if(order.equals("read") && studyCafeName == null) {
 			 cafelist = studyCafeDAO.arrayByRead(pageMap);
 		 }
+				
+		System.out.println(cafelist);
 		 
 		req.setAttribute("cafelist", cafelist);
 		req.setAttribute("page", page);

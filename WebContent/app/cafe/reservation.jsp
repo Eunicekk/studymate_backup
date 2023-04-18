@@ -18,7 +18,18 @@
   </head>
   <body>
     <!-- 헤더 -->
-    <header></header>
+    <header>
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/header.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</header>
 
     <main id="main">
       <main class="reserContainer">
@@ -145,13 +156,9 @@
                 </div>
                 <div class="likeBtn">
                   <button type="button">
-                    <span>
-                      <img
-                        src="${pageContext.request.contextPath}/assets/img/favorite-off.f18adc33.svg"
-                        alt="좋아요 버튼"
-                        style="vertical-align: middle"
-                      />
-                    </span>
+                    <span class="material-symbols-rounded" id="favor">
+						favorite
+					</span>
                   </button>
                 </div>
               </div>
@@ -242,23 +249,23 @@
                             <span>선택</span>
                           </div>
                         </div>
+                        
+                       <!--  <button type="button" class="color-reset">초기화</button> -->
                       </div>
 
                       <div class="TimeItem">
                         <div class="Timeslider">
                           <div class="swiper">
                             <div class="swiper-wrapper" id="time">
-                              <!-- <div
-                              class="swiper-slider time-swiper-slide time-swiper-group-buying"
-                            >
-                              10,000
-                              <span class="time-swiper-time">7:00(시간)</span>
-                            </div> -->
+                              <div class="swiper-slider time-swiper-slide time-swiper-group-buying">
+                             	<%-- <c:out value="${studyCafe.getStudyCafePrice() }" />
+                              	<span class="time-swiper-time">7:00(시간)</span> --%>
+                            </div>
                             </div>
                           </div>
 
                           <p class="sliderComment">
-                            시작시간, 선택 후 종료시간을 선택해주세요.
+                            시작시간 선택 후 종료시간을 선택해주세요.
                           </p>
 
                           <button class="sliderPrev slider-prev" type="button">
@@ -266,7 +273,7 @@
                               <img
                                 src="${pageContext.request.contextPath}/assets/img/arrow-left-b3b3b3.d28cceba.svg"
                                 alt=""
-                                style="margin-top: 4px; height: 18px"
+                                style="margin-top: 4px; width: 7px;"
                               />
                             </span>
                           </button>
@@ -275,7 +282,7 @@
                               <img
                                 src="${pageContext.request.contextPath}/assets/img/arrow-right-b3b3b3.9e94f7a7.svg"
                                 alt=""
-                                style="margin-top: 4px; height: 18px"
+                                style="margin-top: 4px; width: 7px;"
                               />
                             </span>
                           </button>
@@ -290,7 +297,7 @@
                 <div>
                   <p class="TotalPrice">결제정보</p>
                   <div class="Price">
-                    <p>일반 구매 총 금액</p>
+                    <p>총 금액</p>
                     <!-- 가격 뿌려주기 -->
                     <p class="tal">
                     <c:out value="${studyCafe.getStudyCafePrice() }" />
@@ -390,31 +397,24 @@
                 건의 후기 중
                 <br />
                 <span>
-                	<c:out value="${studyCafe.getStudyCafeCommentScoreProportion() }" />
+                	<c:out value="${studyCafe.getStudyCafeCommentScoreCount() }" />
                 </span>
                 명의 고객이 5점을 주었어요.
               </div>
             </div>
           </div>
 
-          <!-- 최신순, 순서정렬 -->
-          <div class="replyFilter">
-            <button type="button">
-              <span>최신순</span>
-              <span>
-                <img src="${pageContext.request.contextPath}/assets/img/arrow-down-87-new.f91c9db5.svg" alt="" />
-              </span>
-            </button>
+		<div class="selectOrder">
+			<form action="" method="get" name="order" class="order-form">
+				<select id="order" name="order">
+					<option id="new" value="new">최신순</option>
+					<option id="scoreAsc" value="scoreAsc">별점 낮은 순</option>
+					<option id="scoreDesc" value="scoreDesc">별점 높은 순</option>
+				</select>
+			</form>
+		</div>
 
-            <div class="menuList none">
-              <!-- js로 클릭하면 메뉴 나오게, 글자 바뀌게, 올려놓으면 색 바뀌게 -->
-              <button type="button" class="select">최신순</button>
-              <button type="button" class="none_select">별점 높은 순</button>
-              <button type="button" class="none_select">별점 낮은 순</button>
-            </div>
-          </div>
-          
-          <!-- 댓글 리스트 -->
+				<!-- 댓글 리스트 -->
           <ul class="replyList">
             <li class="ReplyItemRow">
               <div class="rowContainer">
@@ -444,7 +444,7 @@
 		<div class="comment-form">
         <form id="comment-form">
            <input type="hidden" name="studyCafeNumber"
-              value="${studyCafe.getStudyCafeNumber()}">
+              value="${studyCafe.getStudyCafeNumber()}" class="cafe-num">
            <div class="form-group">
               <h3>후기 작성</h3>
               <fieldset>
@@ -473,7 +473,7 @@
                   </div>
               </fieldset>
               <div>
-                  <textarea name="content" id="content" placeholder="사용 후기를 입력하세요."></textarea>
+                  <textarea name="content" id="content" placeholder="사용 후기를 입력하세요. 등록한 후기는 수정 및 삭제가 불가합니다."></textarea>
               </div>
            <button type="button" class="submit-btn">후기 작성</button>
            </div>
@@ -542,14 +542,26 @@
     </main>
 
     <!-- footer -->
-    <footer></footer>
+    <footer>
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</footer>
 
     <script
       src="https://code.jquery.com/jquery-3.6.3.js"
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
       crossorigin="anonymous"></script>
       <script>
-    	let memberNumber = "${sessionScope.memberNumber}";
+    	let memberNumber = 1;
+    	let hourPrice = "${studyCafe.getStudyCafePrice() }";
     </script>
     <script src="${pageContext.request.contextPath}/assets/js/reservation.js"></script>
   </body>

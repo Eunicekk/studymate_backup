@@ -16,13 +16,26 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-	<header></header>
+	 <!-- 헤더 -->
+    <header>
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/header.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</header>
+	
 	<main id="main">
 		<!--nav 검색창, 필터버튼 -->
 		<div class="searchContainer">
 			<div class="searchBox">
 				<form id="search" action="" method="post">
-					<input type="text", autocomplete="off" id="search-input" placeholder="카페이름을 입력하세요" value="" />
+					<input type="text", autocomplete="off" id="search-input" name="search-input" placeholder="카페이름을 입력하세요" value="" />
 					<input type="submit" id="search-btn" value="" />
 				</form>
 			</div>
@@ -749,15 +762,26 @@
 			</div>
 
 	</main>
-	<footer></footer>
+	
+	<!-- footer -->
+	<footer>
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</footer>
 
 	<script src="https://code.jquery.com/jquery-3.6.3.js"
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
 	<script>
-		let $memberNumber = 1;
-		
-		let $result = "${result}"
+		/* let memberNumber = 1; */
 	</script>
 	<script src="${pageContext.request.contextPath}/assets/js/main_reservation.js"></script>
 </body>

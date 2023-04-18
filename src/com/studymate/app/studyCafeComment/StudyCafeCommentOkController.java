@@ -23,8 +23,20 @@ public class StudyCafeCommentOkController implements Execute {
 		StudyCafeCommentDAO studyCafeCommentDAO = new StudyCafeCommentDAO();
 		Gson gson = new Gson();
 		JsonArray comments = new JsonArray();
+		String order = req.getParameter("order");
+		List<StudyCafeCommentVO> commentList = null;	 
 		
-		List<StudyCafeCommentVO> commentList = studyCafeCommentDAO.selectAll(studyCafeNumber);
+		System.out.println(studyCafeNumber);
+		System.out.println(order);
+		
+		if(order == null || order.equals("new")) {
+			commentList = studyCafeCommentDAO.selectAll(studyCafeNumber);			 
+		}else if(order.equals("scoreAsc")) {
+			commentList = studyCafeCommentDAO.arrayByScoreAsc(studyCafeNumber);			 
+		}else if(order.equals("scoreDesc")) {		 
+			commentList = studyCafeCommentDAO.arrayByScoreDesc(studyCafeNumber);			 
+		}
+		
 		for(StudyCafeCommentVO comment : commentList) {
 			String commentJson = gson.toJson(comment);
 			System.out.println(commentJson);

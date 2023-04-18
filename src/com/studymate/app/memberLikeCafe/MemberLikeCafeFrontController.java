@@ -22,6 +22,9 @@ public class MemberLikeCafeFrontController extends HttpServlet{
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 		System.out.println(target);
 		switch(target) {
+		case "/cafelike/cafeLikeCheckOk.mlc" :
+			new CafeLikeCheckOkController().execute(req, resp);
+			break;
 		case "/cafelike/cafeLikeUpadateOk.mlc" :
 			new CafeLikeUpdateOkController().execute(req, resp);
 			break;
