@@ -14,7 +14,7 @@ public class adminCafeVO {
 	private int likeCount;
 	private int studyCafeCommentNumber;
 	private double studyCafeCommentScore;
-	private List<StudyCafeFileDTO> files;
+	private String cafeFileSystemName;
 	
 	public adminCafeVO() {}
 
@@ -90,13 +90,13 @@ public class adminCafeVO {
 		this.studyCafeCommentScore = studyCafeCommentScore;
 	}
 
-	
-	public List<StudyCafeFileDTO> getFiles() {
-		return files;
+
+	public String getCafeFileSystemName() {
+		return cafeFileSystemName;
 	}
 
-	public void setFiles(List<StudyCafeFileDTO> files) {
-		this.files = files;
+	public void setCafeFileSystemName(String cafeFileSystemName) {
+		this.cafeFileSystemName = cafeFileSystemName;
 	}
 
 	@Override
@@ -105,9 +105,12 @@ public class adminCafeVO {
 				+ ", studyCafeAddress=" + studyCafeAddress + ", studyCafePrice=" + studyCafePrice
 				+ ", studyCafeAvaliableCapacity=" + studyCafeAvaliableCapacity + ", studyCafeReadCount="
 				+ studyCafeReadCount + ", likeCount=" + likeCount + ", studyCafeCommentNumber=" + studyCafeCommentNumber
-				+ ", studyCafeCommentScore=" + studyCafeCommentScore + ", files=" + files + "]";
+				+ ", studyCafeCommentScore=" + studyCafeCommentScore + ", cafeFileSystemName=" + cafeFileSystemName
+				+ "]";
 	}
 
+
+	
 	 
 	
 	

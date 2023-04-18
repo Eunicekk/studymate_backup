@@ -1,4 +1,4 @@
-package com.studymate.app.faq;
+package com.studymate.app.main;
 
 import java.io.IOException;
 
@@ -7,13 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.studymate.app.admin.adminFaqDeleteOk;
-import com.studymate.app.admin.adminFaqUpdateOk;
-import com.studymate.app.admin.adminUpdate;
-import com.studymate.app.admin.adminfaqListOk;
-import com.studymate.app.admin.adminfaqWriteOk;
+import com.studymate.app.studyCafe.StudyCafeReadOkController;
 
-public class FaqFrontController extends HttpServlet{
+public class MainFrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doProcess(req, resp);
@@ -26,9 +22,12 @@ public class FaqFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
-
+		System.out.println(target);
+		
 		switch(target) {
+		case "/Main.ma":
+			new MainOkController().execute(req, resp);
+			break;
 		}
 	}
 }
-

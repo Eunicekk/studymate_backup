@@ -13,9 +13,9 @@ $searchInput.on('blur', function() {
 	$(this).css('border', '1px solid #bdbdbd');
 });
 
-var tmp = 1;
 
-var page = 1;
+
+var page;
 
 var total = $('.cafe-count').text();
 
@@ -34,11 +34,22 @@ var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 
 
+if (tmp ==1) {
+	$align01.children().css('color', '#000000');
+	$align01.children('material-symbols-outlined').css('color', '#65619E');
+	$align02.children().css('color', '#bdbdbd');
+}
+
+if(tmp ==2){
+	$align02.children().css('color', '#000000');
+	$align02.children('material-symbols-outlined').css('color', '#65619E');
+	$align01.children().css('color', '#bdbdbd');
+}
+
+var tmp;
+
 // 정렬 버튼 클릭 시 css 변화
 $align01.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$align02.children().css('color', '#bdbdbd');
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminMemberCheckOk.ad',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -56,9 +67,6 @@ $align01.on('click', function() {
 })
 
 $align02.on('click', function() {
-	$(this).children().css('color', '#000000');
-	$(this).children('material-symbols-outlined').css('color', '#65619E');
-	$align01.children().css('color', '#bdbdbd');
 	$.ajax({
 		type: "GET", //전송방식을 지정한다 (POST,GET)
 		url: '/admin/adminMemberCheckOk.ad?order=desc',//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -73,6 +81,27 @@ $align02.on('click', function() {
 
 	});
 	tmp = 2;
+})
+
+// 검색
+
+$('.member-search > form > button').on('click', function() {
+	var memberId = $('.member-search > form > input').val();
+	$.ajax({
+		type: "GET",
+		//url: "/admin/adminMemberCheckOk.ad",
+		url: "/admin/adminMemberSearchOk.ad",
+		data: { memberId: memberId },
+		success: function(Parse_data) {
+			$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+			//alert("통신 데이터 값 : " + Parse_data);
+			$('.member-search > form > input').val(memberId);
+		},
+		error: function() {
+			alert("통신 실패");
+		}
+	});
+	tmp = 3;
 })
 
 console.log(tmp);
@@ -114,6 +143,21 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
+	} else if (tmp == 3) {
+		var memberId = $('.member-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			//url: "/admin/adminMemberCheckOk.ad",
+			url: "/admin/adminMemberSearchOk.ad?page=" + $(this).text().trim(),
+			data: { memberId: memberId },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				$('.member-search > form > input').val(memberId);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
 	}
 });
 
@@ -124,7 +168,7 @@ $('#paging').on('click', ".prev", function() {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminMemberCheckOk.ad?page=' + (startPage),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminMemberCheckOk.ad?page=' + (startPage - 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -138,7 +182,7 @@ $('#paging').on('click', ".prev", function() {
 	} else if (tmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminMemberCheckOk.ad?order=desc&page=' + (startPage),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminMemberCheckOk.ad?order=desc&page=' + (startPage - 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -148,6 +192,21 @@ $('#paging').on('click', ".prev", function() {
 				//alert("통신 데이터 값 : " + Parse_data);
 			}
 
+		});
+	} else if (tmp == 3) {
+		var memberId = $('.member-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			//url: "/admin/adminMemberCheckOk.ad",
+			url: "/admin/adminMemberSearchOk.ad?page=" + (startPage - 1),
+			data: { memberId: memberId },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				$('.member-search > form > input').val(memberId);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
 		});
 	}
 });
@@ -159,7 +218,7 @@ $('#paging').on('click', ".next", function() {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminMemberCheckOk.ad?page=' + (endPage + 3),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminMemberCheckOk.ad?page=' + (endPage + 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -173,7 +232,7 @@ $('#paging').on('click', ".next", function() {
 	} else if (tmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminMemberCheckOk.ad?order=desc&page=' + (endPage + 3),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminMemberCheckOk.ad?order=desc&page=' + (endPage + 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -183,6 +242,21 @@ $('#paging').on('click', ".next", function() {
 				//alert("통신 데이터 값 : " + Parse_data);
 			}
 
+		});
+	} else if (tmp == 3) {
+		var memberId = $('.member-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			//url: "/admin/adminMemberCheckOk.ad",
+			url: "/admin/adminMemberSearchOk.ad?page=" + (endPage + 1),
+			data: { memberId: memberId },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				$('.member-search > form > input').val(memberId);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
 		});
 	}
 });
@@ -210,7 +284,8 @@ $(document).each(function() {
 			url: "/admin/adminMemberDeleteOk.ad",
 			data: { memberNumber: memberNumber },
 			success: function() {
-				alert("통신성공");
+				//alert("통신성공");
+				location.reload();
 			},
 			error: function() {
 				alert("통신 실패");
@@ -220,23 +295,7 @@ $(document).each(function() {
 });
 
 
-// 검색
 
-$('.member-search > form > button').on('click' ,function(){
-	var memberId = $('.member-search > form > input').val();
-	$.ajax({
-			type: "GET",
-			url: "/admin/adminMemberCheckOk.ad",
-			data: { memberId : memberId },
-			success: function(Parse_data) {
-				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
-				//alert("통신 데이터 값 : " + Parse_data);
-			},
-			error: function() {
-				alert("통신 실패");
-			}
-		});
-})
 
 /*$(document).ready(function() {
 	$(".member-search > form > input").on("keyup", function() {

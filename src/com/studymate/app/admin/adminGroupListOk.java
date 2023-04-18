@@ -31,7 +31,7 @@ public class adminGroupListOk implements Execute {
 		
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 		
-		int rowCount = 20;
+		int rowCount = 21;
 		
 		int pageCount = 5;
 		
@@ -64,10 +64,6 @@ public class adminGroupListOk implements Execute {
 		}else {
 			groupList = adminDAO.groupListDate(pageMap);
 		}
-		
-//		groupList = adminDAO.groupList(pageMap);
-		System.out.println(groupList);
-
 		
 		req.setAttribute("groupList", groupList);
 		req.setAttribute("page", page);

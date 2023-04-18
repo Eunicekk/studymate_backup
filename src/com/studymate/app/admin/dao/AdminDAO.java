@@ -10,6 +10,7 @@ import com.studymate.app.admin.board.vo.AdminBoardVO;
 import com.studymate.app.admin.cafe.vo.adminCafeVO;
 import com.studymate.app.admin.dto.AdminDTO;
 import com.studymate.app.admin.group.vo.AdminGroupVO;
+import com.studymate.app.admin.search.vo.SearchVO;
 import com.studymate.app.faq.dto.FaqDTO;
 import com.studymate.app.member.dto.MemberDTO;
 import com.studymate.app.studyCafe.dto.StudyCafeDTO;
@@ -41,6 +42,10 @@ public class AdminDAO {
 		sqlSession.delete("admin.memberDelete",memberNumber);
 	}
 	
+	public int memberSearchTotal(String memberId) {
+		return sqlSession.selectOne("admin.memberSearchTotal",memberId);
+	}
+	
 	public void cafeInsert(StudyCafeDTO studyCafeDTO) {
 		sqlSession.insert("admin.cafeInsert",studyCafeDTO);
 	}
@@ -51,6 +56,8 @@ public class AdminDAO {
 	public int getSequence() {
 		return sqlSession.selectOne("admin.getSequence");
 	}
+	
+	
 	
 //	카페 order
 	public List<adminCafeVO> cafeList(Map<String,Integer> pageMap){
@@ -101,11 +108,14 @@ public class AdminDAO {
 	
 	public List<AdminBoardVO> boardSearch(String memberId) {
 		return sqlSession.selectList("admin.boardSearch",memberId);
+		
 	}
 	
-	public List<MemberDTO> MemberSearch(String memberId) {
-		return sqlSession.selectList("admin.memberSearch",memberId);
+	public List<MemberDTO> MemberSearch(SearchVO searchText) {
+		return sqlSession.selectList("admin.memberSearch",searchText);
 	}
+	
+
 	
 	//스터디 그룹
 	public List<AdminGroupVO> groupList(Map<String,Integer> pageMap) {

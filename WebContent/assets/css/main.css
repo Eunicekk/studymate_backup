@@ -360,7 +360,7 @@ body {
 
 .group-content {
   width: 250px;
-  height: 270px;
+  height: 230px;
   border: 2px solid #d1d1d1;
   border-radius: 20px;
   display: inline-block;
@@ -565,6 +565,7 @@ body {
   line-height: 26px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  
 }
 
 .content-data-info {
@@ -575,7 +576,7 @@ body {
   margin-right: 16px;
   display: inline-block;
   position: relative;
-  padding-left: 28px;
+  /* padding-left: 28px; */
   height: 24px;
   box-sizing: border-box;
   color: #5c667b;
@@ -615,6 +616,177 @@ body {
   font-size: 10px;
   position: relative;
 }
+
+.spaceItem {
+	position: relative;
+}
+
+.spaceImg img {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	inset: 0px;
+	object-fit: cover;
+	transition: transform 0.3s ease 0s;
+}
+
+.imgInfo {
+	transition: transform 0.3s ease 0s;
+	width: 100% !important;
+	height: 100% !important;
+	position: absolute !important;
+	inset: 0px !important;
+	object-fit: cover !important;
+}
+
+img {
+	vertical-align: top;
+}
+
+.favoritButton {
+	width: 54px;
+	height: 54px;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	background-color: rgba(255, 255, 255, 0);
+	background-image: url("../img/btn-large-heart-white.svg");
+	background-size: 100%;
+	z-index: 1010;
+	cursor: pointer;
+	border: none;
+}
+
+/* 카페 정보 입력 */
+.spaceItem {
+	position: relative;
+}
+
+.studyCafeName {
+	margin-top: 5px;
+	display: flex;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	align-items: center;
+}
+
+.cafename {
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.cafename>span {
+	font-weight: 600;
+	margin-right: auto;
+	color: #242424;
+	font-size: 15px;
+	letter-spacing: -0.6px;
+	line-height: 17px;
+}
+
+.readContLike {
+	min-width: fit-content;
+	display: flex;
+	justify-contents: center;
+}
+
+.CntLikeStyle {
+	display: inline-flex;
+	color: rgb(138, 138, 138);
+	font-size: 12px;
+	letter-spacing: -0.6px;
+	line-height: 17px;
+	-webkit-box-align: center;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.CntLikeStyle:first-child svg {
+	margin-right: 2px;
+	display: flex;
+	align-content: center;
+}
+
+.box-sizing {
+	box-sizing: border-box;
+	display: block;
+	width: initial;
+	height: initial;
+	background: none;
+	opacity: 1;
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	max-width: 100%;
+}
+
+.studyCafeLocation {
+	margin-top: 3px;
+	color: rgb(163, 163, 163);
+	font-size: 12px;
+	letter-spacing: -0.6px;
+	line-height: 17px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.studyCafePrice {
+	display: inline-flex;
+	margin-top: 5px;
+	color: rgb(87, 87, 87);
+	font-size: 13px;
+	letter-spacing: -0.39px;
+	line-height: 19px;
+	-webkit-box-align: center;
+	align-items: center;
+}
+
+.priceText {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 20px;
+	line-height: 29px;
+	letter-spacing: -0.06em;
+	color: rgb(36, 36, 36);
+}
+
+.priceText>p {
+	margin: 0px 7px 0px 2px;
+	font-size: 13px;
+	line-height: 29px;
+	letter-spacing: -0.01em;
+	color: rgb(87, 87, 87);
+	white-space: nowrap;
+}
+
+.studyCafeReply {
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	color: rgb(36, 36, 36);
+	padding-top: 6px;
+}
+
+.startImg {
+	margin-right: 2px;
+	width: 14px;
+}
+
+.replyInfo {
+	font-size: 13px;
+	color: rgb(138, 138, 138);
+	margin-left: 3px;
+	cursor: pointer;
+}
+
 /* 커뮤니티~~~~~~~~~~~~~~~ */
 
 /* 바디 */

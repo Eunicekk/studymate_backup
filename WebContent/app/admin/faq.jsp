@@ -20,10 +20,18 @@
 	<header>
 		<c:choose>
 			<c:when test="${empty sessionScope.adminNickname}">
+				<c:if test="${not empty sessionScope.memberNumber }">
+					<jsp:include
+						page="${pageContext.request.contextPath}/app/header/header.jsp" />
+				</c:if>
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/admin/adminheader.jsp" />
 			</c:when>
 			<c:otherwise>
+				<c:if test="${not empty sessionScope.memberNumber }">
+					<jsp:include
+						page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+				</c:if>
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/admin/adminhaederafter.jsp" />
 			</c:otherwise>
@@ -45,7 +53,7 @@
 					<c:otherwise>
 						<div class="boardContent-editButtons">
 							<!-- 현재 로그인한 아이디or멤버넘버, 현재 게시글 아이디or멤버넘버 비교하기 c:if-->
-							<button type="button"  class="boardContent-delete write">등록</button>
+							<button type="button" class="boardContent-delete write">등록</button>
 
 						</div>
 					</c:otherwise>
@@ -80,7 +88,7 @@
 								</button> <!-- 팝업 창 -->
 								<div class="serviceItem-contentBox">
 
-									<h2>Q. 아이디/비밀번호가 기억나지 않아요.</h2>
+									<h2>${faq.getFaqTitle()}</h2>
 									<br>
 									<%
 									pageContext.setAttribute("br", "<br/>");
@@ -120,7 +128,9 @@
 
 
 			<c:if test="${prev}">
-				<a href="${pageContext.request.contextPath}/admin/faqListOk.ad?page=${startPage - 1}" class="prev"> <svg xmlns="http://www.w3.org/2000/svg"
+				<a
+					href="${pageContext.request.contextPath}/admin/faqListOk.ad?page=${startPage - 1}"
+					class="prev"> <svg xmlns="http://www.w3.org/2000/svg"
 						width="16" height="12" fill="currentColor"
 						class="bi bi-chevron-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -133,7 +143,9 @@
 				<c:choose>
 					<c:when test="${!(i == page) }">
 
-						<a href="${pageContext.request.contextPath}/admin/faqListOk.ad?page=${i}" class="pageBtn"> <c:out value="${i}" /> <!-- <svg
+						<a
+							href="${pageContext.request.contextPath}/admin/faqListOk.ad?page=${i}"
+							class="pageBtn"> <c:out value="${i}" /> <!-- <svg
 							xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16"></svg> -->
 						</a>
@@ -146,7 +158,9 @@
 			</c:forEach>
 
 			<c:if test="${next}">
-				<a href="${pageContext.request.contextPath}/admin/faqListOk.ad?page=${endPage + 1}" class="next"> <svg xmlns="http://www.w3.org/2000/svg"
+				<a
+					href="${pageContext.request.contextPath}/admin/faqListOk.ad?page=${endPage + 1}"
+					class="next"> <svg xmlns="http://www.w3.org/2000/svg"
 						width="16" height="12" fill="currentColor"
 						class="bi bi-chevron-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
