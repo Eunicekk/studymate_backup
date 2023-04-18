@@ -88,9 +88,7 @@
 	<!-- ========== 페이징 처리 예시 ============ -->
 	<section id="paging">
 		<c:if test="${prev}">
-			<li><a
-				href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my?page=${startPage-1}"
-				class="prev">&lt;</a></li>
+			<li><a class="prev">&lt;</a></li>
 		</c:if>
 
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -104,9 +102,7 @@
 			</c:choose>
 		</c:forEach>
 		<c:if test="${next}">
-			<span><a
-				href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my?page=${endPage+1}"
-				class="next">&gt;</a></span>
+			<span><a class="next">&gt;</a></span>
 		</c:if>
 	</section>
 

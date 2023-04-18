@@ -23,8 +23,8 @@ public class MyPagePortfolioOkController implements Execute {
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("memberNumber", 1);
-		Integer mN = (Integer)session.getAttribute("memberNumber");
-		int total = myPageDAO.getTotal(mN);
+		Integer memberNumber = (Integer)session.getAttribute("memberNumber");
+		int total = myPageDAO.getTotal(memberNumber);
 		
 		String temp = req.getParameter("page");
 		String memberId = req.getParameter("memberId");
