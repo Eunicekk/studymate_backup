@@ -56,8 +56,8 @@ public class StudyGroupDAO {
 	}
 	
 //	메인 - 검색기능 
-	public List<StudyGroupVO> search(String keyword){
-		return sqlSession.selectList("studyGroup.search", keyword);
+	public List<StudyGroupVO> search(String searchInput){
+		return sqlSession.selectList("studyGroup.search", searchInput);
 	}
 	
 }

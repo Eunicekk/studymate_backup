@@ -25,6 +25,7 @@ public class StudyGroupReadOkController implements Execute {
 		req.setAttribute("group", studyGroupVO); 
 		// 통째로 넘겨놓은 뒤 getter로 뽑으면 됨. 
 		
+		System.out.println("read ok controller 타는지");
 		req.getRequestDispatcher("/app/group/studyGroupRead.jsp").forward(req, resp);
 		
 	}

@@ -28,6 +28,7 @@ public class StudyGroupFrontController extends HttpServlet{
 			new StudyGroupMainOkController().execute(req,resp); 
 			break;
 		case "/studyGroup/studyGroupReadOk.sg":
+			System.out.println("read ok");
 			new StudyGroupReadOkController().execute(req,resp); 
 			break;
 		case "/studyGroup/studyGroupOrderOk.sg":

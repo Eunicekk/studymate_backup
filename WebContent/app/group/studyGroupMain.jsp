@@ -19,14 +19,7 @@
         <div class="searchBox">
           <button class="searchBtn" hidden></button>
           <form id="search" action="" method="post">
-            <input
-              type="text"
-              autocomplete="off"
-              id="searchInput" 
-              name="searchInput" 
-              placeholder="찾으시는 키워드를 입력하세요"
-              value=""
-            />
+            <input type="text" autocomplete="off" id="searchInput" name="searchInput" placeholder="찾으시는 키워드를 입력하세요" value="" />
             <input type="submit" id="search-btn" value="" />
           </form>
           <a href="${pageContext.request.contextPath}/app/group/studyGroupWrite.jsp" class="newWriteBtn">새 글 쓰기</a>
@@ -192,8 +185,7 @@
           <c:choose>
           <c:when test="${not empty studyGroups}">
           <c:forEach var="group" items= "${studyGroups}">
-           <%-- <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen"> --%>
-              <a href="" class="studyOpen">
+            <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen"> 
               <li>
                 <div class="badge">
                   <div class="badgeFiled">
@@ -256,12 +248,9 @@
                   </div>
                   
                 </section>
-         
-              
-              </li>
          	<!-- 좋아요 버튼  -->     
-              
               <!-- <div > 검색된 게시물이 없습니다.</div> -->
+              </li>
             </a>
           
           

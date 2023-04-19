@@ -45,12 +45,13 @@ $filed.click(() => {
 
 
 // 켈린더
-/*$(document).ready(function() {
+$(document).ready(function() {
 	calendarInit();
 });
-*/
 
-// 최신순(기본정렬) 조회순 좋아요순 댓글순 정렬 
+
+
+
 
 let $latest = $('#latest');
 let $viewCount = $('#viewCount');
@@ -70,8 +71,8 @@ var startPage = endPage - (pageCount - 1);
 var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 let $mainContain = $('.mainContainer2');
-console.log( $mainContain);
-console.log('바로 위의 것은 메인 컨테이너 입니다 게시글 ul 을 감싼 메인컨테이너입니다');
+/*console.log( $mainContain);
+console.log('바로 위의 것은 메인 컨테이너 입니다 게시글 ul 을 감싼 메인컨테이너입니다');*/
 
 var a = $('#order').children();
 /*console.log(a);
@@ -80,6 +81,9 @@ console.log('===========');
 console.log($('.mainContainer'));
 console.log($('#order option').eq(0));
 console.log('===========================');*/
+
+
+// 최신순(기본정렬) 조회순 좋아요순 댓글순 정렬
 
 var a = $('#order option');
 console.log(a);
@@ -101,7 +105,6 @@ $('#order').on('change', function () {
 			},
 			success: showOrder 
 		});
-		var sort = 1;
 		
 		function showOrder (orderContents) {
 			console.log(orderContents);
@@ -390,6 +393,8 @@ $('.pageNumber').on('click', ".next", function(){
 */
 
 
+
+
 // 좋아요 기능 
 //$('.groupLikeImg').on('click', function(event) {
 $('.spaceList').on('click', '.groupLikeImg', function(event) {
@@ -479,14 +484,107 @@ function likeAjax(){
 
 
 
+// 검색 기능 
+$('#search').submit(function(event){
+	event.preventDefault();
+	var searchInput = $("#searchInput").val();
+	
+	console.log(searchInput);
+	$.ajax({
+		type: "GET",
+		url: "/studyGroup/studyGroupSearchOk.sg",
+		data: { searchInput : searchInput },
+		error: function() {
+				alert("통신실패!!!!");
+			},
+		success: searchShow
+	})
 
 
+		function searchShow (searchContents) {
+				let text= '';
+				console.log(searchContents);
+			searchContents.forEach(search => {
+				text +=`
+				<a href="${location.origin}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${search.studyGroupNumber}" class="studyOpen">
+				 <li>
+                <div class="badge">
+                  <div class="badgeFiled">
+                    <!-- 모집 분야 받아와서 넣어주기 -->
+                    <div class="onoffOptions">${search.studyGroupOnline}</div>
+                    <div class="badgeFiledName">${search.studyGroupField}</div>
+                  </div>
+                </div>
+
+
+                <!-- 마감일 -->
+                <div class="endDate">
+                  <p class="endDateText">모집 마감 |</p>
+                  <!-- 날짜 받아오기 -->
+                  <p>${search.studyGroupStartDate}</p>
+                </div>
+
+                <!-- 이름 -->
+                <h1 class="groupTitle">${search.studyGroupTitle}</h1>
+                <ul class="positionList">
+                  <!-- 분야 넣어주기 -->
+                  <li class="positionItem">백엔드</li>
+                  <li class="positionItem">데이터베이스</li>
+                </ul>
+
+                <div class="studyBorder"></div>
+
+                <section class="ReadReviewCnt">
+                  <div class="userInfo">
+                    <div class="userImg">
+                      <img src="${location.origin}/assets/img/인공지능팩토리_2022-06-20_15-25-27.png" alt="유저 프로필사진">
+                    </div>
+                    <div>${search.memberNickname}</div>
+                  </div>
+
+                  <div class="ReadReview">
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icon-search-input.svg"
+                       alt="조회수 이미지"
+                       style="width: 10px;">
+                       <p>${search.studyGroupReadCount}</p>
+                    </div>
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icn-chat-filled-lightgray.d59bfd98.svg"
+                       alt="댓글 이미지">
+                       <p>${search.studyGroupCommentCount}</p>
+                    </div>
+                    
+                    <!-- 좋아요 -->
+                    <div class="groupLikeItems" > 
+                    <input type="hidden" class= "like-study-group-number" >
+                    <input type="hidden" class= "like-member-number" value= "${search.memberNumber}" >
+          		     <button class= "groupLikeButton" data-study-group-number= "${search.studyGroupNumber}">
+                   	<img alt="" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" class="groupLikeImg" >
+                   	<p>${search.studyGroupLikeCount}</p>
+                    </button> 
+                     </div>
+                    
+                  </div>
+                  
+                </section>
+         
+              
+              </li>
+				</a>
+				 `
+			});
+			
+		$('.spaceList').html(text);
+			
+		}
+})
 
 
 
 
 // 클릭 버튼 에 이벤트 주고, ajax를 거기에만 걸어주면 된다 텍스트 안불러와도 됨. 이미 화면에 있으니까 그냥 클릭 이벤트만 주고, 
-// 전송하고 설공하면, 화면에 전체 개수를 뿌려주면 됨. 그게 다임 ㅋㅋㅋ ㄹㅇ,,, 암것도 아님 진심.. 
+// 전송하고 설공하면, 화면에 전체 개수를 뿌려주면 됨. 그게 다입니다ㅏㅏㅏㅏ
 // 매개 변수 받고 반환을 받아서 텍스트 꽂아주는게 success 에 들어갈 내용. 
 
 
@@ -594,7 +692,7 @@ $(".dates").on("click", ".current", function(event) {
 });
 
 // 검색 기능
-$(document).ready(function() {
+/*$(document).ready(function() {
 	$("#searchInput").on("keyup", function() {
 		var value = $(this).val().toLowerCase();
 		// 클래스로 어디 검색 할지 정할수있다.
@@ -602,7 +700,7 @@ $(document).ready(function() {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 		});
 	});
-});
+});*/
 
 // 셀렉트 선택된 값으로 검색
 $(document).ready(function() {

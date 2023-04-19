@@ -1,6 +1,7 @@
 package com.studymate.app.studyGroup;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import com.studymate.app.Execute;
 import com.studymate.app.studyGroup.dao.StudyGroupDAO;
 import com.studymate.app.studyGroup.vo.StudyGroupVO;
@@ -21,10 +23,12 @@ public class StudyGroupSearchOkController implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		StudyGroupVO studyGroupVO = new StudyGroupVO();
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO(); 
-		List<StudyGroupVO> studyGroupSearchList = null; 
-		String keyword = null;
+		
+		
 		String searchInput = req.getParameter("searchInput"); 
+		
 		
 		// 페이징 처리 
 		int total = studyGroupDAO.getTotal();
@@ -49,13 +53,37 @@ public class StudyGroupSearchOkController implements Execute {
 		pageMap.put("startRow", startRow);
 		pageMap.put("rowCount", rowCount);
 		
+		// 0419 
+//		req.setAttribute("studyGroupSearchList", studyGroupSearchList);
+		req.setAttribute("total", total);
 		
 		// gson 
 		Gson gson = new Gson();
 		JsonArray searchContents = new JsonArray();
 		 resp.setContentType("application/json; charset=utf-8");
-		 ///
-	     resp.setContentType("text/html; charset=utf-8");
+		 
+		 
+		 List<StudyGroupVO> studyGroupSearchList = studyGroupDAO.search(searchInput); 
+		 
+		 for(StudyGroupVO search : studyGroupSearchList) {
+			 String searchJson = gson.toJson(search);
+			 System.out.println(searchJson);
+			 searchContents.add(JsonParser.parseString(searchJson));
+		 }
+		 
+		// 
+		/*
+		 * if(searchInput!=null ) { System.out.println("검색");
+		 * studyGroupDAO.search(searchInput).stream() .map(gson :: toJson)
+		 * .map(JsonParser :: parseString) .forEach(searchContents :: add); }
+		 */
+		 
+
+	     
+	 	System.out.println(searchContents);
+		PrintWriter out = resp.getWriter();
+		out.print(searchContents.toString());
+		out.close();
 		 
 		 
 		

@@ -110,7 +110,6 @@ left outer join tbl_member_like_study_group sgl on j2.study_group_number = sgl.s
 where j2.study_group_title like concat('%', #{studyGroupTitle}, '%') or j2.member_nickname like concat('%', #{studyGroupTitle}, '%')
 group by  j2.study_group_number, j2.study_group_online, j2.study_group_field, j2.study_group_start_date, j2.study_group_title, j2.member_nickname, j2.study_group_read_count
 order by study_group_number desc
-limit #{startRow}, #{rowCount}
 	</select>
 	
 	
