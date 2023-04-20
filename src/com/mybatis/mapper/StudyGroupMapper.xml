@@ -108,6 +108,7 @@ from (
 left outer join tbl_study_group_comment sgc on j2.study_group_number = sgc.study_group_number 
 left outer join tbl_member_like_study_group sgl on j2.study_group_number = sgl.study_group_number 
 where j2.study_group_title like concat('%', #{studyGroupTitle}, '%') or j2.member_nickname like concat('%', #{studyGroupTitle}, '%')
+or j2.study_group_online in ('온라인', '오프라인') or j2.study_group_field in ('어학', '취업', '고시/공무원', '취미/교양', '프로그래밍', '자율', '기타') 
 group by  j2.study_group_number, j2.study_group_online, j2.study_group_field, j2.study_group_start_date, j2.study_group_title, j2.member_nickname, j2.study_group_read_count
 order by study_group_number desc
 	</select>

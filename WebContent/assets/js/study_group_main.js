@@ -482,6 +482,13 @@ function likeAjax(){
 }
 */
 
+var studyGroupOnline = $('.selectOption').val();
+var studyGroupField = $('.selectList .Option').val();
+
+console.log("===== 추가 선택");
+console.log(studyGroupOnline);
+console.log(studyGroupField);
+console.log("===== 추가 선택");
 
 
 // 검색 기능 

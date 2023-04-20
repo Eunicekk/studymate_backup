@@ -12,7 +12,20 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/study_group_main.css" />
   </head>
   <body>
-    <header></header>
+    <!-- 헤더 -->
+    <header>
+		<c:choose>
+			<c:when test="${empty sessionScope.memberNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/header.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</header>
+	
     <main id="main">
       <!--nav 검색창, 필터버튼 -->
       <div class="searchContainer">
@@ -775,7 +788,20 @@
       </div>
 
     </main>
-    <footer></footer>
+    
+    <!-- footer -->
+    <footer>
+		<c:choose>
+			<c:when test="${empty sessionScope.memberNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</footer>
 
     <script
       src="https://code.jquery.com/jquery-3.6.3.js"
