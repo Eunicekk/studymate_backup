@@ -31,8 +31,26 @@ $prevBtn.on('click', ()=>{
 
 
 ;//  게시글 삭제 boardList로 이동
+
+
+
+
 $deleteBtn.on('click', ()=>{
-    window.location.href ='#'
+	// 삭제 버튼 누르면 밑에꺼 아니고 delete ok 로 가야함 
+   /* window.location.href ='/studyGroup/studyGroupMainOk.sg';*/
+console.log(studyGroupNumber);
+$.ajax({
+	type:"GET",
+	url: "/studyGroup/studyGroupDeleteOk.sg",
+	data: {studyGroupNumber : studyGroupNumber},
+	success: function() {
+				alert("삭제되었습니다.");
+				 window.location.href = '/studyGroup/studyGroupMainOk.sg';
+			},
+	error : function () {
+		alert("통신 실패");
+	}
+})
 });
 
 

@@ -71,7 +71,7 @@
             <div class="boardContent-editButtons">
             <%--  <c:if test="${sessionScope.memberNumber == group.getMemberNumber()}">   --%>
               <button type="button" class="boardContent-edit">수정</button>
-              <button type="button" class="boardContent-delete">삭제</button>
+              <button type="button" class="boardContent-delete" data-studyGroupNumber = "${group.studyGroupNumber}" >삭제</button>
              <%--   </c:if> --%> 
           </div>
 

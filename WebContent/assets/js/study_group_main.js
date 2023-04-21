@@ -482,25 +482,49 @@ function likeAjax(){
 }
 */
 
-var studyGroupOnline = $('.selectOption').val();
-var studyGroupField = $('.selectList .Option').val();
+var studyGroupOnline ='';
+var studyGroupField ='';
+var searchInput = $("#searchInput").val();
 
-console.log("===== 추가 선택");
+	// selectOption 선택값 처리
+$('.selectOption').each(function(){
+  if($(this).hasClass('selected')){ // 선택된 selectOption 요소만 처리
+    studyGroupOnline = $(this).text(); // 선택된 값 가져오기
+  }
+});
+console.log("==== 옵션 선ㄱ택")
+console.log(studyGroupOnline);
+
+// Option 선택값 처리
+$('.Option').each(function(){
+  if($(this).hasClass('selected')){ // 선택된 Option 요소만 처리
+    studyGroupField = $(this).text(); // 선택된 값 가져오기
+  }
+});
+	
+	
+console.log(studyGroupField);
+
+
+/*console.log("===== 추가 선택");
 console.log(studyGroupOnline);
 console.log(studyGroupField);
-console.log("===== 추가 선택");
+console.log("===== 추가 선택");*/
 
 
 // 검색 기능 
 $('#search').submit(function(event){
 	event.preventDefault();
 	var searchInput = $("#searchInput").val();
-	
 	console.log(searchInput);
+	
 	$.ajax({
 		type: "GET",
 		url: "/studyGroup/studyGroupSearchOk.sg",
-		data: { searchInput : searchInput },
+		data: { searchInput : searchInput, 
+				studyGroupOnline : studyGroupOnline, 
+				studyGroupField : studyGroupField
+				},
 		error: function() {
 				alert("통신실패!!!!");
 			},
@@ -710,6 +734,7 @@ $(".dates").on("click", ".current", function(event) {
 });*/
 
 // 셀렉트 선택된 값으로 검색
+
 $(document).ready(function() {
 	$(".selectOption").on("click", function() {
 		var value = $(this).html();
@@ -740,11 +765,14 @@ function onClickOption(e) {
 	document.querySelector(".Text").innerHTML = selectedValue;
 }
 
+
+// 온오프라인 
 let optionList = document.querySelectorAll(".selectOption");
 for (let i = 0; i < optionList.length; i++) {
 	let option = optionList[i];
 	option.addEventListener("click", onClickOption);
 }
+
 
 function onClickFiled(e) {
 	const OptionValue = e.target.innerHTML;

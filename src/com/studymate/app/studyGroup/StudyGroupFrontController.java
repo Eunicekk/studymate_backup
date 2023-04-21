@@ -37,6 +37,11 @@ public class StudyGroupFrontController extends HttpServlet{
 		case "/studyGroup/studyGroupSearchOk.sg":
 			new StudyGroupSearchOkController().execute(req,resp); 
 			break;
+		case "/studyGroup/studyGroupDeleteOk.sg":
+			System.out.println("삭제 delete ok controller 타는지");
+			new StudyGroupDeleteOkController().execute(req,resp); 
+			break;
+			
 		}
 	}
 }

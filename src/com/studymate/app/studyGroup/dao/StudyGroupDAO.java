@@ -60,4 +60,9 @@ public class StudyGroupDAO {
 		return sqlSession.selectList("studyGroup.search", searchInput);
 	}
 	
+//	게시글 삭제 (스터디그룹) 
+	public void delete(int studyGroupNumber) {
+		sqlSession.delete("studyGroup.delete", studyGroupNumber);
+	}
+	
 }
