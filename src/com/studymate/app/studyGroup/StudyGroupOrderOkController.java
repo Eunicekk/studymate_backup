@@ -26,7 +26,7 @@ public class StudyGroupOrderOkController implements Execute {
 		// 0413 좋아요 댓글 조회수 순 정렬 
 		
 		StudyGroupVO studyGroupVO = new StudyGroupVO();
-		List<StudyGroupVO> studyGroupList = null;
+//		List<StudyGroupVO> studyGroupList = null;
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO();
 		String order = req.getParameter("order");
 		String studyGroupNumber = req.getParameter("studyGroupNumber");
@@ -59,7 +59,7 @@ public class StudyGroupOrderOkController implements Execute {
 		pageMap.put("rowCount", rowCount);
 		
 		// 0413 좋아요 댓글 조회수 정렬
-		req.setAttribute("studyGroupList", studyGroupList);
+//		req.setAttribute("studyGroupList", studyGroupList);
 		req.setAttribute("total", total);
 	
 		// gson 

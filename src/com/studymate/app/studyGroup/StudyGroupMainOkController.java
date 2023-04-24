@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.studymate.app.Execute;
 import com.studymate.app.studyGroup.dao.StudyGroupDAO;
 import com.studymate.app.studyGroup.vo.StudyGroupVO;
+import com.studymate.app.studyGroupFile.dao.StudyGroupFileDAO;
+import com.studymate.app.studyGroupFile.dto.StudyGroupFileDTO;
 
 public class StudyGroupMainOkController implements Execute {
 
@@ -19,6 +21,7 @@ public class StudyGroupMainOkController implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 여기서 페이징 처리하기. 
 		// 일단 앞전 dao와 vo를 사용하기 위해 불러오기. 
+		
 		
 		// studyGroupDAO.selectAll();
 		// DAO 안애 있는 selectAll을 사용할건데 셀렉트 올의 반환 타입은 List 이므로 
@@ -84,11 +87,6 @@ public class StudyGroupMainOkController implements Execute {
 		// 5단위 페이지 수가 실제 데이터가 들어있는 페이지수와 같아지는 순간에 버튼 사라짐.
 		// 더 많다면 만약 27페이지가realEnd이면, endPage는 30인거 아님ㅁ? 그럼!=가 
 		
-				
-		
-
-
-		
 
 		
 		List<StudyGroupVO> studyGroups = studyGroupDAO.selectAll(pageMap);	
@@ -115,6 +113,8 @@ public class StudyGroupMainOkController implements Execute {
 //		System.out.println(req.getParameter("studyGroupLikeCount"));
 //		System.out.println((Integer)(req.getAttribute("studyGroupLikeCount")));
 
+		
+		
 		req.getRequestDispatcher("/app/group/studyGroupMain.jsp").forward(req, resp);
 		
 		// 여기서 jsp로 간다. 

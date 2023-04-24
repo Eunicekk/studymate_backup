@@ -4,7 +4,7 @@ package com.studymate.app.studyGroupFile.dto;
 //study_group_number int unsigned,
 public class StudyGroupFileDTO {
 	private String groupFileSystemName;
-	private String groupFoleOriginalName;
+	private String groupFileOriginalName;
 	private int studyGroupNumber;
 	
 	public StudyGroupFileDTO() {}
@@ -17,12 +17,12 @@ public class StudyGroupFileDTO {
 		this.groupFileSystemName = groupFileSystemName;
 	}
 
-	public String getGroupFoleOriginalName() {
-		return groupFoleOriginalName;
+	public String getGroupFileOriginalName() {
+		return groupFileOriginalName;
 	}
 
-	public void setGroupFoleOriginalName(String groupFoleOriginalName) {
-		this.groupFoleOriginalName = groupFoleOriginalName;
+	public void setGroupFileOriginalName(String groupFileOriginalName) {
+		this.groupFileOriginalName = groupFileOriginalName;
 	}
 
 	public int getStudyGroupNumber() {
@@ -35,8 +35,8 @@ public class StudyGroupFileDTO {
 
 	@Override
 	public String toString() {
-		return "StudyGroupFileDTO [groupFileSystemName=" + groupFileSystemName + ", groupFoleOriginalName="
-				+ groupFoleOriginalName + ", studyGroupNumber=" + studyGroupNumber + "]";
+		return "StudyGroupFileDTO [groupFileSystemName=" + groupFileSystemName + ", groupFileOriginalName="
+				+ groupFileOriginalName + ", studyGroupNumber=" + studyGroupNumber + "]";
 	}
 	
 	

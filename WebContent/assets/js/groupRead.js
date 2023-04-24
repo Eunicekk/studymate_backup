@@ -30,7 +30,7 @@ $prevBtn.on('click', ()=>{
 
 
 
-;//  게시글 삭제 boardList로 이동
+//  게시글 삭제 boardList로 이동
 
 
 
@@ -39,6 +39,7 @@ $deleteBtn.on('click', ()=>{
 	// 삭제 버튼 누르면 밑에꺼 아니고 delete ok 로 가야함 
    /* window.location.href ='/studyGroup/studyGroupMainOk.sg';*/
 console.log(studyGroupNumber);
+console.log("클릭 이벤트는먹음.");
 $.ajax({
 	type:"GET",
 	url: "/studyGroup/studyGroupDeleteOk.sg",
@@ -51,6 +52,8 @@ $.ajax({
 		alert("통신 실패");
 	}
 })
+
+
 });
 
 

@@ -51,6 +51,10 @@ $(document).ready(function() {
 
 
 
+// 글쓰기 페이지로 이동 
+ $('.newWriteBtn').on('click', ()=> {
+	   window.location.href = '/studyGroup/studyGroupWrite.sg';
+});
 
 
 let $latest = $('#latest');
@@ -71,22 +75,17 @@ var startPage = endPage - (pageCount - 1);
 var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 let $mainContain = $('.mainContainer2');
-/*console.log( $mainContain);
-console.log('바로 위의 것은 메인 컨테이너 입니다 게시글 ul 을 감싼 메인컨테이너입니다');*/
+
+
 
 var a = $('#order').children();
-/*console.log(a);
-console.log($latest);
-console.log('===========');
-console.log($('.mainContainer'));
-console.log($('#order option').eq(0));
-console.log('===========================');*/
+
+
 
 
 // 최신순(기본정렬) 조회순 좋아요순 댓글순 정렬
-
 var a = $('#order option');
-console.log(a);
+/*console.log(a); */
 
 $('#order').on('change', function () {
 	var selectOption = $(this).val();
@@ -393,8 +392,6 @@ $('.pageNumber').on('click', ".next", function(){
 */
 
 
-
-
 // 좋아요 기능 
 //$('.groupLikeImg').on('click', function(event) {
 $('.spaceList').on('click', '.groupLikeImg', function(event) {
@@ -452,64 +449,11 @@ function updateGroupLikeCount (studyGroupNumber, target) {
 
 }
 
-/*
 
-let studyGroupNumber = $('.groupLikeButton').data('study-group-number');
-console.log (studyGroupNumber + 'js 마지막에 있음');
-*/
-
-
-
-
-/*
-
-console.log($studyGroupNumber);
-
-likeAjax();
-
-
-
-
-// 좋아요 하트를 먼저 ajax로 띄운다. 
-function likeAjax(){
-  if ($memberNumber != 257){
-	$('.groupLikeImg').attr('src', "https://cdn-icons-png.flaticon.com/512/833/833472.png");
-	
- } else {
-	$('.groupLikeImg').attr('src', "https://cdn-icons-png.flaticon.com/512/833/833386.png");
-	$('.groupLikeImg').css('opacity', '0.2'); // 투명도 조정  
- }
-}
-*/
-
-var studyGroupOnline ='';
-var studyGroupField ='';
 var searchInput = $("#searchInput").val();
 
-	// selectOption 선택값 처리
-$('.selectOption').each(function(){
-  if($(this).hasClass('selected')){ // 선택된 selectOption 요소만 처리
-    studyGroupOnline = $(this).text(); // 선택된 값 가져오기
-  }
-});
-console.log("==== 옵션 선ㄱ택")
-console.log(studyGroupOnline);
-
-// Option 선택값 처리
-$('.Option').each(function(){
-  if($(this).hasClass('selected')){ // 선택된 Option 요소만 처리
-    studyGroupField = $(this).text(); // 선택된 값 가져오기
-  }
-});
-	
-	
-console.log(studyGroupField);
 
 
-/*console.log("===== 추가 선택");
-console.log(studyGroupOnline);
-console.log(studyGroupField);
-console.log("===== 추가 선택");*/
 
 
 // 검색 기능 
@@ -521,9 +465,7 @@ $('#search').submit(function(event){
 	$.ajax({
 		type: "GET",
 		url: "/studyGroup/studyGroupSearchOk.sg",
-		data: { searchInput : searchInput, 
-				studyGroupOnline : studyGroupOnline, 
-				studyGroupField : studyGroupField
+		data: { searchInput : searchInput
 				},
 		error: function() {
 				alert("통신실패!!!!");
@@ -718,7 +660,10 @@ function calendarInit() {
 $(".dates").on("click", ".current", function(event) {
 	event.preventDefault();
 	let year = $(".year-month").text();
-	let day = $(this).index() - 1;
+	//let day = $(this).index() - 4;
+	let day = $(this).text();
+	console.log(day);
+	console.log("=======날짜ㅏㅏㅏㅏ");
 	$(".cal").text(year + "-" + day);
 });
 
@@ -727,44 +672,22 @@ $(".dates").on("click", ".current", function(event) {
 	$("#searchInput").on("keyup", function() {
 		var value = $(this).val().toLowerCase();
 		// 클래스로 어디 검색 할지 정할수있다.
-		$(".studyOpen").filter(function() {
+//		$(".studyOpen").filter(function() {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 		});
 	});
 });*/
 
-// 셀렉트 선택된 값으로 검색
-
-$(document).ready(function() {
-	$(".selectOption").on("click", function() {
-		var value = $(this).html();
-		console.log(value);
-		// 클래스로 어디 검색 할지 정할수있다.
-		$(".studyOpen").filter(function() {
-			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-		});
-	});
-});
-
-$(document).ready(function() {
-	$(".Option").on("click", function() {
-		var value = $(this).html();
-		console.log(value);
-		// 클래스로 어디 검색 할지 정할수있다.
-		$(".studyOpen").filter(function() {
-			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-		});
-	});
-
-});
-
-// /////////////////////////////////////////
 // 셀렉트 기능
 function onClickOption(e) {
 	const selectedValue = e.currentTarget.innerHTML;
 	document.querySelector(".Text").innerHTML = selectedValue;
 }
 
+function onClickFiled(e) {
+	const OptionValue = e.target.innerHTML;
+	document.querySelector(".Text_filed").innerHTML = OptionValue;
+}
 
 // 온오프라인 
 let optionList = document.querySelectorAll(".selectOption");
@@ -772,13 +695,6 @@ for (let i = 0; i < optionList.length; i++) {
 	let option = optionList[i];
 	option.addEventListener("click", onClickOption);
 }
-
-
-function onClickFiled(e) {
-	const OptionValue = e.target.innerHTML;
-	document.querySelector(".Text_filed").innerHTML = OptionValue;
-}
-
 $(".filed").on("click", function() {
 	let filedList = document.querySelectorAll(".Option");
 	for (let i = 0; i < filedList.length; i++) {
@@ -787,3 +703,99 @@ $(".filed").on("click", function() {
 		filed.addEventListener("click", onClickFiled);
 }
 });
+
+
+// 셀렉트 선택된 값으로 검색
+
+// 세개를 한번에 넘겨서 
+
+
+$(document).ready(function() {
+	$(".selectOption").on("click", function() {
+	event.preventDefault();
+		var studyGroupOnline = $(this).text();
+		var studyGroupField = $(".Text_filed").text().trim();
+		var studyGroupStartDate =$(".cal").text().trim();
+	console.log(studyGroupOnline);
+	console.log(studyGroupField);
+	console.log(studyGroupStartDate);
+		searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate);
+	
+	});
+});
+
+$(document).ready(function() {
+	$(".Option").on("click", function() {
+	event.preventDefault();
+		var studyGroupOnline = $(".Text").text().trim();
+		var studyGroupField = $(this).text();
+		var studyGroupStartDate =$(".cal").text().trim();
+	console.log(studyGroupOnline);
+	console.log(studyGroupField);
+	console.log(studyGroupStartDate);
+		searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate);
+		
+		// 클래스로 어디 검색 할지 정할수있다.
+		/*$(".studyOpen").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(selectField) > -1);
+		});*/
+	});
+
+});
+
+//let calButton = $(".current").closest(".filterlist").find(".cal");
+let calButton = $(".cal").text();
+console.log(calButton);
+console.log("=== cal butoton");
+
+$(document).ready(function() {
+	$(".dates").on("click",'.current' ,function () {
+		event.preventDefault();
+		var studyGroupOnline = $(".Text").text().trim();
+		var studyGroupField = $(".Text_filed").text().trim();
+		var studyGroupStartDate = ($(".year-month").text() + '-' +$(this).html());
+		//var studyGroupStartDate = $(this).text();
+		
+//		var studyGroupStartDate = $(".cal").html();
+	console.log(studyGroupOnline);
+	console.log(studyGroupField);
+	console.log(studyGroupStartDate);
+		searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate);
+	})
+})
+
+function searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate){
+	if (studyGroupOnline == "진행 방식") {
+	studyGroupOnline ="";	
+	}
+		if (studyGroupField == "모집 분야") {
+	studyGroupField ="";	
+	}
+		if (studyGroupStartDate == "모집기간") {
+	studyGroupStartDate ="";	
+	}
+	
+	
+	let data = {
+		studyGroupOnline : studyGroupOnline,
+		studyGroupField : studyGroupField, 
+		studyGroupStartDate : studyGroupStartDate
+	};
+	
+	$.ajax({
+		url : '/studyGroup/studyGroupOptionSearchOk.sg',
+		type : 'get',
+		data : data,
+		error: function() {
+				alert("통신실패!!!!");
+			}, success : function(result) {
+				alert("통신가능");
+				console.log(result);
+			}
+	});
+}
+
+
+// /////////////////////////////////////////
+
+

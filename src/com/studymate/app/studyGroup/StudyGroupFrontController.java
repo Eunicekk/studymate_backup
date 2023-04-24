@@ -24,7 +24,7 @@ public class StudyGroupFrontController extends HttpServlet{
 
 		switch(target) { 
 		case "/studyGroup/studyGroupMainOk.sg":
-			System.out.println("okcontrolrt");
+			System.out.println("group okcontrolrt");
 			new StudyGroupMainOkController().execute(req,resp); 
 			break;
 		case "/studyGroup/studyGroupReadOk.sg":
@@ -41,6 +41,23 @@ public class StudyGroupFrontController extends HttpServlet{
 			System.out.println("삭제 delete ok controller 타는지");
 			new StudyGroupDeleteOkController().execute(req,resp); 
 			break;
+		case "/studyGroup/studyGroupOptionSearchOk.sg":
+			System.out.println("옵션 검색기능");
+			new StudyGroupOptionSearchOkController().execute(req,resp); 
+			break;
+		case "/studyGroup/studyGroupWrite.sg":
+			System.out.println("글쓰기!페이지 진입!");
+			new StudyGroupWriteController().execute(req,resp); 
+			break;
+		case "/studyGroup/studyGroupWriteOk.sg":
+			System.out.println("글쓰기! 완료 사진첨부!");
+			new StudyGroupWriteOkController().execute(req,resp); 
+			break;
+		case "/studyGroup/studyGroupUpdateOk.sg":
+			System.out.println("스터디 그룹 수정 완료 컨트롤러 진입");
+			new StudyGroupUpdateOkController().execute(req,resp); 
+			break;
+			
 			
 		}
 	}

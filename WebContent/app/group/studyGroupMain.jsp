@@ -35,7 +35,7 @@
             <input type="text" autocomplete="off" id="searchInput" name="searchInput" placeholder="찾으시는 키워드를 입력하세요" value="" />
             <input type="submit" id="search-btn" value="" />
           </form>
-          <a href="${pageContext.request.contextPath}/app/group/studyGroupWrite.jsp" class="newWriteBtn">새 글 쓰기</a>
+          <a href="#" class="newWriteBtn">새 글 쓰기</a>
         </div>
 
 
@@ -64,7 +64,7 @@
                   </div>
                   <!--메뉴창 -->
                   <div class="selectMenu selectOnOff none">
-                    <div class="selectList">
+                    <div class="selectList selectedOnline">
                       <div class="selectOption">온라인</div>
                       <div class="selectOption">오프라인</div>
                     </div>
@@ -95,7 +95,7 @@
                 </div>
                 <!--메뉴창 -->
                 <div class="selectMenu selectFiled none">
-                  <div class="selectList">
+                  <div class="selectList selectedField" >
                     <div class="Option">어학</div>
                     <div class="Option">취업</div>
                     <div class="Option">고시/공무원</div>

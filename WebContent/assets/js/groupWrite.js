@@ -149,6 +149,46 @@ $(".dates").on("click", ".current", function (event) {
   document.getElementById('Data-day').value = year + "-" + day;
 });
 
-// $(".cancelButton").on("click", () => {
-//   window.location.href = "study_group_main.html";
-// });
+// 글 등록 취소 버튼 
+ $(".cancelButton").on("click", () => {
+   window.location.href = "/studyGroup/studyGroupMainOk.sg";
+ });
+
+var feild = $('#feild').val();
+console.log(feild);
+console.log("=== 158줄에 핉드값");
+
+// 글 등록 버튼 
+$(".RegisterButton").on("click", function () {
+	var titleInput = $('.InputTitle').text();
+	var feild = $('#feild').val();
+	var online = $('#online').val();
+	var person = $('#person').val();
+	var kaka = $('.kaka').val();
+	var selfText = $('.self').text();
+	var date = $('.date').val();
+	var summernote = $('#summernote').text();
+	
+	$.ajax({
+			url: "/studyGroup/studyGroupWriteOk.sg",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			type: "GET", //전송방식을 지정한다 (POST,GET)
+			data : {titleInput : titleInput,
+					feild : feild, 
+					online : online, 
+					person :  person, 
+					kaka : kaka, 
+					self : self,
+					date : date, 
+					summernote : summernote
+					
+			
+			 },
+	})
+	
+	
+})
+
+
+
+
+

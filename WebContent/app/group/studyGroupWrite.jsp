@@ -9,12 +9,6 @@
 <title>Document</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/groupWrite.css" />
-<script
-	src="${pageContext.request.contextPath}/assets/js/summernote/summernote-ko-KR.js"
-	defer></script>
-<script
-	src="${pageContext.request.contextPath}/assets/js/summernote-lite.js"
-	defer></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css" />
 </head>
@@ -24,8 +18,9 @@
 	<main class="main">
 		<div class="MainWrite">
 			<form id="myForm"
-				action="${pageContext.request.contextPath}/app/group/studyGroupMain.jsp"
-				method="get" enctype="multipart/form-data">
+				name= "myForm"
+				action="#"
+				method="post" enctype="multipart/form-data">
 
 				<!-- 모집 정보 입력 -->
 				<section>
@@ -37,7 +32,7 @@
 					<ul class="Infolist" data-role="selectBox">
 						<li class="InfoItems"><label class="FeildName">모집 분야</label>
 							<div class="InputContainer person">
-								<select name="feild" form="myForm">
+								<select name="feild" form="myForm" id= "feild">
 									<option value="language">어학</option>
 									<option value="jobHunting">취업</option>
 									<option value="government">고시/공무원</option>
@@ -50,7 +45,7 @@
 						<!-- 모집 인원 -->
 						<li class="InfoItems"><label class="FeildName">모집 인원</label>
 							<div class="InputContainer person">
-								<select name="person" form="myForm">
+								<select name="person" form="myForm" id="person">
 									<option value="">인원미정</option>
 									<option value="">1명</option>
 									<option value="">2명</option>
@@ -68,7 +63,7 @@
 					<ul class="Infolist" data-role="selectBox">
 						<li class="InfoItems"><label class="FeildName">진행 방식</label>
 							<div class="InputContainer person">
-								<select name="online" form="myForm">
+								<select name="online" form="myForm" id = "online">
 									<option value="">온라인</option>
 									<option value="">오프라인</option>
 								</select>
@@ -77,7 +72,7 @@
 
 						<li class="InfoItems"><label class="FeildName"> 예상 기간</label>
 							<div class="InputContainer person">
-								<select name="date" form="myForm">
+								<select name="date" form="myForm" class="date">
 									<option value="">기간미정</option>
 									<option value="">1개월</option>
 									<option value="">2개월</option>
@@ -91,14 +86,14 @@
 					<ul class="Infolist" data-role="selectBox">
 						<li class="InfoItems"><label class="FeildName">연락 방법</label>
 							<div class="InputContainer person">
-								<select name="kaka" form="myForm">
+								<select name="kaka" form="myForm" class= "kaka">
 									<option value="">카카오톡 오픈 채팅</option>
 									<option value="">이메일 주소</option>
 									<option value="">구글 폼</option>
 								</select>
 							</div>
 							<div class="SelfInput">
-								<input name="selfText" class="self" placeholder="카카오톡 오프 채팅방 링크"
+								<input name="selfText" class="self" placeholder="오픈 채팅 or 이메일 주소 or 구글 폼 주소"
 									class="InputTitle" form="myForm" type="text" />
 							</div></li>
 
@@ -112,10 +107,10 @@
 									<div class="BtnFiled">
 										<span></span>
 										<div class="underImg">
-											<img
+											<%-- <img
 												src="${pageContext.request.contextPath}/assets/css/img/77301412-달력-아이콘.webp"
 												alt="아래 화살표"
-												style="width: 34px; margin-right: 15px; height: 36px;" />
+												style="width: 34px; margin-right: 15px; height: 36px;" /> --%>
 										</div>
 									</div>
 								</div>
@@ -163,7 +158,7 @@
 							class="InputTitle" name=titleInput
 							"
               placeholder="글 제목을 입력해주세요" form="myForm"
-							type="text" />
+							type="text" /> 
 						<div class="summarnote">
 							<textarea name="summernote" id="summernote" class="form-control"
 								rows="5" maxlength="1000" required form="myForm"></textarea>
@@ -173,6 +168,7 @@
 					<!-- 글등록 취소 -->
 					<section class="WriteBtn">
 						<button class="cancelButton">취소</button>
+					
 						<button class="RegisterButton" type="submit">글등록</button>
 					</section>
 				</section>
@@ -180,7 +176,14 @@
 		</div>
 	</main>
 	<footer></footer>
-
+	
+	
+	<script
+	src="${pageContext.request.contextPath}/assets/js/summernote-lite.js"
+	defer></script>
+	<script
+	src="${pageContext.request.contextPath}/assets/js/summernote/summernote-ko-KR.js"
+	defer></script>
 	<script src="https://code.jquery.com/jquery-3.6.3.js"
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
