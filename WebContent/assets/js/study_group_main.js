@@ -788,13 +788,83 @@ function searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate){
 		data : data,
 		error: function() {
 				alert("통신실패!!!!");
-			}, success : function(result) {
-				alert("통신가능");
-				console.log(result);
-			}
+			}, success : showResult
 	});
 }
+			 function showResult (result) {
+				alert("통신가능");
+				console.log(result);
+				let text = '';
+				
+				result.forEach(search => {
+					text +=`
+					<a href="${location.origin}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${search.studyGroupNumber}" class="studyOpen"> 
+              <li>
+                <div class="badge">
+                  <div class="badgeFiled">
+                    <!-- 모집 분야 받아와서 넣어주기 -->
+                    <div class="onoffOptions">${search.studyGroupOnline}</div>
+                    <div class="badgeFiledName">${search.studyGroupField}</div>
+                  </div>
+                </div>
 
+                <!-- 마감일 -->
+                <div class="endDate">
+                  <p class="endDateText">모집 마감 |</p>
+                  <!-- 날짜 받아오기 -->
+                  <p>${search.studyGroupStartDate}</p>
+                </div>
+
+                <!-- 이름 -->
+                <h1 class="groupTitle">${search.studyGroupTitle}</h1>
+                <ul class="positionList">
+                  <!-- 분야 넣어주기 -->
+                  <li class="positionItem">백엔드</li>
+                  <li class="positionItem">데이터베이스</li>
+                </ul>
+
+                <div class="studyBorder"></div>
+
+                <section class="ReadReviewCnt">
+                  <div class="userInfo">
+                    <div class="userImg">
+                      <img src="${location.origin}/assets/img/인공지능팩토리_2022-06-20_15-25-27.png" alt="유저 프로필사진">
+                    </div>
+                    <!-- ${search.memberId} -->
+                    <div>${search.memberNickname}</div>
+                  </div>
+
+                  <div class="ReadReview">
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icon-search-input.svg"
+                       alt="조회수 이미지"
+                       style="width: 10px;">
+                       <p>${search.studyGroupReadCount}</p>
+                    </div>
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icn-chat-filled-lightgray.d59bfd98.svg"
+                       alt="댓글 이미지">
+                       <p>${search.studyGroupCommentCount}</p>
+                    </div>
+                    
+                    <!-- 좋아요 -->
+                    <div class="groupLikeItems" > 
+                    <input type="hidden" class= "like-study-group-number" >
+                    <input type="hidden" class= "like-member-number" value= "${search.memberNumber}" >
+          		     <button class= "groupLikeButton" data-study-group-number= "${search.getStudyGroupNumber}">
+                   	<img alt="" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" class="groupLikeImg" >
+                   	<p>${search.studyGroupLikeCount}</p>
+                    </button> 
+                     </div>
+                  </div>
+                </section>   
+              </li>
+            </a>
+					`
+					
+				})
+					$('.spaceList').html(text);
+			}
 
 // /////////////////////////////////////////
 
