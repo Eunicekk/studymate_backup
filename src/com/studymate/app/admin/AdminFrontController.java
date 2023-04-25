@@ -54,17 +54,26 @@ public class AdminFrontController extends HttpServlet{
 		case "/admin/adminCafeDeleteOk.ad":
 			new adminCafeDeleteOk().execute(req,resp);
 			break;
+		case "/admin/adminCafeSearchOk.ad":
+			new adminCafeSearchOk().execute(req,resp);
+			break;
 		case "/admin/adminBoardListOk.ad":
 			new adminBoardListOk().execute(req,resp);
 			break;
 		case "/admin/adminBoardDeleteOk.ad":
 			new adminBoardDeleteOk().execute(req,resp);
 			break;
+		case "/admin/adminBoardSearchOk.ad":
+			new adminBoardSearchOk().execute(req,resp);
+			break;
 		case "/admin/adminGroupListOk.ad":
 			new adminGroupListOk().execute(req,resp);
 			break;
 		case "/admin/adminGroupDeleteOk.ad":
 			new adminGroupDeleteOk().execute(req,resp);
+			break;
+		case "/admin/adminGroupSearchOk.ad":
+			new adminGroupSearchOk().execute(req,resp);
 			break;
 		case "/admin/faq.ad":
 //			req.getRequestDispatcher("/app/admin/faq.jsp").forward(req, resp);
@@ -87,6 +96,36 @@ public class AdminFrontController extends HttpServlet{
 			break;
 		case "/admin/faqDeleteOk.ad":
 			new adminFaqDeleteOk().execute(req,resp);
+			break;
+		case "/admin/boardChart.ad":
+			new adminBoardChartOk().execute(req,resp);
+			break;
+		case "/admin/boardMonthChart.ad":
+			new adminBoardMonthChartOk().execute(req,resp);
+			break;
+		case "/admin/groupChart.ad":
+			new adminGroupChartOk().execute(req,resp);
+			break;
+		case "/admin/groupMonthChart.ad":
+			new adminGroupMonthChartOk().execute(req,resp);
+			break;
+		case "/admin/cafeChart.ad":
+			new adminCafeChartOk().execute(req,resp);
+			break;
+		case "/admin/cafeMonthChart.ad":
+			new adminCafeMonthChartOk().execute(req,resp);
+			break;
+		case "/admin/memberChartM.ad":
+			new adminMemberChartManOk().execute(req,resp);
+			break;
+		case "/admin/memberMonthChartM.ad":
+			new adminMemberMonthChartManOk().execute(req,resp);
+			break;
+		case "/admin/memberChartF.ad":
+			new adminMemberChartFemaleOk().execute(req,resp);
+			break;
+		case "/admin/memberMonthChartF.ad":
+			new adminMemberMonthChartFemaleOk().execute(req,resp);
 			break;
 		}
 	}

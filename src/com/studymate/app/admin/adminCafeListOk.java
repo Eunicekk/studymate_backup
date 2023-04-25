@@ -27,7 +27,7 @@ public class adminCafeListOk implements Execute {
 		
 		String temp = req.getParameter("page");
 		String desc = req.getParameter("order");
-		String studyCafeName = req.getParameter("studyCafeName");
+		//String studyCafeName = req.getParameter("studyCafeName");
 		
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 		
@@ -55,27 +55,25 @@ public class adminCafeListOk implements Execute {
 		pageMap.put("rowCount", rowCount);
 		
 		
-		if(desc == null && studyCafeName == null) {
+		if(desc == null) {
 			cafeList = adminDAO.cafeList(pageMap);
 		}else if(desc == "like") {
 			cafeList = adminDAO.cafeLikeDesc(pageMap);
-		}else if(studyCafeName != null) {
-			cafeList = adminDAO.cafeSearch(studyCafeName);
 		}else {
 			cafeList = adminDAO.cafeCommentNumber(pageMap);
 		}
 		
-//		System.out.println(cafeList.get(1).getStudyCafeNumber());
-//		cafeList.get(0).setFiles(null);
-//		for(int i =1 ; i<= cafeList.size(); i++) {
-//			files = adminDAO.cafeFileSelect(i);
-////			System.out.println(files);
-//			cafeList.get(i-1).setFiles(files);
+//		if(desc == null && studyCafeName == null) {
+//			cafeList = adminDAO.cafeList(pageMap);
+//		}else if(desc == "like") {
+//			cafeList = adminDAO.cafeLikeDesc(pageMap);
+//		}else if(studyCafeName != null) {
+//			//cafeList = adminDAO.cafeSearch(studyCafeName);
+//		}else {
+//			cafeList = adminDAO.cafeCommentNumber(pageMap);
 //		}
-//		System.out.println(cafeList);
-//		System.out.println(cafeList.get(0).getFiles().get(0).getCafeFileSystemName());
 		
-//		System.out.println(files);
+
 		
 		
 		req.setAttribute("cafeList", cafeList);

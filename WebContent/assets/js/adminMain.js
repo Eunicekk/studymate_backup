@@ -13,6 +13,7 @@ $(document).ready(function() {
 	$memberProgress.css('color', 'black');
 	$('#content-title').text("회원 가입 추이");
 	$('#list-content').load("/app/admin/adminMemberProgress.jsp");
+	console.log("새로고침시 로드");
 });
 
 // 일단 load 메소드를 통해 서브 메뉴 클릭 시 화면이 변경되게 설정을 해놓긴 했습니다.
@@ -26,6 +27,7 @@ $memberProgress.on('click', function() {
 	$('.admin-list li').not(this).css('color', '#bdbdbd');
 
 	// ajax 삽입 필요
+	console.log("main출");
 	$('#list-content').load("/app/admin/adminMemberProgress.jsp");
 });
 $memberCheck.on('click', function() {
