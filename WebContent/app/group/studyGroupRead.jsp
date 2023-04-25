@@ -16,7 +16,18 @@
     <!-- 전체 페이지 width/height: 100% -->
     <div>
       <!-- 헤더 -->
-      <header></header>
+    <header>
+		<c:choose>
+			<c:when test="${empty sessionScope.memberNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/header.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</header>
 
       <!-- 메인컨텐츠 영역 - 게시글헤더(뒤로가기,글제목,글쓴이,작성일) / 게시글콘텐츠()/ 게시글댓글-->
       <main class="boardContent-wrapper">
@@ -60,7 +71,7 @@
             <div class="boardContent-editButtons">
             <%--  <c:if test="${sessionScope.memberNumber == group.getMemberNumber()}">   --%>
               <button type="button" class="boardContent-edit">수정</button>
-              <button type="button" class="boardContent-delete">삭제</button>
+              <button type="button" class="boardContent-delete" data-studyGroupNumber = "${group.studyGroupNumber}" >삭제</button>
              <%--   </c:if> --%> 
           </div>
 
@@ -128,10 +139,11 @@
             <div class="commentInput-wrap">
               <!-- 댓글 개수, 댓글 입력, 댓글 등록버튼 -->
               <h1 class="commentInput-count"> 
+              <span class="cnt">
                <c:out value="${group.getStudyGroupCommentCount()}" />
+               </span>
               개의 댓글이 있습니다</h1>
-              <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" > 
-              </textarea>
+              <textarea class="commentInput-commentText" id= "commentContent" placeholder="댓글을 입력하세요" ></textarea>
               
               <div class="commentInput-buttonWrapper">
                 <button class="commentInput-buttonComplete" name="register"  data-memberNumber = "${group.memberNumber}" >
@@ -143,9 +155,8 @@
             <!-- 댓글 리스트 -->
 
             <!-- 마진없는 댓글 컨테이너 -->
- <ul class="commentList-CommentList">
-              마진 준 댓글 리스트 컨테이너
-  		       <!--  <li class="commentItem-commentContainer">
+ 		<ul class="commentList-CommentList">
+  		        <!-- <li class="commentItem-commentContainer">
                 <section class="commentItem-CommentHeader">
                   <div class="commentItem-writerWrapper">
                     <img
@@ -163,25 +174,34 @@
                     </div>
                   </div>
                   <div class="boardReply-editDelete">
-                 <button type="button" class="boardReply-editor-buttons-modi">수정</button>
-                <button type="button" class="boardReply-editor-buttons-dele">삭제</button>
+                 <button type="button" class="boardReply-editor-buttons-modi"  data-comment-number = "${comment.studyGroupCommentNumber}">수정</button>
+                <button type="button" class="boardReply-editor-buttons-dele"  data-number = "${comment.studyGroupCommentNumber}">삭제</button>
                 </div>
-                <div class="boardReply-editor-buttons-done">
-				 <button type="button" class="boardReply-editor-buttons-done">수정완료</button>
-				</div>
+				 <button type="button" class="boardReply-editor-buttons-done"  data-number = "${comment.studyGroupCommentNumber}" >수정완료</button>
                 </section>
                 <section class="commentItem-CommentContent">
                   <p class="commentItem-CommentContent">
                     안녕하세요 미래에서 왔습니데
                   </p>
                 </section>
-              </li>-->
+              </li> -->
             </ul> 
           </div>
         </section>
       </main>
-
-      <footer></footer>
+  <!-- footer -->
+    <footer>
+		<c:choose>
+			<c:when test="${empty sessionScope.memberNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

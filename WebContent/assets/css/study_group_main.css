@@ -618,23 +618,24 @@ option {
 
 .groupLikeItems {
 	position: absolute;
-	top: 10px; 
-	right: 15px;
+	top: 20px; 
+	right: 25px;
 }
 
 
 .groupLikeItems > img {
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	margin: 3px;
+	
 }
 
 .groupLikeItems > p {
 	position: absolute; 
-	bottom: 0px; 
+	bottom: -5px; 
 	left: 5px;
 	right: 5px;
-	margin: 0; 
+	margin: 0 0; 
 	font-size: 11px;
 	color: #999999;
 	text-align: center;
@@ -643,6 +644,16 @@ option {
 	
 }
 
+
+.groupLikeItems > button {
+	 border: 0;
+  background-color: transparent;
+  position: relative;
+}
+
+.groupLikeButton > p {
+	margin: 5px 5px;
+}
 
 
 .endDate {
@@ -717,12 +728,14 @@ option {
   display: flex;
   align-items: center;
   position: relative;
+  
 }
 
 .userImg > img {
   display: block;
   border-radius: 50%;
   object-fit: cover;
+  opacity:0.5; 
 }
 
 img {

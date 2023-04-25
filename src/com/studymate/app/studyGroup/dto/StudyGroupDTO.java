@@ -18,10 +18,13 @@ public class StudyGroupDTO {
 	private String studyGroupCapacity;
 	private String studyGroupStartDate;
 	private String studyGroupContact;
+	private String studyGroupContactAddress;
 	private String studyGroupDuration;
 	private String studyGroupcontent;
 	private int studyGroupReadCount;
 	private int memberNumber;
+	private String studyGroupEndDate;
+	private String studyGroupFileSystemName;
 	
 	public StudyGroupDTO() {}
 
@@ -81,6 +84,14 @@ public class StudyGroupDTO {
 		this.studyGroupContact = studyGroupContact;
 	}
 
+	public String getStudyGroupContactAddress() {
+		return studyGroupContactAddress;
+	}
+
+	public void setStudyGroupContactAddress(String studyGroupContactAddress) {
+		this.studyGroupContactAddress = studyGroupContactAddress;
+	}
+
 	public String getStudyGroupDuration() {
 		return studyGroupDuration;
 	}
@@ -113,15 +124,35 @@ public class StudyGroupDTO {
 		this.memberNumber = memberNumber;
 	}
 
+	public String getStudyGroupEndDate() {
+		return studyGroupEndDate;
+	}
+
+	public void setStudyGroupEndDate(String studyGroupEndDate) {
+		this.studyGroupEndDate = studyGroupEndDate;
+	}
+
+	public String getStudyGroupFileSystemName() {
+		return studyGroupFileSystemName;
+	}
+
+	public void setStudyGroupFileSystemName(String studyGroupFileSystemName) {
+		this.studyGroupFileSystemName = studyGroupFileSystemName;
+	}
+
 	@Override
 	public String toString() {
 		return "StudyGroupDTO [studyGroupNumber=" + studyGroupNumber + ", studyGroupTitle=" + studyGroupTitle
 				+ ", studyGroupField=" + studyGroupField + ", studyGroupOnline=" + studyGroupOnline
 				+ ", studyGroupCapacity=" + studyGroupCapacity + ", studyGroupStartDate=" + studyGroupStartDate
-				+ ", studyGroupContact=" + studyGroupContact + ", studyGroupDuration=" + studyGroupDuration
-				+ ", studyGroupcontent=" + studyGroupcontent + ", studyGroupReadCount=" + studyGroupReadCount
-				+ ", memberNumber=" + memberNumber + "]";
+				+ ", studyGroupContact=" + studyGroupContact + ", studyGroupContactAddress=" + studyGroupContactAddress
+				+ ", studyGroupDuration=" + studyGroupDuration + ", studyGroupcontent=" + studyGroupcontent
+				+ ", studyGroupReadCount=" + studyGroupReadCount + ", memberNumber=" + memberNumber
+				+ ", studyGroupEndDate=" + studyGroupEndDate + ", studyGroupFileSystemName=" + studyGroupFileSystemName
+				+ "]";
 	}
+
+	
 	
 	
 }
