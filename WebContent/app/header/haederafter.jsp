@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<header id="header-main">
 		<div>
 			<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="logo" />
@@ -19,18 +20,20 @@
 		</div>
 		<div class="header-right">
 			<div class="logout">
-				<a href="#">로그아웃</a>
+				<a href="${pageContext.request.contextPath}/member/logoutOk.me">로그아웃</a>
 			</div>
-			<div class="member-name">
-				<a href="#">이름</a>
-			</div>
+		<div class="member-name">
+    <a href="#"><% out.print(session.getAttribute("memberNickname")); %></a>
+</div> 
 			<div class="mypage">
 				<a href="#">마이페이지</a>
+				
 			</div>
-			<div class="like-btn">
+				<div class="like-btn">
 				<a href="#"><img
 					src="https://shareit.kr/_next/static/media/icon-favorite.83de4fd0.svg"
 					alt="" /></a>
+			</div>
 			</div>
 		</div>
 	</header>
