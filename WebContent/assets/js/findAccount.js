@@ -1,24 +1,73 @@
-var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0];
-
 function openModal() {
-    var email = document.getElementById("email").value;
-    var id = document.getElementById("Id").value;
-    if (email && id) {
-        document.getElementById("modalEmail").value = email;
-        document.getElementById("modalId").value = id;
-        modal.style.display = "block";
-    } else {
-        alert("이메일과 아이디를 입력해주세요.");
-    }
+  document.getElementById('modal').style.display = 'block';
 }
 
-span.onclick = function () {
-    modal.style.display = "none";
-}
+window.onload = function() {
+  document.getElementById('findPasswordForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-window.onclick = function (event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
+    const memberEmail = document.getElementById('email').value;
+    const memberId = document.getElementById('Id').value;
+
+
+
+    // Ajax를 사용하여 서버에 이메일과 아이디가 존재하는지 확인 요청
+    $.ajax({
+      url: '/member/findAccountOk.me',
+      type: 'POST',
+      data: {
+        memberEmail: memberEmail,
+        memberId: memberId
+      },
+	dataType: 'text',
+      success: function(response) {
+        console.log("Server response: "+ response);
+        if (response == 'success') {
+          // 모달 열기
+          openModal();
+        } else {
+          alert('일치하는 회원 정보가 없습니다.');
+        }
+      }
+    });
+  });
+
+  // 모달창 닫기 버튼 이벤트 처리
+  document.querySelector('.close').addEventListener('click', function() {
+    document.getElementById('modal').style.display = 'none';
+  });
+
+  // 모달창 외부 클릭 이벤트 처리
+  window.addEventListener('click', function(event) {
+    if (event.target == document.getElementById('modal')) {
+      document.getElementById('modal').style.display = 'none';
     }
-}
+  });
+}; // 여기서 중괄호와 소괄호의 위치를 수정했습니다.
+
+
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+/*
+
+});*/
+
+$(document).ready(function() {
+    $("#passwordChangeForm").submit(function(event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "/member/PwAccountOk.me",
+            data: $(this).serialize(),
+            success: function(response) {
+                if (response == "success") {
+                    alert("비밀번호 변경이 성공하였습니다.");
+                    location.href = "/app/member/login.jsp";
+                } else {
+                    alert("비밀번호 변경에 실패하였습니다.");
+                }
+            }
+        });
+    });
+});

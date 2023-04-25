@@ -19,37 +19,26 @@
 </head>
 <body>
 	<header id="header-main">
-
-
-		<c:choose>
-			<c:when test="${empty sessionScope.memberNumber}">
-				<div>
-					<img src="${pageContext.request.contextPath}/assets/img/logo.png"
-						alt="" class="logo" />
-				</div>
-				<div class="header-left">
-					<a href="/cafe/cafeListOk.sc" class="content-cafe">스터디카페 예약</a> <a
-						href="/studyGroup/studyGroupMainOk.sg" class="content-group">스터디그룹
-						모집</a>
-				</div>
-				<div class="header-right">
-					<div class="login">
-						<a href="/member/login.me">로그인</a>
-					</div>
-					<div class="join">
-						<a href="/member/join.me">회원가입</a>
-					</div>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<jsp:include
-					page="${pageContext.request.contextPath}/app/header/haederafter.jsp" />
-			</c:otherwise>
-		</c:choose>
-
+		
+		<div>
+			<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="logo" />
+		</div>
+		<div class="header-left">
+			<a href="#" class="content-cafe">스터디카페 예약</a> <a href="#"
+				class="content-group">스터디그룹 모집</a>
+		</div>
+		<div class="header-right">
+			<div class="login">
+				<a href="/member/login.me">로그인</a>
+			</div>
+			<div class="join">
+				<a href="/member/join.me">회원가입</a>
+			</div>
+		</div>
 	</header>
 	<section>
-		<a href="/cafe/cafeListOk.sc"><img
+		<a href=""><img
+		
 			src="${pageContext.request.contextPath}/assets/img/cafeRV.png" alt=""
 			style="width: 1500px; margin-top: 15px" /></a>
 	</section>
