@@ -22,10 +22,13 @@ public class MyPageFrontController extends HttpServlet {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 		System.out.println(target);
 		switch (target) {
+		case "/mypage/myPageMain.my":
+			req.getRequestDispatcher("/app/mypage/myPageMain.jsp").forward(req, resp);
+			break;
+			// 임시 페이지
 		case "/mypage/MyPageModifyingProfile.my":
 			new MyPageModifyingProfileController().execute(req, resp);
 			break;
-			// 임시 페이지
 		case "/mypage/MyPageModifyingProfileOk.my":
 			new MyPageModifyingProfileOkController().execute(req, resp);
 			break;
@@ -39,23 +42,34 @@ public class MyPageFrontController extends HttpServlet {
 			new MyPageInterestPlaceOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageReserveOk.my":
-			System.out.println("@@@체크체크체크체크@@@");
 			new MyPageReserveOkController().execute(req, resp);
+			break;
+		case "/mypage/MyPageReserveDeleteOk.my":
+			new MyPageReserveDeleteOk().execute(req, resp);
 			break;
 		case "/mypage/MyPageUsaDetailsOk.my":
 			new MyPageUsaDetailsOkController().execute(req, resp);
 			break;
+		case "/mypage/MyPageUsaDetailsDeleteOk.my":
+			new MyPageUsaDetailsDeleteOkController().execute(req, resp);
+			break;
 		case "/mypage/MyPageLeaderGroupOk.my":
 			new MyPageLeaderGroupOkController().execute(req, resp);
+			break;
+		case "/mypage/MyPageLeaderGroupDeleteOk.my":
+			new MyPageLeaderGroupDeleteOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageInterestGroupOk.my":
 			new MyPageInterestGroupOkController().execute(req, resp);
 			break;
+		case "/mypage/MyPageInterestGroupDeleteOk.my":
+			new MyPageInterestGroupDeleteOkController().execute(req, resp);
+			break;
 		case "/mypage/MyPageParticipatingGroupOk.my":
 			new MyPageParticipatingGroupOkController().execute(req, resp);
 			break;
-		case "/mypage/MyPageEndGroupOk.my":
-			new MyPageEndGroupOkController().execute(req, resp);
+		case "/mypage/myJoinGroupDeleteOk.my":
+			new MyPageMyJoinGroupDeleteOkController().execute(req, resp);
 			break;
 		}
 	}

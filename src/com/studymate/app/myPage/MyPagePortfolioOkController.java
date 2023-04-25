@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.studymate.app.Execute;
 import com.studymate.app.myPage.dao.MyPageDAO;
@@ -16,39 +17,55 @@ import com.studymate.app.myPage.vo.MyPageVO;
 public class MyPagePortfolioOkController implements Execute {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		MyPageVO myPageVO = new MyPageVO();
 		MyPageDAO myPageDAO = new MyPageDAO();
+		MyPageVO myPageVO = new MyPageVO();
+		List<MyPageVO> boardList = null;
 		
-		// 멤버 번호, 원하는 값으로 설정
-		myPageVO.setMemberNumber(1);
+		HttpSession session = req.getSession();
+		session.setAttribute("memberNumber", 1);
+		Integer memberNumber = (Integer)session.getAttribute("memberNumber");
+		int total = myPageDAO.getTotal(memberNumber);
 		
-		// 페이지 정보 설정
-		int total = myPageDAO.getTotal();
 		String temp = req.getParameter("page");
-		int page = temp == null ? 1 : Integer.valueOf(temp);
-		int rowCount = 10; // 한 페이지에 보여줄 게시물 수
-		int pageCount = 5; // 페이지 당 보여줄 페이지 번호 수
-		int startRow = (page-1) * rowCount;
-		int endPage = (int)(Math.ceil(page/(double)pageCount) * pageCount);
-		int startPage = endPage - (pageCount - 1);
-		int realEndPage = (int)Math.ceil(total / (double)rowCount);
-		endPage = endPage > realEndPage ? realEndPage : endPage;
-		boolean prev = startPage > 1;
-		boolean next = endPage != realEndPage;
+		String memberId = req.getParameter("memberId");
 		
-		Map<String, Integer> pageMap = new HashMap<>();
+		int page = temp == null ? 1 : Integer.valueOf(temp);
+		
+		int rowCount = 10;
+		
+		int pageCount = 5;
+		
+		int startRow = (page-1)*rowCount;
+		
+		int endPage = (int)(Math.ceil(page/(double)pageCount)*pageCount);
+		
+		int startPage = endPage - (pageCount -1);
+		
+		int realEndPage = (int)Math.ceil(total / (double)rowCount);
+		
+		endPage = endPage > realEndPage ? realEndPage : endPage;
+		
+		boolean prev = startPage >1;
+		boolean next= endPage != realEndPage;
+		
+		
+		Map<String,Integer> pageMap = new HashMap<String, Integer>();
 		pageMap.put("startRow", startRow);
 		pageMap.put("rowCount", rowCount);
+		pageMap.put("memberNumber",(Integer)session.getAttribute("memberNumber"));
 		
-		List<MyPageVO> boards = myPageDAO.myPortfolio(myPageVO.getMemberNumber(), pageMap); // DAO 메소드 호출
-		System.out.println(boards);
+		boardList = myPageDAO.myPortfolio(pageMap);
+		System.out.println(boardList);
 		
-		req.setAttribute("boardList", boards);
+		req.setAttribute("boardList", boardList);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);
 		req.setAttribute("endPage", endPage);
 		req.setAttribute("prev", prev);
 		req.setAttribute("next", next);
+		req.setAttribute("total", total);
+		
+		
 		
 		req.getRequestDispatcher("/app/mypage/portfolioList.jsp").forward(req, resp); // JSP로 결과 전달
 	}

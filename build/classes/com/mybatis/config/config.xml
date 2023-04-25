@@ -22,6 +22,7 @@
 		<typeAlias type="com.studymate.app.studyCafeFile.dto.StudyCafeFileDTO" alias="StudyCafeFileDTO"/>
 		<typeAlias type="com.studymate.app.studyCafe.dto.StudyCafeDTO" alias="StudyCafeDTO"/>
 		<typeAlias type="com.studymate.app.studyCafe.vo.StudyCafeVO" alias="StudyCafeVO"/>
+		<typeAlias type="com.studymate.app.studyCafeFilter.vo.StudyCafeFilterVO" alias="StudyCafeFilterVO"/>
 		<typeAlias type="com.studymate.app.studyGroup.dto.StudyGroupDTO" alias="StudyGroupDTO"/>
 		<typeAlias type="com.studymate.app.studyGroup.vo.StudyGroupVO" alias="StudyGroupVO"/>
 		<typeAlias type="com.studymate.app.studyGroupComment.dto.StudyGroupCommentDTO" alias="StudyGroupCommentDTO"/>
@@ -32,6 +33,13 @@
 		<typeAlias type="com.studymate.app.admin.board.vo.AdminBoardVO" alias="AdminBoardVO"/>
 		<typeAlias type="com.studymate.app.admin.group.vo.AdminGroupVO" alias="AdminGroupVO"/>
 		<typeAlias type="com.studymate.app.myPage.vo.MyPageVO" alias="MyPageVO"/>
+		<typeAlias type="com.studymate.app.myPage.vo.MyProfileVO" alias="MyProfileVO"/>
+		<typeAlias type="com.studymate.app.myPage.vo.MyCafeVO" alias="MyCafeVO"/>
+		<typeAlias type="com.studymate.app.myPage.vo.MyReserveVO" alias="MyReserveVO"/>
+		<typeAlias type="com.studymate.app.myPage.vo.MyGroupVO" alias="MyGroupVO"/>
+		<typeAlias type="com.studymate.app.board.vo.BoardVO" alias="BoardVO"/>
+		<typeAlias type="com.studymate.app.boardComment.vo.BoardCommentVO" alias="BoardCommentVO"/>
+		<typeAlias type="com.studymate.app.admin.search.vo.SearchVO" alias="SearchVO"/>
 	</typeAliases>
 
 	<environments default="mysql">
@@ -65,6 +73,7 @@
 		<mapper resource="com/mybatis/mapper/StudyGroupLeaderMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/StudyGroupMapper.xml"/>
 		<mapper resource="com/mybatis/mapper/MyPageMapper.xml"/>
+		<mapper resource="com/mybatis/mapper/MainMapper.xml"/>
       
 	</mappers>
 	

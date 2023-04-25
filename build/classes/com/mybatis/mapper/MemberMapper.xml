@@ -10,27 +10,33 @@
 
 	</insert>
 
-	<select id="login" parameterType="MemberDTO" resultType="_int">
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
 		select
-		member_number from tbl_member
+		* from tbl_member
 		where member_id =#{memberId} and
 		member_password =#{memberPassword}
 	</select>
 
 	<select id="findAccount" parameterType="MemberDTO"
-		resultType="MemberDTO">
-		select member_id, member_email from tbl_member
-		where member_email = #{memberEmail} and member_id = #{memberId}
+		resultType="_int">
+		select member_number from tbl_member
+		where member_email =
+		#{memberEmail} and member_id = #{memberId}
 	</select>
 
+	<update id="newPassword" parameterType="MemberDTO">
+		update tbl_member
+		set member_password=#{memberPassword}
+		where member_number=#{memberNumber}
+	</update>
 
-<update id="updatePassword" parameterType="MemberDTO">
-    update tbl_member
-    set member_password = #{memberPassword}
-    where member_number = #{memberNumber}
-</update>
+	<select id="checkPassword" parameterType="MemberDTO" 
+		resultType="_int">
+		select member_number from tbl_member
+		where member_number = 
+		#{memberNumber} and member_password = #{memberPassword}
+	</select>
 
-	
 </mapper>
 
 

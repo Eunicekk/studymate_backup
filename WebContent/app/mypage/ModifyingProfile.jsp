@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,85 +12,65 @@
 	href="${pageContext.request.contextPath}/assets/css/reset.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/ModifyingProfile.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/reset.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/myPageMain.css">
 </head>
 <body>
-	<div class="main">
-		<div class="header"></div>
-		<div class="container">
-			<div class="sidebar">
-				<ul>
-					<li class="active"><a href="#">내 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageModifyingProfile.my">정보
-							수정</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my">내
-							포트폴리오</a></li>
-					<li class="active"><a href="#">카페 예약 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageInterestPlaceOk.my">관심
-							장소</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageReserveOk.my">예약
-							정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/mypage/MyPageUsaDetailsOk.my">이용
-							내역</a></li>
-					<!-- <li class="side"><a href="cancel.jsp">취소/환불</a></li> -->
-					<li class="active"><a href="#">그룹 참여 정보</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/leaderGroup.jsp">내
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/interestGroup.jsp">관심
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/participatingGroup.jsp">참여
-							그룹</a></li>
-					<li class="side"><a
-						href="${pageContext.request.contextPath}/app/mypage/endGroup.jsp">종료
-							그룹</a></li>
-				</ul>
-			</div>
-			<form action="${pageContext.request.contextPath}/mypage/MyPageModifyingProfile.my" method="POST">
-				<div class="main-container">
-				<div class="main-container-title">
-					<h1>개인 정보 수정</h1>
-				</div>
+	<!-- <form action=""> -->
+	<form action="${pagetContext.request.contextPath}/mypage/myPageMain.my" method="post"
+         enctype="multipart/form-data">
+		<div class="my-content">
+			<div class="main-container">
 				<div class="presonal-info">
-					<figure class="profile-form">
-						<img src="https://img.shareit.kr:13443/data/character/1.png"
-							alt="" />
+					<div class="profile-form">
+						<div style="align-items: center; display: flex;">
+						<svg type="upload18" viewBox="0 0 18 18" class="sc-iBYQkv lcoBfw">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M25.9087 8.12155L36.4566 18.3158C37.2603 18.7156 38.2648 18.6156 38.968 18.3158C39.6712 17.5163 39.6712 16.4169 38.968 15.7173L25.3059 2.5247C24.6027 1.8251 23.4977 1.8251 22.7945 2.5247L9.03196 15.8172C8.32877 16.5168 8.32877 17.6162 9.03196 18.3158C9.73516 19.0154 10.9406 19.0154 11.6438 18.3158L22.2922 8.12155V28.4111C22.2922 29.4106 23.0959 30.2091 24.1005 30.2091C25.105 30.2091 25.9087 29.4106 25.9087 28.4111V8.12155ZM5.61644 29.4104C5.61644 28.4109 4.81279 27.6104 3.80822 27.6104C2.80365 27.6104 2 28.5099 2 29.5093V44.202C2 45.2015 2.80365 46 3.80822 46H44.1918C45.1963 46 46 45.2015 46 44.202V29.5093C46 28.5099 45.1963 27.7113 44.1918 27.7113C43.1872 27.7113 42.3836 28.5099 42.3836 29.5093V42.3021H5.61644V29.4104Z">
+               </path>  </svg>
+						
+							<c:choose>
+							<c:when test="${empty memberDTO.getProfileSystemName()}">
+							<img class="my-profile"
+								src="https://img.shareit.kr:13443/data/character/1.png" alt="" />
+							</c:when>
+							
+							<c:otherwise>
+							<img class="my-profile"
+								src="/upload/${memberDTO.getProfileSystemName()}" alt="" />
+							</c:otherwise>
+							</c:choose>
+							
+							<input type="file" class="profile-input" >
+						</div>
+						
 						<figcaption>
-							<b>
-							<c:out value="${memberDTO.getMemberNickname()}"/>
+							<b> <c:out value="${memberDTO.getMemberNickname()}" />
 							</b> 님
 						</figcaption>
-					</figure>
+					</div>
 					<div>
 						<div class="presonal-info-item">
-							<span>닉네임</span> 
-							<input type="text" name="nickname" id="nickname" placeholder="변경할 닉네임 입력" />
-							<span class="check-msg" id="check-id-msg"></span>
+							<span>닉네임</span> <input type="text" name="nickname" id="nickname"
+								placeholder="변경할 닉네임 입력" />
+							<!-- <span class="check-msg" id="check-id-msg"></span> -->
 						</div>
 						<div class="presonal-info-item">
-							<span>휴대 전화</span> 
-							<input type="phonenumber" id="phonenumber"
+							<span>휴대 전화</span> <input type="phonenumber" id="phonenumber"
 								name="phonenubmer" placeholder="휴대 전화 번호 입력" />
 						</div>
 						<div class="presonal-info-item">
-							<span>새 비밀번호</span> 
-							<input type="password" id="pw" name="pw"
+							<span>새 비밀번호</span> <input type="password" id="pw" name="pw"
 								placeholder="영문, 숫자, 특수문자 2가지 이상 포함 6~15자리" />
 						</div>
 						<div class="presonal-info-item">
-							<span>비밀번호 확인</span> 
-							<input type="password" id="chkPw"
+							<span>비밀번호 확인</span> <input type="password" id="chkPw"
 								name="chkPw" placeholder="영문, 숫자, 특수문자 2가지 이상 포함 6~15자리" />
 						</div>
 						<div class="presonal-info-item">
-							<span>이메일</span> 
-							<input type="email" id="email" name="email"
+							<span>이메일</span> <input type="email" id="email" name="email"
 								placeholder="변경할 이메일 입력" />
 						</div>
 					</div>
@@ -101,11 +81,8 @@
 					</div>
 				</div>
 			</div>
-			</form> 
 		</div>
-
-		<div class="footer"></div>
-	</div>
+	</form>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/js/ModifyingProfile.js"></script>
