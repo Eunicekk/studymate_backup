@@ -40,7 +40,8 @@ public class MemberFrontController extends HttpServlet{
 	             new CheckIdOkController().execute(req, resp);
 	            break;
 	        case "/member/logoutOk.me":
-	            // new LogoutController().execute(req,resp);
+	        	System.out.println("Received request: " + target);
+	            new LogoutController().execute(req,resp);
 	            break;
 	        case "/member/findAccount.me":
 	        	req.getRequestDispatcher("/app/member/findAccount.jsp").forward(req, resp);
@@ -48,7 +49,12 @@ public class MemberFrontController extends HttpServlet{
 	        case "/member/findAccountOk.me":
 	        	new FindAccountOkController().execute(req,resp);
 	        	break;
-	        	
+	        case "/member/PwAccountOk.me":
+	        	new PwChange().execute(req, resp);
+	        	break;
+	        case "/member/NcallbackOk.me":
+	        	new navercallback().execute(req,resp);
+	        	break;
 
 		}
 		}

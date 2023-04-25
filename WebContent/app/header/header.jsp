@@ -22,10 +22,10 @@
 		</div>
 		<div class="header-right">
 			<div class="login">
-				<a href="${pageContext.request.contextPath}/app/member/login.jsp">로그인</a>
+				<a href="/member/login.me">로그인</a>
 			</div>
 			<div class="join">
-				<a href="${pageContext.request.contextPath}/app/member/join.jsp" style="color: white">회원가입</a>
+				<a href="/member/join.me" style="color: white">회원가입</a>
 			</div>
 		</div>	
 	</div>
