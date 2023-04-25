@@ -83,9 +83,9 @@ public class StudyGroupDAO {
 	}
 	
 //	게시글 수정 (스터디그룹) 
-	public void update(StudyGroupDTO studyGroupDTO) {
-		sqlSession.update("studyGroup.update", studyGroupDTO);
-	}
+//	public void update(StudyGroupDTO studyGroupDTO) {
+//		sqlSession.update("studyGroup.update", studyGroupDTO);
+//	}
 	
 	
 //	스터디그룹 작성 

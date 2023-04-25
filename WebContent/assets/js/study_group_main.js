@@ -386,11 +386,8 @@ $('.pageNumber').on('click', ".next", function(){
 			}
 		});
 	}
-	
-	
 })
 */
-
 
 // 좋아요 기능 
 //$('.groupLikeImg').on('click', function(event) {
@@ -432,8 +429,6 @@ console.log($(target).closest('.groupLikeItems').find('p'));
 	});
 });
 
-
-
 function updateGroupLikeCount (studyGroupNumber, target) {
 	  $.ajax({
 	  url: '/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg',
@@ -449,11 +444,7 @@ function updateGroupLikeCount (studyGroupNumber, target) {
 
 }
 
-
 var searchInput = $("#searchInput").val();
-
-
-
 
 
 // 검색 기능 

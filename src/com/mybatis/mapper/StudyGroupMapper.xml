@@ -32,7 +32,7 @@ limit #{startRow}, #{rowCount}
 	<!-- 게시글 read 페이지 상세보기 -->
 	<select id="select" resultType="StudyGroupVO" parameterType="_int">
 	select m.member_number ,g.study_group_number, study_group_title, m.member_nickname, study_group_start_date, 
-	study_group_field, study_group_capacity, study_group_contact, study_group_online, date_add(g.study_group_start_date, interval g.study_group_duration day) study_group_end_date,
+	study_group_field, study_group_capacity, study_group_contact, study_group_online, study_group_end_date,
 	study_group_duration, study_group_content, count(distinct study_group_comment_number) study_group_comment_count
 	from tbl_member m join tbl_study_group g on study_group_number = #{studyGroupNumber} and m.member_number = g.member_number
 	left outer join tbl_study_group_comment sgc on g.study_group_number = sgc.study_group_number 
@@ -126,29 +126,12 @@ order by study_group_number desc
 limit #{startRow}, #{rowCount}
 	</select>
 	
-	<!-- 모집분야 (어학 등등 7개) 
-	<select id="searchField"  resultType="StudyGroupVO" parameterType="map" >
-	select j2.study_group_number, j2.study_group_online, j2.study_group_field, j2.study_group_start_date, j2.study_group_title, j2.member_nickname, j2.study_group_read_count, count(distinct sgc.study_group_comment_number) study_group_comment_count, count( distinct sgl.member_number) study_group_like_count
-from (
-    select sg.study_group_number, sg.study_group_online, sg.study_group_field, sg.study_group_start_date, sg.study_group_title, m.member_nickname, sg.study_group_read_count, gl.member_number
-    from tbl_study_group sg
-    left outer join tbl_member m on m.member_number = sg.member_number
-    left outer join tbl_study_group_leader gl on gl.study_group_number = sg.study_group_number
-) j2
-left outer join tbl_study_group_comment sgc on j2.study_group_number = sgc.study_group_number 
-left outer join tbl_member_like_study_group sgl on j2.study_group_number = sgl.study_group_number 
-where j2.study_group_field in ('어학', '취업', '고시/공무원', '취미/교양', '프로그래밍', '자율', '기타') 
-group by  j2.study_group_number, j2.study_group_online, j2.study_group_field, j2.study_group_start_date, j2.study_group_title, j2.member_nickname, j2.study_group_read_count
-order by study_group_number desc
-limit #{startRow}, #{rowCount}
-	</select> -->
-	
-	<!-- 스터디그룹 모집글 -->
-	<select id="insert" parameterType = "StudyGroupDTO" >
+	<!-- 스터디그룹 모집글 write insert -->
+	<insert id="insert" parameterType = "StudyGroupDTO" >
 	insert into tbl_study_group
-	(study_group_title, study_group_field, study_group_online, study_group_capacity, study_group_start_date, study_group_contact, study_group_contact_address, study_group_duration, study_group_content, study_group_read_count, member_number)
-	values('#{studyGroupTitle}', '#{studyGroupField}', '#{studyGroupOnline}', '#{studyGroupCapacity}', CURRENT_TIMESTAMP, '#{studyGroupContact}', '#{studyGroupContactAddress}','#{studyGroupDuration}', '#{studyGroupContent}', #{studyGroupReadCount}, #{memberNumber})
-	</select>
+(study_group_title, study_group_field, study_group_online, study_group_capacity, study_group_start_date, study_group_contact, study_group_duration, study_group_content, member_number, study_group_contact_address, study_group_end_date)
+values (#{studyGroupTitle}, #{studyGroupField}, #{studyGroupOnline}, #{studyGroupCapacity}, CURRENT_TIMESTAMP, #{studyGroupContact}, #{studyGroupDuration}, #{studyGroupcontent} ,#{memberNumber}, #{studyGroupContactAddress}, #{studyGroupEndDate});
+	</insert>
 	
 	<!-- get sequence -->
 	<select id="getSequence" resultType="_int">select last_insert_id() </select>
@@ -159,14 +142,14 @@ limit #{startRow}, #{rowCount}
 	-->
 	<select id="searchOption" resultType="StudyGroupVO" parameterType="StudyGroupSearchVO">
      	select j2.study_group_number, j2.study_group_online, j2.study_group_field, j2.study_group_start_date, j2.study_group_title, j2.member_nickname, j2.study_group_read_count, count(distinct sgc.study_group_comment_number) study_group_comment_count, count( distinct sgl.member_number) study_group_like_count
-from (
+	from (
     select sg.study_group_number, sg.study_group_online, sg.study_group_field, sg.study_group_start_date, sg.study_group_title, m.member_nickname, sg.study_group_read_count, gl.member_number
     from tbl_study_group sg
     left outer join tbl_member m on m.member_number = sg.member_number
     left outer join tbl_study_group_leader gl on gl.study_group_number = sg.study_group_number
-) j2
-left outer join tbl_study_group_comment sgc on j2.study_group_number = sgc.study_group_number 
-left outer join tbl_member_like_study_group sgl on j2.study_group_number = sgl.study_group_number 
+	) j2
+	left outer join tbl_study_group_comment sgc on j2.study_group_number = sgc.study_group_number 
+	left outer join tbl_member_like_study_group sgl on j2.study_group_number = sgl.study_group_number 
       <trim prefix="where" prefixOverrides="and">
       <if test='!studyGroupOnline.equals("")'>
            j2.study_group_online = #{studyGroupOnline}
@@ -187,13 +170,13 @@ left outer join tbl_member_like_study_group sgl on j2.study_group_number = sgl.s
    delete from tbl_study_group where study_group_number = #{studyGroupNumber}
    </delete>
    
-   <!-- 게시글 수정 -->
-   <update id="update" parameterType = "StudyGroupDTO">
+   <!-- 게시글 수정  /  아직 완성되지 않음. -->
+  <!--  <update id="update" parameterType = "StudyGroupDTO">
    update tbl_study_group
    set study_group_title =#{studyGroupTitle}, study_group_field= #{studyGroupField}, study_group_online = #{studyGroupOnline}, 
    study_group_capacity = #{studyGroupCapacity}, study_group_contact =  #{studyGroupContact}, study_group_duration = #{studyGroupDuration}, 
    study_group_content = #{studyGroupContent} 
    where study_group_number = #{studyGroupNumber}
-   </update>
+   </update> -->
    
 </mapper>

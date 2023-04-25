@@ -23,6 +23,7 @@ public class StudyGroupDTO {
 	private String studyGroupcontent;
 	private int studyGroupReadCount;
 	private int memberNumber;
+	private String studyGroupEndDate;
 	private String studyGroupFileSystemName;
 	
 	public StudyGroupDTO() {}
@@ -123,6 +124,14 @@ public class StudyGroupDTO {
 		this.memberNumber = memberNumber;
 	}
 
+	public String getStudyGroupEndDate() {
+		return studyGroupEndDate;
+	}
+
+	public void setStudyGroupEndDate(String studyGroupEndDate) {
+		this.studyGroupEndDate = studyGroupEndDate;
+	}
+
 	public String getStudyGroupFileSystemName() {
 		return studyGroupFileSystemName;
 	}
@@ -139,7 +148,8 @@ public class StudyGroupDTO {
 				+ ", studyGroupContact=" + studyGroupContact + ", studyGroupContactAddress=" + studyGroupContactAddress
 				+ ", studyGroupDuration=" + studyGroupDuration + ", studyGroupcontent=" + studyGroupcontent
 				+ ", studyGroupReadCount=" + studyGroupReadCount + ", memberNumber=" + memberNumber
-				+ ", studyGroupFileSystemName=" + studyGroupFileSystemName + "]";
+				+ ", studyGroupEndDate=" + studyGroupEndDate + ", studyGroupFileSystemName=" + studyGroupFileSystemName
+				+ "]";
 	}
 
 	
