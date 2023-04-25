@@ -3,22 +3,9 @@ var $boardAlign01 = $('.align01');
 var $boardAlign02 = $('.align02');
 var $boardDelete = $('.delete');
 
-window.onload = function() {
-	$('.board-search .material-symbols-outlined').css('color', '#65619E')
-	$(this).css('border', '1px solid #65619E');
-};
-// 검색창 클릭 시 css 변화
-$boardSearchInput.on('focus', function() {
-	$('.board-search .material-symbols-outlined').css('color', '#65619E')
-	$(this).css('border', '1px solid #65619E');
-});
-$boardSearchInput.on('blur', function() {
-	$('.board-search .material-symbols-outlined').css('color', '#bdbdbd')
-	$(this).css('border', '1px solid #bdbdbd');
-});
 
 
-
+var boardTmp;
 var page;
 
 var total = $('.cafe-count').text();
@@ -38,6 +25,21 @@ var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 
+
+window.onload = function() {
+	$('.board-search .material-symbols-outlined').css('color', '#65619E')
+	$(this).css('border', '1px solid #65619E');
+};
+// 검색창 클릭 시 css 변화
+$boardSearchInput.on('focus', function() {
+	$('.board-search .material-symbols-outlined').css('color', '#65619E')
+	$(this).css('border', '1px solid #65619E');
+});
+$boardSearchInput.on('blur', function() {
+	$('.board-search .material-symbols-outlined').css('color', '#bdbdbd')
+	$(this).css('border', '1px solid #bdbdbd');
+});
+
 if (boardTmp == 1) {
 	$boardAlign01.children().css('color', '#000000');
 	$boardAlign01.children('material-symbols-outlined').css('color', '#65619E');
@@ -50,7 +52,7 @@ if (boardTmp == 2) {
 	$boardAlign01.children().css('color', '#bdbdbd');
 }
 
-var boardTmp;
+
 
 // 정렬 버튼 클릭 시 css 변화
 $boardAlign01.on('click', function() {
@@ -117,31 +119,31 @@ $('.board-search > form > button').on('click', function() {
 	var memberId = $('.board-search > form > input').val();
 	$.ajax({
 		type: "GET",
-		url: "/admin/adminBoardListOk.ad?search=name",
+		url: "/admin/adminBoardSearchOk.ad",
 		data: { memberId: memberId },
 		success: function(Parse_data) {
 			$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
 			//alert("통신 데이터 값 : " + Parse_data);
+			$('.board-search > form > input').val(memberId);
 		},
 		error: function() {
 			alert("통신 실패");
 		}
 	});
-	boardTmp=3;
+	boardTmp = 3;
 })
 
 
 
 //페이징
+console.log(boardTmp);
 $('#paging').on('click', ".pageBtn", function() {
-	//$('#list-content').load('${pageContext.request.contextPath}/admin/adminMemberCheckOk.ad?page='+$(this).text());
-	//window.location.href='/admin/adminMemberCheckOk.ad?page='+$(this).text().trim();
 
 	page = $(this).text().trim()
 
 
 	console.log($(this).text().trim());
-	if (boardTmp == 1) {
+	if (boardTmp == 1  || boardTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -170,18 +172,20 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
-	} else if(boardTmp == 3){
+	} else {
+		var memberId = $('.board-search > form > input').val();
 		$.ajax({
-			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminBoardListOk.ad?search=name&page=' + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
-			error: function() {
-				alert("통신실패!!!!");
-			},
+			type: "GET",
+			url: "/admin/adminBoardSearchOk.ad?page=" +$(this).text().trim(),
+			data: { memberId: memberId },
 			success: function(Parse_data) {
 				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+				$('.board-search > form > input').val(memberId);
+			},
+			error: function() {
+				alert("통신 실패");
 			}
-
 		});
 	}
 });
@@ -189,7 +193,7 @@ $('#paging').on('click', ".pageBtn", function() {
 
 //prev버튼
 $('#paging').on('click', ".prev", function() {
-	if (boardTmp == 1) {
+	if (boardTmp == 1 ||boardTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -218,13 +222,28 @@ $('#paging').on('click', ".prev", function() {
 			}
 
 		});
+	} else {
+		var memberId = $('.board-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			url: "/admin/adminBoardSearchOk.ad?page=" +(startPage - 1),
+			data: { memberId: memberId },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+				$('.board-search > form > input').val(memberId);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
 	}
 });
 
 
 //next
 $('#paging').on('click', ".next", function() {
-	if (boardTmp == 1) {
+	if (boardTmp == 1 || boardTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -252,6 +271,21 @@ $('#paging').on('click', ".next", function() {
 				//alert("통신 데이터 값 : " + Parse_data);
 			}
 
+		});
+	}else {
+		var memberId = $('.board-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			url: "/admin/adminBoardSearchOk.ad?page=" +(endPage + 1),
+			data: { memberId: memberId },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+				$('.board-search > form > input').val(memberId);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
 		});
 	}
 });

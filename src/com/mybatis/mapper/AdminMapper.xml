@@ -156,7 +156,8 @@
 		#{startRow},#{rowCount}
 	</select>
 
-	<select id="cafeSearch" resultType="AdminCafeVO">
+	<select id="cafeSearch" resultType="AdminCafeVO"
+		parameterType="SearchVO">
 		select j1.study_cafe_number,
 		j1.study_cafe_name,
 		j1.study_cafe_address,
@@ -181,14 +182,22 @@
 		on j1.study_cafe_number =
 		scc.study_cafe_number
 		group by j1.study_cafe_number HAVING
-		study_cafe_name like concat('%', #{studyCafeName}, '%')
+		study_cafe_name like concat('%', #{searchText}, '%')
 		order by
-		j1.study_cafe_number
+		j1.study_cafe_number limit
+		#{startRow},#{rowCount}
 	</select>
 
 	<select id="cafeTotal" resultType="_int">
 		select
 		count(study_cafe_number) from tbl_study_cafe
+	</select>
+
+	<select resultType="_int" id="cafeSearchTotal">
+		select count(study_cafe_number)
+		from
+		tbl_study_cafe where study_cafe_name like concat('%',
+		#{searchText}, '%')
 	</select>
 
 	<delete id="cafeDelete" parameterType="_int">
@@ -235,7 +244,8 @@
 		tb.member_number =
 		tm.member_number
 		left join tbl_member_profile tmp on
-		tb.member_number = tmp.member_number order by tb.board_number desc limit
+		tb.member_number = tmp.member_number order by tb.board_number desc
+		limit
 		#{startRow},#{rowCount}
 	</select>
 
@@ -250,15 +260,23 @@
 	</delete>
 
 	<select id="boardSearch" resultType="AdminBoardVo"
-		parameterType="string">
+		parameterType="SearchVO">
 		select tb.board_number
 		,tb.board_title
 		,tb.board_date,tb.board_read_count,tm.member_id,tm.member_nickname
 		from tbl_board tb join tbl_member tm on
 		tb.member_number =
-		tm.member_number where member_id like concat('%', #{memberId}, '%')
+		tm.member_number where member_id like concat('%', #{searchText}, '%')
 		order by
-		tb.board_number asc
+		tb.board_number asc limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="boardSearchTotal" resultType="_int">
+		select
+		count(board_number) from tbl_board tb join tbl_member tm on
+		tm.member_number = tb.member_number
+		where tm.member_id like concat('%', #{searchText}, '%')
 	</select>
 
 	<!--스터디 그룹 -->
@@ -323,14 +341,16 @@
 		join tbl_member_profile tmp on scc.member_number =
 		tmp.member_number
 		order by j1.study_group_start_date desc limit
-		#{startRow},#{rowCount} ;
+		#{startRow},#{rowCount}
 	</select>
 
-	<select id="groupSearch" resultType="AdminGroupVO">
+	<select id="groupSearch" resultType="AdminGroupVO"
+		parameterType="SearchVO">
 		select
 		j1.study_group_number, j1.study_group_title,
 		j1.study_group_field,
-		date_add(j1.study_group_start_date, interval j1.study_group_duration
+		date_add(j1.study_group_start_date, interval
+		j1.study_group_duration
 		day) study_group_end_date,
 		j1.study_group_duration,like_count,
 		j1.study_group_read_count,
@@ -359,8 +379,9 @@
 		group by
 		j1.study_group_number having
 		member_nickname like concat('%',
-		#{memberNickname}, '%')
-		order by j1.study_group_number asc
+		#{searchText}, '%')
+		order by j1.study_group_number asc limit
+		#{startRow},#{rowCount}
 	</select>
 
 	<select id="listSearch" resultType="AdminGroupVO">
@@ -404,6 +425,15 @@
 	<select id="groupTotal" resultType="_int">
 		select
 		count(study_group_number) from tbl_study_group;
+	</select>
+
+	<select resultType="_int" id="groupSearchTotal">
+		select count(tm.member_nickname)
+		from tbl_study_group g join tbl_member tm
+		on tm.member_number =
+		g.member_number
+		where tm.member_nickname like concat('%',
+		#{searchText}, '%')
 	</select>
 
 	<delete id="groupDelete" parameterType="_int">
@@ -458,6 +488,256 @@
 		delete from tbl_faq where
 		faq_number = #{faqNumber}
 	</delete>
+
+	<!--chart -->
+	<select id="boardChartDay" resultType="Map">
+		select
+		dayname(board_date)
+		as day,
+		count( dayname(board_date)) as cnt
+		from tbl_board
+		where
+		board_date >= date(now()) - interval 7 day
+		group by dayname(board_date)
+		order by case
+		when day='Monday' then 2
+		when day='Tuesday' then 3
+		when
+		day='Wednesday' then 4
+		when day='Thursday' then 5
+		when day='Friday' then
+		6
+		when day='Saturday' then 7
+		when day='Sunday' then 1
+		end asc;
+	</select>
+
+	<select id="boardChartMonth" resultType="Map">
+		select
+		monthname(board_date) as mon, count(board_number) as monCnt from
+		tbl_board tsc
+		group by monthname(board_date)
+		order by case
+		when
+		mon='January' then 1
+		when mon='February' then 2
+		when mon='March' then 3
+		when mon='April' then 4
+		when mon='May' then 5
+		when mon='June' then 6
+		when mon='July' then 7
+		when mon='August' then 8
+		when mon='September'
+		then 9
+		when mon='October' then 10
+		when mon='November' then 11
+		when
+		mon='December' then 12
+		end asc;
+	</select>
+
+
+	<!--그룹 차트 -->
+	<select id="groupChartDay" resultType="Map">
+		select
+		dayname(study_group_start_date) as day,
+		count(
+		dayname(study_group_start_date)) as cnt
+		from tbl_study_group
+		where
+		study_group_start_date >= date(now()) - interval 7 day
+		group by
+		dayname(study_group_start_date)
+		order by case
+		when day='Monday' then 2
+		when day='Tuesday' then 3
+		when day='Wednesday' then 4
+		when
+		day='Thursday' then 5
+		when day='Friday' then 6
+		when day='Saturday' then
+		7
+		when day='Sunday' then 1
+		end asc
+	</select>
+
+	<select id="groupChartMonth" resultType="Map">
+		select
+		monthname(study_group_start_date) as mon, count(study_group_number) as
+		monCnt from tbl_study_group tsc
+		group by
+		monthname(study_group_start_date)
+		order by case
+		when mon='January' then
+		1
+		when mon='February' then 2
+		when mon='March' then 3
+		when mon='April'
+		then 4
+		when mon='May' then 5
+		when mon='June' then 6
+		when mon='July' then
+		7
+		when mon='August' then 8
+		when mon='September' then 9
+		when mon='October'
+		then 10
+		when mon='November' then 11
+		when mon='December' then 12
+		end asc
+	</select>
+
+	<!--카페 차트 -->
+	<select id="cafeChartDay" resultType="Map">
+		select
+		dayname(reservation_start) as day,
+		count( dayname(reservation_start))
+		as cnt
+		from tbl_reservation tr
+		where reservation_start >= date(now()) -
+		interval 7 day
+		group by dayname(reservation_start)
+		order by case
+		when
+		day='Monday' then 2
+		when day='Tuesday' then 3
+		when day='Wednesday' then
+		4
+		when day='Thursday' then 5
+		when day='Friday' then 6
+		when day='Saturday'
+		then 7
+		when day='Sunday' then 1
+		end asc
+	</select>
+
+	<select id="cafeChartMonth" resultType="Map">
+		select
+		monthname(reservation_start) as mon, count(reservation_number) as
+		monCnt from tbl_reservation tsc
+		group by monthname(reservation_start)
+		order by case
+		when mon='January' then 1
+		when mon='February' then 2
+		when
+		mon='March' then 3
+		when mon='April' then 4
+		when mon='May' then 5
+		when
+		mon='June' then 6
+		when mon='July' then 7
+		when mon='August' then 8
+		when
+		mon='September' then 9
+		when mon='October' then 10
+		when mon='November'
+		then 11
+		when mon='December' then 12
+		end asc
+	</select>
+
+	<!--회원 차트 -->
+	<select id="memberChartM" resultType="Map">
+		select
+		dayname(member_join_date) as day,
+		count( dayname(member_join_date)) as
+		cnt
+		from tbl_member tm
+		where member_join_date >= date(now()) - interval
+		7 day
+		group by dayname(member_join_date),member_gender having
+		member_gender ='M'
+		order by case
+		when day='Monday' then 2
+		when
+		day='Tuesday' then 3
+		when day='Wednesday' then 4
+		when day='Thursday'
+		then 5
+		when day='Friday' then 6
+		when day='Saturday' then 7
+		when
+		day='Sunday' then 1
+		end asc
+	</select>
+
+	<select id="memberChartMonthM" resultType="Map">
+		select
+		monthname(member_join_date) as mon,member_gender ,
+		count(member_number) as monCnt from tbl_member tm
+		group by
+		monthname(member_join_date),member_gender having member_gender =
+		'M'
+		order by case
+		when mon='January' then 1
+		when mon='February' then 2
+		when
+		mon='March' then 3
+		when mon='April' then 4
+		when mon='May' then 5
+		when
+		mon='June' then 6
+		when mon='July' then 7
+		when mon='August' then 8
+		when
+		mon='September' then 9
+		when mon='October' then 10
+		when mon='November'
+		then 11
+		when mon='December' then 12
+		end asc
+	</select>
+
+	<select id="memberChartF" resultType="Map">
+		select
+		dayname(member_join_date) as day,
+		count( dayname(member_join_date)) as
+		cnt
+		from tbl_member tm
+		where member_join_date >= date(now()) - interval
+		7 day
+		group by dayname(member_join_date),member_gender having
+		member_gender ='F'
+		order by case
+		when day='Monday' then 2
+		when
+		day='Tuesday' then 3
+		when day='Wednesday' then 4
+		when day='Thursday'
+		then 5
+		when day='Friday' then 6
+		when day='Saturday' then 7
+		when
+		day='Sunday' then 1
+		end asc
+	</select>
+
+	<select id="memberChartMonthF" resultType="Map">
+		select
+		monthname(member_join_date) as mon,member_gender ,
+		count(member_number) as monCnt from tbl_member tm
+		group by
+		monthname(member_join_date),member_gender having member_gender =
+		'F'
+		order by case
+		when mon='January' then 1
+		when mon='February' then 2
+		when
+		mon='March' then 3
+		when mon='April' then 4
+		when mon='May' then 5
+		when
+		mon='June' then 6
+		when mon='July' then 7
+		when mon='August' then 8
+		when
+		mon='September' then 9
+		when mon='October' then 10
+		when mon='November'
+		then 11
+		when mon='December' then 12
+		end asc
+	</select>
 
 </mapper>
 

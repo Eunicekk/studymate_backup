@@ -3,108 +3,224 @@ var monthMemberChart = document.getElementById('month-member-chart');
 Chart.defaults.font.size = 16;
 Chart.defaults.font.family = 'Pretendard';
 
-// 일별 회원 가입 및 탈퇴 추이
-// 회원 변동 추이 = 회원 가입 - 회원 탈퇴
-new Chart(dayMemberChart, {
-    type: 'line',
-    data: {
-        labels : ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
-        datasets : [
-            {
-                type: 'line',
-                label : '회원 변동 수',
-                data: [3, 9, -11, 18, 15, -3, -5],
-                backgroundColor: 'rgba(255, 205, 86)',
-                borderColor: 'rgb(255, 205, 86)',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 8,
-                pointHoverRadius: 15,
-                tension: 0.4
-            },
-            {
-                type: 'bar',
-                label : '회원 가입 수',
-                data: [15, 28, 11, 23, 17, 5, 8],
-                backgroundColor: 'rgba(53, 162, 263, 0.5)',
-                borderColor: 'rgb(53, 162, 263)',
-                borderRadius: 10,
-                borderWidth: 3
-            },
-            {
-                type: 'bar',
-                label : '회원 탈퇴 수',
-                data: [12, 19, 22, 5, 2, 8, 13],
-                backgroundColor: 'rgb(255, 100, 132, 0.5)',
-                borderColor: 'rgb(255, 100, 132)',
-                borderRadius: 10,
-                borderWidth: 3
-            }
-        ]
-    },
-    options: {
-        responsive : false,
-        scales: {
-            y: {
-                suggestMin: -15,
-                min: -15,
-                suggestedMax: 30,
-                max: 30
-            }
-        }
-    }
-});
 
-// 월별 회원 가입 및 탈퇴 추이
-new Chart(monthMemberChart, {
-    type: 'line',
-    data: {
-        labels : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets : [
-            {
-                type: 'line',
-                label : '회원 변동 수',
-                data: [60, 46, 26, -19, 15, 25, -21, 15, -1, 31, 32, 20],
-                backgroundColor: 'rgba(255, 205, 86)',
-                borderColor: 'rgb(255, 205, 86)',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 8,
-                pointHoverRadius: 15,
-                tension: 0.4
-            },
-            {
-                type: 'bar',
-                label : '회원 가입 수',
-                data: [72, 65, 48, 35, 29, 56, 21, 37, 16, 61, 44, 36],
-                backgroundColor: 'rgba(53, 162, 263, 0.5)',
-                borderColor: 'rgb(53, 162, 263)',
-                borderRadius: 10,
-                borderWidth: 3
-            },
-            {
-                type: 'bar',
-                label : '회원 탈퇴 수',
-                data: [12, 19, 22, 54, 14, 31, 42, 22, 17, 30, 8, 16],
-                backgroundColor: 'rgb(255, 100, 132, 0.5)',
-                borderColor: 'rgb(255, 100, 132)',
-                borderRadius: 10,
-                borderWidth: 3
-            }
-        ]
-    },
-    options: {
-        responsive : false,
-        scales: {
-            y: {
-                ticks: {
-                    stepSize: 10
-                },
-                suggestMin: -40,
-                min: -40,
-                suggestedMax: 80,
-                max: 80
-            }
-        }
-    }
-});
+
+var manDaylist = [];
+var manCntlist = [];
+
+var manMonthList = [];
+var manMonthCnt = [];
+
+var femaleDayList = [];
+var femaleCntList = [];
+
+var femaleMonthList = [];
+var femaleMonthCnt = [];
+
+var VarianceDay = [];
+var VarianceMonth = [];
+
+
+
+
+
+function FemaleDay() {
+	$.ajax({
+		url: "/admin/memberChartF.ad",
+		type: 'post',
+		dataType: 'json',
+		success: function(memberDayFemale) {
+			$.each(memberDayFemale, function() {
+				femaleDayList.push(this["day"])
+				femaleCntList.push(this["cnt"])
+			})
+		}
+	});
+}
+
+function FemaleMonth() {
+	$.ajax({
+		url: "/admin/memberMonthChartF.ad",
+		type: 'post',
+		dataType: 'json',
+		success: function(FemaleMonth) {
+			$.each(FemaleMonth, function() {
+				femaleMonthList.push(this["mon"])
+				femaleMonthCnt.push(this["monCnt"])
+			})
+		}
+	});
+}
+
+
+
+
+function chartAjax() {
+	$.ajax({
+		url: '/admin/memberChartM.ad',
+		type: 'post',
+		dataType: 'json',
+		success: function(cafeDayMan) {
+
+			$.each(cafeDayMan, function() {
+				manDaylist.push(this["day"])
+				manCntlist.push(this["cnt"])
+
+			})
+			for (var i = 0; i < manCntlist.legnthl; i++) {
+				VarianceDay[i] = manCntlist[i] - femaleCntList[i];
+				console.log(VarianceDay[i])
+			}
+
+			const ctx = document.getElementById('day-member-chart').getContext('2d');
+			const myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: manDaylist,
+					datasets: [
+						{
+							type: 'line',
+							label: '회원 변동 수',
+							data: VarianceDay,
+							backgroundColor: 'rgba(255, 205, 86)',
+							borderColor: 'rgb(255, 205, 86)',
+							borderWidth: 3,
+							pointStyle: 'circle',
+							pointRadius: 8,
+							pointHoverRadius: 15,
+							tension: 0.4
+						},
+						{
+							type: 'bar',
+							label: '남자 회원 가입 수',
+							data: manCntlist,
+							backgroundColor: 'rgba(53, 162, 263, 0.5)',
+							borderColor: 'rgb(53, 162, 263)',
+							borderRadius: 10,
+							borderWidth: 3
+						},
+						{
+							type: 'bar',
+							label: '여자 회원 가입 수',
+							data: femaleCntList,
+							backgroundColor: 'rgb(255, 100, 132, 0.5)',
+							borderColor: 'rgb(255, 100, 132)',
+							borderRadius: 10,
+							borderWidth: 3
+						}
+					]
+				},
+				options: {
+					responsive: false,
+					scales: {
+						y: {
+							suggestMin: -15,
+							min: -15,
+							suggestedMax: 100,
+							max: 100
+						}
+					}
+				}
+			});
+
+
+		},
+		error: function() {
+			alert("통신 실패");
+		}
+	});
+}
+
+
+
+function MonChartAjax() {
+	$.ajax({
+		url: '/admin/memberMonthChartM.ad',
+		type: 'post',
+		dataType: 'json',
+		success: function(memberMonthMan) {
+
+			$.each(memberMonthMan, function() {
+				manMonthList.push(this["mon"])
+				manMonthCnt.push(this["monCnt"])
+
+			})
+
+			for (var i = 0; i < manMonthCnt.legnthl; i++) {
+				VarianceMonth[i] = manMonthCnt[i] - femaleMonthCnt[i];
+				console.log(VarianceMonth[i])
+			}
+
+
+			const ctx2 = document.getElementById('month-member-chart').getContext('2d');
+			const myChart2 = new Chart(ctx2, {
+				type: 'line',
+				data: {
+					labels: manMonthList,
+					datasets: [
+						{
+							type: 'line',
+							label: '회원 변동 수',
+							data: VarianceMonth,
+							backgroundColor: 'rgba(255, 205, 86)',
+							borderColor: 'rgb(255, 205, 86)',
+							borderWidth: 3,
+							pointStyle: 'circle',
+							pointRadius: 8,
+							pointHoverRadius: 15,
+							tension: 0.4
+						},
+						{
+							type: 'bar',
+							label: '남자 회원 가입 수',
+							data: manMonthCnt,
+							backgroundColor: 'rgba(53, 162, 263, 0.5)',
+							borderColor: 'rgb(53, 162, 263)',
+							borderRadius: 10,
+							borderWidth: 3
+						},
+						{
+							type: 'bar',
+							label: '여성 회원 가입 수',
+							data: femaleMonthCnt,
+							backgroundColor: 'rgb(255, 100, 132, 0.5)',
+							borderColor: 'rgb(255, 100, 132)',
+							borderRadius: 10,
+							borderWidth: 3
+						}
+					]
+				},
+				options: {
+					responsive: false,
+					scales: {
+						y: {
+							ticks: {
+								stepSize: 10
+							},
+							suggestMin: -40,
+							min: -40,
+							suggestedMax: 150,
+							max: 150
+						}
+					}
+				}
+			});
+
+
+		},
+		error: function() {
+			alert("통신 실패");
+		}
+	});
+}
+
+
+FemaleDay();
+FemaleMonth();
+
+chartAjax();
+MonChartAjax();
+
+
+
+

@@ -23,8 +23,8 @@
         <canvas id="month-board-chart" width="965" height="600"></canvas>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/adminBoardProgress.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>

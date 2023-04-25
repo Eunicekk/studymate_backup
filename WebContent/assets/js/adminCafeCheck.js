@@ -15,21 +15,21 @@ $searchCafeInput.on('blur', function() {
 	$(this).css('border', '1px solid #bdbdbd');
 });
 
-if(cafeTmp == 1){
+if (cafeTmp == 1) {
 	$cafeAlign01.children().css('color', '#000000');
 	$cafeAlign01.children('material-symbols-outlined').css('color', '#65619E');
 	$cafeAlign02.children().css('color', '#bdbdbd');
 	$cafeAlign03.children().css('color', '#bdbdbd');
 }
 
-if(cafeTmp ==2 ){
+if (cafeTmp == 2) {
 	$cafeAlign02.children().css('color', '#000000');
 	$cafeAlign02.children('material-symbols-outlined').css('color', '#65619E');
 	$cafeAlign01.children().css('color', '#bdbdbd');
 	$cafeAlign03.children().css('color', '#bdbdbd');
 }
 
-if(cafeTmp ==3){
+if (cafeTmp == 3) {
 	$cafeAlign03.children().css('color', '#000000');
 	$cafeAlign03.children('material-symbols-outlined').css('color', '#65619E');
 	$cafeAlign01.children().css('color', '#bdbdbd');
@@ -118,7 +118,7 @@ $('#paging').on('click', ".pageBtn", function() {
 	page = $(this).text().trim()
 
 	console.log($(this).text());
-	if (cafeTmp == 1) {
+	if (cafeTmp == 1 || cafeTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -147,7 +147,7 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
-	} else {
+	} else if (cafeTmp == 3) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: '/admin/adminCafeListOk.ad?order=like&page=' + $(this).text().trim(),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -161,19 +161,35 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
+	} else {
+		var CafeName = $('.cafe-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			url: "/admin/adminCafeSearchOk.ad?page=" + $(this).text().trim(),
+			data: { CafeName: CafeName },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+				$('.cafe-search > form > input').val(CafeName);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
 	}
+
 });
 
 
 console.log(startPage + "start 출력");
 //prev 버튼
 $('#paging').on('click', ".prev", function() {
-	 
-	if (cafeTmp == 1) {
+
+	if (cafeTmp == 1 || cafeTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminCafeListOk.ad?page=' + (startPage-1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminCafeListOk.ad?page=' + (startPage - 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -187,7 +203,7 @@ $('#paging').on('click', ".prev", function() {
 	} else if (cafeTmp == 2) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminCafeListOk.ad?order=comment&page=' + (startPage-1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminCafeListOk.ad?order=comment&page=' + (startPage - 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -198,10 +214,10 @@ $('#paging').on('click', ".prev", function() {
 			}
 
 		});
-	} else {
+	} else if(cafeTmp == 3) {
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
-			url: '/admin/adminCafeListOk.ad?order=like&page=' + (startPage-1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			url: '/admin/adminCafeListOk.ad?order=like&page=' + (startPage - 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType: "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
 			error: function() {
 				alert("통신실패!!!!");
@@ -211,14 +227,29 @@ $('#paging').on('click', ".prev", function() {
 				//alert("통신 데이터 값 : " + Parse_data);
 			}
 
+		});
+	}else{
+		var CafeName = $('.cafe-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			url: "/admin/adminCafeSearchOk.ad?page=" + (startPage - 1),
+			data: { CafeName: CafeName },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+				$('.cafe-search > form > input').val(CafeName);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
 		});
 	}
 });
 console.log(endPage + " end출력");
 //next
 $('#paging').on('click', ".next", function() {
-	
-	if (cafeTmp == 1) {
+
+	if (cafeTmp == 1 || cafeTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -247,7 +278,7 @@ $('#paging').on('click', ".next", function() {
 			}
 
 		});
-	} else {
+	} else if(cafeTmp ==3 ){
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
 			url: '/admin/adminCafeListOk.ad?order=like&page=' + (endPage + 1),//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -261,45 +292,45 @@ $('#paging').on('click', ".next", function() {
 			}
 
 		});
+	}else {
+		var CafeName = $('.cafe-search > form > input').val();
+		$.ajax({
+			type: "GET",
+			url: "/admin/adminCafeSearchOk.ad?page=" + (endPage + 1),
+			data: { CafeName: CafeName },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				//alert("통신 데이터 값 : " + Parse_data);
+				$('.cafe-search > form > input').val(CafeName);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
 	}
 });
 
 
 // 검색
-/*$(document).ready(function() {
-	$(".cafe-search > form > input").on("keyup", function() {
-		var value = $(this).val().toLowerCase();
-		console.log(value);
-		// 클래스로 어디 검색 할지 정할수있다.
-		$(".cafe-check > ul > li").filter(function(){
-			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-		});
-	});
-});*/
-
 $('.cafe-search > form > button').on('click', function() {
-	var studyCafeName = $('.cafe-search > form > input').val();
+	var CafeName = $('.cafe-search > form > input').val();
+	console.log(CafeName);
 	$.ajax({
 		type: "GET",
-		url: "/admin/adminCafeListOk.ad",
-		data: { studyCafeName: studyCafeName },
+		url: "/admin/adminCafeSearchOk.ad",
+		data: { CafeName: CafeName },
 		success: function(Parse_data) {
 			$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
 			//alert("통신 데이터 값 : " + Parse_data);
+			$('.cafe-search > form > input').val(CafeName);
 		},
 		error: function() {
 			alert("통신 실패");
 		}
 	});
+	cafeTmp = 4;
 })
 
-// 삭제 버튼 누를 시 경고창으로 삭제하시겠습니까? 알림 후 삭제
-/*$cafeDelete.on('click', function() {
-	var isDelete = confirm('해당 카페 데이터를 삭제하시겠습니까?');
-	if (isDelete == true) {
-		$(this).parent().parent().parent().hide();
-	}
-})*/
 
 
 //삭제 새로고침 해야함

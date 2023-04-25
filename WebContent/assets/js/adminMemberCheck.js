@@ -3,18 +3,7 @@ var $align01 = $('.align01');
 var $align02 = $('.align02');
 var $delete = $('.delete');
 
-// 검색창 클릭 시 css 변화
-$searchInput.on('focus', function() {
-	$('.member-search .material-symbols-outlined').css('color', '#65619E')
-	$(this).css('border', '1px solid #65619E');
-});
-$searchInput.on('blur', function() {
-	$('.member-search .material-symbols-outlined').css('color', '#bdbdbd')
-	$(this).css('border', '1px solid #bdbdbd');
-});
-
-
-
+var tmp;
 var page;
 
 var total = $('.cafe-count').text();
@@ -33,7 +22,15 @@ var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 
-
+// 검색창 클릭 시 css 변화
+$searchInput.on('focus', function() {
+	$('.member-search .material-symbols-outlined').css('color', '#65619E')
+	$(this).css('border', '1px solid #65619E');
+});
+$searchInput.on('blur', function() {
+	$('.member-search .material-symbols-outlined').css('color', '#bdbdbd')
+	$(this).css('border', '1px solid #bdbdbd');
+});
 if (tmp ==1) {
 	$align01.children().css('color', '#000000');
 	$align01.children('material-symbols-outlined').css('color', '#65619E');
@@ -46,7 +43,7 @@ if(tmp ==2){
 	$align01.children().css('color', '#bdbdbd');
 }
 
-var tmp;
+
 
 // 정렬 버튼 클릭 시 css 변화
 $align01.on('click', function() {
@@ -114,7 +111,7 @@ $('#paging').on('click', ".pageBtn", function() {
 
 
 	console.log($(this).text().trim());
-	if (tmp == 1) {
+	if (tmp == 1 || tmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -164,7 +161,7 @@ $('#paging').on('click', ".pageBtn", function() {
 
 //prev버튼
 $('#paging').on('click', ".prev", function() {
-	if (tmp == 1) {
+	if (tmp == 1 || tmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -214,7 +211,7 @@ $('#paging').on('click', ".prev", function() {
 
 //next
 $('#paging').on('click', ".next", function() {
-	if (tmp == 1) {
+	if (tmp == 1 || tmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)

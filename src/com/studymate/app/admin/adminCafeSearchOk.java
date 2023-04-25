@@ -10,31 +10,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.studymate.app.Execute;
+import com.studymate.app.admin.cafe.vo.adminCafeVO;
 import com.studymate.app.admin.dao.AdminDAO;
 import com.studymate.app.admin.search.vo.SearchVO;
-import com.studymate.app.member.dao.MemberDAO;
-import com.studymate.app.member.dto.MemberDTO;
 
-public class adminMemberSearchOk implements Execute {
+public class adminCafeSearchOk implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		MemberDAO memberDAO = new MemberDAO();
 		AdminDAO adminDAO = new AdminDAO();
-		List<MemberDTO> members = null;
+		List<adminCafeVO> cafelist = null;
 		SearchVO searchVO = new SearchVO();
 		
 
 		String temp = req.getParameter("page");
 		String desc = req.getParameter("order");
-		String memberId = req.getParameter("memberId");
-		searchVO.setSearchText(req.getParameter("memberId")); 
+		String cafeName = req.getParameter("CafeName");
+		searchVO.setSearchText(req.getParameter("CafeName")); 
 		
-		int total = adminDAO.memberSearchTotal(memberId);
+		int total = adminDAO.cafeSearchTotal(cafeName);
 
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 
-		int rowCount = 10;
+		int rowCount = 21;
 
 		int pageCount = 5;
 
@@ -57,12 +55,11 @@ public class adminMemberSearchOk implements Execute {
 		System.out.println(searchVO);
 
 		
-		members = adminDAO.MemberSearch(searchVO);
+		cafelist = adminDAO.cafeSearch(searchVO);
 		
-//		System.out.println(searchVO);
-		System.out.println(members);
-		System.out.println(page);
-		req.setAttribute("memberList", members);
+		System.out.println(cafelist);
+		System.out.println(total);
+		req.setAttribute("cafeList", cafelist);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);
 		req.setAttribute("endPage", endPage);
@@ -71,8 +68,7 @@ public class adminMemberSearchOk implements Execute {
 		req.setAttribute("total", total);
 
 
-		req.getRequestDispatcher("/app/admin/adminMemberCheck.jsp").forward(req, resp);
-		
+		req.getRequestDispatcher("/app/admin/adminCafeCheck.jsp").forward(req, resp);
 	}
 
 }
