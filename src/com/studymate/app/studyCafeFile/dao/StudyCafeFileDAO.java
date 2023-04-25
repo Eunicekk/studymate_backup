@@ -18,4 +18,8 @@ public class StudyCafeFileDAO {
 		return sqlSession.selectList("studyCafeFile.select", studyCafeNumber);
 	}
 	
+	public void thumbnail(int studyCafeNumber) {
+		sqlSession.update("studyCafeFile.thumbnail", studyCafeNumber);
+	}
+	
 }

@@ -17,6 +17,7 @@ import com.oreilly.servlet.multipart.Part;
 import com.studymate.app.Execute;
 import com.studymate.app.admin.dao.AdminDAO;
 import com.studymate.app.studyCafe.dto.StudyCafeDTO;
+import com.studymate.app.studyCafeFile.dao.StudyCafeFileDAO;
 import com.studymate.app.studyCafeFile.dto.StudyCafeFileDTO;
 
 public class adminCafeWriteOk implements Execute {
@@ -25,6 +26,7 @@ public class adminCafeWriteOk implements Execute {
 		AdminDAO adminDAO = new AdminDAO();
 		StudyCafeDTO studyCafeDTO = new StudyCafeDTO();
 		StudyCafeFileDTO studyCafeFileDTO = new StudyCafeFileDTO();
+		StudyCafeFileDAO studyCafeFileDAO = new StudyCafeFileDAO();
 		List<String> systemName = new ArrayList<String>();
 		List<String> originalName = new ArrayList<String>();
 		int studyCafeNumber = 0;
@@ -100,7 +102,11 @@ public class adminCafeWriteOk implements Execute {
 //		System.out.println(originalName);
 //		System.out.println(systemName);
 		
-		for(int i =0;i < systemName.size(); i++) {			
+		for(int i =0;i < systemName.size(); i++) {		
+			if(i==0) {
+				studyCafeFileDAO.thumbnail(studyCafeNumber);
+				System.out.println("작동이 되고있느냐??");
+			}
 			studyCafeFileDTO.setCafeFileOriginalName(originalName.get(i));
 			studyCafeFileDTO.setCafeFileSystemName(systemName.get(i));
 			studyCafeFileDTO.setStudyCafeNumber(studyCafeNumber);

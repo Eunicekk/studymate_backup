@@ -16,8 +16,8 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 648px 480px;
-  gap: 66px;
-  padding: 48px 0px 86.5px;
+  gap: 40px;
+  padding: 48px 13px 86.5px;
   border-bottom: 1px solid rgb(240, 240, 240);
 }
 
@@ -42,7 +42,6 @@ section * {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  overflow: hidden;
   list-style: none;
   padding: 0;
   z-index: 1;
@@ -59,6 +58,30 @@ section * {
   display: flex;
   transition-property: transform;
   box-sizing: content-box;
+}
+
+.swiper-container{
+	width: 648px;
+	height: 512px;
+	display: flex;
+	overflow: hidden;
+	border-radius: 4px;
+}
+
+.swiper-container ul{
+	display: flex;
+	position: relative;
+	left: -17px;
+}
+
+.swiper-container li{
+	display: inline-block;
+	position: relative;
+	left: -17px;
+}
+
+.swiper-container li img{
+	height: 512px;
 }
 
 .ImgContent .swiper-slide {
@@ -848,11 +871,9 @@ ul {
 }
 
 .ReserveFormContent {
-  /* position: fixed; */
+  position: absolute;
   width: 480px;
-  top: 0px;
-  right: 114px;
-  bottom: 0px;
+  top: 310px;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(212, 219, 226);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 48px 0px;
@@ -1065,7 +1086,7 @@ button {
 .swiper-wrapper {
   position: relative;
   width: auto;
-  height: 100%;
+  height: 512px;
   z-index: 1;
   display: flex;
   transition-property: transform;
@@ -1237,15 +1258,14 @@ button {
   align-items: center;
   width: 100%;
   gap: 8px;
-  padding: 0px 38px 110px;
+  padding: 0px 38px;
+  margin: 40px 0 38px;
   border: none;
 }
 
 .BuyBtn {
-  height: 52px;
+  height: 60px;
   width: 100%;
-  position: relative;
-  top: 70px;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -1263,8 +1283,8 @@ button {
   line-height: 20px;
 }
 
-.PriceBtn > span {
-  font-size: 13px;
+.PriceBtn span{
+	font-weight: 600;
 }
 
 .TitleBtn {
@@ -1500,3 +1520,13 @@ button {
   		'opsz' 48
 }
 
+.swiper-slider.toggle-date{
+	background-color: rgb(102, 103, 171)!important;
+	color: white!important;
+}
+
+.capacityCount{
+	font-size: 14px;
+	line-height: 19px;
+	color: #8a8a8a;
+}

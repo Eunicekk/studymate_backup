@@ -47,6 +47,9 @@ public class AdminDAO {
 	public void cafeFileInsert(StudyCafeFileDTO studyCafeFileDTO) {
 		sqlSession.insert("admin.cafeFileInsert",studyCafeFileDTO);
 	}
+	public void cafeFileSelect(StudyCafeFileDTO studyCafeFileDTO) {
+		sqlSession.insert("admin.cafeFileSelect",studyCafeFileDTO);
+	}
 	
 	public int getSequence() {
 		return sqlSession.selectOne("admin.getSequence");
