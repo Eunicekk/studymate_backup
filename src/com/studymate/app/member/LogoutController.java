@@ -15,16 +15,12 @@ public class LogoutController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		HttpSession session = req.getSession();
-		session.invalidate();
-		
-        req.getRequestDispatcher("/").forward(req, resp);
-		
-		
-		
-		
-		
-	}
-
+	    try {
+	        HttpSession session = req.getSession();
+	        session.invalidate();
+	        resp.sendRedirect(req.getContextPath() + "/");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+}
 }

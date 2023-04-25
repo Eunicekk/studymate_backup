@@ -40,6 +40,7 @@ public class MemberFrontController extends HttpServlet{
 	             new CheckIdOkController().execute(req, resp);
 	            break;
 	        case "/member/logoutOk.me":
+	        	System.out.println("Received request: " + target);
 	            new LogoutController().execute(req,resp);
 	            break;
 	        case "/member/findAccount.me":
@@ -50,6 +51,9 @@ public class MemberFrontController extends HttpServlet{
 	        	break;
 	        case "/member/PwAccountOk.me":
 	        	new PwChange().execute(req, resp);
+	        	break;
+	        case "/member/NcallbackOk.me":
+	        	new navercallback().execute(req,resp);
 	        	break;
 
 		}

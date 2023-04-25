@@ -18,7 +18,7 @@
 		<header>
 		<div class="header-main">
 			  <c:choose>
-         <c:when test="${empty sessionScope.memberNumber}">
+         <c:when test="${empty sessionScope.memberNickname}">
             <div>
                <img src="${pageContext.request.contextPath}/assets/img/logo.png"
                   alt="" class="logo" />

@@ -1,3 +1,5 @@
+
+
 package com.studymate.app.member.dao;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,12 +19,16 @@ public class MemberDAO {
 		// member 매퍼에 있는 join 쿼리 실행할거야 그리고 매개변수 넘겨줄값은 memberDTO야
 	}
 
+	
+	
+	
 
-	public int login(MemberDTO memberDTO) {
-		int result=sqlSession.selectOne("member.login",memberDTO);
+	public MemberDTO login(MemberDTO memberDTO) {
+		MemberDTO result=sqlSession.selectOne("member.login",memberDTO);
 		System.out.println(result);
 		return result;
 	}
+
 
 
 	public int checkPassword(MemberDTO memberDTO) {
@@ -48,5 +54,10 @@ public class MemberDAO {
 	//sqlSession 객체를 사용하여 mapper파일에 정의된 sql쿼리를 실행하여 데이터베이스에서 회원정보 업데이트
 	//따라서 newPassword() 메서드를 호출하면 회원 비밀번호가 새로운 비밀번호로 변경
 
+		
+	}
 	
-}
+
+
+
+

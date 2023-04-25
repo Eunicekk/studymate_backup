@@ -10,9 +10,9 @@
 
 	</insert>
 
-	<select id="login" parameterType="MemberDTO" resultType="_int">
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
 		select
-		member_number from tbl_member
+		* from tbl_member
 		where member_id =#{memberId} and
 		member_password =#{memberPassword}
 	</select>
