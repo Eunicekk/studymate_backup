@@ -12,24 +12,30 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/study_group_main.css" />
   </head>
   <body>
-    <header></header>
+    <!-- 헤더 -->
+    <header>
+		<c:choose>
+			<c:when test="${empty sessionScope.memberNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/header.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</header>
+	
     <main id="main">
       <!--nav 검색창, 필터버튼 -->
       <div class="searchContainer">
         <div class="searchBox">
           <button class="searchBtn" hidden></button>
           <form id="search" action="" method="post">
-            <input
-              type="text"
-              autocomplete="off"
-              id="searchInput" 
-              name="searchInput" 
-              placeholder="찾으시는 키워드를 입력하세요"
-              value=""
-            />
+            <input type="text" autocomplete="off" id="searchInput" name="searchInput" placeholder="찾으시는 키워드를 입력하세요" value="" />
             <input type="submit" id="search-btn" value="" />
           </form>
-          <a href="${pageContext.request.contextPath}/app/group/studyGroupWrite.jsp" class="newWriteBtn">새 글 쓰기</a>
+          <a href="#" class="newWriteBtn">새 글 쓰기</a>
         </div>
 
 
@@ -58,7 +64,7 @@
                   </div>
                   <!--메뉴창 -->
                   <div class="selectMenu selectOnOff none">
-                    <div class="selectList">
+                    <div class="selectList selectedOnline">
                       <div class="selectOption">온라인</div>
                       <div class="selectOption">오프라인</div>
                     </div>
@@ -89,7 +95,7 @@
                 </div>
                 <!--메뉴창 -->
                 <div class="selectMenu selectFiled none">
-                  <div class="selectList">
+                  <div class="selectList selectedField" >
                     <div class="Option">어학</div>
                     <div class="Option">취업</div>
                     <div class="Option">고시/공무원</div>
@@ -192,8 +198,7 @@
           <c:choose>
           <c:when test="${not empty studyGroups}">
           <c:forEach var="group" items= "${studyGroups}">
-           <%-- <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen"> --%>
-              <a href="" class="studyOpen">
+            <a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${group.getStudyGroupNumber()}" class="studyOpen"> 
               <li>
                 <div class="badge">
                   <div class="badgeFiled">
@@ -256,12 +261,9 @@
                   </div>
                   
                 </section>
-         
-              
-              </li>
          	<!-- 좋아요 버튼  -->     
-              
               <!-- <div > 검색된 게시물이 없습니다.</div> -->
+              </li>
             </a>
           
           
@@ -786,7 +788,20 @@
       </div>
 
     </main>
-    <footer></footer>
+    
+    <!-- footer -->
+    <footer>
+		<c:choose>
+			<c:when test="${empty sessionScope.memberNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</footer>
 
     <script
       src="https://code.jquery.com/jquery-3.6.3.js"

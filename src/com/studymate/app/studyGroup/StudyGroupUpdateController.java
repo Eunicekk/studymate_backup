@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.studymate.app.Execute;
 import com.studymate.app.studyGroup.dao.StudyGroupDAO;
-import com.studymate.app.studyGroup.vo.StudyGroupVO;
 
-public class StudyGroupReadOkController implements Execute {
+public class StudyGroupUpdateController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,15 +17,9 @@ public class StudyGroupReadOkController implements Execute {
 		
 		int studyGroupNumber = Integer.valueOf(req.getParameter("studyGroupNumber"));
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO();
-		StudyGroupVO studyGroupVO = studyGroupDAO.select(studyGroupNumber);
-	
-		studyGroupDAO.updateReadCount(studyGroupNumber);
-		
-		req.setAttribute("group", studyGroupVO); 
-		// 통째로 넘겨놓은 뒤 getter로 뽑으면 됨. 
-		
-		System.out.println("read ok controller 타는지");
-		req.getRequestDispatcher("/app/group/studyGroupRead.jsp").forward(req, resp);
+
+		req.setAttribute("group", studyGroupDAO.select(studyGroupNumber));
+		req.getRequestDispatcher("/app/group/studyGroupUpdate.jsp").forward(req, resp);
 		
 	}
 

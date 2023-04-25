@@ -45,12 +45,17 @@ $filed.click(() => {
 
 
 // 켈린더
-/*$(document).ready(function() {
+$(document).ready(function() {
 	calendarInit();
 });
-*/
 
-// 최신순(기본정렬) 조회순 좋아요순 댓글순 정렬 
+
+
+// 글쓰기 페이지로 이동 
+ $('.newWriteBtn').on('click', ()=> {
+	   window.location.href = '/studyGroup/studyGroupWrite.sg';
+});
+
 
 let $latest = $('#latest');
 let $viewCount = $('#viewCount');
@@ -70,19 +75,17 @@ var startPage = endPage - (pageCount - 1);
 var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
 var endPage = endPage > realEndPage ? realEndPage : endPage;
 let $mainContain = $('.mainContainer2');
-console.log( $mainContain);
-console.log('바로 위의 것은 메인 컨테이너 입니다 게시글 ul 을 감싼 메인컨테이너입니다');
+
+
 
 var a = $('#order').children();
-/*console.log(a);
-console.log($latest);
-console.log('===========');
-console.log($('.mainContainer'));
-console.log($('#order option').eq(0));
-console.log('===========================');*/
 
+
+
+
+// 최신순(기본정렬) 조회순 좋아요순 댓글순 정렬
 var a = $('#order option');
-console.log(a);
+/*console.log(a); */
 
 $('#order').on('change', function () {
 	var selectOption = $(this).val();
@@ -101,7 +104,6 @@ $('#order').on('change', function () {
 			},
 			success: showOrder 
 		});
-		var sort = 1;
 		
 		function showOrder (orderContents) {
 			console.log(orderContents);
@@ -384,11 +386,8 @@ $('.pageNumber').on('click', ".next", function(){
 			}
 		});
 	}
-	
-	
 })
 */
-
 
 // 좋아요 기능 
 //$('.groupLikeImg').on('click', function(event) {
@@ -430,8 +429,6 @@ console.log($(target).closest('.groupLikeItems').find('p'));
 	});
 });
 
-
-
 function updateGroupLikeCount (studyGroupNumber, target) {
 	  $.ajax({
 	  url: '/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg',
@@ -447,46 +444,111 @@ function updateGroupLikeCount (studyGroupNumber, target) {
 
 }
 
-/*
-
-let studyGroupNumber = $('.groupLikeButton').data('study-group-number');
-console.log (studyGroupNumber + 'js 마지막에 있음');
-*/
+var searchInput = $("#searchInput").val();
 
 
-
-
-/*
-
-console.log($studyGroupNumber);
-
-likeAjax();
-
-
-
-
-// 좋아요 하트를 먼저 ajax로 띄운다. 
-function likeAjax(){
-  if ($memberNumber != 257){
-	$('.groupLikeImg').attr('src', "https://cdn-icons-png.flaticon.com/512/833/833472.png");
+// 검색 기능 
+$('#search').submit(function(event){
+	event.preventDefault();
+	var searchInput = $("#searchInput").val();
+	console.log(searchInput);
 	
- } else {
-	$('.groupLikeImg').attr('src', "https://cdn-icons-png.flaticon.com/512/833/833386.png");
-	$('.groupLikeImg').css('opacity', '0.2'); // 투명도 조정  
- }
-}
-*/
+	$.ajax({
+		type: "GET",
+		url: "/studyGroup/studyGroupSearchOk.sg",
+		data: { searchInput : searchInput
+				},
+		error: function() {
+				alert("통신실패!!!!");
+			},
+		success: searchShow
+	})
 
 
+		function searchShow (searchContents) {
+				let text= '';
+				console.log(searchContents);
+			searchContents.forEach(search => {
+				text +=`
+				<a href="${location.origin}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${search.studyGroupNumber}" class="studyOpen">
+				 <li>
+                <div class="badge">
+                  <div class="badgeFiled">
+                    <!-- 모집 분야 받아와서 넣어주기 -->
+                    <div class="onoffOptions">${search.studyGroupOnline}</div>
+                    <div class="badgeFiledName">${search.studyGroupField}</div>
+                  </div>
+                </div>
 
 
+                <!-- 마감일 -->
+                <div class="endDate">
+                  <p class="endDateText">모집 마감 |</p>
+                  <!-- 날짜 받아오기 -->
+                  <p>${search.studyGroupStartDate}</p>
+                </div>
 
+                <!-- 이름 -->
+                <h1 class="groupTitle">${search.studyGroupTitle}</h1>
+                <ul class="positionList">
+                  <!-- 분야 넣어주기 -->
+                  <li class="positionItem">백엔드</li>
+                  <li class="positionItem">데이터베이스</li>
+                </ul>
+
+                <div class="studyBorder"></div>
+
+                <section class="ReadReviewCnt">
+                  <div class="userInfo">
+                    <div class="userImg">
+                      <img src="${location.origin}/assets/img/인공지능팩토리_2022-06-20_15-25-27.png" alt="유저 프로필사진">
+                    </div>
+                    <div>${search.memberNickname}</div>
+                  </div>
+
+                  <div class="ReadReview">
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icon-search-input.svg"
+                       alt="조회수 이미지"
+                       style="width: 10px;">
+                       <p>${search.studyGroupReadCount}</p>
+                    </div>
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icn-chat-filled-lightgray.d59bfd98.svg"
+                       alt="댓글 이미지">
+                       <p>${search.studyGroupCommentCount}</p>
+                    </div>
+                    
+                    <!-- 좋아요 -->
+                    <div class="groupLikeItems" > 
+                    <input type="hidden" class= "like-study-group-number" >
+                    <input type="hidden" class= "like-member-number" value= "${search.memberNumber}" >
+          		     <button class= "groupLikeButton" data-study-group-number= "${search.studyGroupNumber}">
+                   	<img alt="" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" class="groupLikeImg" >
+                   	<p>${search.studyGroupLikeCount}</p>
+                    </button> 
+                     </div>
+                    
+                  </div>
+                  
+                </section>
+         
+              
+              </li>
+				</a>
+				 `
+			});
+			
+		$('.spaceList').html(text);
+			
+		}
+})
 
 
 
 
 // 클릭 버튼 에 이벤트 주고, ajax를 거기에만 걸어주면 된다 텍스트 안불러와도 됨. 이미 화면에 있으니까 그냥 클릭 이벤트만 주고, 
-// 전송하고 설공하면, 화면에 전체 개수를 뿌려주면 됨. 그게 다임 ㅋㅋㅋ ㄹㅇ,,, 암것도 아님 진심.. 
+// 전송하고 설공하면, 화면에 전체 개수를 뿌려주면 됨. 그게 다입니다ㅏㅏㅏㅏ
 // 매개 변수 받고 반환을 받아서 텍스트 꽂아주는게 success 에 들어갈 내용. 
 
 
@@ -589,56 +651,28 @@ function calendarInit() {
 $(".dates").on("click", ".current", function(event) {
 	event.preventDefault();
 	let year = $(".year-month").text();
-	let day = $(this).index() - 1;
+	//let day = $(this).index() - 4;
+	let day = $(this).text();
+	console.log(day);
+	console.log("=======날짜ㅏㅏㅏㅏ");
 	$(".cal").text(year + "-" + day);
 });
 
 // 검색 기능
-$(document).ready(function() {
+/*$(document).ready(function() {
 	$("#searchInput").on("keyup", function() {
 		var value = $(this).val().toLowerCase();
 		// 클래스로 어디 검색 할지 정할수있다.
-		$(".studyOpen").filter(function() {
+//		$(".studyOpen").filter(function() {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 		});
 	});
-});
+});*/
 
-// 셀렉트 선택된 값으로 검색
-$(document).ready(function() {
-	$(".selectOption").on("click", function() {
-		var value = $(this).html();
-		console.log(value);
-		// 클래스로 어디 검색 할지 정할수있다.
-		$(".studyOpen").filter(function() {
-			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-		});
-	});
-});
-
-$(document).ready(function() {
-	$(".Option").on("click", function() {
-		var value = $(this).html();
-		console.log(value);
-		// 클래스로 어디 검색 할지 정할수있다.
-		$(".studyOpen").filter(function() {
-			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-		});
-	});
-
-});
-
-// /////////////////////////////////////////
 // 셀렉트 기능
 function onClickOption(e) {
 	const selectedValue = e.currentTarget.innerHTML;
 	document.querySelector(".Text").innerHTML = selectedValue;
-}
-
-let optionList = document.querySelectorAll(".selectOption");
-for (let i = 0; i < optionList.length; i++) {
-	let option = optionList[i];
-	option.addEventListener("click", onClickOption);
 }
 
 function onClickFiled(e) {
@@ -646,6 +680,12 @@ function onClickFiled(e) {
 	document.querySelector(".Text_filed").innerHTML = OptionValue;
 }
 
+// 온오프라인 
+let optionList = document.querySelectorAll(".selectOption");
+for (let i = 0; i < optionList.length; i++) {
+	let option = optionList[i];
+	option.addEventListener("click", onClickOption);
+}
 $(".filed").on("click", function() {
 	let filedList = document.querySelectorAll(".Option");
 	for (let i = 0; i < filedList.length; i++) {
@@ -654,3 +694,169 @@ $(".filed").on("click", function() {
 		filed.addEventListener("click", onClickFiled);
 }
 });
+
+
+// 셀렉트 선택된 값으로 검색
+
+// 세개를 한번에 넘겨서 
+
+
+$(document).ready(function() {
+	$(".selectOption").on("click", function() {
+	event.preventDefault();
+		var studyGroupOnline = $(this).text();
+		var studyGroupField = $(".Text_filed").text().trim();
+		var studyGroupStartDate =$(".cal").text().trim();
+	console.log(studyGroupOnline);
+	console.log(studyGroupField);
+	console.log(studyGroupStartDate);
+		searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate);
+	
+	});
+});
+
+$(document).ready(function() {
+	$(".Option").on("click", function() {
+	event.preventDefault();
+		var studyGroupOnline = $(".Text").text().trim();
+		var studyGroupField = $(this).text();
+		var studyGroupStartDate =$(".cal").text().trim();
+	console.log(studyGroupOnline);
+	console.log(studyGroupField);
+	console.log(studyGroupStartDate);
+		searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate);
+		
+		// 클래스로 어디 검색 할지 정할수있다.
+		/*$(".studyOpen").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(selectField) > -1);
+		});*/
+	});
+
+});
+
+//let calButton = $(".current").closest(".filterlist").find(".cal");
+let calButton = $(".cal").text();
+console.log(calButton);
+console.log("=== cal butoton");
+
+$(document).ready(function() {
+	$(".dates").on("click",'.current' ,function () {
+		event.preventDefault();
+		var studyGroupOnline = $(".Text").text().trim();
+		var studyGroupField = $(".Text_filed").text().trim();
+		var studyGroupStartDate = ($(".year-month").text() + '-' +$(this).html());
+		//var studyGroupStartDate = $(this).text();
+		
+//		var studyGroupStartDate = $(".cal").html();
+	console.log(studyGroupOnline);
+	console.log(studyGroupField);
+	console.log(studyGroupStartDate);
+		searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate);
+	})
+})
+
+function searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate){
+	if (studyGroupOnline == "진행 방식") {
+	studyGroupOnline ="";	
+	}
+		if (studyGroupField == "모집 분야") {
+	studyGroupField ="";	
+	}
+		if (studyGroupStartDate == "모집기간") {
+	studyGroupStartDate ="";	
+	}
+	
+	
+	let data = {
+		studyGroupOnline : studyGroupOnline,
+		studyGroupField : studyGroupField, 
+		studyGroupStartDate : studyGroupStartDate
+	};
+	
+	$.ajax({
+		url : '/studyGroup/studyGroupOptionSearchOk.sg',
+		type : 'get',
+		data : data,
+		error: function() {
+				alert("통신실패!!!!");
+			}, success : showResult
+	});
+}
+			 function showResult (result) {
+				alert("통신가능");
+				console.log(result);
+				let text = '';
+				
+				result.forEach(search => {
+					text +=`
+					<a href="${location.origin}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${search.studyGroupNumber}" class="studyOpen"> 
+              <li>
+                <div class="badge">
+                  <div class="badgeFiled">
+                    <!-- 모집 분야 받아와서 넣어주기 -->
+                    <div class="onoffOptions">${search.studyGroupOnline}</div>
+                    <div class="badgeFiledName">${search.studyGroupField}</div>
+                  </div>
+                </div>
+
+                <!-- 마감일 -->
+                <div class="endDate">
+                  <p class="endDateText">모집 마감 |</p>
+                  <!-- 날짜 받아오기 -->
+                  <p>${search.studyGroupStartDate}</p>
+                </div>
+
+                <!-- 이름 -->
+                <h1 class="groupTitle">${search.studyGroupTitle}</h1>
+                <ul class="positionList">
+                  <!-- 분야 넣어주기 -->
+                  <li class="positionItem">백엔드</li>
+                  <li class="positionItem">데이터베이스</li>
+                </ul>
+
+                <div class="studyBorder"></div>
+
+                <section class="ReadReviewCnt">
+                  <div class="userInfo">
+                    <div class="userImg">
+                      <img src="${location.origin}/assets/img/인공지능팩토리_2022-06-20_15-25-27.png" alt="유저 프로필사진">
+                    </div>
+                    <!-- ${search.memberId} -->
+                    <div>${search.memberNickname}</div>
+                  </div>
+
+                  <div class="ReadReview">
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icon-search-input.svg"
+                       alt="조회수 이미지"
+                       style="width: 10px;">
+                       <p>${search.studyGroupReadCount}</p>
+                    </div>
+                    <div class="replyCnt">
+                      <img src="${location.origin}/assets/img/icn-chat-filled-lightgray.d59bfd98.svg"
+                       alt="댓글 이미지">
+                       <p>${search.studyGroupCommentCount}</p>
+                    </div>
+                    
+                    <!-- 좋아요 -->
+                    <div class="groupLikeItems" > 
+                    <input type="hidden" class= "like-study-group-number" >
+                    <input type="hidden" class= "like-member-number" value= "${search.memberNumber}" >
+          		     <button class= "groupLikeButton" data-study-group-number= "${search.getStudyGroupNumber}">
+                   	<img alt="" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" class="groupLikeImg" >
+                   	<p>${search.studyGroupLikeCount}</p>
+                    </button> 
+                     </div>
+                  </div>
+                </section>   
+              </li>
+            </a>
+					`
+					
+				})
+					$('.spaceList').html(text);
+			}
+
+// /////////////////////////////////////////
+
+

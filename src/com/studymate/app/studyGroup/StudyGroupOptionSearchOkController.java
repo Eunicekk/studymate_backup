@@ -16,8 +16,9 @@ import com.google.gson.JsonParser;
 import com.studymate.app.Execute;
 import com.studymate.app.studyGroup.dao.StudyGroupDAO;
 import com.studymate.app.studyGroup.vo.StudyGroupVO;
+import com.studymate.app.studyGroupSearch.vo.StudyGroupSearchVO;
 
-public class StudyGroupSearchOkController implements Execute {
+public class StudyGroupOptionSearchOkController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,9 +26,22 @@ public class StudyGroupSearchOkController implements Execute {
 		
 		StudyGroupVO studyGroupVO = new StudyGroupVO();
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO(); 
+		StudyGroupSearchVO studyGroupSearchVO = new StudyGroupSearchVO();
 		
 		
-		String searchInput = req.getParameter("searchInput"); 
+		
+		// 검색기능 
+		String selectOnline = req.getParameter("studyGroupOnline");
+		System.out.println(selectOnline);
+		String selectField = req.getParameter("studyGroupField");
+		System.out.println(selectField);
+		System.out.println("윗줄 필드");
+		String selectStartDate = req.getParameter("studyGroupStartDate");
+		System.out.println(selectStartDate);
+		
+		studyGroupSearchVO.setStudyGroupOnline(selectOnline);
+		studyGroupSearchVO.setStudyGroupField(selectField);
+		studyGroupSearchVO.setStudyGroupStartDate(selectStartDate);
 		
 		// 페이징 처리 
 		int total = studyGroupDAO.getTotal();
@@ -52,35 +66,31 @@ public class StudyGroupSearchOkController implements Execute {
 		pageMap.put("startRow", startRow);
 		pageMap.put("rowCount", rowCount);
 		
+		
+		
 		// 0419 
 //		req.setAttribute("studyGroupSearchList", studyGroupSearchList);
 		req.setAttribute("total", total);
 		
 		// gson 
 		Gson gson = new Gson();
-		JsonArray searchContents = new JsonArray();
+		JsonArray searchOptionContents = new JsonArray();
 		 resp.setContentType("application/json; charset=utf-8");
-		 
-		 List<StudyGroupVO> studyGroupSearchList = studyGroupDAO.search(searchInput); 
-		 
-		 for(StudyGroupVO search : studyGroupSearchList) {
-			 String searchJson = gson.toJson(search);
-			 System.out.println(searchJson);
-			 searchContents.add(JsonParser.parseString(searchJson));
-		 }
-		 
-		// 
-		/*
-		 * if(searchInput!=null ) { System.out.println("검색");
-		 * studyGroupDAO.search(searchInput).stream() .map(gson :: toJson)
-		 * .map(JsonParser :: parseString) .forEach(searchContents :: add); }
-		 */
-	     
-	 	System.out.println(searchContents);
-		PrintWriter out = resp.getWriter();
-		out.print(searchContents.toString());
-		out.close();
-		
-	}
+			
+			  List<StudyGroupVO> studyGroupSearchOption =
+			  studyGroupDAO.searchOption(studyGroupSearchVO); 
+			  
+			  studyGroupSearchOption.forEach(System.out::println);
+			
+				  studyGroupSearchOption.stream()
+				.map(gson :: toJson)
+				.map(JsonParser :: parseString)
+				.forEach(searchOptionContents :: add); 
+			 System.out.println(" 검색 완료");
+			  
+				PrintWriter out = resp.getWriter();
+				out.print(searchOptionContents.toString());
+				out.close();	  
 
+	} 
 }

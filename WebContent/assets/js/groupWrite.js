@@ -149,6 +149,112 @@ $(".dates").on("click", ".current", function (event) {
   document.getElementById('Data-day').value = year + "-" + day;
 });
 
-// $(".cancelButton").on("click", () => {
-//   window.location.href = "study_group_main.html";
-// });
+// 글 등록 취소 버튼 
+
+$(document).ready(function() {
+ $(".cancelButton").on("click", () => {
+   window.location.href = "/studyGroup/studyGroupMainOk.sg";
+ });
+
+
+$(".RegisterButton").on("click", function () { 
+	
+	//모집분야 
+	var studyGroupField = $("#feild option:selected").text();
+	console.log(1);
+	console.log(studyGroupField);
+	
+	//모집 인원
+	var studyGroupCapacity = $("#person option:selected").text();
+	console.log(2);
+	console.log(studyGroupCapacity);
+	
+	//진행방식
+	var studyGroupOnline = $("#online option:selected").text();
+	console.log(3);
+	console.log(studyGroupOnline);
+	
+	//예상기간
+	var studyGroupDuration =  $("#duration option:selected").text();
+	console.log(4);
+	console.log(studyGroupDuration);
+	
+	// 연락방법 
+	var studyGroupContact = $("#contact option:selected").text();
+	console.log(5);
+	console.log(studyGroupContact);
+	
+	// 연락 주소 
+	var studyGroupContactAddress =  $('input[name="selfText"]').val();
+	console.log(6);
+	console.log (studyGroupContactAddress);
+	
+	// 모집 마감일 (달력)
+	var studyGroupEndDate = $('#endDateText').text();
+	console.log(7);
+	console.log(studyGroupEndDate);
+	
+	// 글제목 
+	var studyGroupTitle = $('input[name="titleInput"]').val();
+	console.log(8);
+	console.log(studyGroupTitle);
+	
+// 썸머노트 	
+	var studyGroupcontent = $(".note-editable").val();
+	console.log("9!!");
+	console.log(studyGroupcontent);
+	
+
+	
+//	멤버넘버. 
+	
+insertAjax(studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
+, studyGroupEndDate, studyGroupTitle, studyGroupcontent );
+	
+	});
+});
+
+
+function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
+, studyGroupEndDate, studyGroupTitle, studyGroupcontent ) {
+	if (studyGroupField == "모집분야") {studyGroupField = null;}
+	console.log(studyGroupField);
+	console.log("null 값 들어와야 함");
+	if (studyGroupCapacity == "희망인원") {studyGroupCapacity =null;}
+	if (studyGroupOnline == "온라인/오프라인") {studyGroupOnline =null;}
+	if (studyGroupDuration == "스터디 기간") {studyGroupDuration =null;}
+	if (studyGroupContact == "SNS") {studyGroupContact =null;}
+	if (studyGroupEndDate == "모집 마감날짜를 선택하세요") {studyGroupEndDate =null;}
+
+	
+		let data = {
+		studyGroupField : studyGroupField,
+		studyGroupCapacity : studyGroupCapacity, 
+		studyGroupOnline : studyGroupOnline, 
+		studyGroupDuration : studyGroupDuration,
+		studyGroupContact : studyGroupContact,
+		studyGroupContactAddress : studyGroupContactAddress , 
+		studyGroupEndDate : studyGroupEndDate, 
+		studyGroupTitle : studyGroupTitle,
+		studyGroupcontent : studyGroupcontent 
+	};
+	
+	$.ajax({
+		url : '/studyGroup/studyGroupWriteOk.sg',
+		type : 'get',
+		data : data,
+		error : function() {
+			alert("통신실패!!!!")
+		}, success : function(){
+			// window.location.href = "/studyGroup/studyGroupMainOk.sg";
+		}
+		
+	})
+	
+}
+
+
+
+
+
+

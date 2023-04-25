@@ -3,5 +3,18 @@
 
 <mapper namespace="studyGroupFile">
 	
+	<insert id="studyGroupFileInsert" parameterType= "StudyGroupFileDTO">
+	insert into tbl_study_group_file
+	(group_file_system_name, group_file_original_name, study_group_number)
+	values (#{groupFileSystemName}, #{groupFileOriginalName}, #{studyGroupNumber});
+	</insert>
+	
+	<select id="studyGroupFileSelect" parameterType = "_int" resultType= "StudyGroupFileDTO">
+	select group_file_system_name, group_file_original_name, study_group_number
+	from tbl_study_group_file
+	where study_group_number = #{studyGroupNumber}
+	</select>
+	
+	
 	
 </mapper>
