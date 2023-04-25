@@ -215,14 +215,14 @@
 		values(#{cafeFileSystemName},
 		#{cafeFileOriginalName}, #{studyCafeNumber})
 	</insert>
-
+	
 	<select id="cafeFileSelect" parameterType="int"
-		resultType="StudyCafeFileDTO">
-		select cafe_file_system_name, cafe_file_original_name,
-		study_cafe_number
-		from tbl_study_cafe_file where study_cafe_number =
-		#{studyCafeNumber}
-	</select>
+      resultType="StudyCafeFileDTO">
+      select cafe_file_system_name, cafe_file_original_name,
+      study_cafe_number
+      from tbl_study_cafe_file where study_cafe_number =
+      #{studyCafeNumber}
+   </select>
 
 	<!--포트폴리오 게시판 -->
 	<select id="boardList" parameterType="Map"

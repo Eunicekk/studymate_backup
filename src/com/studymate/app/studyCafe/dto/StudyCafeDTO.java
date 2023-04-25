@@ -1,5 +1,9 @@
 package com.studymate.app.studyCafe.dto;
 
+import java.util.List;
+
+import com.studymate.app.studyCafeFile.dto.StudyCafeFileDTO;
+
 //study_cafe_number  int unsigned auto_increment primary key,
 //study_cafe_name varchar(300),
 //study_cafe_address varchar(300),
@@ -103,6 +107,4 @@ public class StudyCafeDTO {
 				+ cafeFileSystemName + ", reservationNumber=" + reservationNumber + "]";
 	}
 
-	
-	
 }
