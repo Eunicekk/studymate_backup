@@ -46,7 +46,7 @@
 
 					<li class="filterBtn location">
 						<div class="filterlist">
-							<button class="filter">
+							<button class="filter filter-area">
 								<span class="fontColor">지역</span> <span class="filterImg">
 									<img
 									src="${pageContext.request.contextPath}/assets/img/arrow-down-87-new.f91c9db5.svg" />
@@ -59,442 +59,50 @@
 									<div class="mainContainer">
 										<div class="checkboxArea">
 											<div class="checkboxStyle">
-												<ul class="locationRegion">
-													<li class="Region changeColor">서울</li>
-													<li class="Region">경기</li>
-													<li class="Region">인천</li>
-													<li class="Region">부산</li>
-													<li class="Region">대전</li>
-													<li class="Region">대구</li>
-													<li class="Region">울산</li>
-													<li class="Region">세종</li>
-													<li class="Region">광주</li>
-                            						<li class="Region">강원</li>
-                           						 	<li class="Region">충북</li>
-                            						<li class="Region">충남</li>
-                            						<li class="Region">경북</li>
-                            						<li class="Region">경남</li>
-                            						<li class="Region">전북</li>
-                            						<li class="Region">전남</li>
-                            						<li class="Region">제주</li>
-												</ul>
+												
 												<!-- 지역 별로 name 값 나눠야하고 value 값 채워야함 -->
-												<ul id="" class="locationArea">
-													<li class="Area"><label> <input id="all"
-															type="checkbox" name="area" value="서울전체"> <span>서울전체</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="강남구"> <span>강남구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="강동구"> <span>강동구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="강북구"> <span>강북구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="강서구"> <span>강서구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="관악구"> <span>관악구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="광진구"> <span>광진구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="구로구"> <span>구로구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="금천구"> <span>금천구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="노원구"> <span>노원구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="도봉구"> <span>도봉구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동대문구"> <span>동대문구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동작구"> <span>동작구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="마포구"> <span>마포구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="서대문구"> <span>서대문구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="서초구"> <span>서초구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="성동구"> <span>성동구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="성북구"> <span>성북구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="송파구"> <span>송파구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="영등포구"> <span>영등포구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="양천구"> <span>양천구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="용산구"> <span>용산구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="은평구"> <span>은평구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="종로구"> <span>종로구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="중랑구"> <span>중랑구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="중구"> <span>중구</span>
-													</label></li>
-
-
-												</ul>
-												<ul id="ex" class="locationArea none">
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="경기전체"> <span>경기전체</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="고양시"> <span>고양시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="과천시"> <span>과천시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="광명시"> <span>광명시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="광주시"> <span>광주시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="구리시"> <span>구리시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="군포시"> <span>군포시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="김포시"> <span>김포시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="남양주시"> <span>남양주시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동두천시"> <span>동두천시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="부천시"> <span>부천시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="성남시"> <span>성남시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="수원시"> <span>수원시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="시흥시"> <span>시흥시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="안산시"> <span>안산시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="안성시"> <span>안성시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="안양시"> <span>안양시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="양주시"> <span>양주시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="여주시"> <span>여주시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="오산시"> <span>오산시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="용인시"> <span>용인시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="의왕시"> <span>의왕시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="의정부시"> <span>의정부시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="이천시"> <span>이천시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="파주시"> <span>파주시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="평택시"> <span>평택시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="포천시"> <span>포천시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="하남시"> <span>하남시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="화성시"> <span>화성시</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="가평군"> <span>가평군</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="양평군"> <span>양평군</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="연천군"> <span>연천군</span>
-													</label></li>
-												</ul>
-
-												<ul class="locationArea none">
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="인천전체"> <span>인천전체</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="계양구"> <span>계양구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="남동구"> <span>남동구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동구"> <span>동구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="미추홀구"> <span>미추홀구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="부평구"> <span>부평구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="서구"> <span>서구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="연수구"> <span>연수구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="중구"> <span>중구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="강화군"> <span>강화군</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="옹진군"> <span>옹진군</span>
-													</label></li>
-												</ul>
-												<ul class="locationArea none">
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="부산전체"> <span>부산전체</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="강서구"> <span>강서구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="금정구"> <span>금정구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="남구"> <span>남구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동구"> <span>동구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동래구"> <span>동래구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="부산진구"> <span>부산진구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="북구"> <span>북구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="사상구"> <span>사상구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="사하구"> <span>사하구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="서구"> <span>서구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="수영구"> <span>수영구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="연제구"> <span>연제구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="영도구"> <span>영도구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="중구"> <span>중구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="해운대구"> <span>해운대구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="기장군"> <span>기장군</span>
-													</label></li>
-												</ul>
-												<ul class="locationArea none">
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="대구전체"> <span>대구전체</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="남구"> <span>남구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="달서구"> <span>달서구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동구"> <span>동구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="북구"> <span>북구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="서구"> <span>서구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="수성구"> <span>수성구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="중구"> <span>중구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="달성군"> <span>달성군</span>
-													</label></li>
-												</ul>
-												<ul class="locationArea none">
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="대전전체"> <span>대전전체</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동구"> <span>동구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="대덕구"> <span>대덕구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="서구"> <span>서구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="유성구"> <span>유성구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="중구"> <span>중구</span>
-													</label></li>
-												</ul>
-												<ul class="locationArea none">
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="울산전체"> <span>울산전체</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="남구"> <span>남구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="동구"> <span>동구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="북구"> <span>북구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="중구"> <span>중구</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="울주군"> <span>울주군</span>
-													</label></li>
-												</ul>
-												<ul class="locationArea none">
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="세종전체"> <span>세종전체</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="조치원읍"> <span>조치원읍</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="금남면"> <span>금남면</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="부강면"> <span>부강면</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="소정면"> <span>소정면</span>
-													</label></li>
-													<li class="Area"><label> <input
-															type="checkbox" name="area" value="연기면"> <span>연기면</span>
-													</label></li>
+												<ul  class="locationArea">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="연동면"> <span>연동면</span>
+															type="checkbox" name="area" value="서울"> <span>서울</span>
 													</label></li>
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="연서면"> <span>연서면</span>
+															type="checkbox" name="area" value="경기"> <span>경기</span>
 													</label></li>
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="조장군면"> <span>조장군면</span>
+															type="checkbox" name="area" value="인천"> <span>인천</span>
 													</label></li>
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="전동면"> <span>전동면</span>
+															type="checkbox" name="area" value="강원"> <span>강원</span>
 													</label></li>
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="전의면"> <span>전의면</span>
+															type="checkbox" name="area" value="대전"> <span>대전</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="광주전체"> <span>광주전체</span>
+															type="checkbox" name="area" value="충북"> <span>충북</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="강원전체"> <span>강원전체</span>
+															type="checkbox" name="area" value="광주"> <span>광주</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="충북전체"> <span>충북전체</span>
+															type="checkbox" name="area" value="전북"> <span>전북</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="충남전체"> <span>충남전체</span>
+															type="checkbox" name="area" value="전남"> <span>전남</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="경북전체"> <span>경북전체</span>
+															type="checkbox" name="area" value="부산"> <span>부산</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="경남전체"> <span>경남전체</span>
+															type="checkbox" name="area" value="대구"> <span>대구</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="전북전체"> <span>전북전체</span>
+															type="checkbox" name="area" value="경북"> <span>경북</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="전남전체"> <span>전남전체</span>
+															type="checkbox" name="area" value="경남"> <span>경남</span>
 													</label></li>
-												</ul>
-												<ul class="locationArea none">
 													<li class="Area"><label> <input
-															type="checkbox" name="area" value="제주전체"> <span>제주전체</span>
+															type="checkbox" name="area" value="제주"> <span>제주</span>
 													</label></li>
 												</ul>
 
@@ -514,7 +122,7 @@
 
 					<li class="filterBtn calendal">
 						<div class="filterlist">
-							<button class="filter">
+							<button class="filter filter-date">
 								<span class="cal">날짜</span> <span class="filterImg"> <img
 									src="${pageContext.request.contextPath}/assets/img/arrow-down-87-new.f91c9db5.svg" />
 								</span>
@@ -552,7 +160,7 @@
 
 					<li class="filterBtn personnel ">
 						<div class="filterlist">
-							<button class="filter">
+							<button class="filter filter-price">
 								<span class="price">가격</span> <span class="filterImg"> <img
 									src="${pageContext.request.contextPath}/assets/img/arrow-down-87-new.f91c9db5.svg" />
 								</span>
@@ -594,8 +202,8 @@
 										</div>
 
 										<div class="personBtn">
-											<button id="btn_reset" type="reset">초기화</button>
-											<button id="priceBtn" type="submit">적용</button>
+											<!-- <button id="btn_reset" type="reset">초기화</button> -->
+											<button id="priceBtn" type="button">적용</button>
 										</div>
 									</div>
 								</form>
@@ -641,9 +249,10 @@
 									href="${pageContext.request.contextPath}/cafe/cafeReadOk.sc?studyCafeNumber=${studyCafe.getStudyCafeNumber()}"
 									class="cafeOpen">
 										<div class="spaceImg">
-											<img class="imgInfo"
-												src="${pageContext.request.contextPath}/assets/img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg"
-												alt="뉴욕감성">
+											<%-- <c:set var = "cafeNumber" value = "${studyCafe.getStudyCafeNumber()}" /> --%>
+											<img
+                                 			src="${pageContext.request.contextPath}/upload/${studyCafe.getCafeFileSystemName()}"
+                                 			alt="스터디 카페">
 											<input type="button" class="favoritButton">
 										</div>
 
@@ -695,7 +304,7 @@
 														src="${pageContext.request.contextPath}/assets/img/Star_1.svg"
 														alt="별점">
 												</div>
-												${studyCafe.getStudyCafeCommentScoreAvg() }
+												${studyCafe.getStudyCafeCommentScore() }
 												<div class="replyInfo">&#40;후기
 													${studyCafe.getStudyCafeCommentCount() }&#41;</div>
 											</div>
@@ -781,7 +390,7 @@
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
 	<script>
-		/* let memberNumber = 1; */
+		let memberNumber = "${sessionScope.memberNumber}";
 	</script>
 	<script src="${pageContext.request.contextPath}/assets/js/main_reservation.js"></script>
 </body>

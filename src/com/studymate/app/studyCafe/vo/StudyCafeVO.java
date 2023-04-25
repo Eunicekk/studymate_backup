@@ -17,8 +17,10 @@ public class StudyCafeVO {
 	   private String studyCafeAvailableDate;
 	   private int studyCafeAvailableCapacity;
 	   private int studyCafeCommentScoreCount;
+	   private List<StudyCafeFileDTO> files;
+	   private String cafeFileSystemName;
 	   
-	   public StudyCafeVO() {}
+	public StudyCafeVO() {}
 
 	public int getStudyCafeNumber() {
 		return studyCafeNumber;
@@ -76,12 +78,12 @@ public class StudyCafeVO {
 		this.studyCafeCommentCount = studyCafeCommentCount;
 	}
 
-	public double getStudyCafeCommentScoreAvg() {
+	public double getStudyCafeCommentScore() {
 		return studyCafeCommentScore;
 	}
 
-	public void setStudyCafeCommentScoreAvg(double studyCafeCommentScoreAvg) {
-		this.studyCafeCommentScore = studyCafeCommentScoreAvg;
+	public void setStudyCafeCommentScore(double studyCafeCommentScore) {
+		this.studyCafeCommentScore = studyCafeCommentScore;
 	}
 
 	public String getStudyCafeContent() {
@@ -116,6 +118,22 @@ public class StudyCafeVO {
 		this.studyCafeCommentScoreCount = studyCafeCommentScoreCount;
 	}
 
+	public List<StudyCafeFileDTO> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<StudyCafeFileDTO> files) {
+		this.files = files;
+	}
+
+	public String getCafeFileSystemName() {
+		return cafeFileSystemName;
+	}
+
+	public void setCafeFileSystemName(String cafeFileSystemName) {
+		this.cafeFileSystemName = cafeFileSystemName;
+	}
+
 	@Override
 	public String toString() {
 		return "StudyCafeVO [studyCafeNumber=" + studyCafeNumber + ", studyCafeName=" + studyCafeName
@@ -124,7 +142,8 @@ public class StudyCafeVO {
 				+ ", studyCafeCommentCount=" + studyCafeCommentCount + ", studyCafeCommentScore="
 				+ studyCafeCommentScore + ", studyCafeContent=" + studyCafeContent + ", studyCafeAvailableDate="
 				+ studyCafeAvailableDate + ", studyCafeAvailableCapacity=" + studyCafeAvailableCapacity
-				+ ", studyCafeCommentScoreCount=" + studyCafeCommentScoreCount + "]";
+				+ ", studyCafeCommentScoreCount=" + studyCafeCommentScoreCount + ", files=" + files
+				+ ", cafeFileSystemName=" + cafeFileSystemName + "]";
 	}
-	   
+
 }

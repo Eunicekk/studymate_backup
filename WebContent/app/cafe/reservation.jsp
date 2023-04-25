@@ -11,14 +11,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reservation.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css" />
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=288648fa9bcef114f977b6cc3dc07c2d&libraries=services"
-    ></script>
+    <script type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=288648fa9bcef114f977b6cc3dc07c2d&libraries=services"></script>
   </head>
   <body>
     <!-- 헤더 -->
-    <header>
 		<c:choose>
 			<c:when test="${empty sessionScope.adminNickname}">
 				<jsp:include
@@ -29,7 +26,6 @@
 					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
 			</c:otherwise>
 		</c:choose>
-	</header>
 
     <main id="main">
       <main class="reserContainer">
@@ -39,29 +35,17 @@
             <!--이미지 슬라이더 -->
             <div class="ImgContent">
               <div class="swiper swiper-pointer-events">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <button type="button" class="gtm-img">
-                      <figure>
-                        <img
-                          src="${pageContext.request.contextPath}/assets/img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg"
-                          alt=""
-                          class="imglist"
-                        />
-                      </figure>
-                    </button>
-                  </div>
-                  <div class="swiper-slide">
-                    <button type="button" class="gtm-img">
-                      <figure>
-                        <img
-                          src="${pageContext.request.contextPath}/assets/img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg"
-                          alt=""
-                          class="imglist"
-                        />
-                      </figure>
-                    </button>
-                  </div>
+                <div class="swiper-container">
+                  <ul>
+                      <c:forEach var="file" items="${studyCafe.getFiles() }">
+                      <li>
+	                      <!-- width: 648 height: 512 -->
+	                      <figure>
+	                      		<img src="${pageContext.request.contextPath }/upload/${file.getCafeFileSystemName()}">
+	                      </figure>
+                      </li>
+                      </c:forEach>
+                  </ul>
                 </div>
               </div>
               <button class="swiper_prev">
@@ -78,30 +62,13 @@
 
             <!-- 작은 이미지 -->
             <div class="ImgThumbnail">
-              <button class="img_more">
+                <c:forEach var="file" begin="1" end="4" items="${studyCafe.getFiles() }">
                 <figure>
-                  <img
-                    src="${pageContext.request.contextPath}/assets/img/be0a11cf-0d08-4cd9-8719-88937088cf4b.jpg"
-                    alt=""
-                    class="Imageview"
-                  />
+                	<button class="img_more">
+                		<img src="${pageContext.request.contextPath }/upload/${file.getCafeFileSystemName()}">
+                	</button>
                 </figure>
-              </button>
-              <button class="img_more">
-                <figure>
-                  <img src="" alt="" class="Imageview" />
-                </figure>
-              </button>
-              <button class="img_more">
-                <figure>
-                  <img src="" alt="" class="Imageview" />
-                </figure>
-              </button>
-              <button class="img_more">
-                <figure>
-                  <img src="" alt="" class="Imageview" />
-                </figure>
-              </button>
+                </c:forEach>
             </div>
             <!-- 작은 이미지 -->
           </section>
@@ -109,7 +76,7 @@
           <section class="Infomain">
               <!-- title -->
               <div class="studyCafeTitle">
-                	<p>
+                	<p id="cafe-name">
 						<c:out value="${studyCafe.getStudyCafeName() }" />
 					</p>
               </div>
@@ -123,6 +90,7 @@
                   	<c:out value="${studyCafe.getStudyCafeAddress() }" />
                   </p>
                 </div>
+                
 
                 <div class="likeCnt">
                   <span>
@@ -133,17 +101,23 @@
                   </p>
                 </div>
               </div>
+              
+                <div class="studyCafeCapacity">
+              	<p class="capacityCount">
+              		수용인원  | 최대 <span class="capacity-count"><c:out value="${studyCafe.getStudyCafeAvailableCapacity() }" /></span>명
+              	</p>
+              	</div>
 
               <div class="studyCafeReply">
                 <div class="start">
                   <img src="${pageContext.request.contextPath}/assets/img/Star_1.svg" alt="" />
                 </div>
-                <c:out value="${studyCafe.getStudyCafeCommentScoreAvg() }" />
+                <c:out value="${studyCafe.getStudyCafeCommentScore() }" />
                 <div class="reviewCnt">
                 	(후기 <c:out value="${studyCafe.getStudyCafeCommentCount() }" />)
                 </div>
               </div>
-
+              
               <div class="studyCafePrice">
                 <div class="price">
                   <div class="PriceTime">
@@ -250,7 +224,7 @@
                           </div>
                         </div>
                         
-                       <!--  <button type="button" class="color-reset">초기화</button> -->
+                       <button type="button" class="color-reset">초기화</button>
                       </div>
 
                       <div class="TimeItem">
@@ -265,7 +239,7 @@
                           </div>
 
                           <p class="sliderComment">
-                            시작시간 선택 후 종료시간을 선택해주세요.
+                            예약하고자 하는 시간 탭을 모두 선택해주세요.
                           </p>
 
                           <button class="sliderPrev slider-prev" type="button">
@@ -299,9 +273,7 @@
                   <div class="Price">
                     <p>총 금액</p>
                     <!-- 가격 뿌려주기 -->
-                    <p class="tal">
-                    <c:out value="${studyCafe.getStudyCafePrice() }" />
-                    원</p>
+                    <p class="tal"><span class="modify-price"></span> 원</p>
                     <input type="text" class="talInput" name="price" hidden  value=""/>
                   </div>
                 </div>
@@ -311,10 +283,8 @@
                   <div class="BuyBtn">
                     <div style="display: flex">
                       <p class="PriceBtn">
-                        <!-- 가격 뿌려주기 -->
-                        <c:out value="${studyCafe.getStudyCafePrice() }" />
+                        <span class="modify-price"></span> 원
                       </p>
-                      <span>원</span>
                     </div>
                     <p class="TitleBtn">스터디 카페 예약하기</p>
                   </div>
@@ -384,7 +354,7 @@
                 <img src="${pageContext.request.contextPath}/assets/img/Star_1.svg" alt="" />
               </span>
               <span>
-              	<c:out value="${studyCafe.getStudyCafeCommentScoreAvg() }" />
+              	<c:out value="${studyCafe.getStudyCafeCommentScore() }" />
               </span>
               <p>(전체기간 평균 평점)</p>
             </div>
@@ -542,7 +512,6 @@
     </main>
 
     <!-- footer -->
-    <footer>
 		<c:choose>
 			<c:when test="${empty sessionScope.adminNickname}">
 				<jsp:include
@@ -553,15 +522,17 @@
 					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
 			</c:otherwise>
 		</c:choose>
-	</footer>
 
     <script
       src="https://code.jquery.com/jquery-3.6.3.js"
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
       crossorigin="anonymous"></script>
       <script>
-    	let memberNumber = 1;
-    	let hourPrice = "${studyCafe.getStudyCafePrice() }";
+    	let memberNumber = "${sessionScope.memberNumber}";
+    	let memberEmail = "${sessionScope.memberEmail}";
+    	let memberName = "{sessionScope.memberName}";
+    	let memberPhoneNumber = "${sessionScope.memberPhoneNumber}";
+    	let hourPrice = ${studyCafe.getStudyCafePrice()};
     </script>
     <script src="${pageContext.request.contextPath}/assets/js/reservation.js"></script>
   </body>
