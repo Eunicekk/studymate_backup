@@ -181,7 +181,6 @@ input{
 .checkboxArea {
 	padding: 30px 0px;
 	width: 1000px;
-	margin: 0 28px;
 	max-height: calc(100vh - 207px);
 	overflow: hidden auto;
 }
@@ -214,27 +213,20 @@ ul {
 	cursor: pointer;
 }
 
-.locationRegion>li:hover {
-	background-color: rgb(102, 103, 171);
-}
-
-.changeColor {
-	background-color: rgb(102, 103, 171);
-}
-
 .locationArea {
-	width: 800px;
+	width: 1000px;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: repeat(auto-fit, minmax(47px, 47px));
-	padding: 0px 50px;
+	grid-template-columns: repeat(7, 1fr);
+	grid-template-rows: repeat(auto-fit, minmax(60px, 60px));
+	padding: 0px 30px;
 }
 
 .Area {
 	display: flex;
 	-webkit-box-align: center;
 	align-items: center;
-	height: 47px;
+	justify-content: center;
+	height: 60px;
 }
 
 .Area>label {
