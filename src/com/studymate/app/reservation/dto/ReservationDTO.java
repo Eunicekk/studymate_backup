@@ -11,7 +11,7 @@ public class ReservationDTO {
 	private String reservationStart;
 	private String reservationEnd;
 	private String reservationCost;
-	private int reservationcapacity;
+	private int reservationCapacity;
 	private int memberNumber;
 	private int studyCafeNumber;
 	
@@ -49,12 +49,12 @@ public class ReservationDTO {
 		this.reservationCost = reservationCost;
 	}
 
-	public int getReservationcapacity() {
-		return reservationcapacity;
+	public int getReservationCapacity() {
+		return reservationCapacity;
 	}
 
-	public void setReservationcapacity(int reservationcapacity) {
-		this.reservationcapacity = reservationcapacity;
+	public void setReservationCapacity(int reservationCapacity) {
+		this.reservationCapacity = reservationCapacity;
 	}
 
 	public int getMemberNumber() {
@@ -77,7 +77,7 @@ public class ReservationDTO {
 	public String toString() {
 		return "ReservationDTO [reservationNumber=" + reservationNumber + ", reservationStart=" + reservationStart
 				+ ", reservationEnd=" + reservationEnd + ", reservationCost=" + reservationCost
-				+ ", reservationcapacity=" + reservationcapacity + ", memberNumber=" + memberNumber
+				+ ", reservationCapacity=" + reservationCapacity + ", memberNumber=" + memberNumber
 				+ ", studyCafeNumber=" + studyCafeNumber + "]";
 	}
 	
