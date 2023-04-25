@@ -53,8 +53,12 @@ public class StudyGroupFrontController extends HttpServlet{
 			System.out.println("글쓰기! 완료 사진첨부!");
 			new StudyGroupWriteOkController().execute(req,resp); 
 			break;
+		case "/studyGroup/studyGroupUpdate.sg":
+			System.out.println("수정하는 컨트롤러 진입");
+			new StudyGroupUpdateController().execute(req,resp); 
+			break;
 		case "/studyGroup/studyGroupUpdateOk.sg":
-			System.out.println("스터디 그룹 수정 완료 컨트롤러 진입");
+			System.out.println("스터디 그룹 수정 완료 컨트롤러 !! main 으로 가야함. ");
 			new StudyGroupUpdateOkController().execute(req,resp); 
 			break;
 			

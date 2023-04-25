@@ -21,6 +21,12 @@ console.log(memberNumber);
 console.log("댓글 작성용 멤버 넘버");
 
 
+// 게시글 수정 write로 이동 
+$modifyBtn.on('click', ()=>{
+    window.location.href ='/studyGroup/studyGroupUpdate.sg?studyGroupNumber=' + studyGroupNumber ;
+}); 
+
+
 
 
 // 뒤로가기 boardList로 이동 
@@ -31,10 +37,6 @@ $prevBtn.on('click', ()=>{
 
 
 //  게시글 삭제 boardList로 이동
-
-
-
-
 $deleteBtn.on('click', ()=>{
 	// 삭제 버튼 누르면 밑에꺼 아니고 delete ok 로 가야함 
    /* window.location.href ='/studyGroup/studyGroupMainOk.sg';*/
@@ -213,16 +215,4 @@ $('.commentList-CommentList').on('click','.boardReply-editor-buttons-modi', func
    });
 	
 	});
-
-// 게시글 수정 write로 이동 
-$modifyBtn.on('click', ()=>{
-    window.location.href ='#'
-}); 
-
-
-
-
-
-
-console.log('======');
 
