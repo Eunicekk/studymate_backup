@@ -58,7 +58,7 @@ public class adminGroupListOk implements Execute {
 		if(desc == null && memberNickname == null && listText == null) {
 			groupList = adminDAO.groupList(pageMap);
 		}else if(memberNickname != null) {
-			groupList = adminDAO.groupSearch(memberNickname);
+//			groupList = adminDAO.groupSearch(memberNickname);
 		}else if(listText != null) {
 			groupList = adminDAO.listSearch(listText);
 		}else {

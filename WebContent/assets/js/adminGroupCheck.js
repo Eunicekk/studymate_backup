@@ -85,14 +85,10 @@ $groupAlign02.on('click', function() {
 	groupTmp = 2;
 })
 
-// 삭제 버튼 누를 시 경고창으로 삭제하시겠습니까? 알림 후 삭제
-/*$GroupDelete.on('click', function() {
-	var isDelete = confirm('해당 회원 데이터를 삭제하시겠습니까?');
-	if (isDelete == true) {
-		$(this).parent().parent().hide();
-	}
-})*/
 
+
+
+console.log(groupTmp);
 $(document).each(function() {
 	$('.group-list').on('click', '.delete', function() {
 		/*var isDelete = confirm('해당 회원 데이터를 삭제하시겠습니까?');
@@ -131,7 +127,7 @@ $('html').click(function(e) {
 
 //페이징 버튼
 $('#paging').on('click', ".prev", function() {
-	if (groupTmp == 1) {
+	if (groupTmp == 1 || groupTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -160,18 +156,31 @@ $('#paging').on('click', ".prev", function() {
 			}
 
 		});
+	}else {
+		var memberNickName = $('.group-search > form > input').val();
+	console.log(memberNickName);
+	$.ajax({
+			type: "GET",
+			url: "/admin/adminGroupSearchOk.ad?page=" + (startPage - 1),
+			data: { memberNickName : memberNickName },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				$('.group-search > form > input').val(memberNickName);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
 	}
 });
 
 $('#paging').on('click', ".pageBtn", function() {
-	//$('#list-content').load('${pageContext.request.contextPath}/admin/adminMemberCheckOk.ad?page='+$(this).text());
-	//window.location.href='/admin/adminMemberCheckOk.ad?page='+$(this).text().trim();
 
 	page = $(this).text().trim()
 
 
 	console.log($(this).text().trim());
-	if (groupTmp == 1) {
+	if (groupTmp == 1 || groupTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -200,13 +209,29 @@ $('#paging').on('click', ".pageBtn", function() {
 			}
 
 		});
+	} else {
+		var memberNickName = $('.group-search > form > input').val();
+	console.log(memberNickName);
+	$.ajax({
+			type: "GET",
+			url: "/admin/adminGroupSearchOk.ad?page=" + $(this).text().trim() ,
+			data: { memberNickName : memberNickName },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				$('.group-search > form > input').val(memberNickName);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
 	}
+	
 });
 
 
 //next
 $('#paging').on('click', ".next", function() {
-	if (groupTmp == 1) {
+	if (groupTmp == 1 || groupTmp == undefined) {
 
 		$.ajax({
 			type: "GET", //전송방식을 지정한다 (POST,GET)
@@ -235,25 +260,41 @@ $('#paging').on('click', ".next", function() {
 			}
 
 		});
-	}
-});
-
-/*검색*/
-$('.group-search > form > button').on('click' ,function(){
-	var memberNickname = $('.group-search > form > input').val();
-	console.log(memberNickname);
+	}else {
+		var memberNickName = $('.group-search > form > input').val();
+	console.log(memberNickName);
 	$.ajax({
 			type: "GET",
-			url: "/admin/adminGroupListOk.ad?search=search",
-			data: { memberNickname : memberNickname },
+			url: "/admin/adminGroupSearchOk.ad?page=" + (endPage + 1),
+			data: { memberNickName : memberNickName },
 			success: function(Parse_data) {
 				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
-				$('.group-search > form > input').val(memberNickname);
+				$('.group-search > form > input').val(memberNickName);
 			},
 			error: function() {
 				alert("통신 실패");
 			}
 		});
+	}
+});
+
+/*검색*/
+$('.group-search > form > button').on('click' ,function(){
+	var memberNickName = $('.group-search > form > input').val();
+	console.log(memberNickName);
+	$.ajax({
+			type: "GET",
+			url: "/admin/adminGroupSearchOk.ad?search=search",
+			data: { memberNickName : memberNickName },
+			success: function(Parse_data) {
+				$("#list-content").html(Parse_data); //div에 받아온 값을 넣는다.
+				$('.group-search > form > input').val(memberNickName);
+			},
+			error: function() {
+				alert("통신 실패");
+			}
+		});
+		groupTmp = 3;
 })
 
 

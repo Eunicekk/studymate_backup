@@ -46,6 +46,12 @@ public class AdminDAO {
 		return sqlSession.selectOne("admin.memberSearchTotal",memberId);
 	}
 	
+	public List<MemberDTO> MemberSearch(SearchVO searchText) {
+		return sqlSession.selectList("admin.memberSearch",searchText);
+	}
+	
+	
+	//cafe 
 	public void cafeInsert(StudyCafeDTO studyCafeDTO) {
 		sqlSession.insert("admin.cafeInsert",studyCafeDTO);
 	}
@@ -72,9 +78,16 @@ public class AdminDAO {
 		return sqlSession.selectList("admin.cafeLikeDesc",pageMap);
 	}
 	
-	public List<adminCafeVO> cafeSearch(String studyCafeNumber) {
-		return sqlSession.selectList("admin.cafeSearch",studyCafeNumber);
+	//cafe 검색
+	
+	public int cafeSearchTotal(String cafeName) {
+		return sqlSession.selectOne("admin.cafeSearchTotal",cafeName);
 	}
+	
+	public List<adminCafeVO> cafeSearch(SearchVO searchText) {
+		return sqlSession.selectList("admin.cafeSearch",searchText);
+	}
+	
 	
 	public int cafeTotal() {
 		return sqlSession.selectOne("admin.cafeTotal");
@@ -111,9 +124,14 @@ public class AdminDAO {
 		
 	}
 	
-	public List<MemberDTO> MemberSearch(SearchVO searchText) {
-		return sqlSession.selectList("admin.memberSearch",searchText);
+	public int boardSearchTotal(String memberId) {
+		return sqlSession.selectOne("admin.boardSearchTotal",memberId);
 	}
+	
+	public List<AdminGroupVO> boardSearch(SearchVO searchText) {
+		return sqlSession.selectList("admin.boardSearch",searchText);
+	}
+
 	
 
 	
@@ -134,13 +152,20 @@ public class AdminDAO {
 		sqlSession.delete("admin.groupDelete",studyGroupNumber);
 	}
 	
-	public List<AdminGroupVO> groupSearch(String memberNickname) {
-		return sqlSession.selectList("admin.groupSearch" ,memberNickname);
-	}
-	
 	public List<AdminGroupVO> listSearch(String listText){
 		return sqlSession.selectList("admin.listSearch",listText);
 	}
+	
+	//그룹 검색 페이징
+	public int groupSearchTotal(String memberNickName) {
+		return sqlSession.selectOne("admin.groupSearchTotal",memberNickName);
+	}
+	
+	public List<AdminGroupVO> groupSearch(SearchVO searchText) {
+		return sqlSession.selectList("admin.groupSearch",searchText);
+	}
+	
+	
 	
 	//FAQ
 	public List<FaqDTO> faqList(Map<String,Integer> pageMap) {
@@ -169,5 +194,48 @@ public class AdminDAO {
 	
 	public void faqDelete(int faqNumber) {
 		sqlSession.delete("admin.faqDelete",faqNumber);
+	}
+	//차트 board
+	public List<Map<String, Integer>> boardChartDay() {
+	    return sqlSession.selectList("admin.boardChartDay");
+	}
+	
+	public List<Map<String, Integer>> boardChartMonth() {
+		return sqlSession.selectList("admin.boardChartMonth");
+	}
+	
+	//그룹 차트
+	public List<Map<String, Integer>> groupChartDay() {
+	    return sqlSession.selectList("admin.groupChartDay");
+	}
+	
+	public List<Map<String, Integer>> groupChartMonth() {
+		return sqlSession.selectList("admin.groupChartMonth");
+	}
+	//카페 차트
+	public List<Map<String, Integer>> cafeChartDay() {
+	    return sqlSession.selectList("admin.cafeChartDay");
+	}
+	
+	public List<Map<String, Integer>> cafeChartMonth() {
+		return sqlSession.selectList("admin.cafeChartMonth");
+	}
+	
+	//멤버 남자 차트
+	public List<Map<String, Integer>> memberChartM() {
+	    return sqlSession.selectList("admin.memberChartM");
+	}
+	
+	public List<Map<String, Integer>> memberChartMonthM() {
+		return sqlSession.selectList("admin.memberChartMonthM");
+	}
+	
+	//맴버 여자 차트
+	public List<Map<String, Integer>> memberChartF() {
+		return sqlSession.selectList("admin.memberChartF");
+	}
+	
+	public List<Map<String, Integer>> memberChartMonthF() {
+		return sqlSession.selectList("admin.memberChartMonthF");
 	}
 }

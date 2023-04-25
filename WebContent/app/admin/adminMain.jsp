@@ -51,7 +51,7 @@
 				</ul>
 			</div>
 
-			<div class="admin-group">
+			 <div class="admin-group">
 				<h4>스터디그룹 관리</h4>
 				<ul>
 					<li id="adminGroupProgress">그룹 등록 추이</li>
