@@ -44,21 +44,32 @@ public class MyPageFrontController extends HttpServlet {
 		case "/mypage/MyPageReserveOk.my":
 			new MyPageReserveOkController().execute(req, resp);
 			break;
+		case "/mypage/MyPageReserveDeleteOk.my":
+			new MyPageReserveDeleteOk().execute(req, resp);
+			break;
 		case "/mypage/MyPageUsaDetailsOk.my":
 			new MyPageUsaDetailsOkController().execute(req, resp);
+			break;
+		case "/mypage/MyPageUsaDetailsDeleteOk.my":
+			new MyPageUsaDetailsDeleteOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageLeaderGroupOk.my":
 			new MyPageLeaderGroupOkController().execute(req, resp);
 			break;
+		case "/mypage/MyPageLeaderGroupDeleteOk.my":
+			new MyPageLeaderGroupDeleteOkController().execute(req, resp);
+			break;
 		case "/mypage/MyPageInterestGroupOk.my":
-			System.out.println("@@@체크체크체크체크@@@");
 			new MyPageInterestGroupOkController().execute(req, resp);
+			break;
+		case "/mypage/MyPageInterestGroupDeleteOk.my":
+			new MyPageInterestGroupDeleteOkController().execute(req, resp);
 			break;
 		case "/mypage/MyPageParticipatingGroupOk.my":
 			new MyPageParticipatingGroupOkController().execute(req, resp);
 			break;
-		case "/mypage/MyPageEndGroupOk.my":
-			new MyPageEndGroupOkController().execute(req, resp);
+		case "/mypage/myJoinGroupDeleteOk.my":
+			new MyPageMyJoinGroupDeleteOkController().execute(req, resp);
 			break;
 		}
 	}

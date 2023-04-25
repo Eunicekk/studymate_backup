@@ -41,10 +41,9 @@
 			<div class="myGroupInfor">
 				<h4>그룹 참여 정보</h4>
 				<ul>
-					<li id="myGroup">내 그룹</li>
+					<li id="myGroup">내가 만든 그룹</li>
 					<li id="myInterestGroup">관심 그룹</li>
 					<li id="myJoinGroup">참여 그룹</li>
-					<li id="myEndGroup">종료 그룹</li>
 				</ul>
 			</div>
 		</nav>

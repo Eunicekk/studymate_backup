@@ -1,6 +1,5 @@
 package com.studymate.app.myPage.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,72 +7,104 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.mybatis.config.MyBatisConfig;
 import com.studymate.app.member.dto.MemberDTO;
+import com.studymate.app.myPage.vo.MyCafeVO;
+import com.studymate.app.myPage.vo.MyGroupVO;
 import com.studymate.app.myPage.vo.MyPageVO;
+import com.studymate.app.myPage.vo.MyProfileVO;
+import com.studymate.app.myPage.vo.MyReserveVO;
 
 public class MyPageDAO {
-public SqlSession sqlSession;
-	
-	public MyPageDAO(){
-		sqlSession= MyBatisConfig.getSqlSessionFactory().openSession(true);
+	public SqlSession sqlSession;
+
+	public MyPageDAO() {
+		sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
 	}
-	
-	public MemberDTO selectMember(int memberNumber) {
+
+	public MyProfileVO selectMember(int memberNumber) {
 		return sqlSession.selectOne("myPage.selectMember", memberNumber);
 	}
-	
-	public void update(MemberDTO memberDTO) {
-		sqlSession.update("myPage.update", memberDTO);
+
+	public void update(MyProfileVO memberNumber) {
+		sqlSession.update("myPage.update", memberNumber);
 	}
-	
+
 	public void delete(int memberNumber) {
 		sqlSession.delete("myPage.deleteMember", memberNumber);
 	}
-	
-	public int getTotal(int memberNumber) {
-		return sqlSession.selectOne("myPage.getTotal", memberNumber);
-	}
-	
-//	public List<MyPageVO> selectPortfolio(Map<String, Integer> pageMap) {
-//		return sqlSession.selectList("myPage.selectPortfolio", pageMap);
-//	}
 
 	public List<MyPageVO> myPortfolio(Map<String, Integer> pageMap) {
 		return sqlSession.selectList("myPage.myPortfolio", pageMap);
 	}
-	
-	public List<MyPageVO> myLikeCafe(int memberNumber){
-		return sqlSession.selectList("myPage.myLikeCafe", memberNumber);
+
+	public int getTotal(int memberNumber) {
+		return sqlSession.selectOne("myPage.getTotal", memberNumber);
+	}
+
+	public List<MyCafeVO> myLikeCafe(Map<String, Integer> pageMap) {
+		return sqlSession.selectList("myPage.myLikeCafe", pageMap);
+	}
+
+	public int likeCafeTotal(int memberNumber) {
+		return sqlSession.selectOne("myPage.likeCafeTotal", memberNumber);
+	}
+
+	public List<MyReserveVO> myReservation(Map<String, Integer> pageMap) {
+		return sqlSession.selectList("myPage.myReservation", pageMap);
 	}
 	
-	public List<MyPageVO> myReservation(int memberNumber){
-		return sqlSession.selectList("myPage.myReservation", memberNumber);
-	}
-	public List<MyPageVO> myUsaDetails(int memberNumber){
-		return sqlSession.selectList("myPage.myUsaDetails", memberNumber);
+	public int reservationTotal(int memberNumber) {
+		return sqlSession.selectOne("myPage.reservationTotal", memberNumber);
 	}
 	
-	public List<MyPageVO> myLeaderGroup(int memberNumber){
-		return sqlSession.selectList("myPage.myLeaderGroup", memberNumber);
+	public void reservationDelete(int reservationNumber) {
+		sqlSession.delete("myPage.reservationDelete", reservationNumber);
 	}
-	public List<MyPageVO> myInterestGroup(int memberNumber){
-		return sqlSession.selectList("myPage.myInterestGroup", memberNumber);
+
+	public List<MyReserveVO> myUsaDetails(Map<String, Integer> pageMap) {
+		return sqlSession.selectList("myPage.myUsaDetails", pageMap);
 	}
-	public List<MyPageVO> myJoinGroup(int memberNumber){
-		return sqlSession.selectList("myPage.myJoinGroup", memberNumber);
-	}
-	public List<MyPageVO> myEndGroup(int memberNumber){
-		return sqlSession.selectList("myPage.myEndGroup", memberNumber);
-	}
-//	public List<MyPageVO> myPortfolio(int memberNumber, Map<String, Integer> pageMap) {
-//		return sqlSession.selectList("myPage.myPortfolio", memberNumber); // MyBatis 매퍼 호출
-//	}
 	
+	public int usageDatailsTotal(int memberNumber) {
+		return sqlSession.selectOne("myPage.usageDatailsTotal", memberNumber);
+	}
+
+	public void usageDatailsDelete(int reservationNumber) {
+		sqlSession.delete("myPage.usageDatailsDelete", reservationNumber);
+	}
 	
-//	public List<BoardDTO> myPageSelect(MyPageVO mypageVO) {
-//		return sqlSession.selectList("myPage.myPageSelect",mypageVO);
-//	}
-//	
-//	public List<BoardDTO> myPageCommentCount(int boardNumber) {
-//		return sqlSession.selectList("myPage.myPageCommentCount",boardNumber);
-//	}
+	public List<MyGroupVO> myLeaderGroup(Map<String, Integer> pageMap) {
+		return sqlSession.selectList("myPage.myLeaderGroup", pageMap);
+	}
+
+	public int leaderGroupTotal(int memberNumber) {
+		return sqlSession.selectOne("myPage.leaderGroupTotal", memberNumber);
+	}
+
+	public void leaderGroupDelete(int studyGroupNumber) {
+		sqlSession.delete("myPage.leaderGroupDelete", studyGroupNumber);
+	}
+	
+	public List<MyGroupVO> myInterestGroup(Map<String, Integer> pageMap) {
+		return sqlSession.selectList("myPage.myInterestGroup", pageMap);
+	}
+	
+	public int interestGroupTotal(int memberNumber) {
+		return sqlSession.selectOne("myPage.interestGroupTotal", memberNumber);
+	}
+	
+	public void interestGroupDelete(int studyGroupNumber) {
+		sqlSession.delete("myPage.interestGroupDelete", studyGroupNumber);
+	}
+
+	public List<MyGroupVO> myJoinGroup(Map<String, Integer> pageMap) {
+		return sqlSession.selectList("myPage.myJoinGroup", pageMap);
+	}
+
+	public int myJoinGroupTotal(int memberNumber) {
+		return sqlSession.selectOne("myPage.myJoinGroupTotal", memberNumber);
+	}
+	
+	public void myJoinGroupDelete(int studyGroupNumber) {
+		sqlSession.delete("myPage.myJoinGroupDelete", studyGroupNumber);
+	}
 }

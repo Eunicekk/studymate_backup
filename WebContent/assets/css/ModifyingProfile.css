@@ -1,66 +1,66 @@
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .main {
-  display: block;
-  width: 1200px;
+	display: block;
+	width: 1200px;
 }
 
 .sidebar {
-  /* float: left; */
-  width: 192px;
-  padding-top: 136px;
-  padding-left: 28px;
-  background-color: white;
-  border-right: 1px solid rgb(240, 240, 240);
+	/* float: left; */
+	width: 192px;
+	padding-top: 136px;
+	padding-left: 28px;
+	background-color: white;
+	border-right: 1px solid rgb(240, 240, 240);
 }
 
 .sidebar ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 .sidebar li {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .main-container-title::before {
-  width: 59px;
-  height: 1px;
-  position: absolute;
-  bottom: -1px;
-  background-color: rgb(94, 102, 141);
-  content: "";
+	width: 59px;
+	height: 1px;
+	position: absolute;
+	bottom: -1px;
+	background-color: rgb(94, 102, 141);
+	content: "";
 }
 
 .sidebar a {
-  display: block;
-  padding: 10px;
-  color: #888888;
-  text-decoration: none;
-  border-left: 3px solid transparent;
+	display: block;
+	padding: 10px;
+	color: #888888;
+	text-decoration: none;
+	border-left: 3px solid transparent;
 }
 
 .sidebar .active a {
-  color: black;
-  font-weight: bold;
-  border-left-color: #14237b;
+	color: black;
+	font-weight: bold;
+	border-left-color: #14237b;
 }
 
 .sidebar a:hover {
-  background-color: #ffffff;
+	background-color: #ffffff;
 }
 
 .side a:hover {
-  color: black;
+	color: black;
 }
 /* 
 .main-content {
@@ -68,131 +68,135 @@ body {
   border-left: 1px solid rgb(240, 240, 240);
   width: 1000px;
 } */
-
 .container {
-  display: flex;
+	display: flex;
 }
 
 /* 메인 컨테이너 스타일 */
 .main-container {
-  /* padding-left: 500px; */
-  /* padding: 53px 0 140px 43px; */
-  /* margin: 0 30px; */
-  display: flex;
-  justify-content:center;
-  font-size: 30px;
-  font-size: weight;
-  padding: -7px 0px 140px 43px;
-  width: 100%;
-  /* height: 1000px; */
+	/* padding-left: 500px; */
+	/* padding: 53px 0 140px 43px; */
+	/* margin: 0 30px; */
+	display: flex;
+	justify-content: center;
+	font-size: 30px;
+	font-size: weight;
+	padding: -7px 0px 140px 43px;
+	width: 100%;
+	/* height: 1000px; */
 }
 
 .main-container-title {
-  position: relative;
-  margin-bottom: 24.5px;
-  padding-bottom: 18.5px;
-  border-bottom: 1px solid rgb(212, 219, 226);
+	position: relative;
+	margin-bottom: 24.5px;
+	padding-bottom: 18.5px;
+	border-bottom: 1px solid rgb(212, 219, 226);
 }
 
 .presonal-info {
-  width: 850px;
+	width: 850px;
 }
 
 .profile-form {
-  display: flex;
-  border-bottom: 1px solid rgb(240, 240, 240);
-  -webkit-box-align: center;
-  align-items: center;
-  padding-bottom: 24.5px;
+	display: flex;
+	border-bottom: 1px solid rgb(240, 240, 240);
+	-webkit-box-align: center;
+	align-items: center;
+	padding-bottom: 24.5px;
 }
 
-.profile-form img {
-  width: 84px;
-  height: 83px;
-  margin-right: 37px;
-  border-radius: 10px;
+.my-profile {
+	width: 83px;
+	height: 83px;
+	margin-right: 37px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 .profile-form figcaption {
-  color: rgb(87, 87, 87);
-  font-size: 18px;
-  font-family: Light, sans-serif;
-  letter-spacing: -0.45px;
+	color: rgb(87, 87, 87);
+	font-size: 18px;
+	font-family: Light, sans-serif;
+	letter-spacing: -0.45px;
 }
 
 .profile-form b {
-  color: rgb(36, 36, 36);
-  font-weight: bold;
+	color: rgb(36, 36, 36);
+	font-weight: bold;
 }
 
 .presonal-info-item {
-  height: 75px;
-  display: flex;
-  border-bottom: 1px solid rgb(240, 240, 240);
-  -webkit-box-align: center;
-  align-items: center;
+	height: 75px;
+	display: flex;
+	border-bottom: 1px solid rgb(240, 240, 240);
+	-webkit-box-align: center;
+	align-items: center;
 }
 
 .presonal-info-item span {
-  width: 110px;
-  color: rgb(87, 87, 87);
-  font-size: 15px;
-  letter-spacing: -0.75px;
-  flex-shrink: 0;
+	width: 110px;
+	color: rgb(87, 87, 87);
+	font-size: 15px;
+	letter-spacing: -0.75px;
+	flex-shrink: 0;
 }
 
 .presonal-info-item p {
-  width: 514px;
-  color: rgb(36, 36, 36);
-  font-size: 15px;
-  letter-spacing: -0.38px;
-  text-align: right;
+	width: 514px;
+	color: rgb(36, 36, 36);
+	font-size: 15px;
+	letter-spacing: -0.38px;
+	text-align: right;
 }
 
 .presonal-info-item input {
-  width: 800px;
-  color: rgb(36, 36, 36);
-  font-size: 15px;
-  letter-spacing: -0.38px;
-  text-align: right;
-  border: #ffffff;
+	width: 800px;
+	color: rgb(36, 36, 36);
+	font-size: 15px;
+	letter-spacing: -0.38px;
+	text-align: right;
+	border: #ffffff;
 }
 
 .presonal-info-footer {
-  margin-top: 16px;
-  justify-content: space-between;
-  -webkit-box-pack: justify;
-  display: flex;
+	margin-top: 16px;
+	justify-content: space-between;
+	-webkit-box-pack: justify;
+	display: flex;
 }
 
 .withdrawal {
-  width: 100px;
-  height: 35px;
-  margin-top: 60px;
-  color: rgb(94, 102, 141);
-  font-size: 15px;
-  letter-spacing: -0.75px;
-  line-height: 22px;
-  border: 1px solid rgb(212, 219, 226);
-  border-radius: 4px;
-  box-shadow: rgba(178, 178, 178, 0.24) 1px 1px 2px 0px;
-  cursor: pointer;
+	width: 100px;
+	height: 35px;
+	margin-top: 60px;
+	color: rgb(94, 102, 141);
+	font-size: 15px;
+	letter-spacing: -0.75px;
+	line-height: 22px;
+	border: 1px solid rgb(212, 219, 226);
+	border-radius: 4px;
+	box-shadow: rgba(178, 178, 178, 0.24) 1px 1px 2px 0px;
+	cursor: pointer;
 }
 
 .modificationCompleted {
-  width: 100px;
-  height: 35px;
-  margin-top: 60px;
-  color: rgb(94, 102, 141);
-  font-size: 15px;
-  letter-spacing: -0.75px;
-  line-height: 22px;
-  border: 1px solid rgb(212, 219, 226);
-  border-radius: 4px;
-  box-shadow: rgba(178, 178, 178, 0.24) 1px 1px 2px 0px;
-  cursor: pointer;
+	width: 100px;
+	height: 35px;
+	margin-top: 60px;
+	color: rgb(94, 102, 141);
+	font-size: 15px;
+	letter-spacing: -0.75px;
+	line-height: 22px;
+	border: 1px solid rgb(212, 219, 226);
+	border-radius: 4px;
+	box-shadow: rgba(178, 178, 178, 0.24) 1px 1px 2px 0px;
+	cursor: pointer;
 }
 
-.my-content{
+.my-content {
 	
+}
+
+.profile-input {
+	display: none;
 }

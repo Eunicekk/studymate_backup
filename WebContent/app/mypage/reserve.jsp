@@ -19,26 +19,14 @@
 </head>
 <div class="header"></div>
 <body>
-	<!-- 메인 컨텐츠 영역 -->
 	<div class="main-container">
-		<!-- 메인 헤더 영역 -->
-		<!-- 예약 목록 영역 -->
 		<ul class="reserve-tab-panel">
-			<li class="reserve-tab-li">
-				<button class="reserve-tab-button-selected">전체</button>
-			</li>
+			<li class="reserve-tab-li"><c:if test="${total > 0}">
+					<div class="reserve-tab-button-selected">
+						전체 <span class="list-total">(${total})</span>
+					</div>
+				</c:if></li>
 		</ul>
-		<!-- 예약번호 정보 조회 영역 -->
-		<!-- <form class="reserve-search-form">
-            <label class="reserve-search-label"
-              ><input
-                type="text"
-                class="reserve-search-input"
-                placeholder="예약 번호를 입력해주세요."
-            /></label>
-            <button class="reserve-search-button">검색</button>
-          </form> -->
-		<!-- 예약 카페 정보 영역  -->
 		<ul class="reserve-list">
 
 			<c:choose>
@@ -47,11 +35,15 @@
 						<li class="reserve-item">
 							<div class="info-box">
 								<img
-									src="https://img.shareit.kr:13443/prod/img/2022-04-21/5444d94a-3d51-47fe-aa95-cba605d5604c.jpg"
+									src="${pageContext.request.contextPath}/upload/${myReservation.getCafeFileSystemName()}"
 									alt="스터디" />
 								<div>
 									<div class="info-box-host-name">${myReservation.getStudyCafeAddress()}</div>
-									<div class="info-box-product-name">${myReservation.getStudyCafeName()}</div>
+									<div class="info-box-product-name">
+										<a
+											href="${pageContext.request.contextPath}/cafe/cafeReadOk.sc?studyCafeNumber=${myReservation.getStudyCafeNumber()}">
+											${myReservation.getStudyCafeName()}</a>
+									</div>
 									<!-- <p class="info-box-reserve-detail">
                     <img
                       src="https://shareit.kr/image/myPage/ico-estimate.svg"
@@ -95,7 +87,9 @@
 								</div>
 							</section>
 							<div class="cancel-button-box">
-								<button class="cancel-button">대여 취소</button>
+								<button type="button" class="cancel-button"
+									data-reservationNumber="${myReservation.getReservationNumber()}">대여
+									취소</button>
 							</div>
 						</li>
 
@@ -103,31 +97,27 @@
 				</c:when>
 			</c:choose>
 		</ul>
-		<!-- 페이지 리스트 -->
-		<ul class="pagenation-list">
-			<!-- 페이지 앞으로가기, 뒤로가기, 페이지 번호 버튼 -->
-			<li class="prev">
-				<button type="button">
-					<span class="prev-button"> <img
-						src="https://shareit.kr/_next/static/media/arrow-left-677294.ae6b1d0b.svg"
-						alt="" class="prev-button-img" />
-					</span>
-				</button>
-			</li>
-			<li class="page-number">
-				<button type="button" class="page-number-button">1</button>
-			</li>
-			<li class="next">
-				<button type="button">
-					<span class="next-button"> <img
-						src="https://shareit.kr/_next/static/media/arrow-right-677294.662f8854.svg"
-						alt="" class="next-button-img" />
-					</span>
-				</button>
-			</li>
-		</ul>
 	</div>
 
+	<section id="paging">
+		<c:if test="${prev}">
+			<span><a class="prev">&lt;</a></span>
+		</c:if>
+
+		<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<c:choose>
+				<c:when test="${!(i == page) }">
+					<a class="pageBtn"><c:out value="${i}" /></a>
+				</c:when>
+				<c:otherwise>
+					<a class="active"><c:out value="${i}" /></a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${next}">
+			<span><a class="next">&gt;</a></span>
+		</c:if>
+	</section>
 	<div class="footer"></div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/reserve.js"></script>

@@ -1,38 +1,42 @@
 package com.studymate.app.myPage;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.oreilly.servlet.multipart.FilePart;
-import com.oreilly.servlet.multipart.MultipartParser;
-import com.oreilly.servlet.multipart.ParamPart;
-import com.oreilly.servlet.multipart.Part;
 import com.studymate.app.Execute;
-import com.studymate.app.member.dto.MemberDTO;
 import com.studymate.app.myPage.dao.MyPageDAO;
+import com.studymate.app.myPage.vo.MyProfileVO;
 
 public class MyPageModifyingProfileOkController implements Execute {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		MemberDTO memberDTO = new MemberDTO();
+		MyProfileVO myProfileVO = new MyProfileVO();
 		MyPageDAO myPageDAO = new MyPageDAO();
-		
-		memberDTO.setMemberNumber(1);
-		memberDTO.setMemberNickname(req.getParameter("nickname"));
-		memberDTO.setMemberPhoneNumber(req.getParameter("phonenumber"));
-		memberDTO.setMemberEmail(req.getParameter("email"));
-		memberDTO.setMemberPassword(req.getParameter("pw"));
-		 System.out.println(memberDTO);
+
+		myProfileVO.setMemberNumber(1);
+		myProfileVO.setMemberNickname(req.getParameter("nickname"));
+		myProfileVO.setMemberPhoneNumber(req.getParameter("phonenumber"));
+		myProfileVO.setMemberEmail(req.getParameter("email"));
+		myProfileVO.setMemberPassword(req.getParameter("pw"));
+
+		System.out.println(myProfileVO);
 //		new MyPageDAO().update(memberDTO);
-		
-		myPageDAO.update(memberDTO);
-		 
+
+		myPageDAO.update(myProfileVO);
+		String uploadPath = req.getSession().getServletContext().getRealPath("/") + "upload/";
+		int fileSize = 1024 * 1024 * 10;
+
+		MultipartRequest multipartRequest = new MultipartRequest(req, uploadPath, fileSize, "utf-8",
+				new DefaultFileRenamePolicy());
+
+		System.out.println(uploadPath);
+
 		resp.sendRedirect("/mypage/MyPageModifyingProfile.my");
 		// 임시 url => 메인 url로 변경 해야함
-}}
+	}
+}

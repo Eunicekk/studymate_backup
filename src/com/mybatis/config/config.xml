@@ -32,6 +32,10 @@
 		<typeAlias type="com.studymate.app.admin.board.vo.AdminBoardVO" alias="AdminBoardVO"/>
 		<typeAlias type="com.studymate.app.admin.group.vo.AdminGroupVO" alias="AdminGroupVO"/>
 		<typeAlias type="com.studymate.app.myPage.vo.MyPageVO" alias="MyPageVO"/>
+		<typeAlias type="com.studymate.app.myPage.vo.MyProfileVO" alias="MyProfileVO"/>
+		<typeAlias type="com.studymate.app.myPage.vo.MyCafeVO" alias="MyCafeVO"/>
+		<typeAlias type="com.studymate.app.myPage.vo.MyReserveVO" alias="MyReserveVO"/>
+		<typeAlias type="com.studymate.app.myPage.vo.MyGroupVO" alias="MyGroupVO"/>
 		<typeAlias type="com.studymate.app.board.vo.BoardVO" alias="BoardVO"/>
 		<typeAlias type="com.studymate.app.boardComment.vo.BoardCommentVO" alias="BoardCommentVO"/>
 		<typeAlias type="com.studymate.app.admin.search.vo.SearchVO" alias="SearchVO"/>

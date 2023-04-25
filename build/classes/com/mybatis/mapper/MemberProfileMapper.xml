@@ -3,5 +3,8 @@
 
 <mapper namespace="memberProfile">
 	
+	<insert id="insert" parameterType="MemberProfileDTO">
+	
+	</insert>
 	
 </mapper>

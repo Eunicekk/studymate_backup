@@ -43,7 +43,7 @@ $myInterestCafe.on('click', function() {
 	$('.sidebar li').not(this).css('color', '#bdbdbd');
 
 	// ajax 삽입 필요
-	$('#list-content').load("/app/mypage/interestPlace.jsp");
+	//$('#list-content').load("/app/mypage/interestPlace.jsp");
 	$('#list-content').load("/mypage/MyPageInterestPlaceOk.my");
 });
 $myReserve.on('click', function() {
@@ -52,7 +52,7 @@ $myReserve.on('click', function() {
 	$('.sidebar li').not(this).css('color', '#bdbdbd');
 
 	// ajax 삽입 필요
-	$('#list-content').load("/app/mypage/reserve.jsp");
+	//$('#list-content').load("/app/mypage/reserve.jsp");
 	$('#list-content').load("/mypage/MyPageReserveOk.my");
 });
 $myUsaDetails.on('click', function() {
@@ -67,11 +67,11 @@ $myUsaDetails.on('click', function() {
 
 $myGroup.on('click', function() {
 	$(this).css('color', 'black');
-	$('#content-title').text("내 그룹");
+	$('#content-title').text("내가 만든 그룹");
 	$('.sidebar li').not(this).css('color', '#bdbdbd');
 
 	// ajax 삽입 필요
-	$('#list-content').load("/app/mypage/leaderGroup.jsp");
+	//$('#list-content').load("/app/mypage/leaderGroup.jsp");
 	$('#list-content').load("/mypage/MyPageLeaderGroupOk.my");
 });
 $myInterestGroup.on('click', function() {
@@ -80,7 +80,7 @@ $myInterestGroup.on('click', function() {
 	$('.sidebar li').not(this).css('color', '#bdbdbd');
 
 	// ajax 삽입 필요
-	$('#list-content').load("/app/mypage/interestGroup.jsp");
+	//$('#list-content').load("/app/mypage/interestGroup.jsp");
 	$('#list-content').load("/mypage/MyPageInterestGroupOk.my");
 });
 
@@ -90,16 +90,7 @@ $myJoinGroup.on('click', function() {
 	$('.sidebar li').not(this).css('color', '#bdbdbd');
 
 	// ajax 삽입 필요
-	$('#list-content').load("/app/mypage/participatingGroup.jsp");
+	//$('#list-content').load("/app/mypage/participatingGroup.jsp");
 	$('#list-content').load("/mypage/MyPageParticipatingGroupOk.my");
-});
-$myEndGroup.on('click', function() {
-	$(this).css('color', 'black');
-	$('#content-title').text("종료 그룹");
-	$('.sidebar li').not(this).css('color', '#bdbdbd');
-
-	// ajax 삽입 필요
-	$('#list-content').load("/app/mypage/endGroup.jsp");
-	$('#list-content').load("/mypage/MyPageEndGroupOk.my");
 });
 

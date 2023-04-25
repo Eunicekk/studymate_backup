@@ -63,41 +63,18 @@
 		</c:choose>
 	</div>
 
-	<!-- <ul class="pagenation-list">
-					<li class="prev">
-						<button type="button">
-							<span class="prev-button"> <img
-								src="https://shareit.kr/_next/static/media/arrow-left-677294.ae6b1d0b.svg"
-								alt="" class="prev-button-img" />
-							</span>
-						</button>
-					</li>
-					<li class="page-number">
-						<button type="button" class="page-number-button">1</button>
-					</li>
-					<li class="next">
-						<button type="button">
-							<span class="next-button"> <img
-								src="https://shareit.kr/_next/static/media/arrow-right-677294.662f8854.svg"
-								alt="" class="next-button-img" />
-							</span>
-						</button>
-					</li>
-				</ul> -->
-
-	<!-- ========== 페이징 처리 예시 ============ -->
 	<section id="paging">
 		<c:if test="${prev}">
-			<li><a class="prev">&lt;</a></li>
+			<span><a class="prev">&lt;</a></span>
 		</c:if>
 
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<c:choose>
 				<c:when test="${!(i == page) }">
-					<a class="active"><c:out value="${i}" /></a>
+					<a class="pageBtn"><c:out value="${i}" /></a>
 				</c:when>
 				<c:otherwise>
-					<a class="pageBtn"><c:out value="${i}" /></a>
+					<a class="active"><c:out value="${i}" /></a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -105,34 +82,6 @@
 			<span><a class="next">&gt;</a></span>
 		</c:if>
 	</section>
-
-	<%-- 				<c:if test="${prev}">
-					<li><a
-						href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my=${startPage - 1}"
-						class="prev">&lt;</a></li>
-				</c:if>
-
-				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<c:choose>
-						<c:when test="${!(i == page) }">
-							<li><a
-								href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my?page=${i}">
-									<c:out value="${i}" />
-							</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="#" class="active"> <c:out value="${i}" />
-							</a></li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-
-				<c:if test="${next}">
-					<li><a
-						href="${pageContext.request.contextPath}/mypage/MyPagePortfolioOk.my?page=${endPage + 1}"
-						class="next">&gt;</a></li>
-				</c:if> --%>
-	<!-- ========== /페이징 처리 예시 ============ -->
 
 
 

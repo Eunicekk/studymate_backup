@@ -25,7 +25,7 @@
 		j1.study_cafe_price, j1.study_cafe_like_count,
 		count(scc.cafe_comment_number) study_cafe_comment_count, round(avg(scc.cafe_comment_score), 1) study_cafe_comment_score,
 		(select count(cafe_comment_number) from tbl_study_cafe_comment tscc 
-		where cafe_comment_score = 5) study_cafe_comment_score_count
+		where cafe_comment_score = 5 and study_cafe_number = #{studyCafeNumber}) study_cafe_comment_score_count
 		from (select sc.study_cafe_number, sc.study_cafe_name, sc.study_cafe_address, sc.study_cafe_content,
 		sc.study_cafe_price, sc.study_cafe_read_count,
 		count(mlc.member_number) study_cafe_like_count from tbl_study_cafe sc left outer
@@ -55,7 +55,7 @@
 		) j1 left outer join tbl_study_cafe_comment scc
 		on j1.study_cafe_number = scc.study_cafe_number
 		group by j1.study_cafe_number
-		order by j1.study_cafe_number desc;
+		order by j1.study_cafe_number desc
 	</select>
 	
 	<select id="arrayByScore" parameterType="map" resultType="StudyCafeVO">

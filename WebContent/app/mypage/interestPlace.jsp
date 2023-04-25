@@ -24,12 +24,16 @@
 			<c:choose>
 				<c:when test="${not empty likeCafe}">
 					<c:forEach var="likeCafe" items="${likeCafe}">
-						<li class="first-section"><a href="">
+						<li class="first-section"><a
+							href="${pageContext.request.contextPath}/cafe/cafeReadOk.sc?studyCafeNumber=${likeCafe.getStudyCafeNumber()}">
 								<div class="SpaceItemstyle">
 									<img
-										src="https://img.shareit.kr:13443/prod/img/2022-07-01/9e6e7e13-220e-4ea0-8e40-1ffb76422ed5.jpg"
-										alt="" class="space-img" /> <input type="button"
-										class="favorite" />
+										src="${pageContext.request.contextPath}/upload/${likeCafe.getCafeFileSystemName()}"
+										alt="스터디 카페" class="space-img" />
+
+									<div class="cancel-btn">
+										<i class="fas fa-times"></i>
+									</div>
 								</div>
 						</a>
 							<div class="SpaceItemstyle-box">
@@ -70,39 +74,36 @@
 									<div class="Info-content-star">
 										<img src="https://shareit.kr/img/review/Star_1.svg" alt="별점" />
 									</div>
-									4.1
-									<div class="Info-content-review">(후기 19)</div>
+									${likeCafe.getStudyCafeCommentScore()}
+									<div class="Info-content-review">(후기
+										${likeCafe.getCafeCommentCount()})</div>
 								</div>
 							</div></li>
 					</c:forEach>
 				</c:when>
 			</c:choose>
 		</ul>
-
-		<!-- 페이지 리스트 -->
-		<ul class="pagenation-list">
-			<!-- 페이지 앞으로가기, 뒤로가기, 페이지 번호 버튼 -->
-			<li class="prev">
-				<button type="button">
-					<span class="prev-button"> <img
-						src="https://shareit.kr/_next/static/media/arrow-left-677294.ae6b1d0b.svg"
-						alt="" class="prev-button-img" />
-					</span>
-				</button>
-			</li>
-			<li class="page-number">
-				<button type="button" class="page-number-button">1</button>
-			</li>
-			<li class="next">
-				<button type="button">
-					<span class="next-button"> <img
-						src="https://shareit.kr/_next/static/media/arrow-right-677294.662f8854.svg"
-						alt="" class="next-button-img" />
-					</span>
-				</button>
-			</li>
-		</ul>
 	</div>
+
+	<section id="paging">
+		<c:if test="${prev}">
+			<li><a class="prev">&lt;</a></li>
+		</c:if>
+
+		<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<c:choose>
+				<c:when test="${!(i == page) }">
+					<a class="pageBtn"><c:out value="${i}" /></a>
+				</c:when>
+				<c:otherwise>
+					<a class="active"><c:out value="${i}" /></a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${next}">
+			<span><a class="next">&gt;</a></span>
+		</c:if>
+	</section>
 
 	<div class="footer"></div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
