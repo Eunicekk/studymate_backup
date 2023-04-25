@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.studymate.app.studyGroupComment.StudyGroupCommentOkController;
+
 public class MemberLikeStudyGroupFrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,8 +22,16 @@ public class MemberLikeStudyGroupFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
-
+		System.out.println(target);
 		switch(target) {
+		case "/memberLikeStudyGroup/memberLikeStudyGroupUpdateOk.mlsg":
+			System.out.println("좋아요 여부 확인하기");
+			new MemberLikeStudyGroupUpdateOkController().execute(req,resp);
+			break;
+		case "/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg":
+			System.out.println("좋아요 누르고 재업로드");
+			new MemberLikeStudyGroupOkController().execute(req,resp);
+			break;
 		
 		}
 	}

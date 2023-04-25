@@ -1,5 +1,9 @@
 package com.studymate.app.studyGroup.vo;
 
+import java.util.List;
+
+import com.studymate.app.studyGroupFile.dto.StudyGroupFileDTO;
+
 public class StudyGroupVO {
 	private int memberNumber;
 	private int studyGroupNumber;
@@ -16,6 +20,7 @@ public class StudyGroupVO {
 	private String studyGroupContact;
 	private String studyGroupDuration;
 	private String studyGroupEndDate; 
+	private List<StudyGroupFileDTO> files;
 	
 	
 	public StudyGroupVO() {
@@ -173,6 +178,16 @@ public class StudyGroupVO {
 	}
 
 
+	public List<StudyGroupFileDTO> getFiles() {
+		return files;
+	}
+
+
+	public void setFiles(List<StudyGroupFileDTO> files) {
+		this.files = files;
+	}
+
+
 	@Override
 	public String toString() {
 		return "StudyGroupVO [memberNumber=" + memberNumber + ", studyGroupNumber=" + studyGroupNumber
@@ -182,7 +197,7 @@ public class StudyGroupVO {
 				+ ", studyGroupCommentCount=" + studyGroupCommentCount + ", studyGroupLikeCount=" + studyGroupLikeCount
 				+ ", studyGroupCapacity=" + studyGroupCapacity + ", studyGroupField=" + studyGroupField
 				+ ", studyGroupContact=" + studyGroupContact + ", studyGroupDuration=" + studyGroupDuration
-				+ ", studyGroupEndDate=" + studyGroupEndDate + "]";
+				+ ", studyGroupEndDate=" + studyGroupEndDate + ", files=" + files + "]";
 	}
 
 

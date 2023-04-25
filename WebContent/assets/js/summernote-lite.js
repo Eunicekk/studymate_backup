@@ -14489,4 +14489,3 @@ $(document).ready(function () {
     }
   );
 });
-//# sourceMappingURL=summernote-lite.js.map
