@@ -48,6 +48,10 @@
 		</c:choose>
 
 	</header>
+	
+	
+	
+	
 	<section>
 		<a href="/cafe/cafeListOk.sc"><img
 			src="${pageContext.request.contextPath}/assets/img/cafeRV.png" alt=""
