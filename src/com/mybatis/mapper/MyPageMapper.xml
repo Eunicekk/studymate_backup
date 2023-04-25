@@ -4,15 +4,17 @@
 <mapper namespace="myPage">
 
 	<select id="selectMember" parameterType="_int"
-		resultType="MemberDTO">
+		resultType="MyProfileVO">
 		select member_nickname, member_password,
-		member_phone_number, member_email
-		from tbl_member tb
-		where member_number
-		=#{memberNumber}
+		member_phone_number, member_email, tmp.profile_system_name from
+		tbl_member tm
+		left outer join tbl_member_profile tmp
+		on tmp.member_number = tm.member_number
+		where tm.member_number =#{memberNumber}
 	</select>
+	
 
-	<update id="update" parameterType="MemberDTO">
+	<update id="update" parameterType="MyProfileVO">
 		update tbl_member
 		set
 		member_password=#{memberPassword},
@@ -28,12 +30,14 @@
 		where member_number=#{memberNumber}
 	</delete>
 
-	<select id="getTotal" resultType="_int">
-		select count(board_number) from
+	<select id="getTotal" parameterType="_int" resultType="_int">
+		select
+		count(board_number) from
 		tbl_board
+		where member_number =#{memberNumber}
 	</select>
 
-	<select id="myPortfolio" parameterType="int"
+	<select id="myPortfolio" parameterType="map"
 		resultType="MyPageVO">
 		select b.board_number,
 		b.board_title,
@@ -46,15 +50,24 @@
 		where b.member_number =#{memberNumber}
 		group by b.board_number, b.board_title, b.board_read_count,
 		b.member_number
-		order by b.board_number
+		order by b.board_number asc limit
+		#{startRow},#{rowCount}
 	</select>
 
-	<select id="myLikeCafe" parameterType="_int"
-		resultType="MyPageVO">
+	<select id="likeCafeTotal" parameterType="_int"
+		resultType="_int">
+		select count(study_cafe_number) from tbl_member_like_cafe
+		where member_number =#{memberNumber}
+	</select>
+
+	<select id="myLikeCafe" parameterType="map"
+		resultType="MyCafeVO">
 		select j2.member_number, j2.study_cafe_number,
 		j2.like_count cafe_like_count, c.study_cafe_name,
 		c.study_cafe_address, c.study_cafe_price , c.study_cafe_content,
-		count(cc.cafe_comment_number) cafe_comment_count
+		count(cc.cafe_comment_number) cafe_comment_count,
+		round(avg(cc.cafe_comment_score),1),
+		tscf.cafe_file_system_name
 		from (
 		select
 		j.member_number, j.study_cafe_number, count(l2.member_number)
@@ -74,26 +87,247 @@
 		tbl_study_cafe_comment cc
 		on j2.study_cafe_number =
 		cc.study_cafe_number
-		group by j2.study_cafe_number;
+		left outer join tbl_study_cafe_file tscf
+		on tscf.study_cafe_number = j2.study_cafe_number
+		group by
+		j2.study_cafe_number, tscf.cafe_file_system_name limit
+		#{startRow},#{rowCount}
 	</select>
 
-	<select id="myReservation" parameterType="_int"
-		resultType="MyPageVO">
+	<select id="reservationTotal" parameterType="_int"
+		resultType="_int">
+		select count(reservation_number) from tbl_reservation tr
+		where member_number =#{memberNumber} and tr.reservation_end >
+		curdate()
+	</select>
+
+	<delete id="reservationDelete" parameterType="_int">
+		delete from
+		tbl_reservation where reservation_number =#{reservationNumber}
+	</delete>
+
+	<select id="myReservation" parameterType="map"
+		resultType="MyReserveVO">
 		select tscf.cafe_file_system_name , sc.study_cafe_address
 		,tm.member_number ,sc.study_cafe_number , sc.study_cafe_content ,
 		sc.study_cafe_name ,sc.study_cafe_price ,
-		tr.reservation_number , tr.reservation_start , tr.reservation_end , count(tr.member_number)
+		tr.reservation_number ,
+		tr.reservation_start , tr.reservation_end , count(tr.member_number)
 		count_member
 		from tbl_study_cafe sc
 		left outer join tbl_reservation tr
 		on sc.study_cafe_number = tr.study_cafe_number
 		left join tbl_member tm
 		on tr.member_number = tm.member_number
-		left join tbl_study_cafe_file tscf
+		left join tbl_study_cafe_file
+		tscf
 		on sc.study_cafe_number = tscf.study_cafe_number
-		where tm.member_number =${memberNumber}
-		group by sc.study_cafe_number , tr.reservation_number, tm.member_number,
-		tscf.cafe_file_system_name
+		where
+		tm.member_number =#{memberNumber} and tr.reservation_end > curdate()
+		group by sc.study_cafe_number , tr.reservation_number,
+		tm.member_number,
+		tscf.cafe_file_system_name limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="usageDatailsTotal" parameterType="_int"
+		resultType="_int">
+		select count(reservation_number) from tbl_reservation tr
+		where member_number =#{memberNumber} and curdate() >
+		tr.reservation_end
+	</select>
+
+	<delete id="usageDatailsDelete" parameterType="_int">
+		delete from
+		tbl_reservation where reservation_number =#{reservationNumber}
+	</delete>
+
+	<select id="myUsaDetails" parameterType="map"
+		resultType="MyReserveVO">
+		select tscf.cafe_file_system_name , sc.study_cafe_address
+		,tm.member_number
+		,sc.study_cafe_number , sc.study_cafe_content ,
+		sc.study_cafe_name
+		,sc.study_cafe_price ,
+		tr.reservation_number ,
+		tr.reservation_start ,
+		tr.reservation_end , count(tr.member_number)
+		count_member
+		from
+		tbl_study_cafe sc
+		left outer join tbl_reservation tr
+		on
+		sc.study_cafe_number = tr.study_cafe_number
+		left join tbl_member tm
+		on
+		tr.member_number = tm.member_number
+		left join tbl_study_cafe_file
+		tscf
+		on sc.study_cafe_number = tscf.study_cafe_number
+		where
+		tm.member_number
+		=#{memberNumber} <!-- and curdate() > tr.reservation_end -->
+		group by
+		sc.study_cafe_number , tr.reservation_number,
+		tm.member_number,
+		tscf.cafe_file_system_name limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="leaderGroupTotal" parameterType="_int"
+		resultType="_int">
+		select count(study_group_number) from tbl_study_group sg
+		where sg.member_number =#{memberNumber}
+	</select>
+
+	<delete id="leaderGroupDelete" parameterType="_int">
+		delete from
+		tbl_study_group where study_group_number =#{studyGroupNumber}
+	</delete>
+
+	<select id="myLeaderGroup" parameterType="map"
+		resultType="MyGroupVO">
+		select tm.member_nickname
+		,count(tsgc.study_group_comment_number)
+		group_comment_count,
+		sg.study_group_number,
+		tsgf.group_file_system_name
+		,
+		sg.study_group_title ,
+		sg.study_group_online ,
+		sg.study_group_start_date ,
+		sg.study_group_content ,
+		sg.study_group_read_count,
+		tmp.profile_system_name 
+		from tbl_study_group
+		sg
+		left outer join
+		tbl_study_group_comment tsgc
+		on
+		tsgc.study_group_number =
+		sg.study_group_number
+		left outer join
+		tbl_study_group_file tsgf
+		on tsgf
+		.study_group_number =
+		sg.study_group_number
+		join tbl_member tm
+		on
+		sg.member_number =
+		tm.member_number
+		left outer join tbl_member_profile tmp 
+		on tmp.member_number =tm.member_number 
+		where sg.member_number
+		=#{memberNumber}
+		group by
+		sg.study_group_number,
+		tsgf.group_file_system_name,
+		tmp.profile_system_name  limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="interestGroupTotal" parameterType="_int"
+		resultType="_int">
+		select count(study_group_number) from
+		tbl_member_like_study_group tmlsg
+		where member_number =#{memberNumber}
+	</select>
+
+	<delete id="interestGroupDelete" parameterType="_int">
+		delete from
+		tbl_member_like_study_group where study_group_number
+		=#{studyGroupNumber}
+	</delete>
+
+	<select id="myInterestGroup" parameterType="map"
+		resultType="MyGroupVO">
+		select tm.member_nickname
+		,count(sgc.study_group_comment_number) comment_count,
+		sg.study_group_number ,
+		sg.study_group_title , sg.study_group_field ,
+		sg.study_group_online ,
+		sg.study_group_start_date ,
+		sg.study_group_content ,
+		sg.study_group_read_count,
+		sg.member_number,
+		sgf.group_file_system_name,
+		tmp.profile_system_name 
+		from tbl_study_group sg
+		join
+		tbl_member_like_study_group lsg
+		on sg.study_group_number =
+		lsg.study_group_number
+		left outer join tbl_study_group_comment sgc
+		on
+		sg.study_group_number = sgc.study_group_number
+		left outer join
+		tbl_study_group_file sgf
+		on sg.study_group_number =
+		sgf.study_group_number
+		join tbl_member tm
+		on sg.member_number =
+		tm.member_number
+		left outer join tbl_member_profile tmp 
+		on tmp.member_number = tm.member_number 
+		where lsg.member_number = #{memberNumber}
+		group by
+		sg.study_group_number, sgf.group_file_system_name,
+		tmp.profile_system_name  limit
+		#{startRow},#{rowCount}
+	</select>
+
+	<select id="myJoinGroupTotal" parameterType="_int"
+		resultType="_int">
+		select count(study_group_number) from
+		tbl_study_group_leader tsgl
+		where member_number =#{memberNumber}
+	</select>
+
+	<delete id="myJoinGroupDelete" parameterType="_int">
+		delete from
+		tbl_study_group_leader
+		where study_group_number=#{studyGroupNumber}
+	</delete>
+
+	<select id="myJoinGroup" parameterType="map"
+		resultType="MyGroupVO">
+		select count(sgc.study_group_comment_number)
+		comment_count,
+		sgf.group_file_system_name ,
+		tm.member_nickname ,
+		sg.study_group_number
+		,
+		sg.study_group_title ,
+		sg.study_group_field ,
+		sg.study_group_online ,
+		sg.study_group_start_date ,
+		sg.study_group_content ,
+		sg.study_group_read_count,
+		sg.member_number,
+		tmp.profile_system_name 
+		from tbl_study_group sg
+		join
+		tbl_study_group_leader sgj
+		on sg.study_group_number =
+		sgj.study_group_number
+		left outer join tbl_study_group_comment sgc
+		on
+		sg.study_group_number = sgc.study_group_number
+		left outer join
+		tbl_study_group_file sgf
+		on sg.study_group_number =
+		sgf.study_group_number
+		join tbl_member tm
+		on sgj.member_number =
+		tm.member_number
+		left outer join tbl_member_profile tmp 
+		on tmp.member_number = tm.member_number 
+		where sgj.member_number = #{memberNumber}
+		group by
+		sg.study_group_number,
+		sgf.group_file_system_name,
+		tmp.profile_system_name  limit
+		#{startRow},#{rowCount}
 	</select>
 
 </mapper>

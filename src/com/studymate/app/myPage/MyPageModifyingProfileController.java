@@ -5,25 +5,25 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.studymate.app.Execute;
-import com.studymate.app.member.dto.MemberDTO;
 import com.studymate.app.myPage.dao.MyPageDAO;
+import com.studymate.app.myPage.vo.MyProfileVO;
 
 public class MyPageModifyingProfileController implements Execute {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MyPageDAO myPageDAO = new MyPageDAO();
-		MemberDTO memberDTO = new MemberDTO(); 
+		MyProfileVO myProfileVO= null; 
 //		HttpSession session = req.getSession();
 //		int number = session.getAttribute("memberNumber");
-		Integer memberNumber =12;
+		Integer memberNumber =1;
 		
 
-		memberDTO = myPageDAO.selectMember(memberNumber);
-		req.setAttribute("memberDTO", memberDTO);
+		myProfileVO = myPageDAO.selectMember(memberNumber);
+		req.setAttribute("memberDTO", myProfileVO);
 		
+		System.out.println(myProfileVO);
 		
 		req.getRequestDispatcher("/app/mypage/ModifyingProfile.jsp").forward(req, resp);
 	}

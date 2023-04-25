@@ -1,9 +1,91 @@
-$(document).ready(function () {
-  // side 클래스를 가진 li 요소 클릭 이벤트 핸들러
-  $(".side").click(function () {
-    // 현재 클릭한 요소의 active 클래스 추가
-    $(this).addClass("active");
-    // 다른 li 요소에서 active 클래스 제거
-    $(this).siblings().removeClass("active");
-  });
+
+var tmp = 1;
+
+var page = 1;
+
+var total = $('.list-total').text();
+
+var rowCount = 2;
+
+var pageCount = 5;
+
+var startRow = (parseInt(page) - 1) * rowCount;
+
+var endPage = parseInt(Math.ceil(parseInt(page) / parseFloat(pageCount)) * pageCount);
+
+var startPage = endPage - (pageCount - 1);
+
+var realEndPage = parseInt(Math.ceil(total / parseFloat(rowCount)));
+
+var endPage = endPage > realEndPage ? realEndPage : endPage;
+
+$('#paging').on('click', ".pageBtn", function() {
+	page = $(this).text().trim()
+	console.log($(this).text().trim());
+	$.ajax({
+		type: "GET", 
+		url: '/mypage/MyPageUsaDetailsOk.my?page=' + $(this).text().trim(),
+		dataType: "text",
+		error: function() {
+			alert("통신실패!!!!");
+		},
+		success: function(Parse_data) {
+			$("#list-content").html(Parse_data); 
+		}
+	});
+}
+);
+
+$('#paging').on('click', ".prev", function() {
+	console.log("prev");
+	$.ajax({
+		type: "GET", 
+		url: '/mypage/MyPageUsaDetailsOk.my?'+(startPage-1),
+		dataType: "text",
+		error: function() {
+			alert("통신실패!!!!");
+		},
+		success: function(Parse_data) {
+			$("#list-content").html(Parse_data); 
+		}
+	});
+}
+);
+
+$('#paging').on('click', ".next", function() {
+	console.log("next");
+	$.ajax({
+		type: "GET",
+		url: '/mypage/MyPageUsaDetailsOk.my?page=' + (endPage + 1),
+		dataType: "text",
+		error: function() {
+			alert("통신실패!!!!");
+		},
+		success: function(Parse_data) {
+			$("#list-content").html(Parse_data);
+		}
+	});
+}
+);
+
+var $delete = $('cancel-button');
+
+$('.cancel-button').on('click', function() {
+	if (confirm("삭제 하시겠습니까?")) {
+    var reservationNumber = $(this).data('reservationnumber'); // 클릭한 예약의 아이디를 가져옵니다.
+    console.log(reservationNumber);
+    $.ajax({
+        url: '/mypage/MyPageReserveDeleteOk.my', // 예약 삭제 처리를 담당하는 서버의 URL입니다.
+        type: 'POST', // 예약 삭제는 POST 방식으로 처리합니다.
+        data: { // 삭제할 예약의 아이디를 전달합니다.
+            reservationNumber: reservationNumber
+        },
+        success: function(response) {
+			location.reload();
+        },
+        error: function(xhr, status, error) {
+			alert("실패하였습니다.")
+        }
+    });
+}
 });

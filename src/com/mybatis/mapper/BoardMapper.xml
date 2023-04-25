@@ -10,8 +10,6 @@
 		on m.member_number = b.member_number
 		order by board_number desc
 		limit #{startRow}, #{rowCount}
-	
-		
 	</select>
 	
 	<select id="selectMember" parameterType="_int" resultType="MemberDTO">

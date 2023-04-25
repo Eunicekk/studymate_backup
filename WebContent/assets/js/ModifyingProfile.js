@@ -89,3 +89,54 @@ $(document).ready(function () {
     });
   });
 });
+
+$(".my-profile").on("click", function () {
+        $(".profile-input").trigger("click");
+      });
+
+
+console.log('aaaa')
+// 프로필 미리보기
+$('.profile-input').on('change', function(){
+	let reader = new FileReader();
+	console.log(this.files);
+	reader.readAsDataURL(this.files[0]);
+	
+	reader.onload = function(e) {
+        console.log('===== reader.onload =====')
+
+        
+        let src = e.target.result;
+
+		
+		$('.my-profile').attr('src', src);
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
