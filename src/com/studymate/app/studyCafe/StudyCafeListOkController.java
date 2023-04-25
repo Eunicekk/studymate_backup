@@ -16,6 +16,9 @@ import com.google.gson.JsonParser;
 import com.studymate.app.Execute;
 import com.studymate.app.studyCafe.dao.StudyCafeDAO;
 import com.studymate.app.studyCafe.vo.StudyCafeVO;
+import com.studymate.app.studyCafeFile.dao.StudyCafeFileDAO;
+import com.studymate.app.studyCafeFile.dto.StudyCafeFileDTO;
+import com.studymate.app.studyCafeFilter.vo.StudyCafeFilterVO;
 
 public class StudyCafeListOkController implements Execute {
 
@@ -23,7 +26,10 @@ public class StudyCafeListOkController implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		StudyCafeDAO studyCafeDAO = new StudyCafeDAO();
 		StudyCafeVO studyCafeVO = new StudyCafeVO();
+		StudyCafeFilterVO studyCafeFilterVO = new StudyCafeFilterVO();
+		StudyCafeFileDAO studyCafeFileDAO = new StudyCafeFileDAO();
 		List<StudyCafeVO> cafelist = null;
+		List<StudyCafeFileDTO> files = null;
 		
 		int total = studyCafeDAO.getTotal();
 		
@@ -50,10 +56,22 @@ public class StudyCafeListOkController implements Execute {
 		
 		System.out.println(order);
 		
-		 if((order == null || order.equals("new")) && studyCafeName == null) {
+		studyCafeFilterVO.setStudyCafeAddress(req.getParameter("studyCafeAddress"));
+		studyCafeFilterVO.setStudyCafeAvailableDate(req.getParameter("studyCafeAvailableDate"));
+		studyCafeFilterVO.setMinPrice(req.getParameter("minPrice"));
+		studyCafeFilterVO.setMaxPrice(req.getParameter("maxPrice"));
+		
+		System.out.println(req.getParameter("minPrice"));
+		System.out.println(req.getParameter("maxPrice"));
+		
+		System.out.println("갸아아악" + studyCafeFilterVO);
+		
+		 if((order == null || order.equals("new")) && studyCafeName == null && studyCafeFilterVO == null) {
 			cafelist = studyCafeDAO.selectAll(pageMap);
 		 }else if(studyCafeName != null) {
 			 cafelist = studyCafeDAO.search(studyCafeName);
+		 }else if(studyCafeFilterVO != null) {
+			 cafelist = studyCafeDAO.filter(studyCafeFilterVO);
 		 }else  if(order.equals("score") && studyCafeName == null) {
 		 	cafelist = studyCafeDAO.arrayByScore(pageMap);
 		 }else if(order.equals("like") && studyCafeName == null) {
@@ -61,9 +79,13 @@ public class StudyCafeListOkController implements Execute {
 		 }else if(order.equals("read") && studyCafeName == null) {
 			 cafelist = studyCafeDAO.arrayByRead(pageMap);
 		 }
-				
-		System.out.println(cafelist);
 		 
+		for(int i=1; i<=cafelist.size(); i++) {
+			files = studyCafeFileDAO.select(i);
+		}
+		
+		System.out.println(cafelist);
+		
 		req.setAttribute("cafelist", cafelist);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);
@@ -71,6 +93,7 @@ public class StudyCafeListOkController implements Execute {
 		req.setAttribute("prev", prev);
 		req.setAttribute("next", next);
 		req.setAttribute("total", total);
+		req.setAttribute("files", files);
 		
 		req.getRequestDispatcher("/app/cafe/mainReservation.jsp").forward(req, resp);
 	}

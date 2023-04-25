@@ -143,17 +143,8 @@ function calendarInit() {
 $(".dates").on("click", ".current", function(event) {
 	event.preventDefault();
 	let year = $(".year-month").text();
-	let day = $(this).index() - 1;
+	let day = $(this).text();
 	$(".cal").text(year + "-" + day);
-	/*$.ajax({
-		url : '요청보낼주소',
-		type : 'get',
-		data : $('.cal').text(),
-		success : function(){
-		  	
-		  }
-	 });*/
-
 });
 
 // $div.dataset.date;
@@ -210,14 +201,11 @@ function onClickFiled(temp) {
 }
 
 $(".ReginBtn").on("click", function() {
-	console.log(
-		document.querySelectorAll("input[type=checkbox][name=area]:checked").value
-	);
 	onClickFiled(clkBtn());
 });
 
 // 지역 필터로 검색
-$(document).ready(function() {
+/*$(document).ready(function() {
 	$(".ReginBtn").on("click", function() {
 		var value = $(".fontColor").html();
 		// 클래스로 어디 검색 할지 정할수있다.
@@ -225,7 +213,7 @@ $(document).ready(function() {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 		});
 	});
-});
+});*/
 
 // 체크박스 값을 넘겨주기
 function clkBtn() {
@@ -347,17 +335,7 @@ $(document).ready(function() {
 //   });
 // });
 
-//검색기능
-
-/*$("#search-input").on("keyup", function() {
-	var value = $(this).val().toLowerCase();
-	console.log(value);
-	// 클래스로 어디 검색 할지 정할수있다.
-	$(".spaceList > li").filter(function() {
-		$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-	});
-});*/
-
+// 검색기능
 $('#search').submit(function(event){
 	event.preventDefault();
 	var studyCafeName = $("input[name='search-input']").val();
@@ -376,6 +354,93 @@ $('#search').submit(function(event){
 		}
 	});
 });
+
+
+// 필터 기능
+var selectArea = null;
+var selectDate = null;
+var selectMinPrice = null;
+var selectMaxPrice = null;
+
+$('.ReginBtn').click(function() {
+    selectArea = $('input[type=checkbox][name=area]:checked').val();
+    console.log(selectArea);
+	console.log(selectDate);
+	console.log(selectMinPrice);
+	console.log(selectMaxPrice);
+	
+	$.ajax({
+		type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/cafe/cafeListOk.sc",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			data: {
+				studyCafeAddress : selectArea,
+				studyCafeAavailableDate : selectDate,
+				minPrice : selectMinPrice,
+				maxPrice : selectMaxPrice
+			},
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('#ajax-list');
+			$("#ajax-list").html(e);
+			}
+	});
+ });
+
+  $(".dates").on("click",'.current' ,function () {
+      event.preventDefault();
+      selectDate = ($(".year-month").text() + '-' +$(this).html());
+    console.log(selectArea);
+	console.log(selectDate);
+	console.log(selectMinPrice);
+	console.log(selectMaxPrice);
+	
+	$.ajax({
+		type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/cafe/cafeListOk.sc",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			data: {
+				studyCafeAddress : selectArea,
+				studyCafeAavailableDate : selectDate,
+				minPrice : selectMinPrice,
+				maxPrice : selectMaxPrice
+			},
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('#ajax-list');
+			$("#ajax-list").html(e);
+			}
+	});
+ })
+
+$('#priceBtn').on("click", function(){
+	selectMinPrice = $('.range-min').val();
+	selectMaxPrice = $('.range-max').val();
+    console.log(selectArea);
+	console.log(selectDate);
+	console.log(selectMinPrice);
+	console.log(selectMaxPrice);
+	
+	$.ajax({
+		type: "GET", //전송방식을 지정한다 (POST,GET)
+			url: "/cafe/cafeListOk.sc",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			data: {
+				studyCafeAddress : selectArea,
+				studyCafeAavailableDate : selectDate,
+				minPrice : selectMinPrice,
+				maxPrice : selectMaxPrice
+			},
+			error: function() {
+				alert("통신실패!!!!");
+			},
+			success: function(Parse_data) {
+				var e = $(Parse_data).find('#ajax-list');
+			$("#ajax-list").html(e);
+			}
+	});
+})
 
 
 // 정렬 기능

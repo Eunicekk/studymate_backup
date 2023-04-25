@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.mybatis.config.MyBatisConfig;
 import com.studymate.app.studyCafe.vo.StudyCafeVO;
+import com.studymate.app.studyCafeFilter.vo.StudyCafeFilterVO;
 
 public class StudyCafeDAO {
 	public SqlSession sqlSession;
@@ -45,6 +46,10 @@ public class StudyCafeDAO {
 	
 	public List<StudyCafeVO> arrayByRead(Map<String, Integer> pageMap){
 		return sqlSession.selectList("studyCafe.arrayByRead", pageMap);
+	}
+	
+	public List<StudyCafeVO> filter(StudyCafeFilterVO studyCafeFilterVO){
+		return sqlSession.selectList("studyCafe.filter", studyCafeFilterVO);
 	}
 
 }

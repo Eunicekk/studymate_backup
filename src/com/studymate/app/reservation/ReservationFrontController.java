@@ -22,7 +22,9 @@ public final class ReservationFrontController extends HttpServlet{
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 
 		switch(target) {
-		
+		case "/reservation/reservationOk.rv" :
+			new ReservationOkController().execute(req, resp);
+			break;
 		}
 	}
 }
