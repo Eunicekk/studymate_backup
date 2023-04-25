@@ -7,13 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.studymate.app.Execute;
+import com.studymate.app.myPage.dao.MyPageDAO;
 
-public class MyPageEndGroupOkController implements Execute {
+public class MyPageUsaDetailsDeleteOkController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		req.getRequestDispatcher("/app/mypage/endGroup.jsp").forward(req, resp);
+		MyPageDAO myPageDAO = new MyPageDAO();
+		
+		int reservationNumber = Integer.valueOf(req.getParameter("reservationNumber"));
+		System.out.println("=" + reservationNumber);
+		
+		myPageDAO.reservationDelete(reservationNumber);
+
 	}
 
 }

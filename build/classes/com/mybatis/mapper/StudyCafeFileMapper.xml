@@ -2,5 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="studyCafeFile">
+	<select id="select" parameterType="_int" resultType="StudyCafeFileDTO">
+		select cafe_file_system_name, cafe_file_original_name, study_cafe_number
+		from tbl_study_cafe_file
+		where study_cafe_number = #{studyCafeNumber}
+	</select>
 	
+	<update id="thumbnail" parameterType="_int">
+		update tbl_study_cafe sc
+		set cafe_file_system_name = (
+ 			select cf.cafe_file_system_name
+ 			from tbl_study_cafe_file cf
+ 			where cf.study_cafe_number = #{studyCafeNumber}
+ 			limit 1)
+		where sc.study_cafe_number = #{studyCafeNumber};
+	</update>
 </mapper>

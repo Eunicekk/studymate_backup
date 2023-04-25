@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/* body */
+.main {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+/* 관리자 페이지 서브 목록 */
+.sidebar {
+	box-sizing: border-box;
+	width: 192px;
+	padding-top: 136px;
+	padding-left: 28px;
+	background-color: white;
+	border-right: 1px solid rgb(240, 240, 240);
+}
+
+.sidebar div {
+	margin-bottom: 40px;
+}
+
+.sidebar h4 {
+	font-size: 18px;
+	color: #4F4D8E;
+	font-weight: 700;
+	margin-bottom: 29px;
+}
+
+.sidebar li {
+	margin-bottom: 20px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #bdbdbd;
+	cursor: pointer;
+}
+
+.sidebar li:hover {
+	color: black;
+}
+
+/* .sidebar {
+    box-sizing: border-box;
+    width: 200px;
+    padding-top: 136px;
+    padding-left: 28px;
+    border-right: 1px solid #ebebeb;
+    padding-bottom: 96px;
+}
+
+.sidebar div {
+    margin-bottom: 40px;
+}
+
+.sidebar h4 {
+    font-size: 18px;
+    color: #4F4D8E;
+    font-weight: 700;
+    margin-bottom: 29px;
+}
+
+.sidebar li {
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #bdbdbd;
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    color: black;
+} */
+
+/* 관리자 페에지 메인 콘텐츠 */
+.myContent {
+	width: 1000px;
+	box-sizing: border-box;
+	padding: 60px 0px 140px 48px;
+}
+
+.myContent h2 {
+	font-size: 28px;
+	color: #242424;
+	font-weight: 700;
+	padding-bottom: 24px;
+	border-bottom: 1px solid rgb(212, 219, 226);
+	margin-bottom: 60px;
+}

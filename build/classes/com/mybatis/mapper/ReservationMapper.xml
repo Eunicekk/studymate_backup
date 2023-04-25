@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reservation">
-
-
+	<insert id="insert" parameterType="ReservationDTO">
+		insert into tbl_reservation
+		(reservation_start, reservation_end, reservation_cost, reservation_capacity, member_number, study_cafe_number)
+		values(#{reservationStart}, #{reservationEnd}, #{reservationCost}, #{reservationCapacity}, #{memberNumber}, #{studyCafeNumber})
+	</insert>
 </mapper>
