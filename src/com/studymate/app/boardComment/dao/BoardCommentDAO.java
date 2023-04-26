@@ -28,6 +28,8 @@ public class BoardCommentDAO{
 	}
 	
 	public void update(BoardCommentDTO boardCommentDTO) {
-		sqlSession.update("reply.update", boardCommentDTO);
+		sqlSession.update("boardComment.update", boardCommentDTO);
 	}
+	
+
 }

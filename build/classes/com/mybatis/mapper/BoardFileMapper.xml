@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="boardFile">
+
+	<insert id="insert" parameterType="BoardFileDTO">
+		insert into tbl_board_file(board_file_system_name, board_file_original_name, board_number)
+		values(#{boardFileSystemName}, #{boardFileOriginalName}, #{boardNumber})
+	</insert>
 	
+	<select id="selectFile" parameterType="_int" resultType="BoardFileDTO">
+		select * from tbl_board_file where board_number = #{boardNumber}
+
+	</select>
+	
+	<delete id="deleteFile" parameterType="_int">
+		delete from tbl_board_file
+		where board_number = #{boardNumber}
+	</delete>
 	
 </mapper>

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FilePart;
@@ -27,8 +28,13 @@ public class BoardUpdateOkController implements Execute {
 	      BoardDTO boardDTO = new BoardDTO();
 	      BoardFileDAO fileDAO = new BoardFileDAO();
 	      BoardFileDTO fileDTO = new BoardFileDTO();
+	      
+	      //임의
+	      HttpSession session = req.getSession();
 	      int boardNumber = 0;
 	      
+	      
+	      session.setAttribute("memberNumber", 2);
 	      System.out.println("UpdateOk컨트롤러 들어왔다!!!");
 	      System.out.println(req.getParameter("boardTitle"));
 	      
@@ -80,7 +86,7 @@ public class BoardUpdateOkController implements Execute {
 	            
 	            if(paramName.equals("boardTitle")) {
 	               boardDTO.setBoardTitle(paramValue);
-	            }else if(paramName.equals("boardContent")) {
+	            }else if(paramName.equals("editordata")) {
 	               boardDTO.setBoardContent(paramValue);
 	            }else if(paramName.equals("boardNumber")) {
 	               boardNumber = Integer.parseInt(paramValue);
@@ -90,6 +96,7 @@ public class BoardUpdateOkController implements Execute {
 	            if(boardDTO.getBoardTitle() == null || boardDTO.getBoardContent() == null) { continue; }
 	            
 	            boardDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
+	            System.out.println(boardDTO);
 	            boardDAO.update(boardDTO);
 	            
 //	            =============================

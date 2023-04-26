@@ -15,14 +15,14 @@ public class BoardFileDAO{
 	}
 	
 	public void insert(BoardFileDTO fileDTO) {
-		sqlSession.insert("file.insert", fileDTO);
+		sqlSession.insert("boardFile.insert", fileDTO);
 	}
 	
 	public List<BoardFileDTO> select(int boardNumber) {
-		return sqlSession.selectList("file.select", boardNumber);
-	}
+		  return sqlSession.selectList("boardFile.selectFile", boardNumber);
+		}
 	
 	public void delete(int boardNumber) {
-		sqlSession.delete("file.delete", boardNumber);
+		sqlSession.delete("boardFile.deleteFile", boardNumber);
 	}
 }

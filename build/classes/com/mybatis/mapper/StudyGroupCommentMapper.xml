@@ -19,5 +19,12 @@
 	where study_group_comment_number = #{studyGroupCommentNumber}
 	</delete>
 	
+	<update id="update" parameterType = "StudyGroupCommentDTO"> 
+	update tbl_study_group_comment 
+	set study_group_comment_content = #{studyGroupCommentContent}
+	where study_group_comment_number = #{studyGroupCommentNumber}
+	</update>
+	
+	
 	
 </mapper>

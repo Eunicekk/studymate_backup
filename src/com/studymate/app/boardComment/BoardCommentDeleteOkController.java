@@ -7,13 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.studymate.app.Execute;
+import com.studymate.app.boardComment.dao.BoardCommentDAO;
 
 public class BoardCommentDeleteOkController implements Execute {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+		int boardCommentNumber = Integer.parseInt(req.getParameter("boardCommentNumber"));
+		System.out.println(boardCommentNumber);
+		new BoardCommentDAO().delete(boardCommentNumber);
+		System.out.println(boardCommentNumber);
 	}
 
 }

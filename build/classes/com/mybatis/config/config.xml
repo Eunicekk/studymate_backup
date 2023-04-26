@@ -25,6 +25,7 @@
 		<typeAlias type="com.studymate.app.studyCafeFilter.vo.StudyCafeFilterVO" alias="StudyCafeFilterVO"/>
 		<typeAlias type="com.studymate.app.studyGroup.dto.StudyGroupDTO" alias="StudyGroupDTO"/>
 		<typeAlias type="com.studymate.app.studyGroup.vo.StudyGroupVO" alias="StudyGroupVO"/>
+		<typeAlias type="com.studymate.app.studyGroupSearch.vo.StudyGroupSearchVO" alias="StudyGroupSearchVO"/>
 		<typeAlias type="com.studymate.app.studyGroupComment.dto.StudyGroupCommentDTO" alias="StudyGroupCommentDTO"/>
 		<typeAlias type="com.studymate.app.studyGroupComment.vo.StudyGroupCommentVO" alias="StudyGroupCommentVO"/>
 		<typeAlias type="com.studymate.app.studyGroupFile.dto.StudyGroupFileDTO" alias="StudyGroupFileDTO"/>

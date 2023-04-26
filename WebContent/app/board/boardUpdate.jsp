@@ -26,7 +26,7 @@
 
 	<!-- 메인 -->
 	<main class="postRegister-postWrapper">
-	<form id="write-form" method="post" action="${pageContext.request.contextPath}/board/boardWriteOk.bo" enctype="multipart/form-data"> 
+	<form id="write-form" method="post" action="${pageContext.request.contextPath}/board/boardUpdateOk.bo" enctype="multipart/form-data"> 
 		<!-- 포트폴리오 분류 -->
 		<section></section>
 
@@ -38,14 +38,15 @@
 			</div>
 			<div class="input-Title-wrap">
 				<label for="input-labelText">제목</label> <input type="text"
-					class="input-customInput" name="boardTitle" placeholder="글 제목을 입력해주세요! ">
+					class="input-customInput" name="boardTitle" placeholder="글 제목을 입력해주세요! "
+					value="${board.getBoardTitle()}">
 			</div>
 
 			<!-- 글쓰기 기능넣기 -->
 			<!-- <form method="post"  > -->
 			
 				<textarea id="summernote-boardWrite" name="editordata">
-                    </textarea>
+                   <c:out value ="${board.getBoardContent()}"/> </textarea>
 			<!-- </form> -->
 	
 			<!-- <div class="mainContent-container">
@@ -97,8 +98,8 @@
 			<!-- </form> -->
 			<!-- 게시판리스트로 돌아가기 ?? -->
 			<!-- <form action="" method="post"> -->
-				<button type="submit" class="writeButton-register">글 등록</button>
-			<!-- </form> -->
+				<button type="submit" class="writeButton-register">수정 완료</button>
+			<!-- </form> -->	
 		</section>
 		</form> 
 	</main>
