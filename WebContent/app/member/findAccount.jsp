@@ -69,8 +69,9 @@
 			<br>
 			<form action="/member/PwAccountOk.me" method="post" id="passwordChangeForm">
 				<label for="origin">변경할 비밀번호</label> <input type="password"
-					id="origin" name="OriginPw" required> <br>
-				<label for="confirm">변경할 비밀번호 확인</label> <input type="password"
+					id="origin" name="OriginPw" required> <br><br>
+					
+				<label for="confirm">비밀번호 확인</label> <input type="password"
 					id="confirm" name="ConfirmOriginPw" required>
 				<button type="submit">비밀번호 변경</button>
 			</form>

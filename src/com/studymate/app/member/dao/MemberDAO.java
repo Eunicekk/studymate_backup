@@ -20,8 +20,6 @@ public class MemberDAO {
 	}
 
 	
-	
-	
 
 	public MemberDTO login(MemberDTO memberDTO) {
 		MemberDTO result=sqlSession.selectOne("member.login",memberDTO);

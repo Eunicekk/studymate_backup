@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/header.css">
 <title>Insert title here</title>
 </head>
 <body>
-
 	<header id="header-main">
 	<div class="header-center">
 		<div>
@@ -37,6 +37,5 @@
 		</div>
 	</div>
 	</header>
-
 </body>
 </html>

@@ -110,6 +110,8 @@
                <a href="#" class="studyEmail">
                 <div class="">
                  <c:out value="${group.getStudyGroupContact()}" />
+                 
+                 
                 </div>
                 <img src="https://cdn-icons-png.flaticon.com/512/7268/7268615.png" alt="">
               </a>
