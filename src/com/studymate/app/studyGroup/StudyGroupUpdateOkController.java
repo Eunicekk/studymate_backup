@@ -22,7 +22,7 @@ public class StudyGroupUpdateOkController implements Execute {
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO(); 
 		StudyGroupDTO studyGroupDTO = new StudyGroupDTO();
 		
-		System.out.println("write Ok 컨트롤러 탔음");
+		System.out.println("수정 Ok 컨트롤러 탔음");
 		System.out.println(req.getParameter("memberNumber"));
 		System.out.println(req.getParameter("studyGroupField"));
 		System.out.println(req.getParameter("studyGroupCapacity"));
@@ -49,8 +49,8 @@ public class StudyGroupUpdateOkController implements Execute {
 		// 수정할때 study group number 로 해당 게시물 가져와야 해서 study group number 가 필요한 것임. 
 		studyGroupDTO.setStudyGroupNumber(Integer.parseInt(req.getParameter("studyGroupNumber")));
 	    
+		studyGroupDAO.update(studyGroupDTO);
 	    System.out.println(studyGroupDTO);
-	    studyGroupDAO.update(studyGroupDTO);
 	
 	    resp.sendRedirect("/studyGroup/studyGroupMainOk.sg");
 	}

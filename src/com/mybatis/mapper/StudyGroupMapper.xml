@@ -155,12 +155,12 @@ values (#{studyGroupTitle}, #{studyGroupField}, #{studyGroupOnline}, #{studyGrou
    </delete>
    
    <!-- 게시글 수정  /  아직 완성되지 않음. -->
-  <!--  <update id="update" parameterType = "StudyGroupDTO">
+   <update id="update" parameterType = "StudyGroupDTO">
    update tbl_study_group
    set study_group_title =#{studyGroupTitle}, study_group_field= #{studyGroupField}, study_group_online = #{studyGroupOnline}, 
    study_group_capacity = #{studyGroupCapacity}, study_group_contact =  #{studyGroupContact}, study_group_duration = #{studyGroupDuration}, 
-   study_group_content = #{studyGroupContent} 
+   study_group_content = #{studyGroupcontent} , study_group_end_date = #{studyGroupEndDate} , study_group_contact_address = #{studyGroupContactAddress}
    where study_group_number = #{studyGroupNumber}
-   </update> -->
+   </update> 
    
 </mapper>
