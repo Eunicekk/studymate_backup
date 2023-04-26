@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,6 +10,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/study_group_main.css" />
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
     <!-- 헤더 -->
@@ -213,7 +215,7 @@
                 <div class="endDate">
                   <p class="endDateText">모집 마감 |</p>
                   <!-- 날짜 받아오기 -->
-                  <p>${group.getStudyGroupStartDate()}</p>
+                  <p>${group.getStudyGroupEndDate()}</p>
                 </div>
 
                 <!-- 이름 -->
@@ -809,7 +811,7 @@
       crossorigin="anonymous"
     ></script>
     <script>
-    let memberNumber = 1;
+    let memberNumber =  "${sessionScope.memberNumber}";;
     </script>
     <script src="${pageContext.request.contextPath}/assets/js/study_group_main.js"></script>
   </body>

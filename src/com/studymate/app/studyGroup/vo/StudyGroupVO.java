@@ -9,6 +9,7 @@ public class StudyGroupVO {
 	private int studyGroupNumber;
 	private String studyGroupOnline;
 	private String studyGroupcontent;
+	private String studyGroupContactAddress;
 	private String studyGroupStartDate;
 	private String studyGroupTitle;
 	private String memberNickname;
@@ -65,6 +66,16 @@ public class StudyGroupVO {
 
 	public void setStudyGroupcontent(String studyGroupcontent) {
 		this.studyGroupcontent = studyGroupcontent;
+	}
+
+
+	public String getStudyGroupContactAddress() {
+		return studyGroupContactAddress;
+	}
+
+
+	public void setStudyGroupContactAddress(String studyGroupContactAddress) {
+		this.studyGroupContactAddress = studyGroupContactAddress;
 	}
 
 
@@ -192,15 +203,17 @@ public class StudyGroupVO {
 	public String toString() {
 		return "StudyGroupVO [memberNumber=" + memberNumber + ", studyGroupNumber=" + studyGroupNumber
 				+ ", studyGroupOnline=" + studyGroupOnline + ", studyGroupcontent=" + studyGroupcontent
-				+ ", studyGroupStartDate=" + studyGroupStartDate + ", studyGroupTitle=" + studyGroupTitle
-				+ ", memberNickname=" + memberNickname + ", studyGroupReadCount=" + studyGroupReadCount
-				+ ", studyGroupCommentCount=" + studyGroupCommentCount + ", studyGroupLikeCount=" + studyGroupLikeCount
-				+ ", studyGroupCapacity=" + studyGroupCapacity + ", studyGroupField=" + studyGroupField
-				+ ", studyGroupContact=" + studyGroupContact + ", studyGroupDuration=" + studyGroupDuration
-				+ ", studyGroupEndDate=" + studyGroupEndDate + ", files=" + files + "]";
+				+ ", studyGroupContactAddress=" + studyGroupContactAddress + ", studyGroupStartDate="
+				+ studyGroupStartDate + ", studyGroupTitle=" + studyGroupTitle + ", memberNickname=" + memberNickname
+				+ ", studyGroupReadCount=" + studyGroupReadCount + ", studyGroupCommentCount=" + studyGroupCommentCount
+				+ ", studyGroupLikeCount=" + studyGroupLikeCount + ", studyGroupCapacity=" + studyGroupCapacity
+				+ ", studyGroupField=" + studyGroupField + ", studyGroupContact=" + studyGroupContact
+				+ ", studyGroupDuration=" + studyGroupDuration + ", studyGroupEndDate=" + studyGroupEndDate + ", files="
+				+ files + "]";
 	}
 
 
+	
 	
 	
   
