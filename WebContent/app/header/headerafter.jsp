@@ -28,7 +28,7 @@
 			</div> 
 			<span>|</span>
 			<div class="mypage">
-				<a href="#">마이페이지</a>
+				<a href="${pageContext.request.contextPath}/mypage/myPageMain.my">마이페이지</a>
 			</div>
 			<span>|</span>
 			<div class="logout">

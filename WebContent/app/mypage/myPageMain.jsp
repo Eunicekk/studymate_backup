@@ -16,7 +16,7 @@
 <body class="main">
 		<div class="header">
 				<jsp:include
-					page="${pageContext.request.contextPath}/app/admin/adminhaederafter.jsp" />
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
 		</div>
 		
 		<main class="container">

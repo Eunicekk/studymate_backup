@@ -19,21 +19,19 @@
 <body>
 	<header>
 		<c:choose>
-			<c:when test="${empty sessionScope.adminNickname}">
-				<c:if test="${not empty sessionScope.memberNumber }">
-				</c:if>
+			<c:when test="${empty sessionScope.memberNumber}">
 					<jsp:include
 						page="${pageContext.request.contextPath}/app/header/header.jsp" />
 				<%-- <jsp:include
 					page="${pageContext.request.contextPath}/app/admin/adminheader.jsp" /> --%>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${not empty sessionScope.memberNumber }">
-					<jsp:include
-						page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
-				</c:if>
+<%-- 				<c:if test="${not empty sessionScope.memberNumber }">
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/admin/adminhaederafter.jsp" />
+				</c:if> --%>
+					<jsp:include
+						page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
 			</c:otherwise>
 		</c:choose>
 	</header>
