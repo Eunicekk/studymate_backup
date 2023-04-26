@@ -66,7 +66,7 @@ public class StudyCafeListOkController implements Execute {
 		
 		System.out.println("갸아아악" + studyCafeFilterVO);
 		
-		 if((order == null || order.equals("new")) && studyCafeName == null && studyCafeFilterVO == null) {
+		 if((order == null || order.equals("new")) && studyCafeName == null || studyCafeFilterVO == null) {
 			cafelist = studyCafeDAO.selectAll(pageMap);
 		 }else if(studyCafeName != null) {
 			 cafelist = studyCafeDAO.search(studyCafeName);
