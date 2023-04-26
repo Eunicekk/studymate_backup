@@ -329,4 +329,17 @@ img {
   cursor: pointer;
 }
 
+/* 비밀번호 변경 버튼 */
+#passwordChangeForm button[type="submit"] {
+  background-color: purple;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+#passwordChangeForm button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
 

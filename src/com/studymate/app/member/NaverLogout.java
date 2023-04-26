@@ -15,7 +15,9 @@ public class NaverLogout implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	     
-	        resp.sendRedirect(req.getContextPath() + "/Main.ma");
+	        HttpSession session = req.getSession();
+	        session.invalidate();
+	        resp.sendRedirect("https://nid.naver.com/nidlogin.logout?returl=" + req.getContextPath() + "/Main.ma");
 	    }
-	}
+	    }
 
