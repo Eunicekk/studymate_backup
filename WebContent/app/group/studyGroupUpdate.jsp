@@ -282,7 +282,6 @@
 									<option class="OnlineOption" value="" >온라인</option>
 									<option class="OnlineOption" value="" selected>오프라인</option>
 									</c:when>
-									
 									</c:choose>
 									
 								</select>
@@ -294,9 +293,9 @@
 								<select name="date" form="myForm" class="date" id= "duration">
 								
 								<c:choose>
-								<c:when test="${update.getStudyGroupOnline() eq '오프라인'}">
+								<c:when test="${update.getStudyGroupDuration() eq '1개월'}">
 									<option value="">스터디 기간</option>
-									<option class="durationOption"  value="">1개월</option>
+									<option class="durationOption"  value="" selected>1개월</option>
 									<option class="durationOption" value="">2개월</option>
 									<option class="durationOption" value="">3개월</option>
 									<option class="durationOption" value="">4개월</option>
@@ -304,16 +303,55 @@
 									<option class="durationOption" value="">6개월</option>
 								</c:when>
 								
-								<c:when test="${update.getStudyGroupOnline() eq '오프라인'}">
+								<c:when test="${update.getStudyGroupDuration() eq '2개월'}">
 									<option value="">스터디 기간</option>
 									<option class="durationOption"  value="">1개월</option>
-									<option class="durationOption" value="">2개월</option>
+									<option class="durationOption" value="" selected>2개월</option>
 									<option class="durationOption" value="">3개월</option>
 									<option class="durationOption" value="">4개월</option>
 									<option class="durationOption" value="">5개월</option>
 									<option class="durationOption" value="">6개월</option>
 								</c:when>
 								
+								<c:when test="${update.getStudyGroupDuration() eq '3개월'}">
+									<option value="">스터디 기간</option>
+									<option class="durationOption"  value="">1개월</option>
+									<option class="durationOption" value="" >2개월</option>
+									<option class="durationOption" value="" selected>3개월</option>
+									<option class="durationOption" value="">4개월</option>
+									<option class="durationOption" value="">5개월</option>
+									<option class="durationOption" value="">6개월</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupDuration() eq '4개월'}">
+									<option value="">스터디 기간</option>
+									<option class="durationOption"  value="">1개월</option>
+									<option class="durationOption" value="" >2개월</option>
+									<option class="durationOption" value="" >3개월</option>
+									<option class="durationOption" value="" selected>4개월</option>
+									<option class="durationOption" value="">5개월</option>
+									<option class="durationOption" value="">6개월</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupDuration() eq '5개월'}">
+									<option value="">스터디 기간</option>
+									<option class="durationOption"  value="">1개월</option>
+									<option class="durationOption" value="" >2개월</option>
+									<option class="durationOption" value="" >3개월</option>
+									<option class="durationOption" value="">4개월</option>
+									<option class="durationOption" value="" selected>5개월</option>
+									<option class="durationOption" value="">6개월</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupDuration() eq '6개월'}">
+									<option value="">스터디 기간</option>
+									<option class="durationOption"  value="">1개월</option>
+									<option class="durationOption" value="" >2개월</option>
+									<option class="durationOption" value="" >3개월</option>
+									<option class="durationOption" value="">4개월</option>
+									<option class="durationOption" value="">5개월</option>
+									<option class="durationOption" value="" selected>6개월</option>
+								</c:when>
 								</c:choose>
 									
 								</select>
@@ -323,10 +361,32 @@
 						<li class="InfoItems"><label class="FeildName">연락 방법</label>
 							<div class="InputContainer person">
 								<select name="kaka" form="myForm" class= "kaka" id="contact">
+								
+								<c:choose>
+								
+								<c:when test="${update.getStudyGroupcontent() eq '카카오톡 오픈 채팅'}">
 									<option value="">SNS</option>
-									<option class="contactOption" value="">카카오톡 오픈 채팅</option>
+									<option class="contactOption" value="" selected>카카오톡 오픈 채팅</option>
 									<option class="contactOption" value="">이메일 주소</option>
 									<option class="contactOption" value="">구글 폼</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupcontent() eq '이메일 주소'}">
+									<option value="">SNS</option>
+									<option class="contactOption" value="" >카카오톡 오픈 채팅</option>
+									<option class="contactOption" value="" selected>이메일 주소</option>
+									<option class="contactOption" value="">구글 폼</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupcontent() eq '구글 폼'}">
+									<option value="">SNS</option>
+									<option class="contactOption" value="" >카카오톡 오픈 채팅</option>
+									<option class="contactOption" value="">이메일 주소</option>
+									<option class="contactOption" value="" selected>구글 폼</option>
+								</c:when>
+								
+								</c:choose>
+									
 								</select>
 							</div>
 							<div class="SelfInput">
@@ -339,8 +399,18 @@
 							<div class="InputContainer endDate">
 								<div class="selectText">
 									<div class="TextFiled" form="myForm">
+									<c:choose>
+									<c:when test="${update.getStudyGroupEndDate() !empty }">
+										<div class="Text" id="endDateText">
+										<c:out value="${update.getStudyGroupEndDate() }"/>
+										</div>
+									</c:when>
+									<c:otherwise>
 										<div class="Text" id="endDateText">모집 마감날짜를 선택하세요</div>
+									</c:otherwise>
+									</c:choose>
 									</div>
+									
 									<div class="BtnFiled">
 										<span></span>
 										<div class="underImg">
@@ -397,6 +467,8 @@
               placeholder="글 제목을 입력해주세요" form="myForm"
 							type="text" /> 
 						<div class="summarnote">
+						
+						
 							<textarea name="summernote" id="summernote" class="form-control"
 								rows="5" maxlength="1000" required form="myForm"></textarea>
 						</div>
