@@ -4,48 +4,79 @@
   border-bottom: 2px solid #f0f0f0;
   display: flex;
   align-items: center;
-  z-index: 1000;
+  z-index: 15000;
   position: fixed;
   width: 100%;
-  margin-bottom: 30px;
+	magin: 0 auto;
+  }
+
+.header-left{
+	z-index : 15001;
+	width: 350px;
+	margin-right: 270px;
 }
 
 .header-center{
 	display: flex;
 	align-items: center;
-	width: 1200px;
+	justify-content: center;
+	width: 1150px;
 	margin: 0 auto;
 	position: relative;
 }
 
 .logo {
   width: 200px;
-  margin: 0 20px;
+  margin-right: 20px;
 }
 
-.content-cafe, .content-group{
+.content-cafe, .content-group, .content-board{
 	margin-left: 10px;
 	font-size: 16px;
  	font-weight: 700;
 }
 
 .header-right {
+	width: 280px;
   display: flex;
   align-items: center;
-  position: absolute;
-  right: 150px;
+  justify-content: flex-end;
+  /* position: absolute;
+  right: 150px; */
   font-size: 14px;
   font-weight: 500;
+}
+
+.header-right-02{
+	width: 280px;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	font-weight: 500;
+	color: #686868;
+}
+
+.header-right-02 a{
+	color: #686868;
+}
+
+.header-right-02 span{
+	margin: 10px;
 }
 
 .login {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid 2px rgb(102, 103, 171);
+  border: 1px solid rgb(102, 103, 171);
+  color: #242424;
   height: 34px;
   width: 100px;
   border-radius: 40px;
+}
+
+.login:hover{
+	background-color: #F2F4F6;
 }
 
 .join {
@@ -53,13 +84,17 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(102, 103, 171);
-  border: solid 2px rgb(102, 103, 171);
+  border: 1px solid rgb(102, 103, 171);
   height: 34px;
   width: 100px;
   border-radius: 40px;
   color: white;
 }
 
-.header-right > div {
+.join:hover{
+	background-color: rgb(67, 68, 122);
+}
+
+.header-right > a {
   margin-right: 10px;
 }

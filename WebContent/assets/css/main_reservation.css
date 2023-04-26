@@ -3,6 +3,8 @@ input{
 }
 
 .searchBox{
+	background-color: white;
+	padding-bottom: 20px;
 	width: 1064px;
 	margin: 0 auto;
 }
@@ -26,14 +28,16 @@ input{
 .searchContainer {
 	position: fixed;
 	top: 0px;
-	background: rgb(255, 255, 255);
-	border-bottom: 1px solid rgb(245, 241, 241);
+	background-color: rgb(255, 255, 255);
 	z-index: 1050;
 	position: sticky;
 }
 
 .searchBox{
 	padding-top: 8px;
+	position: relative;
+	top: 80px;
+	z-index: 1050;
 }
 
 .searchBox>form {
@@ -72,10 +76,11 @@ input{
 
 .searchFilter {
 	position: relative;
-	height: 52px;
+	height: 50px;
 	border-bottom: 1px solid rgb(240, 240, 240);
 	background-color: rgb(255, 255, 255);
-	z-index: 1040;
+	z-index: 1050;
+	top: 70px;
 }
 
 /* 필터 버튼 */
@@ -83,7 +88,6 @@ input{
 	display: flex;
 	height: 100%;
 	-webkit-box-align: center;
-	align-items: center;
 	width: auto;
 /* 	margin-left: 28px;
 	margin-right: 28px; */
@@ -451,7 +455,7 @@ input {
 
 /* 메인 예약 공간 */
 .mainSpace {
-	margin-top: 57px;
+	margin-top: 100px;
 	padding-bottom: 68px;
 }
 

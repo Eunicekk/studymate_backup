@@ -2,192 +2,47 @@ button {
   border: none;
 }
 
-body {
-  width: 1000px;
-  margin: auto;
-  min-width: 1500px;
-  max-width: 1900px;
-}
-/* 헤더 */
-#header-main {
-  display: flex;
-  width: 100%;
-  font-size: 22px;
-  font-weight: bold;
-  height: 80px;
-  background-color: rgb(250, 250, 250);
+main{
+	padding-top: 70px;
+	margin: 0 auto;
 }
 
-
-.logo {
-  width: 350px;
-  height: 90px;
+.main-banner{
+	text-align: center;
+	background-color: black;
+	margin: 20px 0;
 }
 
-.content-cafe,
-.content-group {
-  margin: 20px;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  width: 800px;
-  margin: 10px;
-}
-
- .header-right {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: right;
-  font-size: 15px;
-} 
-
- .login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
-  border: solid 2px cornflowerblue;
-  height: 35px;
-  width: 110px;
-  background-color : white;
-  border-radius: 40px;
-} 
-
-.join {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
-  background-color: cornflowerblue;
-  border: solid 3px cornflowerblue;
-  height: 35px;
-  width: 110px;
-  border-radius: 40px;
-}
-
-.join > a{
-	  color: white;
-}
-
- .header-right > div {
-  margin: 20px;
-} 
-/* 헤더 */
-/* =============================== */
-/* 푸터 */
-#new-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 300px;
-  width: 100%;
-  margin-top: 70px;
-  background-color: rgb(250, 250, 250);
-}
-
-/* .test {
-  height: 450px;
-} */
-
-.left-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 230px;
-  width: 480px;
-  margin: 0px 90px;
-  color: grey;
-}
-
-.footer-category {
-  display: flex;
-  justify-content: start;
-  gap: 31px;
-  width: 600px;
-  margin-bottom: 50px;
-}
-
-.footer-category > a > span {
-  font-size: 18px;
-}
-
-.font-bold {
-  font-weight: bold;
-}
-
-.info {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 5px;
-  font-size: 13px;
-}
-
-.project-name {
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.team-member-name {
-  margin-top: 20px;
-  font-size: 13px;
-}
-
-.representative-number {
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.number {
-  font-weight: bold;
-  font-size: 23px;
-  margin-bottom: 8px;
-}
-
-.info-time {
-  font-weight: bold;
-  color: grey;
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-
-.footer-box-btn {
-  display: flex;
-  gap: 10px;
-}
-
-.right-box {
-  margin-right: 200px;
-}
-
-.footer-box-btn > a {
-  background-color: rgb(94, 102, 141);
-  color: rgb(255, 255, 255);
-  padding: 8px;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-}
-/* 푸터 */
-/* =============================== */
 /* 바디 */
 .banner {
   width: 100%;
   height: 230px;
   background-color: bisque;
 }
+
 .tag-study {
+	width: 1200px;
   display: flex;
   align-items: center;
-  height: 100px;
+  justify-content: center;
+  height: 80px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
+
+.material-symbols-rounded {
+	margin-left: 6px;
+	color: #808080;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 20
+}
+
 .cafe-list {
-  margin-left: 60px;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 24px;
 }
 .study-cafe {
   display: grid;
@@ -239,23 +94,21 @@ body {
 }
 
 .show-all-btn {
-  margin-left: 1130px;
-  height: 35px;
+	margin-left: 920px;
+  height: 40px;
   border: solid 2px gray;
-  width: 130px;
+  width: 120px;
   border-radius: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-}
-.show-all-btn:hover {
-  background-color: #a3a0c5;
+  font-size: 16px;
 }
 
 .move-btn {
+	margin-left: 10px;
   font-weight: bold;
-  color: grey;
+  color: gray;
 }
 
 .cafe-arrow {
@@ -270,15 +123,17 @@ body {
 /* 스터디그룹~~~~~~~~~~~~~~ */
 .studygroup {
   position: relative;
-  background-color: rgb(250, 250, 250);
 }
 .group-banner {
+  width: 1200px;
   display: flex;
-  font-weight: bold;
-  font-size: 30px;
-  height: 100px;
   align-items: center;
-  margin-left: 60px;
+  justify-content: flex-start;
+  height: 80px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .arrow-prev,
@@ -493,25 +348,22 @@ body {
 
 /* 커뮤니티~~~~~~~~~~~~~~~ */
 .community-banner {
-  height: 166px;
   align-items: center;
-  display: grid;
-  background-color: rgb(250, 250, 250);
 }
 
 .community-banner-first {
   display: flex;
   justify-content: center;
   font-weight: bold;
-  font-size: 30px;
-  height: 40px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 .community-banner-second {
   display: flex;
   justify-content: center;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 16px;
   color: grey;
+  margin-bottom: 24px;
 }
 .content-list {
   display: flex;
