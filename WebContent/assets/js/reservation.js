@@ -115,7 +115,7 @@ $list.click(() => {
 $(".dates").on("click", ".current", function(event) {
 	event.preventDefault();
 	let year = $(".year-month").text();
-	let day = $(this).index() - 1;
+	let day = $(this).text();
 	$(".cal").text(year + "-" + day);
 	$(".calInput").text(year + "-" + day);
 	$('.calInput').val(year + "-" + day);
@@ -204,6 +204,7 @@ $("#time").on("click", ".swiper-slider", function(event) {
 	//arr.push($(this).index());
 	console.log('------------------------------------------');
 	console.log($(this).data('number'));
+	console.log(parseInt($(this).data('number')));
 	console.log('------------------------------------------');
 	clickCount++;
 	console.log(clickCount);
@@ -214,12 +215,18 @@ $("#time").on("click", ".swiper-slider", function(event) {
 		$(".timeInput").text(
 			$(this).data('number')
 		)
-	}else{
 		$(".endText").text(
-			$(this).data('number')
+			parseInt($(this).data('number')) + 1 + ":00"
 		)
 		$(".endInput").text(
-			$(this).data('number')
+			parseInt($(this).data('number')) + 1 + ":00"
+		)
+	}else{
+		$(".endText").text(
+			parseInt($(this).data('number')) + 1 + ":00"
+		)
+		$(".endInput").text(
+			parseInt($(this).data('number')) + 1 + ":00"
 		)
 	}
 });
@@ -548,15 +555,13 @@ function requestPay() {
 		name: $('#cafe-name').text(), // 카페명
 		/*amount : realCafePrice, // 사용할 가격*/
 		amount: 1, // 연결 확인을 위해 사용한 가격 확인 후 지우기
-		
-		buyer_email: memberEmail,
 		buyer_name: memberName,
+		buyer_email: memberEmail,
 		buyer_tel: memberPhoneNumber
 	}, function(rsp) { // callback
 		if (rsp.success) {
 			console.log(rsp);
-			let buyInfo = {};
-			buyInfo = {
+			let buyInfo = {
 				memberNumber : memberNumber,
 				studyCafeNumber : studyCafeNumber,
 				reservationStart : reservationStart,
@@ -597,3 +602,7 @@ function requestPay() {
 		}
 	});
 }
+
+$('.BuyContainer').on('click', function(){
+	requestPay();
+});

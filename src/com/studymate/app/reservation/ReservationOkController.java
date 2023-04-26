@@ -30,7 +30,7 @@ public class ReservationOkController implements Execute {
 		
 		reservationDAO.insert(reservationDTO);
 		
-		// req.getRequestDispatcher("/app/mypage/reserve.jsp").forward(req, resp);
+		req.getRequestDispatcher("/app/mypage/reserve.jsp").forward(req, resp);
 	}
 
 }

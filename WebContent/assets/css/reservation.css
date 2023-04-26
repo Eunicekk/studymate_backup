@@ -873,7 +873,7 @@ ul {
 .ReserveFormContent {
   position: absolute;
   width: 480px;
-  top: 310px;
+  top: 320px;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(212, 219, 226);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 48px 0px;
@@ -1256,16 +1256,14 @@ button {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
-  width: 100%;
-  gap: 8px;
-  padding: 0px 38px;
-  margin: 40px 0 38px;
+  padding-left: 8px;
+  margin: 40px 20px 38px 32px;
   border: none;
 }
 
 .BuyBtn {
   height: 60px;
-  width: 100%;
+  width: 400px;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -1279,6 +1277,7 @@ button {
 }
 
 .PriceBtn {
+	width: 100%;
   font-size: 16px;
   line-height: 20px;
 }
@@ -1288,6 +1287,7 @@ button {
 }
 
 .TitleBtn {
+	width: 100%;
   font-size: 13px;
   line-height: 20px;
 }
