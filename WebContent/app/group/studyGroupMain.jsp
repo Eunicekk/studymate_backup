@@ -213,7 +213,7 @@
                 <div class="endDate">
                   <p class="endDateText">모집 마감 |</p>
                   <!-- 날짜 받아오기 -->
-                  <p>${group.getStudyGroupStartDate()}</p>
+                  <p>${group.getStudyGroupEndDate()}</p>
                 </div>
 
                 <!-- 이름 -->

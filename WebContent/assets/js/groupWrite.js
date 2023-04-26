@@ -161,47 +161,38 @@ $(".RegisterButton").on("click", function () {
 	
 	//모집분야 
 	var studyGroupField = $("#feild option:selected").text();
-	console.log(1);
 	console.log(studyGroupField);
 	
 	//모집 인원
 	var studyGroupCapacity = $("#person option:selected").text();
-	console.log(2);
 	console.log(studyGroupCapacity);
 	
 	//진행방식
 	var studyGroupOnline = $("#online option:selected").text();
-	console.log(3);
 	console.log(studyGroupOnline);
 	
 	//예상기간
 	var studyGroupDuration =  $("#duration option:selected").text();
-	console.log(4);
 	console.log(studyGroupDuration);
 	
 	// 연락방법 
 	var studyGroupContact = $("#contact option:selected").text();
-	console.log(5);
 	console.log(studyGroupContact);
 	
 	// 연락 주소 
 	var studyGroupContactAddress =  $('input[name="selfText"]').val();
-	console.log(6);
 	console.log (studyGroupContactAddress);
 	
 	// 모집 마감일 (달력)
 	var studyGroupEndDate = $('#endDateText').text();
-	console.log(7);
 	console.log(studyGroupEndDate);
 	
 	// 글제목 
 	var studyGroupTitle = $('input[name="titleInput"]').val();
-	console.log(8);
 	console.log(studyGroupTitle);
 	
 // 썸머노트 	
-	var studyGroupcontent = $(".note-editable").val();
-	console.log("9!!");
+	var studyGroupcontent = $(".note-editable").text();
 	console.log(studyGroupcontent);
 	
 
@@ -217,14 +208,22 @@ insertAjax(studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDura
 
 function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
 , studyGroupEndDate, studyGroupTitle, studyGroupcontent ) {
-	if (studyGroupField == "모집분야") {studyGroupField = null;}
-	console.log(studyGroupField);
-	console.log("null 값 들어와야 함");
-	if (studyGroupCapacity == "희망인원") {studyGroupCapacity =null;}
-	if (studyGroupOnline == "온라인/오프라인") {studyGroupOnline =null;}
-	if (studyGroupDuration == "스터디 기간") {studyGroupDuration =null;}
-	if (studyGroupContact == "SNS") {studyGroupContact =null;}
-	if (studyGroupEndDate == "모집 마감날짜를 선택하세요") {studyGroupEndDate =null;}
+	if (studyGroupField == "모집분야") {
+	alert ("모집 분야를 선택해주세요 !");
+	} else if (studyGroupCapacity == "희망인원") {
+	alert ("희망인원 선택해주세요 !");
+	}else if (studyGroupOnline == "온라인/오프라인") {
+		alert ("진행 방식을 선택해주세요 !");
+	}else if (studyGroupDuration == "스터디 기간") {
+		alert ("스터디 기간을 선택해주세요 !");
+	}else if (studyGroupContact == "SNS") { 
+		alert ("연락 방법을 선택해주세요 !");
+	}else if (studyGroupEndDate == "모집 마감날짜를 선택하세요") {
+		alert ("모집 마감날짜를 선택해주세요 !");
+	}else if (studyGroupTitle == null) {
+		alert ("제목을 입력해주세요 !");
+	}else if (studyGroupcontent == null) {
+		alert ("스터디 그룹 홍보 게시글을 입력하지 않으셨어요 !");}
 
 	
 		let data = {
@@ -246,15 +245,12 @@ function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, stud
 		error : function() {
 			alert("통신실패!!!!")
 		}, success : function(){
-			// window.location.href = "/studyGroup/studyGroupMainOk.sg";
+			 window.location.href = "/studyGroup/studyGroupMainOk.sg";
 		}
 		
 	})
 	
 }
-
-
-
 
 
 

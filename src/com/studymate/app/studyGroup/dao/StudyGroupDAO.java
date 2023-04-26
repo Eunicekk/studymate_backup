@@ -82,10 +82,10 @@ public class StudyGroupDAO {
 		sqlSession.delete("studyGroup.delete", studyGroupNumber);
 	}
 	
-//	게시글 수정 (스터디그룹) 
-//	public void update(StudyGroupDTO studyGroupDTO) {
-//		sqlSession.update("studyGroup.update", studyGroupDTO);
-//	}
+	// 게시글 수정 
+	public void update(StudyGroupDTO studyGroupDTO) {
+		sqlSession.update("studyGroup.update");
+	}
 	
 	
 //	스터디그룹 작성 
@@ -97,5 +97,6 @@ public class StudyGroupDAO {
 	public int getSequence() {
 		return sqlSession.selectOne("studyGroup.getSequence");
 	}
+
 	
 }

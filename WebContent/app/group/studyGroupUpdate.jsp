@@ -19,16 +19,19 @@
 		<div class="MainWrite">
 			<form id="myForm"
 				name= "myForm"
-				action="#"
+				action="${pageContext.request.contextPath}/studyGroup/studyGroupUpdateOk.sg"
 				method="post" enctype="multipart/form-data">
-
+			<input type= "hidden" name= "studyGroupNumber" value="${group.getStudyGroupNumber()}"  >
 				<!-- 모집 정보 입력 -->
 				<section>
 					<div class="InfoTitle">
 						<span class="WriteNum">1</span>
 						<h2 class="WriteText">스터디그룹 기본 정보를 입력해주세요</h2>
 					</div>
-
+					<!-- 
+					
+					
+					 -->
 					<ul class="Infolist" data-role="selectBox">  
 						<li class="InfoItems"><label class="FeildName">모집 분야</label>
 							<div class="InputContainer person">
@@ -41,7 +44,9 @@
 									<option value="programming" class="fieldOption">프로그래밍</option>
 									<option value="autonomy" class="fieldOption">자율</option>
 									<option value="etc" class="fieldOption">기타</option>
-								</select></li>
+								</select>
+								</div>
+								</li>
 
 						<!-- 모집 인원 -->
 						<li class="InfoItems"><label class="FeildName">모집 인원</label>
