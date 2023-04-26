@@ -20,7 +20,7 @@ public class BoardWriteController implements Execute {
 		String path = null;
 		
 		path = "/app/board/boardWrite.jsp";
-		session.setAttribute("memberNumber", 1);
+		session.setAttribute("memberNumber", 2);
 //		memberNumber = 2;
 //		req.setAttribute("memberId", memberDAO.getMemberId(memberNumber));
 //		

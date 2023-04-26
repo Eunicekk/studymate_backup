@@ -17,7 +17,7 @@ public class BoardUpdateController implements Execute {
 		BoardDAO boardDAO = new BoardDAO();
 		
 		req.setAttribute("board", boardDAO.select(boardNumber));
-		
+		System.out.println("board");
 		req.getRequestDispatcher("/app/board/boardUpdate.jsp").forward(req, resp);
 	}
 

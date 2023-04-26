@@ -28,9 +28,9 @@ public class BoardWriteOkController implements Execute {
 	      BoardFileDTO fileDTO = new BoardFileDTO();
 	      int boardNumber = 0;
 	      
-	      System.out.println("writeOk컨트롤러 들어왔다@@@");
+	      System.out.println("writeOk컨트롤러 들어왔다@@@");	
 	      System.out.println(req.getParameter("boardTitle"));
-	      
+	      // boardTitle = null
 	      String uploadPath = req.getSession().getServletContext().getRealPath("/") + "upload/";
 	      int fileSize = 1024 * 1024 * 5; //5MB
 	      System.out.println(uploadPath);
@@ -67,7 +67,7 @@ public class BoardWriteOkController implements Execute {
 	               fileDTO.setBoardFileSystemName(fileSystemName);
 	               fileDTO.setBoardFileOriginalName(fileOriginalName);
 	               fileDTO.setBoardNumber(boardNumber);
-	               
+	               System.out.println(fileDTO);
 	               fileDAO.insert(fileDTO);
 	            }
 	            
@@ -79,15 +79,16 @@ public class BoardWriteOkController implements Execute {
 	            
 	            if(paramName.equals("boardTitle")) {
 	               boardDTO.setBoardTitle(paramValue);
-	            }else if(paramName.equals("boardContent")) {
+	            }else if(paramName.equals("editordata")) {
 	               boardDTO.setBoardContent(paramValue);
 	            }
 	            
+	            System.out.println("board!!!!!!!");
 	            if(boardDTO.getBoardTitle() == null || boardDTO.getBoardContent() == null) { continue; }
 	            
 	            boardDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
 	            boardDAO.insert(boardDTO);
-//	            System.out.println(boardDTO);
+	            System.out.println(boardDTO);
 	            boardNumber = boardDAO.getSequence();
 	         }
 	      }
