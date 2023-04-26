@@ -1,5 +1,6 @@
 package com.studymate.app.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +50,22 @@ public class BoardDAO {
 	
 	public MemberDTO selectMember(int memberNumber) {
 	      return sqlSession.selectOne("board.selectMember", memberNumber);
-	   }
+	}
+	
+	 public List<BoardVO> selectAllOrderByCommentCount(Map<String, Integer> pageMap) {
+	        return sqlSession.selectList("board.selectBoardListOrderByCommentCount", pageMap);
+	}
+
+	@Override
+	public String toString() {
+		return "BoardDAO [sqlSession=" + sqlSession + "]";
+	}
+	
+	public List<BoardVO> searchBoardTitle(String boardTitle) {
+		return sqlSession.selectList("board.searchBoardTitle",boardTitle);
+	}
+
+	 
+
 	
 }

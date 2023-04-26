@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.studymate.app.Execute;
 import com.studymate.app.board.dao.BoardDAO;
+import com.studymate.app.board.dto.BoardDTO;
 import com.studymate.app.board.vo.BoardVO;
 import com.studymate.app.member.dto.MemberDTO;
 
@@ -21,7 +22,16 @@ public class BoardListOkController implements Execute {
 		MemberDTO memberDTO = new MemberDTO(); 
 		BoardDAO boardDAO = new BoardDAO();
 		int total = boardDAO.getTotal();
+		BoardDTO boardDTO = new BoardDTO();
+		String boardTitle = req.getParameter("content-subject");
 		
+//		int boardNumber = boardDAO.updateCommentCount(total);
+//		BoardVO board = boardDAO.select(boardNumber);
+//		int commentCount = boardDAO.updateCommentCount(boardNumber);
+//		board.setBoardCommentCount(commentCount);
+		
+//		전체 건 수 조회
+		req.setAttribute("total", total);
 //		System.out.println(total);
 		
 		Integer MemberNumber = 2;
@@ -30,7 +40,7 @@ public class BoardListOkController implements Execute {
 //		그러므로 temp에는 null이 들어간다.
 		String temp = req.getParameter("page");
 		
-		System.out.println(temp);
+//		System.out.println(temp);
 //		null인 경우는 게시판에 처음 이동하는 것이므로 1페이지를 띄어주면 된다.
 		int page = temp == null ? 1 : Integer.valueOf(temp);
 		
@@ -68,9 +78,29 @@ public class BoardListOkController implements Execute {
 		pageMap.put("startRow", startRow);
 		pageMap.put("rowCount", rowCount);
 		
-		List<BoardVO> boards = boardDAO.selectAll(pageMap);
-		
-		System.out.println(boards);
+//		List<BoardVO> boards = boardDAO.selectAll(pageMap);
+//        List<BoardVO> boards = boardDAO.selectAllOrderByCommentCount(pageMap);
+
+		   List<BoardVO> boards;
+	        String orderBy = req.getParameter("orderBy");
+//	        System.out.println(orderBy);
+	        if (orderBy != null && orderBy.equals("commentCount")) {
+	            boards = boardDAO.selectAllOrderByCommentCount(pageMap);
+	        } else { // 추가된 부분: orderBy가 null이거나 "commentCount"가 아닌 경우는 최신 순으로 정렬
+	            boards = boardDAO.selectAll(pageMap);
+	        }
+	        
+	        List<BoardVO> titles;
+			System.out.println(boardTitle);
+			if(boardTitle == null) {
+				 titles = boardDAO.selectAll(pageMap);			
+			}else {
+				titles = boardDAO.searchBoardTitle(boardTitle);
+			}
+	  
+	       
+	       
+//		System.out.println(boards);
 		
 		req.setAttribute("boardList", boards);
 		req.setAttribute("page", page);
@@ -83,3 +113,4 @@ public class BoardListOkController implements Execute {
 	}
 
 }
+	
