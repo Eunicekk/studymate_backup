@@ -19,6 +19,7 @@
 	padding-left: 28px;
 	background-color: white;
 	border-right: 1px solid rgb(240, 240, 240);
+	margin-top: 80px
 }
 
 .sidebar div {
@@ -81,6 +82,7 @@
 	width: 1000px;
 	box-sizing: border-box;
 	padding: 60px 0px 140px 48px;
+	margin-top: 70px;
 }
 
 .myContent h2 {

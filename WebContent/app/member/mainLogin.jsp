@@ -39,7 +39,7 @@
          </c:when>
          <c:otherwise>
             <jsp:include
-               page="${pageContext.request.contextPath}/app/header/haederafter.jsp" />
+               page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
          </c:otherwise>
       </c:choose>
 	</header>

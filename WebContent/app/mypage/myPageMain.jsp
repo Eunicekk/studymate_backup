@@ -15,7 +15,8 @@
 </head>
 <body class="main">
 		<div class="header">
-		<!-- 해더추가  -->
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/admin/adminhaederafter.jsp" />
 		</div>
 		
 		<main class="container">
@@ -56,7 +57,16 @@
 		</main>
 		
 	<footer>
-	<!-- 푸터추가  -->
+	<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
 	</footer>
 		
 	<div class="footer"></div>
