@@ -89,7 +89,7 @@
 								</div>
 							</section>
 							<div class="cancel-button-box">
-								<button type="button" class="cancel-button" data-reservationNumber="${myUsaDetails.getReservationNumber()}">대여 취소</button>
+								<button type="button" class="cancel-button" data-reservationNumber="${myUsaDetails.getReservationNumber()}">삭제</button>
 							</div>
 						</li>
 					</c:forEach>

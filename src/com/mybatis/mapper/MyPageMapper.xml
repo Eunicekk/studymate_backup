@@ -166,7 +166,7 @@
 		on sc.study_cafe_number = tscf.study_cafe_number
 		where
 		tm.member_number
-		=#{memberNumber} <!-- and curdate() > tr.reservation_end -->
+		=#{memberNumber} and  tr.reservation_start > current_date()  
 		group by
 		sc.study_cafe_number , tr.reservation_number,
 		tm.member_number,
