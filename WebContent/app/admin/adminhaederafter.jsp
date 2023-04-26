@@ -22,7 +22,8 @@
 			<div class="logout">
 				<a href="${pageContext.request.contextPath}/admin/adminlogoutOk.ad">로그아웃</a>
 			</div>
-			<div class="member-name">
+			<div class="member-name" style="margin-left:20px;">
+			
 				<a href="#">
 					<c:out value="${adminNickname} 님 환영합니다." />
 				</a>
