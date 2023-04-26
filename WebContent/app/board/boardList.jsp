@@ -16,7 +16,41 @@
 
 </head>
 <body>
-	<header></header>
+	<header id="header-main">
+		<div>
+	<!-- 		<img src="/img/로고.png" alt="" class="logo" /> -->
+		</div>
+		<div class="header-left">
+			<a href="#" class="content-cafe">스터디카페 예약</a> <a href="#"
+				class="content-group">스터디그룹 모집</a>
+		</div>
+		<div class="header-right">
+            <div class="btn-group">
+               <c:choose>
+                  <c:when test="${empty sessionScope.memberNumber}">
+                     <!-- 로그인 페이지 이동 처리 -->
+                     <a href="${pageContext.request.contextPath}/member/login.me"
+                        class="login-btn">로그인</a>
+                     <!-- 회원가입 페이지 이동 처리 -->
+                     <a href="${pageContext.request.contextPath}/member/join.me"
+                        class="join-btn">회원가입</a>
+                  </c:when>
+                  <c:otherwise>
+                     <a href="${pageContext.request.contextPath}/member/logoutOk.me"
+                        class="logout-btn">로그아웃</a>
+                     <div class="member-name">
+						<a href="#">이름</a>
+					</div>		
+					<div class="mypage">
+						<a href="${pageContext.request.contextPath}/mypage/MyPageModifyingProfile.my">마이페이지</a>
+					</div>   
+                  </c:otherwise>
+
+               </c:choose>
+
+            </div>
+         </div>
+	</header>
 
 	<!-- 메인 마진 없 sri wrap-->
 	<main class="boardList-ContentWrapper">
@@ -44,7 +78,9 @@
 						</div>
 						<!-- 검색창 -->
 						<div class="box-search">
+						
 							<div class="input-keyword">
+							  <form action="">
 								<input type="text" name="input-keyword" id="input-keyword" value
 									placeholder="어떤 포트폴리오를 찾으시나요?" class="inpTypo">
 								<button type="button" class="button-search">
@@ -53,6 +89,7 @@
 										src="https://cdn-icons-png.flaticon.com/512/8915/8915520.png"
 										alt="" width="" class="search-icon">
 								</button>
+							  </form>	
 							</div>
 						</div>
 					</section>
@@ -71,16 +108,21 @@
 										좋아요 순
 								</label>
 								</span> --> <span class="content-order-list"> <label class="lbl"
-									for="popular"> <img
+									for="popular" id="sortByComments"> <img
 										src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png"
 										alt="" class="orderList-checkImg" width="24px" height="24px">
+										<a href="/board/boardListOk.bo?orderBy=commentCount">
 										댓글 많은 순
+										</a>
 								</label>
 								</span> <span class="content-order-list"> <label class="lbl"
-									for="popular"> <img
+									for="popular" id="sortByRecent"> <img
 										src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png"
 										alt="" class="orderList-checkImg" width="24px" height="24px">
+										<a href="?orderBy=recent">
 										최신 순
+										</a>
+										
 								</label>
 								</span>
 
@@ -138,7 +180,7 @@
 													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
 													class="content-userImg" height="25px" width="25px">
 											</div>
-											<span class="content-writer"><c:out value="${post.getBoardWriter() }"/></span> 
+											<span class="content-writer"><c:out value="${post.getMemberNumber() }"/></span> 
 											<span class="content-write-date"><c:out value="${post.getBoardDate() }"/></span>
 										</div>
 										<!-- 프사 -->

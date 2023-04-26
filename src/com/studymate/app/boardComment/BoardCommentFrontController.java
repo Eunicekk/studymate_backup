@@ -20,18 +20,22 @@ public class BoardCommentFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
+		System.out.println(target);
 
 		switch(target) {
-	     case "/boardComment/boardCommentListOk.re":
+	     case "/boardComment/boardCommentListOk.bc":
+	    	 System.out.println("comment");
 	         new BoardCommentListOkController().execute(req, resp);
 	         break;
-	      case "/board/boardCommentWriteOk.re":
+	      case "/boardComment/boardCommentWriteOk.bc":
 	    	  new BoardCommentWriteOkController().execute(req, resp);
+	    	  System.out.println("commentWrite");
 	    	  break;
-	      case "/bpard/boardCommentDeleteOk.re":
+	      case "/boardComment/boardCommentDeleteOk.bc":
+	    	  System.out.println("boardDelete");
 	    	  new BoardCommentDeleteOkController().execute(req, resp);
 	    	  break;
-	      case "/board/boardCommentUpdateOk.re":
+	      case "/boardComment/boardCommentUpdateOk.bc":
 	    	  new BoardCommentUpdateOkController().execute(req, resp);
 	    	  break;
 		}
