@@ -18,7 +18,7 @@ public class StudyCafeDTO {
 	private String studyCafeAddress;
 	private String studyCafePrice;
 	private String studyCafeAvaliableDate;
-	private int studyCafeAvaliableCapacity;
+	private int studyCafeAvailableCapacity;
 	private String studyCafeContent;
 	private String cafeFileSystemName;
 	private int reservationNumber;
@@ -58,20 +58,20 @@ public class StudyCafeDTO {
 		this.studyCafePrice = studyCafePrice;
 	}
 
-	public String getStudyCafeAvaliableDate() {
+	public String getStudyCafeAvailableDate() {
 		return studyCafeAvaliableDate;
 	}
 
-	public void setStudyCafeAvaliableDate(String studyCafeAvaliableDate) {
+	public void setStudyCafeAvailableDate(String studyCafeAvailableDate) {
 		this.studyCafeAvaliableDate = studyCafeAvaliableDate;
 	}
 
-	public int getStudyCafeAvaliableCapacity() {
-		return studyCafeAvaliableCapacity;
+	public int getStudyCafeAvailableCapacity() {
+		return studyCafeAvailableCapacity;
 	}
 
-	public void setStudyCafeAvaliableCapacity(int studyCafeAvaliableCapacity) {
-		this.studyCafeAvaliableCapacity = studyCafeAvaliableCapacity;
+	public void setStudyCafeAvailableCapacity(int studyCafeAvailableCapacity) {
+		this.studyCafeAvailableCapacity = studyCafeAvailableCapacity;
 	}
 
 	public String getStudyCafeContent() {
@@ -102,8 +102,8 @@ public class StudyCafeDTO {
 	public String toString() {
 		return "StudyCafeDTO [studyCafeNumber=" + studyCafeNumber + ", studyCafeName=" + studyCafeName
 				+ ", studyCafeAddress=" + studyCafeAddress + ", studyCafePrice=" + studyCafePrice
-				+ ", studyCafeAvaliableDate=" + studyCafeAvaliableDate + ", studyCafeAvaliableCapacity="
-				+ studyCafeAvaliableCapacity + ", studyCafeContent=" + studyCafeContent + ", cafeFileSystemName="
+				+ ", studyCafeAvailableDate=" + studyCafeAvaliableDate + ", studyCafeAvailableCapacity="
+				+ studyCafeAvailableCapacity + ", studyCafeContent=" + studyCafeContent + ", cafeFileSystemName="
 				+ cafeFileSystemName + ", reservationNumber=" + reservationNumber + "]";
 	}
 
