@@ -99,8 +99,8 @@ public class adminCafeWriteOk implements Execute {
 	            
 //	            studyCafeDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
 	            studyCafeDTO.setCafeFileSystemName(systemName.get(0));
-	            studyCafeDTO.setStudyCafeAvaliableDate(dateString);
-	            studyCafeDTO.setStudyCafeAvaliableCapacity(60);
+	            studyCafeDTO.setStudyCafeAvailableDate(dateString);
+	            studyCafeDTO.setStudyCafeAvailableCapacity(60);
 	            System.out.println(studyCafeDTO);
 	            System.out.println(dateString);
 	            adminDAO.cafeInsert(studyCafeDTO);
