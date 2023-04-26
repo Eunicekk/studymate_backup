@@ -155,6 +155,7 @@ $(document).ready(function() {
  $(".cancelButton").on("click", () => {
    window.location.href = "/studyGroup/studyGroupMainOk.sg";
  });
+ });
 
 
 
@@ -204,7 +205,7 @@ insertAjax(studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDura
 , studyGroupEndDate, studyGroupTitle, studyGroupcontent );
 	
 	});
-});
+
 
 
 function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress

@@ -20,7 +20,7 @@
 		<div class="MainWrite">
 			<form id="myForm"
 				name= "myForm"
-				action="${pageContext.request.contextPath}/studyGroup/studyGroupUpdateOk.sg"
+				action="#"
 				method="post" enctype="multipart/form-data">
 			<input type= "hidden" name= "studyGroupNumber" value="${group.getStudyGroupNumber()}"  >
 				<!-- 모집 정보 입력 -->
@@ -527,7 +527,7 @@
 					<!-- 글등록 취소 -->
 					<section class="WriteBtn">
 						<button class="cancelButton"  type= "button">취소</button>
-						<button class="RegisterButton" type="submit" >수정 완료</button>
+						<button class="RegisterButton" type="button" >수정 완료</button>
 					</section>
 				</section>
 			</form>
