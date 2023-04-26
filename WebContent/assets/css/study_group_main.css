@@ -42,23 +42,26 @@
 }
 
 .searchFilter {
-  position: relative;
-  height: 52px;
-  border-bottom: 1px solid rgb(240, 240, 240);
-  background-color: rgb(255, 255, 255);
-  z-index: 1040;
+   position: relative;
+   height: 50px;
+   border-bottom: 1px solid rgb(240, 240, 240);
+   background-color: rgb(255, 255, 255);
+   z-index: 1040;
+   top: 40px;
 }
 
 /* 필터 버튼 */
 .filterContainer {
-  display: flex;
-  height: 100%;
-  -webkit-box-align: center;
-  align-items: center;
-  width: auto;
-  margin-left: 28px;
-  margin-right: 28px;
+   display: flex;
+   height: 100%;
+   -webkit-box-align: center;
+   width: auto;
+/*    margin-left: 28px;
+   margin-right: 28px; */
 }
+
+
+
 
 .filterBtn {
   margin-right: 10px;

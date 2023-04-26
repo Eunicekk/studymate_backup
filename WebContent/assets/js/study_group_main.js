@@ -131,7 +131,7 @@ $('#order').on('change', function () {
                 <div class="endDate">
                   <p class="endDateText">모집 마감 |</p>
                   <!-- 날짜 받아오기 -->
-                  <p>${group.studyGroupStartDate}</p>
+                  <p>${group.studyGroupEndDate}</p>
                 </div>
 
                 <!-- 이름 -->
@@ -485,7 +485,7 @@ $('#search').submit(function(event){
                 <div class="endDate">
                   <p class="endDateText">모집 마감 |</p>
                   <!-- 날짜 받아오기 -->
-                  <p>${search.studyGroupStartDate}</p>
+                  <p>${search.studyGroupEndDate}</p>
                 </div>
 
                 <!-- 이름 -->
