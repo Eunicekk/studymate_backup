@@ -2,7 +2,9 @@ package com.studymate.app.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -29,6 +31,10 @@ public class adminCafeWriteOk implements Execute {
 		StudyCafeFileDAO studyCafeFileDAO = new StudyCafeFileDAO();
 		List<String> systemName = new ArrayList<String>();
 		List<String> originalName = new ArrayList<String>();
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, 6);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = format.format(cal.getTime());
 		int studyCafeNumber = 0;
 
 		System.out.println("writeOk컨트롤러 들어왔다!!!");
@@ -93,6 +99,10 @@ public class adminCafeWriteOk implements Execute {
 	            
 //	            studyCafeDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
 	            studyCafeDTO.setCafeFileSystemName(systemName.get(0));
+	            studyCafeDTO.setStudyCafeAvaliableDate(dateString);
+	            studyCafeDTO.setStudyCafeAvaliableCapacity(60);
+	            System.out.println(studyCafeDTO);
+	            System.out.println(dateString);
 	            adminDAO.cafeInsert(studyCafeDTO);
 	            
 //	         boardNumber 칼럼에 마지막으로 저장된 값을 가져온다.

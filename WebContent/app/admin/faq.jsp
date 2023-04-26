@@ -21,11 +21,11 @@
 		<c:choose>
 			<c:when test="${empty sessionScope.adminNickname}">
 				<c:if test="${not empty sessionScope.memberNumber }">
+				</c:if>
 					<jsp:include
 						page="${pageContext.request.contextPath}/app/header/header.jsp" />
-				</c:if>
-				<jsp:include
-					page="${pageContext.request.contextPath}/app/admin/adminheader.jsp" />
+				<%-- <jsp:include
+					page="${pageContext.request.contextPath}/app/admin/adminheader.jsp" /> --%>
 			</c:when>
 			<c:otherwise>
 				<c:if test="${not empty sessionScope.memberNumber }">

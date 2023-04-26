@@ -12,8 +12,8 @@
 	<header id="header-main">
 	<div class="header-center">
 		<div>
-		<a href="${pageContext.request.contextPath}/">
-			<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="logo" />
+		<a href="${pageContext.request.contextPath}/Main.ma">
+			<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="/Main.ma" class="logo" />
 		</a>
 		</div>
 		<div class="header-left">
