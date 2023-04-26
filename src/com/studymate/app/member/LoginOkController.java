@@ -46,7 +46,7 @@ public class LoginOkController implements Execute {
 		  //주소에 넣어서 반환 // 값이 있으면 메인 페이지로 이동 
 			memberDTO = memberDAO.login(memberDTO);
 			
-		  System.out.println(memberDTO); path = "/app/member/mainLogin.jsp";
+		  System.out.println(memberDTO); path = "/Main.ma";
 		  session.setAttribute("memberNickname", memberDTO.getMemberNickname()); } catch
 		  (NullPointerException e) { path = "/member/login.me?login=fail";
 		  e.printStackTrace(); } catch(Exception e) { e.printStackTrace(); }
