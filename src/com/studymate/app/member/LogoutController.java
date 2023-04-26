@@ -18,7 +18,7 @@ public class LogoutController implements Execute {
 	    try {
 	        HttpSession session = req.getSession();
 	        session.invalidate();
-	        resp.sendRedirect(req.getContextPath() + "/");
+	        resp.sendRedirect(req.getContextPath() + "/Main.ma");
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

@@ -1,7 +1,7 @@
 var naverLogin = new naver.LoginWithNaverId(
 	{
 		clientId: "X99B0v1qTl2Qfyuakscx", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-		callbackUrl: "http://localhost:8085/app/member/mainLogin.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+		callbackUrl: "http://localhost:8085/member/login.me", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
 		isPopup: false,
 	}
 );
@@ -43,12 +43,14 @@ window.addEventListener('load', function() {
 				$.ajax({
 					url: "/member/NcallbackOk.me",
 					type: "get",
-					data: { Nemail: email, Nnickname: Nickname ,NId:Id},
+					data: { Nemail: email, Nnickname: Nickname, NId: Id },
+					dataType: 'text',
 					success: function(response) {
 						console.log("값이 들어갈까 1  ?");
+						console.log("Nemail " + email);
+
 						console.log("Server response: " + response);
-						
-						if (response === "success") {
+						if (response == 'success') {
 							console.log("값이 들어갈까  2?");
 							window.location.href = "http://localhost:8085/member/NcallbackOk.me";
 						}

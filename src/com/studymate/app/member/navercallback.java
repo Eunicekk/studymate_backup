@@ -46,7 +46,9 @@ public class navercallback implements Execute {
         memberDAO.join(memberDTO);
 		  session.setAttribute("memberNickname", memberDTO.getMemberNickname()); 
 
-        resp.sendRedirect("http://localhost:8085/app/member/mainLogin.jsp");	    
+		  
+		  
+		  
 	}
 	    }
 

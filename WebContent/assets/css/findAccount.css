@@ -308,6 +308,7 @@ img {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+    border-radius: 20px;
   max-width: 500px;
   position: relative;
 }
@@ -315,6 +316,7 @@ img {
 /* 모달 닫기 버튼 */
 .close {
   color: #aaa;
+  
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -326,3 +328,5 @@ img {
   text-decoration: none;
   cursor: pointer;
 }
+
+
