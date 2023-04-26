@@ -55,7 +55,11 @@ public class MemberFrontController extends HttpServlet{
 	        case "/member/NcallbackOk.me":
 	        	new navercallback().execute(req,resp);
 	        	break;
-
+	        case "/member/NLogout.me":
+	        new NaverLogout().execute(req,resp);
+	        break;
+	        	
+	        	
 		}
 		}
 }
