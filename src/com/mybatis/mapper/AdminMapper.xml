@@ -57,13 +57,13 @@
 	<insert id="cafeInsert" parameterType="StudyCafeDTO">
 		insert into
 		tbl_study_cafe
-		(study_cafe_name, study_cafe_address, study_cafe_price,
+		(study_cafe_name, study_cafe_address, study_cafe_price,study_cafe_available_date,
 		study_cafe_available_capacity,
 		study_cafe_content,
 		cafe_file_system_name)
 		values(#{studyCafeName}, #{studyCafeAddress},
 		#{studyCafePrice},
-		#{studyCafeAvaliableCapacity}, #{studyCafeContent},
+		#{studyCafeAvaliableDate},#{studyCafeAvaliableCapacity},#{studyCafeContent},
 		#{cafeFileSystemName});
 	</insert>
 
