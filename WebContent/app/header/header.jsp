@@ -17,16 +17,21 @@
 		</a>
 		</div>
 		<div class="header-left">
-			<a href="${pageContext.request.contextPath}/cafe/cafeListOk.sc" class="content-cafe">스터디카페 예약</a>
-			<a href="${pageContext.request.contextPath}/studyGroup/studyGroupMainOk.sg" class="content-group">스터디그룹 모집</a>
+			<a href="/cafe/cafeListOk.sc" class="content-cafe">스터디카페 예약</a>
+			<a href="/studyGroup/studyGroupMainOk.sg" class="content-group">스터디그룹 모집</a>
+			<a href="/board/boardListOk.bo" class="content-board">포트폴리오</a>
 		</div>
 		<div class="header-right">
-			<div class="login">
-				<a href="/member/login.me">로그인</a>
-			</div>
-			<div class="join">
-				<a href="/member/join.me" style="color: white">회원가입</a>
-			</div>
+			<a href="/member/login.me">
+				<div class="login">
+					로그인
+				</div>
+			</a>
+			<a href="/member/join.me" style="color: white">
+				<div class="join">
+					회원가입
+				</div>
+			</a>
 		</div>	
 	</div>
 	</header>
