@@ -15,6 +15,8 @@ import com.studymate.app.admin.cafe.vo.adminCafeVO;
 import com.studymate.app.admin.dao.AdminDAO;
 import com.studymate.app.admin.group.vo.AdminGroupVO;
 import com.studymate.app.main.dao.MainDAO;
+import com.studymate.app.studyGroup.dao.StudyGroupDAO;
+import com.studymate.app.studyGroup.vo.StudyGroupVO;
 
 public class MainOkController implements Execute {
 
@@ -22,6 +24,7 @@ public class MainOkController implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MainDAO MainDAO = new MainDAO();
 		int total = MainDAO.getTotal();
+		StudyGroupDAO studyGroupDAO = new StudyGroupDAO();
 
 		String temp = req.getParameter("page");
 		int page = temp == null ? 1 : Integer.parseInt(temp);
@@ -49,15 +52,18 @@ public class MainOkController implements Execute {
 //		그룹 리스트
 		AdminDAO adminDAO = new AdminDAO();
 		AdminGroupVO adminGroupVO = new AdminGroupVO();
-		List<AdminGroupVO> groupList = null;
+//		List<AdminGroupVO> groupList = null;
+		List<StudyGroupVO> groupList = null;
 
 		int grouptotal = adminDAO.groupTotal();
 
 		Map<String, Integer> pageMap3 = new HashMap<>();
 		pageMap3.put("startRow", startRow);
 		pageMap3.put("rowCount", 25);
-		groupList = adminDAO.groupListDate(pageMap3);
-
+//		groupList = adminDAO.groupListDate(pageMap3);
+		
+		groupList = studyGroupDAO.selectAll(pageMap3);
+		System.out.println(groupList);
 		req.setAttribute("groupList", groupList);
 		req.setAttribute("total", grouptotal);
 

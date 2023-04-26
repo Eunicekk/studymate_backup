@@ -67,10 +67,7 @@ function chartAjax() {
 				manCntlist.push(this["cnt"])
 
 			})
-			for (var i = 0; i < manCntlist.legnthl; i++) {
-				VarianceDay[i] = manCntlist[i] - femaleCntList[i];
-				console.log(VarianceDay[i])
-			}
+			
 
 			const ctx = document.getElementById('day-member-chart').getContext('2d');
 			const myChart = new Chart(ctx, {
@@ -78,18 +75,7 @@ function chartAjax() {
 				data: {
 					labels: manDaylist,
 					datasets: [
-						{
-							type: 'line',
-							label: '회원 변동 수',
-							data: VarianceDay,
-							backgroundColor: 'rgba(255, 205, 86)',
-							borderColor: 'rgb(255, 205, 86)',
-							borderWidth: 3,
-							pointStyle: 'circle',
-							pointRadius: 8,
-							pointHoverRadius: 15,
-							tension: 0.4
-						},
+						
 						{
 							type: 'bar',
 							label: '남자 회원 가입 수',
@@ -146,11 +132,6 @@ function MonChartAjax() {
 
 			})
 
-			for (var i = 0; i < manMonthCnt.legnthl; i++) {
-				VarianceMonth[i] = manMonthCnt[i] - femaleMonthCnt[i];
-				console.log(VarianceMonth[i])
-			}
-
 
 			const ctx2 = document.getElementById('month-member-chart').getContext('2d');
 			const myChart2 = new Chart(ctx2, {
@@ -158,18 +139,6 @@ function MonChartAjax() {
 				data: {
 					labels: manMonthList,
 					datasets: [
-						{
-							type: 'line',
-							label: '회원 변동 수',
-							data: VarianceMonth,
-							backgroundColor: 'rgba(255, 205, 86)',
-							borderColor: 'rgb(255, 205, 86)',
-							borderWidth: 3,
-							pointStyle: 'circle',
-							pointRadius: 8,
-							pointHoverRadius: 15,
-							tension: 0.4
-						},
 						{
 							type: 'bar',
 							label: '남자 회원 가입 수',
