@@ -16,9 +16,12 @@ public class StudyGroupUpdateController implements Execute {
 		// TODO Auto-generated method stub
 		
 		int studyGroupNumber = Integer.valueOf(req.getParameter("studyGroupNumber"));
+		System.out.println(studyGroupNumber);
+		System.out.println(studyGroupNumber);
+		
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO();
 
-		req.setAttribute("group", studyGroupDAO.select(studyGroupNumber));
+		req.setAttribute("update", studyGroupDAO.select(studyGroupNumber));
 		req.getRequestDispatcher("/app/group/studyGroupUpdate.jsp").forward(req, resp);
 		
 	}

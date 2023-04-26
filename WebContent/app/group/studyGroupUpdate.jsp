@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,22 +29,90 @@
 						<span class="WriteNum">1</span>
 						<h2 class="WriteText">스터디그룹 기본 정보를 입력해주세요</h2>
 					</div>
-					<!-- 
-					
-					
-					 -->
+				
 					<ul class="Infolist" data-role="selectBox">  
 						<li class="InfoItems"><label class="FeildName">모집 분야</label>
 							<div class="InputContainer person">
 								<select name="feild" form="myForm" id= "feild">
+								
+								<c:choose>
+								<c:when test="${update.getStudyGroupField() eq '어학'}">
 									<option value="">모집분야</option>
-									<option value="language" class="fieldOption">어학</option>
+									<option value="language" class="fieldOption" selected >어학</option>
 									<option value="jobHunting" class="fieldOption">취업</option>
 									<option value="government" class="fieldOption">고시/공무원</option>
 									<option value="hobby" class="fieldOption">취미/교양</option>
 									<option value="programming" class="fieldOption">프로그래밍</option>
 									<option value="autonomy" class="fieldOption">자율</option>
-									<option value="etc" class="fieldOption">기타</option>
+									<option value="etc" class="fieldOption">기타</option>	
+									</c:when>
+									
+								<c:when test="${update.getStudyGroupField() eq '취업'}">
+									<option value="">모집분야</option>
+									<option value="language" class="fieldOption"  >어학</option>
+									<option value="jobHunting" class="fieldOption " selected>취업</option>
+									<option value="government" class="fieldOption">고시/공무원</option>
+									<option value="hobby" class="fieldOption">취미/교양</option>
+									<option value="programming" class="fieldOption">프로그래밍</option>
+									<option value="autonomy" class="fieldOption">자율</option>
+									<option value="etc" class="fieldOption">기타</option>	
+									</c:when>
+									
+							<c:when test="${update.getStudyGroupField() eq '고시/공무원'}">
+									<option value="">모집분야</option>
+									<option value="language" class="fieldOption" >어학</option>
+									<option value="jobHunting" class="fieldOption" >취업</option>
+									<option value="government" class="fieldOption" selected>고시/공무원</option>
+									<option value="hobby" class="fieldOption">취미/교양</option>
+									<option value="programming" class="fieldOption">프로그래밍</option>
+									<option value="autonomy" class="fieldOption">자율</option>
+									<option value="etc" class="fieldOption">기타</option>	
+									</c:when>
+
+								<c:when test="${update.getStudyGroupField() eq '취미/교양'}">
+										<option value="">모집분야</option>
+									<option value="language" class="fieldOption" >어학</option>
+									<option value="jobHunting" class="fieldOption" >취업</option>
+									<option value="government" class="fieldOption" >고시/공무원</option>
+									<option value="hobby" class="fieldOption" selected>취미/교양</option>
+									<option value="programming" class="fieldOption">프로그래밍</option>
+									<option value="autonomy" class="fieldOption">자율</option>
+									<option value="etc" class="fieldOption">기타</option>	
+									</c:when>
+									
+											<c:when test="${update.getStudyGroupField() eq '프로그래밍'}">
+									<option value="">모집분야</option>
+									<option value="language" class="fieldOption"  >어학</option>
+									<option value="jobHunting" class="fieldOption" >취업</option>
+									<option value="government" class="fieldOption">고시/공무원</option>
+									<option value="hobby" class="fieldOption">취미/교양</option>
+									<option value="programming" class="fieldOption" selected>프로그래밍</option>
+									<option value="autonomy" class="fieldOption">자율</option>
+									<option value="etc" class="fieldOption">기타</option>	
+									</c:when>
+									
+											<c:when test="${update.getStudyGroupField() eq '자율'}">
+									<option value="">모집분야</option>
+									<option value="language" class="fieldOption"  >어학</option>
+									<option value="jobHunting" class="fieldOption" >취업</option>
+									<option value="government" class="fieldOption">고시/공무원</option>
+									<option value="hobby" class="fieldOption">취미/교양</option>
+									<option value="programming" class="fieldOption">프로그래밍</option>
+									<option value="autonomy" class="fieldOption" selected>자율</option>
+									<option value="etc" class="fieldOption">기타</option>	
+									</c:when>
+									
+									<c:when test="${update.getStudyGroupField() eq '기타'}">
+									<option value="">모집분야</option>
+									<option value="language" class="fieldOption"  >어학</option>
+									<option value="jobHunting" class="fieldOption" >취업</option>
+									<option value="government" class="fieldOption">고시/공무원</option>
+									<option value="hobby" class="fieldOption">취미/교양</option>
+									<option value="programming" class="fieldOption">프로그래밍</option>
+									<option value="autonomy" class="fieldOption">자율</option>
+									<option value="etc" class="fieldOption" selected >기타</option>	
+									</c:when>
+									</c:choose>
 								</select>
 								</div>
 								</li>
@@ -52,8 +121,10 @@
 						<li class="InfoItems"><label class="FeildName">모집 인원</label>
 							<div class="InputContainer person">
 								<select name="person" form="myForm" id="person">
+								<c:choose>
+								<c:when test="${update.getStudyGroupCapacity() eq '1명'}">
 									<option value="">희망인원</option>
-									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption" value="" selected>1명</option>
 									<option class="CapacityOption"value="">2명</option>
 									<option class="CapacityOption" value="">3명</option>
 									<option class="CapacityOption" value="">4명</option>
@@ -63,6 +134,134 @@
 									<option class="CapacityOption" value="">8명</option>
 									<option class="CapacityOption" value="">9명</option>
 									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '2명'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" selected>2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '3명'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="" selected>3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '4명'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="" selected>4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '5명'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="" selected>5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '6명'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="" selected>6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '7명'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="" selected>7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '8명'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="" selected>8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '9명'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="" selected>9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupCapacity() eq '10명이상'}">
+									<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="" selected>10명이상</option>
+								</c:when>
+								</c:choose>
 								</select>
 							</div></li>
 					</ul>
@@ -70,9 +269,22 @@
 						<li class="InfoItems"><label class="FeildName">진행 방식</label>
 							<div class="InputContainer person">
 								<select name="online" form="myForm" id = "online">
+								
+									<c:choose>
+									<c:when test="${update.getStudyGroupOnline() eq '온라인'}">
 									<option value="">온라인/오프라인</option>
-									<option class="OnlineOption" value="">온라인</option>
+									<option class="OnlineOption" value="" selected>온라인</option>
 									<option class="OnlineOption" value="">오프라인</option>
+									</c:when>
+									
+									<c:when test="${update.getStudyGroupOnline() eq '오프라인'}">
+									<option value="">온라인/오프라인</option>
+									<option class="OnlineOption" value="" >온라인</option>
+									<option class="OnlineOption" value="" selected>오프라인</option>
+									</c:when>
+									
+									</c:choose>
+									
 								</select>
 							</div></li>
 
@@ -80,6 +292,9 @@
 						<li class="InfoItems"><label class="FeildName"> 예상 기간</label>
 							<div class="InputContainer person">
 								<select name="date" form="myForm" class="date" id= "duration">
+								
+								<c:choose>
+								<c:when test="${update.getStudyGroupOnline() eq '오프라인'}">
 									<option value="">스터디 기간</option>
 									<option class="durationOption"  value="">1개월</option>
 									<option class="durationOption" value="">2개월</option>
@@ -87,6 +302,20 @@
 									<option class="durationOption" value="">4개월</option>
 									<option class="durationOption" value="">5개월</option>
 									<option class="durationOption" value="">6개월</option>
+								</c:when>
+								
+								<c:when test="${update.getStudyGroupOnline() eq '오프라인'}">
+									<option value="">스터디 기간</option>
+									<option class="durationOption"  value="">1개월</option>
+									<option class="durationOption" value="">2개월</option>
+									<option class="durationOption" value="">3개월</option>
+									<option class="durationOption" value="">4개월</option>
+									<option class="durationOption" value="">5개월</option>
+									<option class="durationOption" value="">6개월</option>
+								</c:when>
+								
+								</c:choose>
+									
 								</select>
 							</div></li>
 					</ul>

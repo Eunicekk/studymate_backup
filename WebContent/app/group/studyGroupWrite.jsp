@@ -2,19 +2,32 @@
 	pageEncoding="UTF-8"%>
 	    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Document</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/groupWrite.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css" />
 </head>
 <body>
-	<header></header>
+		 <!-- 헤더 -->
+    <header>
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/header.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</header>
 
 	<main class="main">
 		<div class="MainWrite">
@@ -179,7 +192,19 @@
 			</form>
 		</div>
 	</main>
-	<footer></footer>
+		<!-- footer -->
+	<footer>
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</footer>
 	
 	
 	<script

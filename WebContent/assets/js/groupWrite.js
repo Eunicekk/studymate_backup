@@ -223,9 +223,9 @@ function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, stud
 	}else if (studyGroupTitle == null) {
 		alert ("제목을 입력해주세요 !");
 	}else if (studyGroupcontent == null) {
-		alert ("스터디 그룹 홍보 게시글을 입력하지 않으셨어요 !");}
+		alert ("스터디 그룹 홍보 게시글을 입력하지 않으셨어요 !");
+		} else {
 
-	
 		let data = {
 		studyGroupField : studyGroupField,
 		studyGroupCapacity : studyGroupCapacity, 
@@ -245,11 +245,10 @@ function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, stud
 		error : function() {
 			alert("통신실패!!!!")
 		}, success : function(){
-			 window.location.href = "/studyGroup/studyGroupMainOk.sg";
-		}
-		
-	})
-	
+			 window.location.href = "/studyGroup/studyGroupMainOk.sg"; 
+			}
+		})
+	}
 }
 
 
