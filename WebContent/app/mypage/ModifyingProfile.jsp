@@ -19,7 +19,7 @@
 </head>
 <body>
 	<!-- <form action=""> -->
-	<form action="${pagetContext.request.contextPath}/mypage/myPageMain.my" method="post"
+	<form action="${pagetContext.request.contextPath}/mypage/MyPageModifyingProfileOk.my" method="post"
          enctype="multipart/form-data">
 		<div class="my-content">
 			<div class="main-container">
@@ -43,7 +43,7 @@
 							</c:otherwise>
 							</c:choose>
 							
-							<input type="file" class="profile-input" >
+							<input type="file" class="profile-input" name="fileInput" >
 						</div>
 						
 						<figcaption>
@@ -54,12 +54,12 @@
 					<div>
 						<div class="presonal-info-item">
 							<span>닉네임</span> <input type="text" name="nickname" id="nickname"
-								placeholder="변경할 닉네임 입력" />
+								placeholder="변경할 닉네임 입력" value="${memberDTO.getMemberNickname()}"/>
 							<!-- <span class="check-msg" id="check-id-msg"></span> -->
 						</div>
 						<div class="presonal-info-item">
-							<span>휴대 전화</span> <input type="phonenumber" id="phonenumber"
-								name="phonenubmer" placeholder="휴대 전화 번호 입력" />
+							<span>휴대 전화</span> <input type="text" id="phonenumber"
+								name="phonenumber" placeholder="휴대 전화 번호 입력" value="${memberDTO.getMemberPhoneNumber()}"/>
 						</div>
 						<div class="presonal-info-item">
 							<span>새 비밀번호</span> <input type="password" id="pw" name="pw"
@@ -71,12 +71,12 @@
 						</div>
 						<div class="presonal-info-item">
 							<span>이메일</span> <input type="email" id="email" name="email"
-								placeholder="변경할 이메일 입력" />
+								placeholder="변경할 이메일 입력" value="${memberDTO.getMemberEmail()}"/>
 						</div>
 					</div>
 					<div class="presonal-info-footer">
 						<button type="button" class="withdrawal">회원 탈퇴</button>
-						<button type="button" class="modificationCompleted">수정 완료
+						<button type="submit" class="modificationCompleted">수정 완료
 						</button>
 					</div>
 				</div>
