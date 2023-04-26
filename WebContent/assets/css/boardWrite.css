@@ -11,6 +11,70 @@
 	position: relative;
 }
 
+svg {
+   width: 1em;
+   height: 1em;
+   fill: rgb(255, 87, 87);
+}
+
+.image-upload-wrap {
+   border: 1px solid rgb(240, 240, 240);
+   background-color: white;
+   padding: 13px;
+   position: relative;
+}
+
+.upload-text {
+   display: flex;
+   justify-content: center;
+   margin: 4px;
+   font-size: 12px;
+   color: rgb(158, 158, 158);
+}
+
+.upload-text:first-child {
+   color: black;
+   font-weight: bold;
+}
+
+.upload-text:last-child {
+   color: rgb(255, 87, 87);
+   font-weight: bold;
+}
+
+.upload-icon {
+   margin-right: 5px;
+}
+
+.form-group input[type='file'] {
+  display: block;
+}
+
+.file-list {
+   list-style-type : none;
+   margin-top : 15px;
+   display : flex;
+}
+
+.file-list > li {
+   display:flex;
+   position : relative;
+   width : 145px;
+   height : 100px;
+   margin-right : 10px;
+   
+}
+
+.show-img-box{
+   width : 100%;
+   height : 100%;
+}
+
+.show-img-box > img{
+   width : 100%;
+   height : 100%;
+}
+
 .postRegister-wrapper {
 	padding: 8px;
 	display: flex;

@@ -46,6 +46,7 @@ public class BoardFrontController extends HttpServlet{
 			break;
 		case "/board/boardUpdate.bo" :
 			new BoardUpdateController().execute(req, resp);
+			System.out.println("boardUpdateOk!!");
 			break;
 		case "/board/boardUpdateOk.bo" :
 			new BoardUpdateOkController().execute(req, resp);
