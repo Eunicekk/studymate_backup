@@ -13,6 +13,7 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=288648fa9bcef114f977b6cc3dc07c2d&libraries=services"></script>
+  	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -279,7 +280,7 @@
                 </div>
 
                 <!-- 확인 버튼 -->
-                <button class="BuyContainer" type="submit">
+                <button class="BuyContainer" type="button">
                   <div class="BuyBtn">
                     <div style="display: flex">
                       <p class="PriceBtn">
