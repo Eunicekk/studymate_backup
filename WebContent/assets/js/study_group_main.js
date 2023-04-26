@@ -783,7 +783,6 @@ function searchAjax(studyGroupOnline, studyGroupField, studyGroupStartDate){
 	});
 }
 			 function showResult (result) {
-				alert("통신가능");
 				console.log(result);
 				let text = '';
 				
