@@ -184,9 +184,9 @@
 
 					<!-- 글등록 취소 -->
 					<section class="WriteBtn">
-						<button class="cancelButton">취소</button>
-					
-						<button class="RegisterButton" type="button"  >글등록</button>
+						<button class="cancelButton" type="button"  >취소</button>
+					 
+						<button class="registerOkButton" type="button"  >글등록</button>
 					</section>
 				</section>
 			</form>

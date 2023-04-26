@@ -52,7 +52,7 @@ public class StudyGroupUpdateOkController implements Execute {
 	    System.out.println(studyGroupDTO);
 	    studyGroupDAO.update(studyGroupDTO);
 	
-	    resp.sendRedirect("/studyGroup/studyGroupMain.sg");
+	    resp.sendRedirect("/studyGroup/studyGroupMainOk.sg");
 	}
 
 	

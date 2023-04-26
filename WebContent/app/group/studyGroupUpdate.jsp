@@ -112,6 +112,17 @@
 									<option value="autonomy" class="fieldOption">자율</option>
 									<option value="etc" class="fieldOption" selected >기타</option>	
 									</c:when>
+									
+									<c:otherwise>
+									<option value="">모집분야</option>
+									<option value="language" class="fieldOption"  >어학</option>
+									<option value="jobHunting" class="fieldOption" >취업</option>
+									<option value="government" class="fieldOption">고시/공무원</option>
+									<option value="hobby" class="fieldOption">취미/교양</option>
+									<option value="programming" class="fieldOption">프로그래밍</option>
+									<option value="autonomy" class="fieldOption">자율</option>
+									<option value="etc" class="fieldOption" >기타</option>	
+									</c:otherwise>
 									</c:choose>
 								</select>
 								</div>
@@ -261,6 +272,21 @@
 									<option class="CapacityOption" value="">9명</option>
 									<option class="CapacityOption" value="" selected>10명이상</option>
 								</c:when>
+								
+								<c:otherwise>
+								<option value="">희망인원</option>
+									<option class="CapacityOption" value="">1명</option>
+									<option class="CapacityOption"value="" >2명</option>
+									<option class="CapacityOption" value="">3명</option>
+									<option class="CapacityOption" value="">4명</option>
+									<option class="CapacityOption" value="">5명</option>
+									<option class="CapacityOption" value="">6명</option>
+									<option class="CapacityOption" value="">7명</option>
+									<option class="CapacityOption" value="">8명</option>
+									<option class="CapacityOption" value="">9명</option>
+									<option class="CapacityOption" value="">10명이상</option>
+								</c:otherwise>
+								
 								</c:choose>
 								</select>
 							</div></li>
@@ -282,6 +308,13 @@
 									<option class="OnlineOption" value="" >온라인</option>
 									<option class="OnlineOption" value="" selected>오프라인</option>
 									</c:when>
+									
+									<c:otherwise>
+									<option value="">온라인/오프라인</option>
+									<option class="OnlineOption" value="" >온라인</option>
+									<option class="OnlineOption" value="">오프라인</option>
+									</c:otherwise>
+									
 									</c:choose>
 									
 								</select>
@@ -352,6 +385,17 @@
 									<option class="durationOption" value="">5개월</option>
 									<option class="durationOption" value="" selected>6개월</option>
 								</c:when>
+								
+								
+								<c:otherwise>
+								<option value="">스터디 기간</option>
+									<option class="durationOption"  value="">1개월</option>
+									<option class="durationOption" value="" >2개월</option>
+									<option class="durationOption" value="" >3개월</option>
+									<option class="durationOption" value="">4개월</option>
+									<option class="durationOption" value="">5개월</option>
+									<option class="durationOption" value="">6개월</option>
+								</c:otherwise>
 								</c:choose>
 									
 								</select>
@@ -363,27 +407,33 @@
 								<select name="kaka" form="myForm" class= "kaka" id="contact">
 								
 								<c:choose>
-								
-								<c:when test="${update.getStudyGroupcontent() eq '카카오톡 오픈 채팅'}">
+								<c:when test="${update.getStudyGroupContact() eq '카카오톡 오픈 채팅'}">
 									<option value="">SNS</option>
 									<option class="contactOption" value="" selected>카카오톡 오픈 채팅</option>
 									<option class="contactOption" value="">이메일 주소</option>
 									<option class="contactOption" value="">구글 폼</option>
 								</c:when>
 								
-								<c:when test="${update.getStudyGroupcontent() eq '이메일 주소'}">
+								<c:when test="${update.getStudyGroupContact() eq '이메일 주소'}">
 									<option value="">SNS</option>
 									<option class="contactOption" value="" >카카오톡 오픈 채팅</option>
-									<option class="contactOption" value="" selected>이메일 주소</option>
+									<option class="contactOption" value=""selected>이메일 주소</option>
 									<option class="contactOption" value="">구글 폼</option>
 								</c:when>
 								
-								<c:when test="${update.getStudyGroupcontent() eq '구글 폼'}">
+								<c:when test="${update.getStudyGroupContact() eq '구글 폼'}">
 									<option value="">SNS</option>
 									<option class="contactOption" value="" >카카오톡 오픈 채팅</option>
 									<option class="contactOption" value="">이메일 주소</option>
 									<option class="contactOption" value="" selected>구글 폼</option>
 								</c:when>
+								
+								<c:otherwise>
+								<option value="">SNS</option>
+									<option class="contactOption" value="" >카카오톡 오픈 채팅</option>
+									<option class="contactOption" value="">이메일 주소</option>
+									<option class="contactOption" value="">구글 폼</option>
+								</c:otherwise>
 								
 								</c:choose>
 									
@@ -391,7 +441,7 @@
 							</div>
 							<div class="SelfInput">
 								<input name="selfText" class="self" placeholder="오픈 채팅 or 이메일 주소 or 구글 폼 주소"
-									class="InputTitle" form="myForm" type="text" />
+									class="InputTitle" form="myForm" type="text" value="${update.getStudyGroupContactAddress()}" required /> 
 							</div></li>
 
 						<!-- 모집 인원 -->
@@ -399,18 +449,19 @@
 							<div class="InputContainer endDate">
 								<div class="selectText">
 									<div class="TextFiled" form="myForm">
+									
 									<c:choose>
-									<c:when test="${update.getStudyGroupEndDate() !empty }">
+									<c:when test="${not empty update}">
 										<div class="Text" id="endDateText">
-										<c:out value="${update.getStudyGroupEndDate() }"/>
+										  <c:out value="${update.getStudyGroupEndDate()}"></c:out>
 										</div>
 									</c:when>
 									<c:otherwise>
 										<div class="Text" id="endDateText">모집 마감날짜를 선택하세요</div>
 									</c:otherwise>
 									</c:choose>
+										
 									</div>
-									
 									<div class="BtnFiled">
 										<span></span>
 										<div class="underImg">
@@ -462,23 +513,21 @@
 					<!-- 제목 소개 입력 창 -->
 					<section>
 						<label class="TitleText" for="input">제목</label> <input
-							class="InputTitle" name=titleInput
-							"
+							class="InputTitle" name="titleInput"
               placeholder="글 제목을 입력해주세요" form="myForm"
-							type="text" /> 
+							type="text" value="${update.getStudyGroupTitle()}" /> 
 						<div class="summarnote">
-						
-						
 							<textarea name="summernote" id="summernote" class="form-control"
-								rows="5" maxlength="1000" required form="myForm"></textarea>
+								rows="5" maxlength="1000" required form="myForm">
+								<c:out value="${update.getStudyGroupcontent()} "></c:out>
+								</textarea>
 						</div>
 					</section>
 
 					<!-- 글등록 취소 -->
 					<section class="WriteBtn">
-						<button class="cancelButton">취소</button>
-					
-						<button class="RegisterButton" type="button"  >글등록</button>
+						<button class="cancelButton"  >취소</button>
+						<button class="RegisterButton" type="submit" >수정 완료</button>
 					</section>
 				</section>
 			</form>

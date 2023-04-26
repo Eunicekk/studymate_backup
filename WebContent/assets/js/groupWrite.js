@@ -157,7 +157,8 @@ $(document).ready(function() {
  });
 
 
-$(".RegisterButton").on("click", function () { 
+
+$(".registerOkButton").on("click", function () { 
 	
 	//모집분야 
 	var studyGroupField = $("#feild option:selected").text();
@@ -224,7 +225,7 @@ function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, stud
 		alert ("제목을 입력해주세요 !");
 	}else if (studyGroupcontent == null) {
 		alert ("스터디 그룹 홍보 게시글을 입력하지 않으셨어요 !");
-		} else {
+		} 
 
 		let data = {
 		studyGroupField : studyGroupField,
@@ -249,7 +250,7 @@ function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, stud
 			}
 		})
 	}
-}
+
 
 
 

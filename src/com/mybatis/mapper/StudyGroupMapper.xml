@@ -32,7 +32,7 @@ limit #{startRow}, #{rowCount}
 	<!-- 게시글 read 페이지 상세보기 -->
 	<select id="select" resultType="StudyGroupVO" parameterType="_int">
 	select m.member_number ,g.study_group_number, study_group_title, m.member_nickname, study_group_start_date, 
-	study_group_field, study_group_capacity, study_group_contact, study_group_online, study_group_end_date,
+	study_group_field, study_group_capacity, study_group_contact, study_group_contact_address,study_group_online, study_group_end_date,
 	study_group_duration, study_group_content, count(distinct study_group_comment_number) study_group_comment_count
 	from tbl_member m join tbl_study_group g on study_group_number = #{studyGroupNumber} and m.member_number = g.member_number
 	left outer join tbl_study_group_comment sgc on g.study_group_number = sgc.study_group_number 
