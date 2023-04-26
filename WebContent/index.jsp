@@ -13,42 +13,45 @@
 	href="${pageContext.request.contextPath}/assets/css/reset.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/main.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <%-- <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/main_reservation.css" /> --%>
 <title>스터디 메이트</title>
 </head>
 <body>
-	<header id="header-main">
-		
-		<div>
-			<img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="logo" />
-		</div>
-		<div class="header-left">
-			<a href="/cafe/cafeListOk.sc" class="content-cafe">스터디카페 예약</a>
-			<a href="/studyGroup/studyGroupMainOk.sg" class="content-group">스터디그룹 모집</a>
-		</div>
-		<div class="header-right">
-			<div class="login">
-				<a href="/member/login.me">로그인</a>
-			</div>
-			<div class="join">
-				<a href="/member/join.me">회원가입</a>
-			</div>
-		</div>
+	<header>
+		<div class="header-main">
+			  <c:choose>
+         <c:when test="${empty sessionScope.memberNickname}">
+            <jsp:include
+               page="${pageContext.request.contextPath}/app/header/header.jsp" />
+         </c:when>
+         <c:otherwise>
+            <jsp:include
+               page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+         </c:otherwise>
+      </c:choose>
 	</header>
-	<section>
-		<a href=""><img
-		
+	
+	<main>
+	<div class="main-banner">
+		<a href="">
+		<img
 			src="${pageContext.request.contextPath}/assets/img/cafeRV.png" alt=""
-			style="width: 1500px; margin-top: 15px" /></a>
-	</section>
+			style="width: 1200px;" />
+		</a>
+	</div>
+	
 	<div class="tag-study">
 		<div class="cafe-list">스터디카페 목록</div>
-		<a href="/cafe/cafeListOk.sc" class="show-all-btn"><div
-				class="move-btn">전체보기</div> <img
-			src="https://shareit.kr/_next/static/media/arrow-right-677294.662f8854.svg"
-			alt="" class="cafe-arrow" /></a>
+		<a href="/cafe/cafeListOk.sc" class="show-all-btn">
+			<div class="move-btn">전체보기</div>
+			<span class="material-symbols-rounded">
+				arrow_forward_ios
+			</span>
+		</a>
 	</div>
+	
 	<section class="study-cafe">
 		<!-- 8개만 화면 출력 -> 전체보기 페이지이동 -->
 		<c:choose>
@@ -116,13 +119,17 @@
 			</c:otherwise>
 		</c:choose>
 	</section>
-	<section>
-		<a href="/studyGroup/studyGroupMainOk.sg"><img
+	
+	<div class="main-banner" style="margin: 50px 0;">
+		<a href="/studyGroup/studyGroupMainOk.sg">
+		<img
 			src="${pageContext.request.contextPath}/assets/img/groupRT.png"
-			alt="" style="width: 1500px; height: 300px; margin-top: 40px" /></a>
-	</section>
+			alt="" style="width: 1200px;" />
+		</a>
+	</div>
+	
 	<section class="studygroup">
-		<a href=""><div class="group-banner">원하는 스터디 그룹을 찾아보세요!</div></a>
+		<div class="group-banner">원하는 스터디 그룹을 찾아보세요!</div>
 		<div class="arrow-prev">
 			<button class="group-arrow-prev">
 				<span> <img
@@ -140,6 +147,7 @@
 			</button>
 		</div>
 	</section>
+	
 	<!-- 스터디 그룹 노출 -->
 	<section class="show-group">
 		<div class="slide-box">
@@ -233,16 +241,15 @@
 					</c:otherwise>
 				</c:choose>
 
-
 			</div>
 		</div>
-		<!--  -->
+
 	</section>
-	<a href=""><div class="community-banner">
-			<div class="community-banner-first">포트폴리오 및 스터디 후기</div>
-			<div class="community-banner-second">다른 사람들의 포트폴리오 및 스터디 그룹 후기를
-				읽어보세요.</div>
-		</div></a>
+	
+	<div class="community-banner">
+		<div class="community-banner-first">포트폴리오 및 스터디 후기</div>
+		<div class="community-banner-second">다른 사람들의 포트폴리오 및 스터디 그룹 후기를 읽어보세요.</div>
+	</div>
 
 	<section class="community-list">
 		<!--게시물 리스트 노출 -->
@@ -291,39 +298,22 @@
 			</div>
 		</ul>
 	</section>
-	<footer id="new-footer">
-		<div class="left-box">
-			<div class="footer-category">
-				<a href=""><span>회사소개</span></a> <a href=""><span>채용</span></a> <a
-					href=""><span>이용약관</span></a> <a href=""><span
-					class="font-bold">개인정보처리방침</span></a> <a href="/admin/faq.ad"><span>고객센터</span></a>
-			</div>
-			<div class="project-name">studymate 사업자 정보</div>
-			<div class="info">
-				<span>팀명:코드웨이브</span>
-			</div>
-			<div class="info">
-				<span>사업자등록번호:123-44-33255</span> <span>통신판매업</span> <span>개인정보보호책임자:이정현</span>
-			</div>
-			<div class="info">
-				<span>주소:서울특별시 강남구 코리아IT아카데미</span>
-			</div>
-			<div class="info">
-				<span>입점문의: <a href="" class="font-bold">입점문의하기</a>
-				</span> <span>대표이메일:dhtkan12@gmail.com</span>
-			</div>
-			<div class="team-member-name">팀원 : 김윤, 김준혁, 유정현, 이정현, 전은실, 조상수
-			</div>
-		</div>
-		<div class="right-box">
-			<div class="representative-number">대표번호</div>
-			<div class="number">010-4064-5072</div>
-			<div class="info-time">문의시간:평일10:00~19:00</div>
-			<div class="footer-box-btn">
-				<a>카카오톡 문의</a> <a>자주하는 질문</a>
-			</div>
-		</div>
-	</footer>
+	
+	</main>
+	
+	
+	 <!-- footer -->
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+	
 	<script src="https://kit.fontawesome.com/7ad89ef4e0.js"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>

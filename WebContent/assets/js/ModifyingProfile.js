@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     // 새 비밀번호와 확인 비밀번호가 일치하는지 확인합니다.
 
-    $.ajax({
+    /*$.ajax({
       url: "/mypage/MyPageModifyingProfileOk.my", // 회원정보 수정 처리를 위한 URL
       method: "POST", // POST 방식으로 요청
       data: {
@@ -86,7 +86,7 @@ $(document).ready(function () {
         alert("회원정보 수정 중 오류가 발생했습니다.");
         console.error(error);
       }
-    });
+    });*/
   });
 });
 

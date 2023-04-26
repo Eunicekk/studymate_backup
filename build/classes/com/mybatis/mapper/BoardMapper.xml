@@ -3,14 +3,27 @@
 
 <mapper namespace="board">
 	<select id="selectAll" resultType="BoardVO" parameterType="map">
-	select board_number, board_title, board_content, board_date,
-		board_read_count,
-		m.member_number 
-		from tbl_member m join tbl_board b
-		on m.member_number = b.member_number
-		order by board_number desc
-		limit #{startRow}, #{rowCount}
+		<!-- <![CDATA[ -->
+		SELECT
+			b.board_number,
+			b.board_title,
+			b.board_content,
+			b.board_date,
+			b.board_read_count,
+			COALESCE(c.comment_count, 0) AS board_comment_count,
+			m.member_number
+		FROM tbl_board b
+		JOIN tbl_member m ON b.member_number = m.member_number
+		LEFT JOIN (
+			SELECT board_number, COUNT(*) AS comment_count
+			FROM tbl_board_comment
+			GROUP BY board_number
+		) AS c ON b.board_number = c.board_number
+		ORDER BY b.board_number DESC
+		LIMIT #{startRow}, #{rowCount}
+		<!-- ]]> -->
 	</select>
+
 	
 	<select id="selectMember" parameterType="_int" resultType="MemberDTO">
       select member_nickname, member_password, member_phone_number, member_email
@@ -48,6 +61,26 @@
 		where board_number = #{boardNumber}
 	</update>
 	
+	 <select id="selectBoardListOrderByCommentCount" resultType="BoardVO" parameterType="map">
+        SELECT
+            b.board_number,
+            b.board_title,
+            b.board_content,
+            b.board_date,
+            b.board_read_count,
+            COALESCE(c.comment_count, 0) AS board_comment_count,
+            m.member_number
+        FROM tbl_board b
+        JOIN tbl_member m ON b.member_number = m.member_number
+        LEFT JOIN (
+            SELECT board_number, COUNT(*) AS comment_count
+            FROM tbl_board_comment
+            GROUP BY board_number
+        ) AS c ON b.board_number = c.board_number
+        ORDER BY board_comment_count desc, b.board_number desc
+        LIMIT #{startRow}, #{rowCount}
+    </select>
+	
 	<delete id="delete" parameterType="_int">
 		delete from tbl_board where board_number = #{boardNumber}
 	</delete>
@@ -58,5 +91,26 @@
 		where board_number = #{boardNumber}
 	</update>
 	
+	<select id="selectAllByTitle" resultType="BoardVO" parameterType="map">
+    	select b.board_number, b.board_title, b.board_content, b.board_date, b.board_read_count, COUNT(c.comment_number) AS board_comment_count, m.member_number
+    	from tbl_board AS b
+    	join tbl_member AS m ON b.member_number = m.member_number
+    	left join tbl_board_comment AS c ON b.board_number = c.board_number
+    	where b.board_title like concat('%', #{searchWord}, '%')
+    	group by b.board_number
+    	order by b.board_number DESC
+    	limit #{startRow}, #{rowCount}
+	</select>
+	
+	<select id="selectPostsByRecent">
+		select *
+  		from tbl_board
+  		order by board_date DESC
+	</select>
+	
+	<select id="searchBoardTitle" resultType="BoardVO">
+  		select * from tbl_board where board_title like concat('%', '${boardTitle}', '%')
+	</select>
+
 	
 </mapper>
