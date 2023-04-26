@@ -47,7 +47,7 @@
 		<a href="/cafe/cafeListOk.sc" class="show-all-btn">
 			<div class="move-btn">전체보기</div>
 			<span class="material-symbols-rounded">
-			arrow_forward_ios
+				arrow_forward_ios
 			</span>
 		</a>
 	</div>
@@ -129,7 +129,7 @@
 	</div>
 	
 	<section class="studygroup">
-		<a href=""><div class="group-banner">원하는 스터디 그룹을 찾아보세요!</div></a>
+		<div class="group-banner">원하는 스터디 그룹을 찾아보세요!</div>
 		<div class="arrow-prev">
 			<button class="group-arrow-prev">
 				<span> <img
@@ -147,6 +147,7 @@
 			</button>
 		</div>
 	</section>
+	
 	<!-- 스터디 그룹 노출 -->
 	<section class="show-group">
 		<div class="slide-box">
@@ -240,16 +241,15 @@
 					</c:otherwise>
 				</c:choose>
 
-
 			</div>
 		</div>
-		<!--  -->
+
 	</section>
-	<a href=""><div class="community-banner">
-			<div class="community-banner-first">포트폴리오 및 스터디 후기</div>
-			<div class="community-banner-second">다른 사람들의 포트폴리오 및 스터디 그룹 후기를
-				읽어보세요.</div>
-		</div></a>
+	
+	<div class="community-banner">
+		<div class="community-banner-first">포트폴리오 및 스터디 후기</div>
+		<div class="community-banner-second">다른 사람들의 포트폴리오 및 스터디 그룹 후기를 읽어보세요.</div>
+	</div>
 
 	<section class="community-list">
 		<!--게시물 리스트 노출 -->

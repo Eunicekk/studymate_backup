@@ -19,15 +19,30 @@ main{
   height: 230px;
   background-color: bisque;
 }
+
 .tag-study {
+	width: 1200px;
   display: flex;
   align-items: center;
-  height: 100px;
+  justify-content: center;
+  height: 80px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
+
+.material-symbols-rounded {
+	margin-left: 6px;
+	color: #808080;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 20
+}
+
 .cafe-list {
-  margin-left: 60px;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 24px;
 }
 .study-cafe {
   display: grid;
@@ -79,23 +94,21 @@ main{
 }
 
 .show-all-btn {
-  margin-left: 1130px;
-  height: 35px;
+	margin-left: 920px;
+  height: 40px;
   border: solid 2px gray;
-  width: 130px;
+  width: 120px;
   border-radius: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-}
-.show-all-btn:hover {
-  background-color: #a3a0c5;
+  font-size: 16px;
 }
 
 .move-btn {
+	margin-left: 10px;
   font-weight: bold;
-  color: grey;
+  color: gray;
 }
 
 .cafe-arrow {
@@ -110,15 +123,17 @@ main{
 /* 스터디그룹~~~~~~~~~~~~~~ */
 .studygroup {
   position: relative;
-  background-color: rgb(250, 250, 250);
 }
 .group-banner {
+  width: 1200px;
   display: flex;
-  font-weight: bold;
-  font-size: 30px;
-  height: 100px;
   align-items: center;
-  margin-left: 60px;
+  justify-content: flex-start;
+  height: 80px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .arrow-prev,
@@ -333,25 +348,22 @@ main{
 
 /* 커뮤니티~~~~~~~~~~~~~~~ */
 .community-banner {
-  height: 166px;
   align-items: center;
-  display: grid;
-  background-color: rgb(250, 250, 250);
 }
 
 .community-banner-first {
   display: flex;
   justify-content: center;
   font-weight: bold;
-  font-size: 30px;
-  height: 40px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 .community-banner-second {
   display: flex;
   justify-content: center;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 16px;
   color: grey;
+  margin-bottom: 24px;
 }
 .content-list {
   display: flex;
