@@ -60,17 +60,6 @@ public class StudyGroupDAO {
 		return sqlSession.selectList("studyGroup.search", searchInput);
 	}
 	
-	
-////	메인 - 검색기능 / 진행방식 (온라인오프라인) 
-//	public List<StudyGroupVO> searchOnline (Map <String, Integer> pageMap) {
-//		return sqlSession.selectList("studyGroup.searchOnline", pageMap );
-//	}
-//	
-////	메인 - 검색기능 / 모집분야 (어학 등등 7개) 
-//	public List<StudyGroupVO> searchField (Map <String, Integer> pageMap) {
-//		return sqlSession.selectList("studyGroup.searchField", pageMap );
-//	}
-	
 //	동적 쿼리 사용한 검색 기능 최종 
 	public List<StudyGroupVO> searchOption (StudyGroupSearchVO studyGroupSearchVO) {
 		return sqlSession.selectList("studyGroup.searchOption", studyGroupSearchVO );
@@ -84,7 +73,7 @@ public class StudyGroupDAO {
 	
 	// 게시글 수정 
 	public void update(StudyGroupDTO studyGroupDTO) {
-		sqlSession.update("studyGroup.update");
+		sqlSession.update("studyGroup.update", studyGroupDTO);
 	}
 	
 	
