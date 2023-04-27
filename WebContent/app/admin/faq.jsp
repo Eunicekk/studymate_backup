@@ -19,21 +19,26 @@
 <body>
 	<header>
 		<c:choose>
-			<c:when test="${empty sessionScope.adminNickname}">
-				<c:if test="${not empty sessionScope.memberNumber }">
-				</c:if>
+			<c:when test="${empty sessionScope.memberNickname}">
+				<c:if test="${not empty sessionScope.adminNickname }">
 					<jsp:include
-						page="${pageContext.request.contextPath}/app/header/header.jsp" />
-				<%-- <jsp:include
-					page="${pageContext.request.contextPath}/app/admin/adminheader.jsp" /> --%>
+					page="${pageContext.request.contextPath}/app/admin/adminhaederafter.jsp" />
+				</c:if>
+				<c:if test="${empty sessionScope.adminNickname }">
+					<jsp:include
+					page="${pageContext.request.contextPath}/app/header/header.jsp" />
+				</c:if>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${not empty sessionScope.memberNumber }">
+				<c:if test="${not empty sessionScope.adminNickname }">
+					<jsp:include
+						page="${pageContext.request.contextPath}/app/admin/adminhaederafter.jsp" />
+				</c:if>
+				<c:if test="${not empty sessionScope.memberNickname }">
 					<jsp:include
 						page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+
 				</c:if>
-				<jsp:include
-					page="${pageContext.request.contextPath}/app/admin/adminhaederafter.jsp" />
 			</c:otherwise>
 		</c:choose>
 	</header>

@@ -1,4 +1,3 @@
-/* 검색 창 */
 .searchContainer {
   position: sticky;
   top: 0px;
@@ -620,42 +619,42 @@ option {
 /* 좋아요 버튼 */
 
 .groupLikeItems {
-	position: absolute;
-	top: 20px; 
-	right: 25px;
+   position: absolute;
+   top: 20px; 
+   right: 25px;
 }
 
 
 .groupLikeItems > img {
-	width: 30px;
-	height: 30px;
-	margin: 3px;
-	
+   width: 30px;
+   height: 30px;
+   margin: 3px;
+   
 }
 
 .groupLikeItems > p {
-	position: absolute; 
-	bottom: -5px; 
-	left: 5px;
-	right: 5px;
-	margin: 0 0; 
-	font-size: 11px;
-	color: #999999;
-	text-align: center;
-	letter-spacing: -0.05em;
-	 font-weight: 500;
-	
+   position: absolute; 
+   bottom: -5px; 
+   left: 5px;
+   right: 5px;
+   margin: 0 0; 
+   font-size: 11px;
+   color: #999999;
+   text-align: center;
+   letter-spacing: -0.05em;
+    font-weight: 500;
+   
 }
 
 
 .groupLikeItems > button {
-	 border: 0;
+    border: 0;
   background-color: transparent;
   position: relative;
 }
 
 .groupLikeButton > p {
-	margin: 5px 5px;
+   margin: 5px 5px;
 }
 
 
