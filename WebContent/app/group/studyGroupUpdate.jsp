@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 	  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,7 +22,7 @@
 				name= "myForm"
 				action="#"
 				method="post" enctype="multipart/form-data">
-			<input type= "hidden" name= "studyGroupNumber" value="${group.getStudyGroupNumber()}"  >
+			<input type= "hidden" name= "studyGroupNumber" value="${update.getStudyGroupNumber()}"  >
 				<!-- 모집 정보 입력 -->
 				<section>
 					<div class="InfoTitle">
