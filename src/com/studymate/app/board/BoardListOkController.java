@@ -23,7 +23,6 @@ public class BoardListOkController implements Execute {
 		BoardDAO boardDAO = new BoardDAO();
 		int total = boardDAO.getTotal();
 		BoardDTO boardDTO = new BoardDTO();
-		String boardTitle = req.getParameter("content-subject");
 		
 //		int boardNumber = boardDAO.updateCommentCount(total);
 //		BoardVO board = boardDAO.select(boardNumber);
@@ -90,14 +89,7 @@ public class BoardListOkController implements Execute {
 	            boards = boardDAO.selectAll(pageMap);
 	        }
 	        
-	        List<BoardVO> titles;
-			System.out.println(boardTitle);
-			if(boardTitle == null) {
-				 titles = boardDAO.selectAll(pageMap);			
-			}else {
-				titles = boardDAO.searchBoardTitle(boardTitle);
-			}
-	  
+	     
 	       
 	       
 //		System.out.println(boards);
