@@ -83,3 +83,7 @@ function naverLogout() {
       closePopUp();
    }, 1000);
 }
+
+if (window.location.href.indexOf("login=fail") > -1) {
+  alert("아이디와 비밀번호가 일치하지 않습니다");
+}
