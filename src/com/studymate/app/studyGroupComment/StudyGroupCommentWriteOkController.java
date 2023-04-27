@@ -19,7 +19,8 @@ public class StudyGroupCommentWriteOkController implements Execute {
 		req.setCharacterEncoding("utf-8");
 		
 		studyGroupCommentDTO.setStudyGroupNumber(Integer.valueOf(req.getParameter("studyGroupNumber")));
-		studyGroupCommentDTO.setMemberNumber(Integer.valueOf(req.getParameter("memberNumber")));
+		//studyGroupCommentDTO.setMemberNumber(Integer.valueOf(req.getParameter("memberNumber")));
+		studyGroupCommentDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
 		studyGroupCommentDTO.setStudyGroupCommentContent(req.getParameter("studyGroupCommentContent"));
 		
 		 new StudyGroupCommentDAO().insert(studyGroupCommentDTO);

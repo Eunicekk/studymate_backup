@@ -37,7 +37,7 @@
             <input type="text" autocomplete="off" id="searchInput" name="searchInput" placeholder="찾으시는 키워드를 입력하세요" value="" />
             <input type="submit" id="search-btn" value="" />
           </form>
-          <a href="${pageContext.request.contextPath}/studyGroup/studyGroupWriteOk.sg?studyGroupNumber=${studyGroups.get(0).getStudyGroupNumber()}" class="newWriteBtn">새 글 쓰기</a>
+          <a href="${pageContext.request.contextPath}/studyGroup/studyGroupWrite.sg?studyGroupNumber=${studyGroups.get(0).getStudyGroupNumber()}" class="newWriteBtn">새 글 쓰기</a>
         </div>
 
 
