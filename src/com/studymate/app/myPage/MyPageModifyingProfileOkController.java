@@ -25,8 +25,7 @@ public class MyPageModifyingProfileOkController implements Execute {
 		MemberProfileDTO memberProfileDTO = new MemberProfileDTO();
 		HttpSession session = req.getSession();
 //		Integer memberNumber = (Integer)session.getAttribute("memberNumber");
-		Integer memberNumber = 1;
-		
+		Integer memberNumber = (Integer) session.getAttribute("memberNumber");		
 
 
 //		new MyPageDAO().update(memberDTO);

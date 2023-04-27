@@ -60,15 +60,17 @@
 										<div class="study-user-info">
 											<div class="avatar-user">
 												<c:choose>
-												<c:when test="${empty myJoinGroup.getProfileSystemName()}">
+												<c:when test="${empty myLeaderGroup.getProfileSystemName()}">
 													<img class="avatar-user-img"
 														src="https://img.shareit.kr:13443/data/character/1.png"
 														alt="" />
 												</c:when>
+												
 												<c:otherwise>
 													<img class="avatar-user-img"
-														src="/upload/${myJoinGroup.getProfileSystemName()}" alt="" />
+														src="${pageContext.request.contextPath}/upload/${myLeaderGroup.getProfileSystemName()}" alt="" />
 												</c:otherwise>
+												
 											</c:choose>
 											</div>
 											<div class="leader">${myLeaderGroup.getMemberNickname() }</div>
