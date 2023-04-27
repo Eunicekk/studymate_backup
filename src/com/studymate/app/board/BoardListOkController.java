@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.studymate.app.Execute;
 import com.studymate.app.board.dao.BoardDAO;
@@ -32,9 +33,10 @@ public class BoardListOkController implements Execute {
 //		전체 건 수 조회
 		req.setAttribute("total", total);
 //		System.out.println(total);
-		
-		Integer MemberNumber = 2;
-		memberDTO = boardDAO.selectMember(MemberNumber);
+		HttpSession session = req.getSession();
+//		Integer memberNumber = (Integer) session.getAttribute("memberNumber");
+		System.out.println("=====" + session);
+//		memberDTO = boardDAO.selectMember(memberNumber);
 //		처음 게시판 페이지에 진입하면 페이지에 대한 정보가 없다.
 //		그러므로 temp에는 null이 들어간다.
 		String temp = req.getParameter("page");
@@ -92,7 +94,7 @@ public class BoardListOkController implements Execute {
 	     
 	       
 	       
-//		System.out.println(boards);
+		System.out.println(boards);
 		
 		req.setAttribute("boardList", boards);
 		req.setAttribute("page", page);

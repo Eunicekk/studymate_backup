@@ -11,7 +11,7 @@ let $uploadReplyBtn = $('.commentInput-buttonComplete');
 
 let $replyModifyBtn = $('.boardReply-editor-modify-ready-buttons');
 let $replyDeleteBtn = $('.boardReply-editor-delete-buttons'); 
-
+let memberNumber = $(".memberNumber").val();
 let boardNumber = $prevBtn.data('boardNumber');
 console.log($boardNumber);
 
@@ -100,7 +100,8 @@ function showReply(comments){
 
 // 댓글 등록 Ajax 처리
 $uploadReplyBtn.on('click', function() {
-	let memberNumber = '2';
+	
+	console.log(memberNumber);
 	console.log($('#commentInput-commentText').val());
    $.ajax({
       url : '/boardComment/boardCommentWriteOk.bc',

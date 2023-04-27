@@ -55,10 +55,10 @@
 
 					<div class="boardContent-editButtons">
 						<!-- 현재 로그인한 아이디or멤버넘버, 현재 게시글 아이디or멤버넘버 비교하기 c:if-->
-					 <%-- <c:if test="${sessionScope.memberNumber == board.getMemberNumber()}"> --%>
+					  <c:if test="${sessionScope.memberNumber == board.getMemberNumber()}"> 
 						<button type="button" class="boardContent-edit">수정</button>
 						<button type="button" class="boardContent-delete">삭제</button>
-					<%--  </c:if> --%>
+					  </c:if> 
 					</div>
 				</div>
 			</section>
@@ -202,11 +202,11 @@
 		</c:choose>
 		</footer>
 	</div>
-
+<input class="memberNumber" type="hidden" value="${sessionScope.memberNumber}">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script >
 		/* let memberNumber = "${sessionScope.memberNumber}"; */
-		let memberNumber ="2"
+		
 		let $boardNumber ="${board.getBoardNumber()}"
 	</script>
 	<script src="${pageContext.request.contextPath}/assets/js/boardRead.js"></script>

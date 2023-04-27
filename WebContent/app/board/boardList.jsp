@@ -150,7 +150,7 @@
 													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
 													class="content-userImg" height="25px" width="25px">
 											</div>
-											<span class="content-writer"><c:out value="${post.getMemberNumber() }"/></span> 
+											<span class="content-writer"><c:out value="${post.getMemberNickname() }"/></span> 
 											<span class="content-write-date"><c:out value="${post.getBoardDate() }"/></span>
 										</div>
 										<!-- 프사 -->

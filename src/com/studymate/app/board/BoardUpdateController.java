@@ -14,9 +14,11 @@ public class BoardUpdateController implements Execute {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int boardNumber = Integer.valueOf(req.getParameter("boardNumber"));
+		System.out.println(boardNumber);
 		BoardDAO boardDAO = new BoardDAO();
 		
 		req.setAttribute("board", boardDAO.select(boardNumber));
+		
 		System.out.println("board");
 		req.getRequestDispatcher("/app/board/boardUpdate.jsp").forward(req, resp);
 	}
