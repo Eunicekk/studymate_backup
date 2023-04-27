@@ -18,7 +18,7 @@
   <body>
     <!-- 헤더 -->
 		<c:choose>
-			<c:when test="${empty sessionScope.adminNickname}">
+			<c:when test="${empty sessionScope.memberNickname}">
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/header/header.jsp" />
 			</c:when>
@@ -514,7 +514,7 @@
 
     <!-- footer -->
 		<c:choose>
-			<c:when test="${empty sessionScope.adminNickname}">
+			<c:when test="${empty sessionScope.memberNickname}">
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
 			</c:when>
@@ -523,16 +523,20 @@
 					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
 			</c:otherwise>
 		</c:choose>
-
+	<input class="memberNumber" type="hidden" value="${sessionScope.memberNumber}">
+	<input class="memberEmail" type="hidden" value="${sessionScope.memberEmail}">
+	<input class="memberName" type="hidden" value="${sessionScope.memberName}">
+	<input class="memberPhoneNumber" type="hidden" value="${sessionScope.memberPhoneNumber}">
+	
     <script
       src="https://code.jquery.com/jquery-3.6.3.js"
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
       crossorigin="anonymous"></script>
       <script>
-    	let memberNumber = "${sessionScope.memberNumber}";
-    	let memberEmail = "${sessionScope.memberEmail}";
-    	let memberName = "{sessionScope.memberName}";
-    	let memberPhoneNumber = "${sessionScope.memberPhoneNumber}";
+    	let memberNumber = $('.memberNumber').val();
+    	let memberEmail = $('.memberEmail').val();
+    	let memberName = $('.memberName').val();
+    	let memberPhoneNumber = $('.memberPhoneNumber').val();
     	let hourPrice = ${studyCafe.getStudyCafePrice()};
     </script>
     <script src="${pageContext.request.contextPath}/assets/js/reservation.js"></script>
