@@ -16,41 +16,11 @@
 
 </head>
 <body>
-	<header id="header-main">
-		<div>
-	<!-- 		<img src="/img/로고.png" alt="" class="logo" /> -->
+		<div class="header">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
 		</div>
-		<div class="header-left">
-			<a href="#" class="content-cafe">스터디카페 예약</a> <a href="#"
-				class="content-group">스터디그룹 모집</a>
-		</div>
-		<div class="header-right">
-            <div class="btn-group">
-               <c:choose>
-                  <c:when test="${empty sessionScope.memberNumber}">
-                     <!-- 로그인 페이지 이동 처리 -->
-                     <a href="${pageContext.request.contextPath}/member/login.me"
-                        class="login-btn">로그인</a>
-                     <!-- 회원가입 페이지 이동 처리 -->
-                     <a href="${pageContext.request.contextPath}/member/join.me"
-                        class="join-btn">회원가입</a>
-                  </c:when>
-                  <c:otherwise>
-                     <a href="${pageContext.request.contextPath}/member/logoutOk.me"
-                        class="logout-btn">로그아웃</a>
-                     <div class="member-name">
-						<a href="#">이름</a>
-					</div>		
-					<div class="mypage">
-						<a href="${pageContext.request.contextPath}/mypage/MyPageModifyingProfile.my">마이페이지</a>
-					</div>   
-                  </c:otherwise>
-
-               </c:choose>
-
-            </div>
-         </div>
-	</header>
+			
 
 	<!-- 메인 마진 없 sri wrap-->
 	<main class="boardList-ContentWrapper">
@@ -77,21 +47,21 @@
 							전체 <strong>${total}</strong> 건
 						</div>
 						<!-- 검색창 -->
-						<div class="box-search">
+						<!-- <div class="box-search">
 						
 							<div class="input-keyword">
 							  <form action="">
 								<input type="text" name="input-keyword" id="input-keyword" value
 									placeholder="어떤 포트폴리오를 찾으시나요?" class="inpTypo">
 								<button type="button" class="button-search">
-									<!-- 돋보기 이미지 넣기 -->
+									돋보기 이미지 넣기
 									<img
 										src="https://cdn-icons-png.flaticon.com/512/8915/8915520.png"
 										alt="" width="" class="search-icon">
 								</button>
 							  </form>	
 							</div>
-						</div>
+						</div> -->
 					</section>
 
 
@@ -246,7 +216,18 @@
 
 
 	<!-- 푸터 -->
-	<footer></footer>
+	<footer>
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+	</footer>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/boardList.js"></script>
 </body>

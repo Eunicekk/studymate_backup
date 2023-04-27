@@ -17,7 +17,10 @@
 	<div>
 		<!-- 헤더 -->
 		<header></header>
-
+		<div class="header">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/header/headerafter.jsp" />
+		</div>
 		<!-- 메인컨텐츠 영역 - 게시글헤더(뒤로가기,글제목,글쓴이,작성일) / 게시글콘텐츠()/ 게시글댓글-->
 		<main class="boardContent-wrapper">
 			<!-- 게시글헤더 section -->
@@ -186,7 +189,18 @@
 			</section>
 		</main>
 
-		<footer></footer>
+		<footer>
+		<c:choose>
+			<c:when test="${empty sessionScope.adminNickname}">
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include
+					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
+			</c:otherwise>
+		</c:choose>
+		</footer>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
