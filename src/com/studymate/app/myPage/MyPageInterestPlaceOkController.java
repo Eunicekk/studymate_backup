@@ -24,7 +24,6 @@ public class MyPageInterestPlaceOkController implements Execute {
 		List<StudyCafeFileDTO> files = null;
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("memberNumber", 1);
 		Integer memberNumber = (Integer)session.getAttribute("memberNumber");
 		int total = myPageDAO.likeCafeTotal(memberNumber);
 		

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.studymate.app.Execute;
 import com.studymate.app.myPage.dao.MyPageDAO;
@@ -15,10 +16,10 @@ public class MyPageModifyingProfileController implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MyPageDAO myPageDAO = new MyPageDAO();
 		MyProfileVO myProfileVO= null; 
-//		HttpSession session = req.getSession();
-//		int number = session.getAttribute("memberNumber");
-		Integer memberNumber =1;
 		
+		HttpSession session = req.getSession();
+		Integer memberNumber = (Integer) session.getAttribute("memberNumber");
+
 
 		myProfileVO = myPageDAO.selectMember(memberNumber);
 		req.setAttribute("memberDTO", myProfileVO);

@@ -63,7 +63,7 @@
 		cafe_file_system_name)
 		values(#{studyCafeName}, #{studyCafeAddress},
 		#{studyCafePrice},
-		#{studyCafeAvaliableDate},#{studyCafeAvaliableCapacity},#{studyCafeContent},
+		#{studyCafeAvailableDate},#{studyCafeAvailableCapacity},#{studyCafeContent},
 		#{cafeFileSystemName});
 	</insert>
 

@@ -31,7 +31,7 @@ public class MyPageInterestGroupOkController implements Execute {
 		List<MyGroupVO> myInterestGroup = null;
 
 		HttpSession session = req.getSession();
-		session.setAttribute("memberNumber", 1);
+//		session.setAttribute("memberNumber", 1);
 		Integer memberNumber = (Integer) session.getAttribute("memberNumber");
 		int total = myPageDAO.interestGroupTotal(memberNumber);
 

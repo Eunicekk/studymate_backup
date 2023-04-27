@@ -26,7 +26,6 @@ public class MyPageUsaDetailsOkController implements Execute {
 		List<MyReserveVO> myUsaDetails = null;
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("memberNumber", 1);
 		Integer memberNumber = (Integer)session.getAttribute("memberNumber");
 		int total = myPageDAO.usageDatailsTotal(memberNumber);
 		
