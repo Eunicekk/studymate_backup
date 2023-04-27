@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.studymate.app.Execute;
+import com.studymate.app.member.dto.MemberDTO;
 import com.studymate.app.studyCafe.dao.StudyCafeDAO;
 import com.studymate.app.studyCafe.vo.StudyCafeVO;
 import com.studymate.app.studyCafeFile.dao.StudyCafeFileDAO;
@@ -21,12 +22,16 @@ public class StudyCafeReadOkController implements Execute {
 		StudyCafeDAO studyCafeDAO = new StudyCafeDAO();
 		StudyCafeVO studyCafeVO = studyCafeDAO.select(studyCafeNumber);
 		List<StudyCafeFileDTO> files = new StudyCafeFileDAO().select(studyCafeNumber);
+		MemberDTO memberDTO = studyCafeDAO.reservationInfo(Integer.valueOf("memberNumber"));
+		
+		System.out.println(memberDTO);
 		
 		studyCafeDAO.updateReadCount(studyCafeNumber);
 		
 		studyCafeVO.setFiles(files);
 		
 		req.setAttribute("studyCafe", studyCafeVO);
+		req.setAttribute("member", memberDTO);
 		
 		req.getRequestDispatcher("/app/cafe/reservation.jsp").forward(req, resp);
 	}

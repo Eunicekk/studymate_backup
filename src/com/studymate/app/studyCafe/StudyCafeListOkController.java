@@ -65,19 +65,22 @@ public class StudyCafeListOkController implements Execute {
 		System.out.println(req.getParameter("maxPrice"));
 		
 		System.out.println("갸아아악" + studyCafeFilterVO);
+		cafelist = studyCafeDAO.selectAll(pageMap);
 		
-		 if((order == null || order.equals("new")) && studyCafeName == null || studyCafeFilterVO == null) {
+		 if((order == null || order.equals("new")) && studyCafeName == null) {
 			cafelist = studyCafeDAO.selectAll(pageMap);
 		 }else if(studyCafeName != null) {
 			 cafelist = studyCafeDAO.search(studyCafeName);
-		 }else if(studyCafeFilterVO != null) {
-			 cafelist = studyCafeDAO.filter(studyCafeFilterVO);
 		 }else  if(order.equals("score") && studyCafeName == null) {
 		 	cafelist = studyCafeDAO.arrayByScore(pageMap);
 		 }else if(order.equals("like") && studyCafeName == null) {
 			 cafelist =studyCafeDAO.arrayByLike(pageMap); 
 		 }else if(order.equals("read") && studyCafeName == null) {
 			 cafelist = studyCafeDAO.arrayByRead(pageMap);
+		 }
+		 
+		 if(studyCafeFilterVO != null) {
+			 cafelist = studyCafeDAO.filter(studyCafeFilterVO);
 		 }
 		 
 		for(int i=1; i<=cafelist.size(); i++) {
