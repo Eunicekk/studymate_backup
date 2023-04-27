@@ -24,7 +24,7 @@
 		</div>
 		<div class="header-right-02">
 			<div class="member-name">
-    			<% out.print(session.getAttribute("memberNickname")); %>님, 환영합니다!
+    			<% out.print(session.getAttribute("memberNickname"));%>님, 환영합니다!
 			</div> 
 			<span>|</span>
 			<div class="mypage">
