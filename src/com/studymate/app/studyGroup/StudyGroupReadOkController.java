@@ -21,7 +21,7 @@ public class StudyGroupReadOkController implements Execute {
 		StudyGroupVO studyGroupVO = studyGroupDAO.select(studyGroupNumber);
 	
 		studyGroupDAO.updateReadCount(studyGroupNumber);
-		
+		System.out.println(studyGroupVO);
 		req.setAttribute("group", studyGroupVO); 
 		// 통째로 넘겨놓은 뒤 getter로 뽑으면 됨. 
 		
