@@ -121,4 +121,11 @@
 		order by j1.study_cafe_number desc
 	</select>
 	
+	<select id="reservationInfo" parameterType="_int" resultType="MemberDTO">
+		select member_number, member_id, member_password, member_name, member_age, member_gender, member_email,
+		member_phone_number, member_nickname, member_join_date
+		from tbl_member
+		where member_number = #{memberNumber}
+	</select>
+	
 </mapper>

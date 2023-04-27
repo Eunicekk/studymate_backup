@@ -542,19 +542,21 @@ var seconds = today.getSeconds();  // 초
 var milliseconds = today.getMilliseconds();
 var makeMerchantUid = hours + minutes + seconds + milliseconds;
 
-var reservationStart = $('.calInput').val() + $('.timeInput').val();
-var reservationEnd = $('.calInput').val() + $('.endTimeInput').val();
-var reservationCost = $('.talInput').val();
-var reservationCapacity = $('.capacity-count').text();
+let reservationStart = null;
+let reservationEnd = null;
+let reservationCapacity = $('.capacity-count').text().trim();
+
+let cafeName = $('#cafe-name').text().trim();
+console.log("꺄아아악" + reservationCapacity);
 
 function requestPay() {
 	IMP.request_pay({
 		pg: 'html5_inicis', // PG사 코드표에서 선택
 		pay_method: 'card', // 결제 방식
 		merchant_uid: "IMP" + makeMerchantUid, // 결제 고유 번호
-		name: $('#cafe-name').text(), // 카페명
+		name: cafeName, // 카페명
 		/*amount : realCafePrice, // 사용할 가격*/
-		amount: 1, // 연결 확인을 위해 사용한 가격 확인 후 지우기
+		amount: 10, // 연결 확인을 위해 사용한 가격 확인 후 지우기
 		buyer_name: memberName,
 		buyer_email: memberEmail,
 		buyer_tel: memberPhoneNumber
@@ -566,37 +568,31 @@ function requestPay() {
 				studyCafeNumber : studyCafeNumber,
 				reservationStart : reservationStart,
 				reservationEnd : reservationEnd,
-				reservationCost : reservationCost,
+				reservationCost : realCafePrice,
 				reservationCapacity : reservationCapacity
-				
-				/*storeSystemFile: $('.board-table').find('.basket-img img').eq(i).attr('src'),
-				storeNumber: $('.board-table').find('.store-number').eq(i).val(),
-				storeTitle: $('.board-table tbody .title').eq(i).text(),
-				storePrice: $('.board-table tbody .price').eq(i).text(),
-				buyCnt: $('.board-table tbody .count').eq(i).text(),
-				buyName: $('.who-is-put').val(),
-				buyZoneCode: $('.mail-address').val(),
-				buyAddress: $('.main-address').val(),
-				buyAddressDetail: $('.sub-address').val(),
-				buyPhoneNumber: $('.cell-phone-put').val(),
-				memberEmail: $('.front-email-address').val() + '@' + $('.back-email-address').val(),
-				buyMsg: $('.delivery-message-area').val()*/
 			};
+			
+			console.log("buyInfo" + buyInfo.memberNumber);
+			console.log("buyInfo" + buyInfo.studyCafeNumber);
+			console.log("buyInfo" + buyInfo.reservationStart);
+			console.log("buyInfo" + buyInfo.reservationEnd);
+			console.log("buyInfo" + buyInfo.reservationCost);
+			console.log("buyInfo" + buyInfo.reservationCapacity);
 
-			$.ajax({
+		$.ajax({
 				url: '/reservation/reservationOk.rv',
 				data: { buyInfo: JSON.stringify(buyInfo) },
-				contentType: 'text',
+				contentType: 'application/json; charset=utf-8',
 				type: 'get',
 				traditional: true,
 				success: function(result) {
 					//페이지 이동                           
-					window.location.href = "http://localhost:8085/mypage/MyPageReserveOk.my";
-				}
+					window.location.href = "http://localhost:8085/mypage/myPageMain.my";
+					$('#list-content').load("/mypage/MyPageReserveOk.my");
+				},
 			});
 			// console.log(rsp)로 결과 값 출력해봐야함
 			console.log('연결에 성공했습니다.');
-			// ajax 이용해서 페이지 이동처리하기
 		} else {
 			console.log(rsp);
 		}
@@ -604,5 +600,13 @@ function requestPay() {
 }
 
 $('.BuyContainer').on('click', function(){
+	reservationStart = $('.cal').text() + " " + $('.timeText').text();
+	reservationEnd = $('.cal').text() + " " + $('.endText').text();
+	
+	console.log("갸아아악" + reservationStart);
+	console.log("갸아아악" + reservationEnd);
+	console.log("갸아아악" + reservationCapacity);
+	console.log("갸아아악" + realCafePrice);
+
 	requestPay();
 });

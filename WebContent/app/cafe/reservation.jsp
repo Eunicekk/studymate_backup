@@ -13,7 +13,6 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=288648fa9bcef114f977b6cc3dc07c2d&libraries=services"></script>
-  	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -527,11 +526,10 @@
 	<input class="memberEmail" type="hidden" value="${sessionScope.memberEmail}">
 	<input class="memberName" type="hidden" value="${sessionScope.memberName}">
 	<input class="memberPhoneNumber" type="hidden" value="${sessionScope.memberPhoneNumber}">
+
 	
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.js"
-      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-      crossorigin="anonymous"></script>
+     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
       <script>
     	let memberNumber = $('.memberNumber').val();
     	let memberEmail = $('.memberEmail').val();
