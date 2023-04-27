@@ -190,6 +190,7 @@
             </ul> 
           </div>
         </section>
+        <input class="memberNumber" type="hidden" value="${sessionScope.memberNumber}">
       </main>
   <!-- footer -->
     <footer>

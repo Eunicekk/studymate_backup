@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.studymate.app.Execute;
 import com.studymate.app.memberLikeCafe.dao.MemberLikeCafeDAO;
@@ -18,8 +19,12 @@ public class CafeLikeCheckOkController implements Execute {
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html; charset=utf-8");
 		MemberLikeCafeDAO memberLikeCafeDAO = new MemberLikeCafeDAO();
-
-		List<Integer> cafelike = memberLikeCafeDAO.haveLike(Integer.valueOf(req.getParameter("memberNumber")));
+		
+		HttpSession session = req.getSession();
+		Integer memberNumber = (Integer) session.getAttribute("memberNumber");
+		
+		//List<Integer> cafelike = memberLikeCafeDAO.haveLike(Integer.valueOf(req.getParameter("memberNumber")));
+		List<Integer> cafelike = memberLikeCafeDAO.haveLike(memberNumber);
 		System.out.println(cafelike);
 		
 		PrintWriter out = resp.getWriter();

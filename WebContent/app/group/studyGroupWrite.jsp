@@ -18,7 +18,7 @@
 		 <!-- 헤더 -->
     <header>
 		<c:choose>
-			<c:when test="${empty sessionScope.adminNickname}">
+			<c:when test="${empty sessionScope.memberNickname}">
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/header/header.jsp" />
 			</c:when>
@@ -195,7 +195,7 @@
 		<!-- footer -->
 	<footer>
 		<c:choose>
-			<c:when test="${empty sessionScope.adminNickname}">
+			<c:when test="${empty sessionScope.memberNickname}">
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
 			</c:when>

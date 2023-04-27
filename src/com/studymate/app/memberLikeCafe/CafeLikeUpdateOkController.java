@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.studymate.app.Execute;
 import com.studymate.app.memberLikeCafe.dao.MemberLikeCafeDAO;
@@ -17,9 +18,13 @@ public class CafeLikeUpdateOkController implements Execute {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		
+		HttpSession session = req.getSession();
+		Integer memberNumber = (Integer) session.getAttribute("memberNumber");
+		
 		MemberLikeCafeDAO memberLikeCafeDAO = new MemberLikeCafeDAO();
 		MemberLikeCafeDTO memberLikeCafeDTO = new MemberLikeCafeDTO();
-		memberLikeCafeDTO.setMemberNumber(Integer.parseInt(req.getParameter("memberNumber")));
+//		memberLikeCafeDTO.setMemberNumber(Integer.parseInt(req.getParameter("memberNumber")));
+		memberLikeCafeDTO.setMemberNumber(memberNumber);
 		memberLikeCafeDTO.setStudyCafeNumber(Integer.parseInt(req.getParameter("studyCafeNumber")));
 		int result = memberLikeCafeDAO.checkLike(memberLikeCafeDTO);
 		

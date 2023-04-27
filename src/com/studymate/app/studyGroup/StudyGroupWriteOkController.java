@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FilePart;
@@ -29,7 +30,8 @@ public class StudyGroupWriteOkController implements Execute {
 		// TODO Auto-generated method stub
 		StudyGroupDAO studyGroupDAO = new StudyGroupDAO(); 
 		StudyGroupDTO studyGroupDTO = new StudyGroupDTO();
-		int studyGroupNumber=0; 
+		HttpSession session = req.getSession();
+		//Integer memberNumber = (Integer) session.getAttribute("memberNumber");
 		
 		System.out.println("write Ok 컨트롤러 탔음");
 		System.out.println(req.getParameter("memberNumber"));
@@ -43,9 +45,9 @@ public class StudyGroupWriteOkController implements Execute {
 		System.out.println(req.getParameter("studyGroupTitle"));
 		System.out.println(req.getParameter("studyGroupcontent"));
 		
-		studyGroupDTO.setMemberNumber(4);
+		//studyGroupDTO.setMemberNumber(memberNumber);
 		// 세션 넘버 비교 
-//		studyGroupDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
+		studyGroupDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
 		studyGroupDTO.setStudyGroupField(req.getParameter("studyGroupField"));
 		studyGroupDTO.setStudyGroupCapacity(req.getParameter("studyGroupCapacity"));
 		studyGroupDTO.setStudyGroupOnline(req.getParameter("studyGroupOnline"));

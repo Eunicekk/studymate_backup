@@ -53,7 +53,7 @@ $(document).ready(function() {
 
 // 글쓰기 페이지로 이동 
  $('.newWriteBtn').on('click', ()=> {
-	   window.location.href = '/studyGroup/studyGroupWrite.sg?studyGroupNumber=${group.getStudyGroupNumber()}';
+	   window.location.href = '/studyGroup/studyGroupWrite.sg';
 });
 
 

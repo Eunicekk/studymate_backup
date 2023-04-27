@@ -24,7 +24,7 @@ public class StudyGroupWriteController implements Execute {
 	    String path = null;
 	      
 		
-		  if(memberNumber == null) { path = "/app/group/studyGroupWrite.jsp"; }
+		  if(memberNumber != null) { path = "/app/group/studyGroupWrite.jsp"; }
 		 
 		/* else {
 		 * path = "/app/member/login.jsp"; req.setAttribute("memberId",
