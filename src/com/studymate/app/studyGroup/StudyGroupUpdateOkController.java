@@ -23,7 +23,7 @@ public class StudyGroupUpdateOkController implements Execute {
 		StudyGroupDTO studyGroupDTO = new StudyGroupDTO();
 		
 		System.out.println("수정 Ok 컨트롤러 탔음");
-		System.out.println(req.getParameter("memberNumber"));
+//		System.out.println(req.getParameter("memberNumber"));
 		System.out.println(req.getParameter("studyGroupField"));
 		System.out.println(req.getParameter("studyGroupCapacity"));
 		System.out.println(req.getParameter("studyGroupOnline"));
@@ -34,7 +34,8 @@ public class StudyGroupUpdateOkController implements Execute {
 		System.out.println(req.getParameter("studyGroupTitle"));
 		System.out.println(req.getParameter("studyGroupcontent"));
 		
-		studyGroupDTO.setMemberNumber(4);
+		
+		studyGroupDTO.setMemberNumber(14);
 		// 세션 넘버 비교 
 //		studyGroupDTO.setMemberNumber((Integer)req.getSession().getAttribute("memberNumber"));
 		studyGroupDTO.setStudyGroupField(req.getParameter("studyGroupField"));
@@ -52,7 +53,7 @@ public class StudyGroupUpdateOkController implements Execute {
 		studyGroupDAO.update(studyGroupDTO);
 	    System.out.println(studyGroupDTO);
 	
-	    resp.sendRedirect("/studyGroup/studyGroupMainOk.sg");
+//	    resp.sendRedirect("/studyGroup/studyGroupMainOk.sg");
 	}
 
 	

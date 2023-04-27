@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 	  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,9 +20,9 @@
 		<div class="MainWrite">
 			<form id="myForm"
 				name= "myForm"
-				action="${pageContext.request.contextPath}/studyGroup/studyGroupUpdateOk.sg"
+				action="#"
 				method="post" enctype="multipart/form-data">
-			<input type= "hidden" name= "studyGroupNumber" value="${group.getStudyGroupNumber()}"  >
+			<input type= "hidden" name= "studyGroupNumber" value="${update.getStudyGroupNumber()}"  >
 				<!-- 모집 정보 입력 -->
 				<section>
 					<div class="InfoTitle">
@@ -527,7 +527,7 @@
 					<!-- 글등록 취소 -->
 					<section class="WriteBtn">
 						<button class="cancelButton"  type= "button">취소</button>
-						<button class="RegisterButton" type="submit" >수정 완료</button>
+						<button class="RegisterButton" type="button" >수정 완료</button>
 					</section>
 				</section>
 			</form>

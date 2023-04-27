@@ -155,9 +155,10 @@ $(document).ready(function() {
  $(".cancelButton").on("click", () => {
    window.location.href = "/studyGroup/studyGroupMainOk.sg";
  });
+ });
 
 
-
+// 게시글 작성 
 $(".registerOkButton").on("click", function () { 
 	
 	//모집분야 
@@ -185,15 +186,15 @@ $(".registerOkButton").on("click", function () {
 	console.log (studyGroupContactAddress);
 	
 	// 모집 마감일 (달력)
-	var studyGroupEndDate = $('#endDateText').text();
+	var studyGroupEndDate = $('#endDateText').trim();
 	console.log(studyGroupEndDate);
 	
 	// 글제목 
-	var studyGroupTitle = $('input[name="titleInput"]').val();
+	var studyGroupTitle = $('input[name="titleInput"]').val().trim();
 	console.log(studyGroupTitle);
 	
 // 썸머노트 	
-	var studyGroupcontent = $(".note-editable").text();
+	var studyGroupcontent = $(".note-editable").text().trim();
 	console.log(studyGroupcontent);
 	
 
@@ -204,7 +205,7 @@ insertAjax(studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDura
 , studyGroupEndDate, studyGroupTitle, studyGroupcontent );
 	
 	});
-});
+
 
 
 function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
@@ -251,6 +252,105 @@ function insertAjax (studyGroupField, studyGroupCapacity, studyGroupOnline, stud
 		})
 	}
 
+var studyGroupNumber = $('input[name="studyGroupNumber"]').val();
+console.log("==== studyGroupNumber ");
+console.log(studyGroupNumber);
+
+// 게시글 수정 =====================================================
+
+$(".RegisterButton").on("click", function () { 
+	
+	var studyGroupNumber = $('input[name="studyGroupNumber"]').val();
+	
+	//모집분야 
+	var studyGroupField = $("#feild option:selected").text();
+	console.log(studyGroupField);
+	
+	//모집 인원
+	var studyGroupCapacity = $("#person option:selected").text();
+	console.log(studyGroupCapacity);
+	
+	//진행방식
+	var studyGroupOnline = $("#online option:selected").text();
+	console.log(studyGroupOnline);
+	
+	//예상기간
+	var studyGroupDuration =  $("#duration option:selected").text();
+	console.log(studyGroupDuration);
+	
+	// 연락방법 
+	var studyGroupContact = $("#contact option:selected").text();
+	console.log(studyGroupContact);
+	
+	// 연락 주소 
+	var studyGroupContactAddress =  $('input[name="selfText"]').val();
+	console.log (studyGroupContactAddress);
+	
+	// 모집 마감일 (달력)
+	var studyGroupEndDate = $('#endDateText').text().trim();
+	console.log(studyGroupEndDate);
+	
+	// 글제목 
+	var studyGroupTitle = $('input[name="titleInput"]').val().trim();
+	console.log(studyGroupTitle);
+	
+// 썸머노트 	
+	var studyGroupcontent = $(".note-editable").text().trim();
+	console.log(studyGroupcontent);
+	
+
+	
+//	멤버넘버. 
+	
+insertAjax(studyGroupNumber, studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
+, studyGroupEndDate, studyGroupTitle, studyGroupcontent );
+	
+	});
 
 
+
+function insertAjax (studyGroupNumber, studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
+, studyGroupEndDate, studyGroupTitle, studyGroupcontent ) {
+	if (studyGroupField == "모집분야") {
+	alert ("모집 분야를 선택해주세요 !");
+	} else if (studyGroupCapacity == "희망인원") {
+	alert ("희망인원 선택해주세요 !");
+	}else if (studyGroupOnline == "온라인/오프라인") {
+		alert ("진행 방식을 선택해주세요 !");
+	}else if (studyGroupDuration == "스터디 기간") {
+		alert ("스터디 기간을 선택해주세요 !");
+	}else if (studyGroupContact == "SNS") { 
+		alert ("연락 방법을 선택해주세요 !");
+	}else if (studyGroupEndDate == "모집 마감날짜를 선택하세요") {
+		alert ("모집 마감날짜를 선택해주세요 !");
+	}else if (studyGroupTitle == null) {
+		alert ("제목을 입력해주세요 !");
+	}else if (studyGroupcontent == null) {
+		alert ("스터디 그룹 홍보 게시글을 입력하지 않으셨어요 !");
+		} 
+
+		let data = {
+		studyGroupNumber : studyGroupNumber,
+		studyGroupField : studyGroupField,
+		studyGroupCapacity : studyGroupCapacity, 
+		studyGroupOnline : studyGroupOnline, 
+		studyGroupDuration : studyGroupDuration,
+		studyGroupContact : studyGroupContact,
+		studyGroupContactAddress : studyGroupContactAddress , 
+		studyGroupEndDate : studyGroupEndDate, 
+		studyGroupTitle : studyGroupTitle,
+		studyGroupcontent : studyGroupcontent 
+	};
+	
+	$.ajax({
+		url : '/studyGroup/studyGroupUpdateOk.sg',
+		type : 'get',
+		data : data,
+		error : function() {
+			alert("통신실패!!!!")
+		}, success : function(){
+			 window.location.href = "/studyGroup/studyGroupMainOk.sg"; 
+			}
+		})
+	}
 
