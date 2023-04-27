@@ -26,7 +26,6 @@ public class MyPageParticipatingGroupOkController implements Execute {
 		List<MyGroupVO> joinGroup = null;
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("memberNumber", 1);
 		Integer memberNumber = (Integer)session.getAttribute("memberNumber");
 		int total = myPageDAO.myJoinGroupTotal(memberNumber);
 		

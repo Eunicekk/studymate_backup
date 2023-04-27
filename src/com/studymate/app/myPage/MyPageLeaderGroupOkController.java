@@ -25,7 +25,6 @@ public class MyPageLeaderGroupOkController implements Execute {
 		List<MyGroupVO> myLeaderGroup = null;
 
 		HttpSession session = req.getSession();
-		session.setAttribute("memberNumber", 1);
 		Integer memberNumber = (Integer) session.getAttribute("memberNumber");
 		int total = myPageDAO.leaderGroupTotal(memberNumber);
 
@@ -69,6 +68,8 @@ public class MyPageLeaderGroupOkController implements Execute {
 			vo.setFormatStartDate(formattedStartDateTime);
 		}
 
+		System.out.println(myLeaderGroup);
+		
 		req.setAttribute("myLeaderGroup", myLeaderGroup);
 		req.setAttribute("page", page);
 		req.setAttribute("startPage", startPage);

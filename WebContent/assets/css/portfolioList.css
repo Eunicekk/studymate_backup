@@ -48,7 +48,12 @@
 	justify-content: space-between;
 	padding-bottom: 15px;
 	border-bottom: 2px solid rgb(36, 36, 36);
+	font-weight: bold;
 }
+
+.portfolio-list > div {
+	font-size: 16px;
+} 
 
 .portfolio-list-number {
 	width: 83px;
@@ -115,6 +120,7 @@
 	font-size: 13px;
 	line-height: 16px;
 	color: rgb(36, 36, 36);
+	margin-left: -20px;
 }
 
 .portfolio-like {
@@ -134,7 +140,7 @@
 }
 
 .view-number {
-	width: fit-content;
+	width: 20px;
 	text-align: center;
 	font-size: 13px;
 	line-height: 16px;

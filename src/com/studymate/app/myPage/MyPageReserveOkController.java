@@ -26,7 +26,6 @@ public class MyPageReserveOkController implements Execute {
 		List<MyReserveVO> myReservation = null;
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("memberNumber", 1);
 		Integer memberNumber = (Integer)session.getAttribute("memberNumber");
 		int total = myPageDAO.reservationTotal(memberNumber);
 		
