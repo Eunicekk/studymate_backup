@@ -19,7 +19,7 @@
 	 <!-- 헤더 -->
     <header>
 		<c:choose>
-			<c:when test="${empty sessionScope.adminNickname}">
+			<c:when test="${empty sessionScope.memberNickname}">
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/header/header.jsp" />
 			</c:when>
@@ -375,7 +375,7 @@
 	<!-- footer -->
 	<footer>
 		<c:choose>
-			<c:when test="${empty sessionScope.adminNickname}">
+			<c:when test="${empty sessionScope.memberNickname}">
 				<jsp:include
 					page="${pageContext.request.contextPath}/app/footer/footer.jsp" />
 			</c:when>
@@ -385,12 +385,14 @@
 			</c:otherwise>
 		</c:choose>
 	</footer>
+	<input class="memberNumber" type="hidden" value="${sessionScope.memberNumber}">
 
 	<script src="https://code.jquery.com/jquery-3.6.3.js"
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
 	<script>
-		let memberNumber = "${sessionScope.memberNumber}";
+		let memberNumber = $(".memberNumber").val();
+		console.log(memberNumber)
 	</script>
 	<script src="${pageContext.request.contextPath}/assets/js/main_reservation.js"></script>
 </body>
