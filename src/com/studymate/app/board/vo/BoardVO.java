@@ -16,7 +16,18 @@ public class BoardVO {
 	private int boardCommentCount;
 	private String boardWriter;
 	private String memberNickname;
+	private String profileSystemName;
 	
+	
+	
+	public String getProfileSystemName() {
+		return profileSystemName;
+	}
+
+	public void setProfileSystemName(String profileSystemName) {
+		this.profileSystemName = profileSystemName;
+	}
+
 	public BoardVO() {
 		
 	}
@@ -113,7 +124,9 @@ public class BoardVO {
 	public String toString() {
 		return "BoardVO [boardNumber=" + boardNumber + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", boardDate=" + boardDate + ", boardReadCount=" + boardReadCount + ", memberNumber=" + memberNumber
-				+ ", memberId=" + memberId + ", files=" + files + ", boardCommentCount=" + boardCommentCount + ", boardWriter=" + boardWriter + ", memberNickname=" + memberNickname + "]";
+				+ ", memberId=" + memberId + ", files=" + files + ", boardCommentCount=" + boardCommentCount
+				+ ", boardWriter=" + boardWriter + ", memberNickname=" + memberNickname + ", profileSystemName="
+				+ profileSystemName + "]";
 	}
 	
 	

@@ -146,9 +146,19 @@
 										<!--(3/3) 작성자이름, 작성 날짜-->
 										<div class="content-member-info">
 											<div>
-												<img
-													src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-													class="content-userImg" height="25px" width="25px">
+												<c:choose>
+												<c:when test="${empty post.getProfileSystemName()}">
+													<img class="content-userImg"
+														src="https://img.shareit.kr:13443/data/character/1.png"
+														alt="" />
+												</c:when>
+												
+												<c:otherwise>
+													<img class="content-userImg"
+														src="${pageContext.request.contextPath}/upload/${post.getProfileSystemName()}" alt="" />
+												</c:otherwise>
+												
+											</c:choose>
 											</div>
 											<span class="content-writer"><c:out value="${post.getMemberNickname() }"/></span> 
 											<span class="content-write-date"><c:out value="${post.getBoardDate() }"/></span>

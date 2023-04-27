@@ -22,10 +22,21 @@ public class StudyGroupVO {
 	private String studyGroupDuration;
 	private String studyGroupEndDate; 
 	private List<StudyGroupFileDTO> files;
+	private String profileSystemName;
 	
 	
 	public StudyGroupVO() {
 	// TODO Auto-generated constructor stub
+	}
+
+
+	public String getProfileSystemName() {
+		return profileSystemName;
+	}
+
+
+	public void setProfileSystemName(String profileSystemName) {
+		this.profileSystemName = profileSystemName;
 	}
 
 
@@ -209,7 +220,7 @@ public class StudyGroupVO {
 				+ ", studyGroupLikeCount=" + studyGroupLikeCount + ", studyGroupCapacity=" + studyGroupCapacity
 				+ ", studyGroupField=" + studyGroupField + ", studyGroupContact=" + studyGroupContact
 				+ ", studyGroupDuration=" + studyGroupDuration + ", studyGroupEndDate=" + studyGroupEndDate + ", files="
-				+ files + "]";
+				+ files + ", profileSystemName=" + profileSystemName + "]";
 	}
 
 
