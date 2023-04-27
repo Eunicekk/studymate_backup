@@ -23,7 +23,9 @@ public final class ReservationFrontController extends HttpServlet{
 
 		switch(target) {
 		case "/reservation/reservationOk.rv" :
+			System.out.println("예약 컨트롤러 확인?");
 			new ReservationOkController().execute(req, resp);
+			System.out.println("예약 컨트롤러 확인!!!!!!");
 			break;
 		}
 	}

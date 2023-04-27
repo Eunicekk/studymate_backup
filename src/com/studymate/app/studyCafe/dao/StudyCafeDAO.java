@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mybatis.config.MyBatisConfig;
+import com.studymate.app.member.dto.MemberDTO;
 import com.studymate.app.studyCafe.vo.StudyCafeVO;
 import com.studymate.app.studyCafeFilter.vo.StudyCafeFilterVO;
 
@@ -50,6 +51,10 @@ public class StudyCafeDAO {
 	
 	public List<StudyCafeVO> filter(StudyCafeFilterVO studyCafeFilterVO){
 		return sqlSession.selectList("studyCafe.filter", studyCafeFilterVO);
+	}
+	
+	public MemberDTO reservationInfo(int memberNumber) {
+		return sqlSession.selectOne("studyCafe.reservationInfo", memberNumber);
 	}
 
 }
