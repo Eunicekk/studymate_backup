@@ -11,7 +11,7 @@
 			b.board_date,
 			b.board_read_count,
 			COALESCE(c.comment_count, 0) AS board_comment_count,
-			m.member_number
+			m.member_number, m.member_nickname
 		FROM tbl_board b
 		JOIN tbl_member m ON b.member_number = m.member_number
 		LEFT JOIN (

@@ -56,7 +56,6 @@ public class MyPageLeaderGroupOkController implements Execute {
 		pageMap.put("memberNumber", (Integer) session.getAttribute("memberNumber"));
 
 		myLeaderGroup = myPageDAO.myLeaderGroup(pageMap);
-		System.out.println(myLeaderGroup);
 
 		String outputPattern = "yyyy-MM-dd (E)";
 		SimpleDateFormat outputSdf = new SimpleDateFormat(outputPattern);

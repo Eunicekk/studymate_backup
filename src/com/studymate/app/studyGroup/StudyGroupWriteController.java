@@ -30,7 +30,7 @@ public class StudyGroupWriteController implements Execute {
 		 * path = "/app/member/login.jsp"; req.setAttribute("memberId",
 		 * memberDAO.getMemberId(memberNumber)); }
 		 */
-	      
+	      System.out.println(memberNumber);
 	      req.getRequestDispatcher(path).forward(req, resp);
 	
 		

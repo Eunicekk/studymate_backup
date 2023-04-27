@@ -29,7 +29,7 @@
 
 	<!-- 메인 -->
 	<main class="postRegister-postWrapper">
-	<form id="write-form" method="post" action="${pageContext.request.contextPath}/board/boardWriteOk.bo" enctype="multipart/form-data"> 
+	<form id="write-form" method="post" action="${pageContext.request.contextPath}/board/boardWriteOk.bo?boardNumber=${board.getBoardNumber()}" enctype="multipart/form-data"> 
 		<!-- 포트폴리오 분류 -->
 		<section></section>
 
