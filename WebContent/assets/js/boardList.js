@@ -89,12 +89,13 @@ $searchInput.on('blur', function() {
 $('.input-keyword > form > button').on('click' ,function(){
 	let boardTitle = $('.input-keyword > form > input').val();
 	console.log("sssss")
+	console.log(boardTitle)
 	$.ajax({
     type: "GET",
-    url: "/board/boardListOk.bo",
+    url: "/board/boardSearchOk.bo",
     data: { boardTitle : boardTitle },
-    success: function(Parse_data) {
-        $(".content-list").html(Parse_data);
+    success: function() {
+        $(".content-list").html();
     },
     error: function(jqXHR, textStatus, errorThrown) {
         alert("통신 실패: " + textStatus + ", " + errorThrown);
