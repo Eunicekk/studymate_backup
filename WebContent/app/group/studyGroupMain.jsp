@@ -171,7 +171,7 @@
 							</select>
 						</div>
 					</div>
-				</div>
+				
 			</form>
 
 			<!-- 그룹모집 메인 -->
@@ -759,7 +759,7 @@
 				</c:if>
 
 			</ul>
-
+			</div>
 
 
 			<%-- <li class="pageBtn">

@@ -12,6 +12,13 @@
 	z-index: 1050;
 }
 
+
+.searchBox {
+	width: 1300px;
+    margin: auto;
+    padding: 0 50px;
+}
+
 .searchBox>form {
 	display: inline-flex;
 	-webkit-box-align: center;
@@ -61,9 +68,11 @@
 	display: flex;
 	height: 100%;
 	-webkit-box-align: center;
-	width: auto;
-	/*    margin-left: 28px;
-   margin-right: 28px; */
+	width: 1300px;
+	margin: auto;
+	padding : 0 50px;
+	
+
 }
 
 .filterBtn {
@@ -273,7 +282,7 @@ ul {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(auto-fit, minmax(47px, 47px));
-	padding: 0px 50px;
+	padding: 0px 50px 15px 50px;
 }
 
 .Area {
@@ -512,7 +521,9 @@ input {
 	border-bottom: 1px solid rgb(212, 219, 226);
 	-webkit-box-pack: justify;
 	justify-content: space-between;
-	margin: 0 58px;
+	margin: auto;
+	width: 1300px;
+	padding: 0 50px;
 }
 
 .title {
@@ -567,12 +578,21 @@ option {
 	width: 1300px;
 }
 
+.mainContainer2 {
+  margin: 0 auto;
+  width: 1300px;
+}
+
 .spaceList {
-	display: flex;
-	grid-gap: 27px;
-	gap: 27px;
-	flex-wrap: wrap;
 	padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 70px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  gap: 20px;
+  grid-template-columns: repeat(4, minmax(0px, 25%));
+  margin: 30px 0;
 }
 
 .studyOpen {
