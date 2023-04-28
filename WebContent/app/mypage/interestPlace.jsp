@@ -32,7 +32,7 @@
 										alt="스터디 카페" class="space-img" />
 
 									<div class="cancel-btn">
-										<i class="fas fa-times"></i>
+										<i class="fas fa-times" data-studyCafeNumber="${likeCafe.getStudyCafeNumber()}"></i>
 									</div>
 								</div>
 						</a>

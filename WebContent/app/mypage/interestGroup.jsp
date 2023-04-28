@@ -30,7 +30,7 @@
 							<span class="study-item-open">
 								<div class="cancel-btn">
 									<i class="fas fa-times"
-										data-studyGroupNumber="${myLeaderGroup.getStudyGroupNumber()}"></i>
+										data-studyGroupNumber="${myInterestGroup.getStudyGroupNumber()}"></i>
 								</div>
 								<li >
 									<div class="study-item-badge">
