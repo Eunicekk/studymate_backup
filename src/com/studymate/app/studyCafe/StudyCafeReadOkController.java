@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.studymate.app.Execute;
 import com.studymate.app.member.dto.MemberDTO;
@@ -22,7 +23,16 @@ public class StudyCafeReadOkController implements Execute {
 		StudyCafeDAO studyCafeDAO = new StudyCafeDAO();
 		StudyCafeVO studyCafeVO = studyCafeDAO.select(studyCafeNumber);
 		List<StudyCafeFileDTO> files = new StudyCafeFileDAO().select(studyCafeNumber);
-		MemberDTO memberDTO = studyCafeDAO.reservationInfo(Integer.valueOf("memberNumber"));
+		MemberDTO memberDTO = new MemberDTO();
+		
+		HttpSession session = req.getSession();
+	    Integer memberNumber = (Integer) session.getAttribute("memberNumber");
+	    if(memberNumber == null) {
+	       memberNumber = 0;
+	       memberDTO = studyCafeDAO.reservationInfo(memberNumber);
+	    }else {
+	       memberDTO = studyCafeDAO.reservationInfo(memberNumber);         
+	    }
 		
 		System.out.println(memberDTO);
 		
