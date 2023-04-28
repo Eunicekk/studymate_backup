@@ -211,6 +211,7 @@ $(".registerOkButton").on("click", function() {
 
 function insertAjax(studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
 	, studyGroupEndDate, studyGroupTitle, studyGroupcontent) {
+		console.log("++++++++++++++++++++++++++++++++++")
 	if (studyGroupField == "모집분야") {
 		alert("모집 분야를 선택해주세요 !");
 	} else if (studyGroupCapacity == "희망인원") {
@@ -240,6 +241,8 @@ function insertAjax(studyGroupField, studyGroupCapacity, studyGroupOnline, study
 		studyGroupTitle: studyGroupTitle,
 		studyGroupcontent: studyGroupcontent
 	};
+	
+	console.log("==========================="+ data.studyGroupOnline);
 
 	$.ajax({
 		url: '/studyGroup/studyGroupWriteOk.sg',
@@ -302,14 +305,14 @@ $(".RegisterButton").on("click", function() {
 
 	//	멤버넘버. 
 
-	insertAjax(studyGroupNumber, studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
+	updateAjax(studyGroupNumber, studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
 		, studyGroupEndDate, studyGroupTitle, studyGroupcontent);
 
 });
 
 
 
-function insertAjax(studyGroupNumber, studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
+function updateAjax(studyGroupNumber, studyGroupField, studyGroupCapacity, studyGroupOnline, studyGroupDuration, studyGroupContact, studyGroupContactAddress
 	, studyGroupEndDate, studyGroupTitle, studyGroupcontent) {
 	if (studyGroupField == "모집분야") {
 		alert("모집 분야를 선택해주세요 !");
@@ -341,12 +344,12 @@ function insertAjax(studyGroupNumber, studyGroupField, studyGroupCapacity, study
 	};
 
 	$.ajax({
-		url: '/studyGroup/studyGroupWriteOk.sg',
+		url: '/studyGroup/studyGroupUpdateOk.sg',
 		type: 'get',
 		data: data,
 		error: function() {
-			alert("통신실패!!!!")
 		}, success: function() {
+			alert("통신실패!!!sadfsd!")
 			window.location.href = "/studyGroup/studyGroupMainOk.sg";
 		}
 	})

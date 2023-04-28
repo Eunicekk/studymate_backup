@@ -51,7 +51,7 @@
       
       
       
-      
+    <!--   
       
       <ul>
       <li onclick="naverLogout(); return false;">
@@ -59,7 +59,7 @@
           <span>네이버 로그아웃</span>
       </a>
 	</li>
-      </ul> 
+      </ul>  -->
       
       
       <!-- 네이버 api script -->
