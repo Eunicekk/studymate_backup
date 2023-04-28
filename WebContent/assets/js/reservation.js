@@ -249,17 +249,18 @@ nonClick.forEach((e) => {
 
 let scrollY = window.scrollY;
 console.log(scrollY);
+console.log($(".TapContent").offset().top);
 
 $(".blurTab").on("click", function() {
-	window.scrollTo(0, 775);
+	window.scrollTo(0, $(".TapContent").offset().top-60);
 });
 
 $(".review").on("click", function() {
-	window.scrollTo(0, 1882);
+	window.scrollTo(0, $(".ReplyContent").offset().top-120);
 });
 
 $(".caution").on("click", function() {
-	window.scrollTo(0, 2320);
+	window.scrollTo(0, $(".NoticeContent").offset().top-160);
 });
 
 var mapContainer = document.getElementById("map"), // 지도를 표시할 div
@@ -599,14 +600,21 @@ function requestPay() {
 	});
 }
 
-$('.BuyContainer').on('click', function(){
-	reservationStart = $('.cal').text() + " " + $('.timeText').text();
-	reservationEnd = $('.cal').text() + " " + $('.endText').text();
+if(memberNumber != 0){
+	$('.BuyContainer').on('click', function(){
+		reservationStart = $('.cal').text() + " " + $('.timeText').text();
+		reservationEnd = $('.cal').text() + " " + $('.endText').text();
+		
+		console.log("갸아아악" + reservationStart);
+		console.log("갸아아악" + reservationEnd);
+		console.log("갸아아악" + reservationCapacity);
+		console.log("갸아아악" + realCafePrice);
 	
-	console.log("갸아아악" + reservationStart);
-	console.log("갸아아악" + reservationEnd);
-	console.log("갸아아악" + reservationCapacity);
-	console.log("갸아아악" + realCafePrice);
-
-	requestPay();
-});
+		requestPay();
+	});
+}else{
+	$('.BuyContainer').on('click',function(){
+		alert("로그인 후 이용이 가능합니다.");
+		window.location.href = "http://localhost:8085/member/login.me";
+	});
+}

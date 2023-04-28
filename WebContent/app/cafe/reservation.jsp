@@ -299,9 +299,9 @@
         <section class="TabPanel">
           <ul class="TabPanelList">
             <!-- 클릭 했을때 스크롤 이동, 버튼 색변환 -->
-            <li class="blurTab">상세설명</li>
-            <li class="TabPanelItem review">후기</li>
-            <li class="TabPanelItem caution">주의사항</li>
+            	<li class="blurTab">상세설명</li>
+            	<li class="TabPanelItem review">후기</li>
+            	<li class="TabPanelItem caution">주의사항</li>
           </ul>
         </section>
         <!-- 텝으로 배너 이동 -->
@@ -309,7 +309,7 @@
         <!-- 위치 상세설명 -->
         <article class="TapContent">
           <section class="description">
-            <h3>소개 및 활용 팁</h3>
+            	<h3>소개 및 활용 팁</h3>
             <p>
             	<c:out value="${studyCafe.getStudyCafeContent() }" />
             </p>
