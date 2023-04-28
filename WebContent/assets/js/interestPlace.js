@@ -68,12 +68,12 @@ $('#paging').on('click', ".next", function() {
 }
 );
 
-$('.fas').on('click', function() {
+$('.cancel-btn').on('click', function() {
 	if (confirm("삭제 하시겠습니까?")) {
     var studyCafeNumber = $(this).data('studycafenumber'); // 클릭한 예약의 아이디를 가져옵니다.
     console.log(studyCafeNumber);
     $.ajax({
-        url: '/mypage/MyPageInterestGroupDeleteOk.my', // 예약 삭제 처리를 담당하는 서버의 URL입니다.
+        url: '/mypage/MyPageInterestPlaceDeleteOk.my', // 예약 삭제 처리를 담당하는 서버의 URL입니다.
         type: 'POST', // 예약 삭제는 POST 방식으로 처리합니다.
         data: { // 삭제할 예약의 아이디를 전달합니다.
             studyCafeNumber: studyCafeNumber
