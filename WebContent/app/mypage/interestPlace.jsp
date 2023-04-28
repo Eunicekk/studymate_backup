@@ -26,7 +26,7 @@
 					<c:forEach var="likeCafe" items="${likeCafe}">
 
 						<li class="first-section"><span class="cancel-btn"
-							data-studyCafeNumber="${likeCafe.getStudyCafeNumber()}"> X</span>
+							data-studyCafeNumber="${likeCafe.getStudyCafeNumber()}" aria-hidden="true"> X</span>
 							<a
 							href="${pageContext.request.contextPath}/cafe/cafeReadOk.sc?studyCafeNumber=${likeCafe.getStudyCafeNumber()}">
 								<div class="SpaceItemstyle">

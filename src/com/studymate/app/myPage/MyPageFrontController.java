@@ -41,6 +41,9 @@ public class MyPageFrontController extends HttpServlet {
 		case "/mypage/MyPageInterestPlaceOk.my":
 			new MyPageInterestPlaceOkController().execute(req, resp);
 			break;
+		case "/mypage/MyPageInterestPlaceDeleteOk.my":
+			new MyPageInterestPlaceDeleteOkController().execute(req, resp);
+			break;
 		case "/mypage/MyPageReserveOk.my":
 			new MyPageReserveOkController().execute(req, resp);
 			break;

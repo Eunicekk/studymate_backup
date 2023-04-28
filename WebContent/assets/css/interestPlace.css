@@ -207,7 +207,7 @@
     color: #888;
 }
 
-.cancel-btn :hover  {
+.cancel-btn:hover  {
 	color: #f00;
 }
 
