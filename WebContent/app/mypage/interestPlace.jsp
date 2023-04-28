@@ -24,18 +24,21 @@
 			<c:choose>
 				<c:when test="${not empty likeCafe}">
 					<c:forEach var="likeCafe" items="${likeCafe}">
-						<li class="first-section"><a
+
+						<li class="first-section"><span class="cancel-btn"
+							data-studyCafeNumber="${likeCafe.getStudyCafeNumber()}" aria-hidden="true"> X</span>
+							<a
 							href="${pageContext.request.contextPath}/cafe/cafeReadOk.sc?studyCafeNumber=${likeCafe.getStudyCafeNumber()}">
 								<div class="SpaceItemstyle">
+
 									<img
 										src="${pageContext.request.contextPath}/upload/${likeCafe.getCafeFileSystemName()}"
 										alt="스터디 카페" class="space-img" />
 
-									<div class="cancel-btn">
-										<i class="fas fa-times"></i>
-									</div>
+
 								</div>
 						</a>
+
 							<div class="SpaceItemstyle-box">
 								<div class="Space-container">
 									<div class="Space-host-name"></div>

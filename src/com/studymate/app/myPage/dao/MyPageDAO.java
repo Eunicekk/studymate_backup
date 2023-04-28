@@ -47,6 +47,10 @@ public class MyPageDAO {
 	public int likeCafeTotal(int memberNumber) {
 		return sqlSession.selectOne("myPage.likeCafeTotal", memberNumber);
 	}
+	
+	public void likeCafeDelete(int studyCafeNumber) {
+		sqlSession.delete("myPage.likeCafeDelete", studyCafeNumber);
+	}
 
 	public List<MyReserveVO> myReservation(Map<String, Integer> pageMap) {
 		return sqlSession.selectList("myPage.myReservation", pageMap);

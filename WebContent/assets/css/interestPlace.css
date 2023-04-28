@@ -1,253 +1,240 @@
-
 @charset "UTF-8";
 
 
-
-
-
-
-.footer {
-  width: all;
-  height: 100px;
-  /* border-top: 1px solid rgb(240, 240, 240); */
-}
-
 .spaceList {
-  display: grid;
-  margin-top: 24.5px;
-  padding-bottom: 70px;
-  border-bottom: 1px solid rgb(240, 240, 240);
-  gap: 44px;
-  grid-template-columns: repeat(3, minmax(0px, 266px));
-  /* cursor: pointer; */
+	display: grid;
+	margin-top: 24.5px;
+	padding-bottom: 70px;
+	border-bottom: 1px solid rgb(240, 240, 240);
+	gap: 44px;
+	grid-template-columns: repeat(3, minmax(0px, 266px));
+	/* cursor: pointer; */
 }
 
 .SpaceItemstyle {
-  height: 0px;
-  padding-bottom: 75%;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
+	height: 0px;
+	padding-bottom: 75%;
+	position: relative;
+	border-radius: 4px;
+	overflow: hidden;
 }
 
 .img {
-  vertical-align: top;
+	vertical-align: top;
 }
 
 .space-img {
-  width: 100% !important;
-  height: 100% !important;
-  position: absolute !important;
-  inset: 0px !important;
-  object-fit: cover !important;
+	width: 100% !important;
+	height: 100% !important;
+	position: absolute !important;
+	inset: 0px !important;
+	object-fit: cover !important;
 }
 
 .favorite {
-  width: 54px;
-  height: 54px;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background-color: rgba(255, 255, 255, 0);
-  background-image: url("https://shareit.kr/image/btn-large-heart-filled-white.svg");
-  background-size: 100%;
-  /* z-index: 1010; */
-  cursor: pointer;
-  border: 0;
+	width: 54px;
+	height: 54px;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	background-color: rgba(255, 255, 255, 0);
+	background-image:
+		url("https://shareit.kr/image/btn-large-heart-filled-white.svg");
+	background-size: 100%;
+	/* z-index: 1010; */
+	cursor: pointer;
+	border: 0;
 }
 
 .SpaceItemstyle-box {
-  position: relative;
+	position: relative;
 }
 
 .Space-container {
-  /* margin-top: 5px; */
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  align-items: center;
+	/* margin-top: 5px; */
+	display: flex;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	align-items: center;
 }
 
 .Space-host-name {
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 12px;
-  color: #8a8a8a;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 12px;
+	color: #8a8a8a;
 }
 
 .Space-host-box {
-  min-width: fit-content;
+	min-width: fit-content;
 }
 
 .Space-itemstyle {
-  display: inline-flex;
-  color: rgb(138, 138, 138);
-  font-size: 12px;
-  /* font-family: Regular, sans-serif; */
-  letter-spacing: -0.6px;
-  line-height: 17px;
-  -webkit-box-align: center;
-  align-items: center;
+	display: inline-flex;
+	color: rgb(138, 138, 138);
+	font-size: 12px;
+	/* font-family: Regular, sans-serif; */
+	letter-spacing: -0.6px;
+	line-height: 17px;
+	-webkit-box-align: center;
+	align-items: center;
 }
 
 .Space-name {
-  margin-top: -15px;
-  display: flex;
-  -webkit-box-pack: start;
-  justify-content: flex-start;
-  -webkit-box-align: center;
-  align-items: center;
+	margin-top: -15px;
+	display: flex;
+	-webkit-box-pack: start;
+	justify-content: flex-start;
+	-webkit-box-align: center;
+	align-items: center;
 }
 
 .Space-name-box {
-  width: fit-content;
-  height: fit-content;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	width: fit-content;
+	height: fit-content;
+	max-width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .name {
-  margin-top: 1px;
-  /* -webkit-box-align: center; */
-  align-items: center;
-  letter-spacing: -0.35px;
-  color: rgb(36, 36, 36);
-  font-size: 15px;
-  /* line-height: 21px; */
-  /* white-space: nowrap; */
-  /* overflow: hidden; */
-  text-overflow: ellipsis;
+	margin-top: 1px;
+	/* -webkit-box-align: center; */
+	align-items: center;
+	letter-spacing: -0.35px;
+	color: rgb(36, 36, 36);
+	font-size: 15px;
+	/* line-height: 21px; */
+	/* white-space: nowrap; */
+	/* overflow: hidden; */
+	text-overflow: ellipsis;
 }
 
 .Space-address {
-  margin-top: 3px;
-  color: rgb(163, 163, 163);
-  font-size: 12px;
-  letter-spacing: -0.6px;
-  line-height: 17px;
+	margin-top: 3px;
+	color: rgb(163, 163, 163);
+	font-size: 12px;
+	letter-spacing: -0.6px;
+	line-height: 17px;
 }
 
 .Space-price {
-  display: inline-flex;
-  margin-top: 5px;
-  color: rgb(87, 87, 87);
-  font-size: 13px;
-  letter-spacing: -0.39px;
-  -webkit-box-align: center;
-  align-items: center;
+	display: inline-flex;
+	margin-top: 5px;
+	color: rgb(87, 87, 87);
+	font-size: 13px;
+	letter-spacing: -0.39px;
+	-webkit-box-align: center;
+	align-items: center;
 }
+
 .Space-price-box {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .Space-price-discount {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  flex-wrap: wrap;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 29px;
-  letter-spacing: -0.06em;
-  color: rgb(36, 36, 36);
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 29px;
+	letter-spacing: -0.06em;
+	color: rgb(36, 36, 36);
 }
 
 .Price-discount {
-  margin: 0px 7px 0px 2px;
-  font-size: 13px;
-  line-height: 29px;
-  letter-spacing: -0.01em;
-  color: rgb(87, 87, 87);
-  white-space: nowrap;
+	margin: 0px 7px 0px 2px;
+	font-size: 13px;
+	line-height: 29px;
+	letter-spacing: -0.01em;
+	color: rgb(87, 87, 87);
+	white-space: nowrap;
 }
 
 .min-time {
-  height: fit-content;
-  -webkit-box-align: center;
-  align-items: center;
-  background: rgb(240, 240, 240);
-  border-radius: 2px;
-  padding: 1px 4px;
-  white-space: nowrap;
-  /* font-family: Medium, sans-serif !important; */
-  font-size: 12px !important;
-  line-height: 18px !important;
-  color: rgb(0, 92, 184) !important;
+	height: fit-content;
+	-webkit-box-align: center;
+	align-items: center;
+	background: rgb(240, 240, 240);
+	border-radius: 2px;
+	padding: 1px 4px;
+	white-space: nowrap;
+	/* font-family: Medium, sans-serif !important; */
+	font-size: 12px !important;
+	line-height: 18px !important;
+	color: rgb(0, 92, 184) !important;
 }
 
 .Info-content {
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 20px;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  color: rgb(36, 36, 36);
-  padding-top: 6px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	color: rgb(36, 36, 36);
+	padding-top: 6px;
 }
 
 .Info-content-star {
-  margin-right: 2px;
-  width: 14px !important;
+	margin-right: 2px;
+	width: 14px !important;
 }
 
 .Info-content-review {
-  font-size: 13px;
-  color: rgb(138, 138, 138);
-  margin-left: 3px;
-  cursor: pointer;
+	font-size: 13px;
+	color: rgb(138, 138, 138);
+	margin-left: 3px;
+	cursor: pointer;
 }
 
 .first-section {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .cancel-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  cursor: pointer;
+	font-weight: bold;
+    cursor: pointer;
+    font-size: 22px;
+    margin-left: 245px;
+    color: #888;
 }
 
-.cancel-btn i {
-  color: #888;
-}
-
-.cancel-btn:hover i {
-  color: #f00;
+.cancel-btn:hover  {
+	color: #f00;
 }
 
 #paging {
-    margin: 50px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	margin: 50px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #paging>a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 5px;
-    border-radius: 100%;
-    height: 32px;
-    width: 32px;
-    font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 5px;
+	border-radius: 100%;
+	height: 32px;
+	width: 32px;
+	font-size: 14px;
 }
 
 #paging>a:hover {
-    background-color: rgb(227, 227, 227);
+	background-color: rgb(227, 227, 227);
 }
 
-
-.active{
+.active {
 	color: #4F4D8E;
 	font-weight: bold;
 }
+
