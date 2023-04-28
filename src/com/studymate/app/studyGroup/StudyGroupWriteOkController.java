@@ -60,7 +60,9 @@ public class StudyGroupWriteOkController implements Execute {
 	    
 	
 	    
+		System.out.println("==========================");
 	    System.out.println(studyGroupDTO);
+	    System.out.println("==========================");
 	    studyGroupDAO.insert(studyGroupDTO);
 	    
 	    

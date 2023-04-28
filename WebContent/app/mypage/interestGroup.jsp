@@ -29,8 +29,8 @@
 						<ul class="study-list">
 							<span class="study-item-open">
 								<div class="cancel-btn">
-									<i class="fas fa-times"
-										data-studyGroupNumber="${myLeaderGroup.getStudyGroupNumber()}"></i>
+									<li class="fas fa-times"
+										data-studyGroupNumber="${myLeaderGroup.getStudyGroupNumber()}"></>
 								</div>
 								<li >
 									<div class="study-item-badge">
