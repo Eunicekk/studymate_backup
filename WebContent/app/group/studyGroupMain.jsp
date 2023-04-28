@@ -204,8 +204,8 @@
 										<h1 class="groupTitle">${group.getStudyGroupTitle()}</h1>
 										<ul class="positionList">
 											<!-- 분야 넣어주기 -->
-											<li class="positionItem">백엔드</li>
-											<li class="positionItem">데이터베이스</li>
+											<li class="positionItem"></li>
+											<li class="positionItem"></li>
 										</ul>
 
 										<div class="studyBorder"></div>
@@ -253,8 +253,11 @@
 														value="${group.getMemberNumber()}">
 													<button class="groupLikeButton"
 														data-study-group-number="${group.getStudyGroupNumber()}">
+														
+														
+														
 														<img alt=""
-															src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+															src= "https://cdn-icons-png.flaticon.com/512/1076/1076984.png"
 															class="groupLikeImg">
 														<p>${group.getStudyGroupLikeCount()}</p>
 													</button>
@@ -807,13 +810,15 @@
 			</c:otherwise>
 		</c:choose>
 	</footer>
-
+	
+	<input class="memberNumber" type="hidden" value="${sessionScope.memberNumber}">
 	<script src="https://code.jquery.com/jquery-3.6.3.js"
 		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 		crossorigin="anonymous"></script>
 	<script>
-		let memberNumber = "${sessionScope.memberNumber}";
-		;
+		/* let memberNumber = "${sessionScope.memberNumber}"; */
+		let memberNumber = $(".memberNumber").val();
+		console.log(memberNumber);
 	</script>
 	<script
 		src="${pageContext.request.contextPath}/assets/js/study_group_main.js"></script>

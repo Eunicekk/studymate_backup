@@ -406,7 +406,8 @@ console.log($(target).closest('.groupLikeItems').find('p'));
 		url: '/memberLikeStudyGroup/memberLikeStudyGroupUpdateOk.mlsg',
 		type: 'get',
 		data: {
-			studyGroupNumber: studyGroupNumber
+			studyGroupNumber: studyGroupNumber,
+			memberNumber : memberNumber
 		},
 		dataType : 'text',
 		success: function(resp) {
@@ -434,7 +435,8 @@ function updateGroupLikeCount (studyGroupNumber, target) {
 	  url: '/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg',
 	  type: "POST",
 	  data: {
-		 studyGroupNumber: studyGroupNumber
+		 studyGroupNumber: studyGroupNumber,
+		memberNumber : memberNumber
 	  },
 	  success : function (count) {
 		 console.log($(target).closest('.groupLikeItems').find('p'));
