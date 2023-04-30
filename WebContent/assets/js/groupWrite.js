@@ -214,21 +214,29 @@ function insertAjax(studyGroupField, studyGroupCapacity, studyGroupOnline, study
 		console.log("++++++++++++++++++++++++++++++++++")
 	if (studyGroupField == "모집분야") {
 		alert("모집 분야를 선택해주세요 !");
+		return;
 	} else if (studyGroupCapacity == "희망인원") {
 		alert("희망인원 선택해주세요 !");
+		return;
 	} else if (studyGroupOnline == "온라인/오프라인") {
 		alert("진행 방식을 선택해주세요 !");
+		return;
 	} else if (studyGroupDuration == "스터디 기간") {
 		alert("스터디 기간을 선택해주세요 !");
+		return;
 	} else if (studyGroupContact == "SNS") {
 		alert("연락 방법을 선택해주세요 !");
+		return;
 	} else if (studyGroupEndDate == "모집 마감날짜를 선택하세요") {
 		alert("모집 마감날짜를 선택해주세요 !");
+		return;
 	} else if (studyGroupTitle == null) {
 		alert("제목을 입력해주세요 !");
+		return;
 	} else if (studyGroupcontent == null) {
 		alert("스터디 그룹 홍보 게시글을 입력하지 않으셨어요 !");
-	}
+		return;
+	} 
 
 	let data = {
 		studyGroupField: studyGroupField,
@@ -316,18 +324,25 @@ function updateAjax(studyGroupNumber, studyGroupField, studyGroupCapacity, study
 	, studyGroupEndDate, studyGroupTitle, studyGroupcontent) {
 	if (studyGroupField == "모집분야") {
 		alert("모집 분야를 선택해주세요 !");
+		return;
 	} else if (studyGroupCapacity == "희망인원") {
 		alert("희망인원 선택해주세요 !");
+		return;
 	} else if (studyGroupOnline == "온라인/오프라인") {
 		alert("진행 방식을 선택해주세요 !");
+		return;
 	} else if (studyGroupDuration == "스터디 기간") {
 		alert("스터디 기간을 선택해주세요 !");
+		return;
 	} else if (studyGroupContact == "SNS") {
 		alert("연락 방법을 선택해주세요 !");
+		return;
 	} else if (studyGroupEndDate == "모집 마감날짜를 선택하세요") {
 		alert("모집 마감날짜를 선택해주세요 !");
+		return;
 	} else if (studyGroupTitle == null) {
 		alert("제목을 입력해주세요 !");
+		return;
 	} 
 
 	let data = {
@@ -349,7 +364,6 @@ function updateAjax(studyGroupNumber, studyGroupField, studyGroupCapacity, study
 		data: data,
 		error: function() {
 		}, success: function() {
-			alert("통신실패!!!sadfsd!")
 			window.location.href = "/studyGroup/studyGroupMainOk.sg";
 		}
 	})

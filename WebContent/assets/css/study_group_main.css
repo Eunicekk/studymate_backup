@@ -709,12 +709,9 @@ option {
 	grid-gap: 5px;
 	gap: 5px;
 	height: 22px;
-	background: #f2f4f8;
-	border-radius: 15px;
 	font-weight: 700;
 	font-size: 13px;
 	line-height: 16px;
-	color: #3e86f5;
 }
 
 .studyBorder {

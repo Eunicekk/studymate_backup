@@ -527,7 +527,7 @@
 					<!-- 글등록 취소 -->
 					<section class="WriteBtn">
 						<button class="cancelButton"  type= "button">취소</button>
-						<button class="RegisterButton" type="button" >수정 완료</button>
+						<button class="RegisterButton" type="button" >수정</button>
 					</section>
 				</section>
 			</form>

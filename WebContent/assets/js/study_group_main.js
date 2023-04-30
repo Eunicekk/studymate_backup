@@ -390,15 +390,39 @@ $('.pageNumber').on('click', ".next", function(){
 */
 
 // 좋아요 기능 
-//$('.groupLikeImg').on('click', function(event) {
+
+$(document).ready(groupLike);
+
+
+function groupLike () {
+	console.log("==이 함수가 작동하는지 ");
+	$.ajax({
+		url:  "/memberLikeStudyGroup/memberLikeCheckOk.mlsg",
+		type: "get",
+		data: {
+			memberNumber: memberNumber
+		},
+		dataType: "json",
+		success: function(memberGroupLike){
+			var arr = memberGroupLike;
+			for(var j=0; j<arr.length; j++){
+				console.log(arr[j]);
+				$('.groupLikeItems').find('input[value='+ arr[j] +']').closest('a').find('.groupLikeButton').find('.groupLikeImg').attr('src', "https://cdn-icons-png.flaticon.com/512/1076/1076984.png");
+			}		
+		}, 
+		error: function() {
+			alert("좋아요 안뜨네요");
+		} 
+	})
+}
+
+
 $('.spaceList').on('click', '.groupLikeImg', function(event) {
 	event.preventDefault();
 	let target = this;
 	let studyGroupNumber = $(this).closest(".groupLikeItems").find('.groupLikeButton').data('study-group-number');
 	console.log(target);
 
-	/*	let memberNumber = $memberNumber ; 
-		console.log(memberNumber);*/
 console.log('===============');
 console.log($(target).closest('.groupLikeItems').find('p'));
 
@@ -406,7 +430,8 @@ console.log($(target).closest('.groupLikeItems').find('p'));
 		url: '/memberLikeStudyGroup/memberLikeStudyGroupUpdateOk.mlsg',
 		type: 'get',
 		data: {
-			studyGroupNumber: studyGroupNumber
+			studyGroupNumber: studyGroupNumber,
+			memberNumber : memberNumber
 		},
 		dataType : 'text',
 		success: function(resp) {
@@ -417,7 +442,7 @@ console.log($(target).closest('.groupLikeItems').find('p'));
 				$(target).attr('src', "https://cdn-icons-png.flaticon.com/512/1076/1076984.png");
 			} else {
 				$(target).attr('src', "https://cdn-icons-png.flaticon.com/512/1077/1077035.png");
-				/*$(target).css('opacity', '0.2');*/
+				
 			}
 
 		},
@@ -434,7 +459,8 @@ function updateGroupLikeCount (studyGroupNumber, target) {
 	  url: '/memberLikeStudyGroup/memberLikeStudyGroupOk.mlsg',
 	  type: "POST",
 	  data: {
-		 studyGroupNumber: studyGroupNumber
+		 studyGroupNumber: studyGroupNumber,
+		memberNumber : memberNumber
 	  },
 	  success : function (count) {
 		 console.log($(target).closest('.groupLikeItems').find('p'));

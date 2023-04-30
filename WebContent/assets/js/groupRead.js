@@ -66,7 +66,8 @@ function commentAjax() {
 	$.ajax({
 		url: '/studyGroupComment/studyGroupCommentOk.sgc',
 		type: 'get',
-		data: { studyGroupNumber: studyGroupNumber },
+		data: { studyGroupNumber: studyGroupNumber,
+				memberNumber : memberNumber },
 		dataType: "json",
 		success: showComment
 	});
@@ -79,11 +80,8 @@ function showComment(comments) {
               <li class="commentItem-commentContainer">
                 <section class="commentItem-CommentHeader">
                   <div class="commentItem-writerWrapper">
-                    <img
-                      class="commentItem-writerImg"
-                      src="https://mblogthumb-phinf.pstatic.net/20120713_47/wnfhd6545_1342157203202y8kjd_JPEG/%C4%C4%C7%BB%C5%CD1.jpg?type=w2"
-                      alt=""
-                    />
+                   <img class="commentItem-writerImg"
+					src="https://img.shareit.kr:13443/data/character/1.png" alt="" />
                     <div class="commentItem-commentInfo">
                       <div class="commentItem-title">
                         <div class="commentItem-userNickname">
