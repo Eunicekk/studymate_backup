@@ -1,5 +1,6 @@
 package com.studymate.app.memberLikeStudyGroup.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -33,6 +34,11 @@ public class MemberLikeStudyGroupDAO {
 //	좋아요 클릭 후 좋아요 수 재업로드 
 	public int likeCnt( int studyGroupNumber) {
 		return sqlSession.selectOne("memberLikeStudyGroup.likeCnt", studyGroupNumber);
+	}
+	
+	// 멤버 넘버 비교해서 내가 좋아요한 게시글 좋아요 띄우기. 
+	public List<Integer> haveLike(int memberNumber) {
+		return sqlSession.selectList("memberLikeStudyGroup.haveLike",memberNumber );
 	}
 
 }

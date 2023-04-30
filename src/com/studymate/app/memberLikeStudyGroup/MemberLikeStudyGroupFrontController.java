@@ -24,6 +24,10 @@ public class MemberLikeStudyGroupFrontController extends HttpServlet{
 		String target = req.getRequestURI().substring(req.getContextPath().length());
 		System.out.println(target);
 		switch(target) {
+		case "/memberLikeStudyGroup/memberLikeCheckOk.mlsg":
+			System.out.println("내가한 좋아요 띄우기");
+			new MemberLikeStudyGroupCheckOkController().execute(req,resp);
+			break;
 		case "/memberLikeStudyGroup/memberLikeStudyGroupUpdateOk.mlsg":
 			System.out.println("좋아요 여부 확인하기");
 			new MemberLikeStudyGroupUpdateOkController().execute(req,resp);

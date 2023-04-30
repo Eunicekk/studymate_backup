@@ -248,16 +248,14 @@
 
 												<!-- 좋아요 -->
 												<div class="groupLikeItems">
-													<input type="hidden" class="like-study-group-number">
-													<input type="hidden" class="like-member-number"
-														value="${group.getMemberNumber()}">
+													<input type="hidden" class="like-study-group-number"
+													value="${group.getStudyGroupNumber()}">
+													<%-- <input type="hidden" class="like-member-number"
+														value="${group.getMemberNumber()}"> --%>
 													<button class="groupLikeButton"
 														data-study-group-number="${group.getStudyGroupNumber()}">
-														
-														
-														
 														<img alt=""
-															src= "https://cdn-icons-png.flaticon.com/512/1076/1076984.png"
+															src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
 															class="groupLikeImg">
 														<p>${group.getStudyGroupLikeCount()}</p>
 													</button>
