@@ -18,7 +18,7 @@ public class MyPageInterestGroupDeleteOkController implements Execute {
 		int studyGroupNumber = Integer.valueOf(req.getParameter("studyGroupNumber"));
 		System.out.println("=" + studyGroupNumber);
 
-		myPageDAO.leaderGroupDelete(studyGroupNumber);
+		myPageDAO.interestGroupDelete(studyGroupNumber);
 	}
 
 }
