@@ -22,6 +22,11 @@
 	select count(study_group_number) from tbl_member_like_study_group 
 	where study_group_number = #{studyGroupNumber}
 	</select>
+	
+	<select id="haveLike" parameterType="_int" resultType="_int">
+	select study_group_number from tbl_member_like_study_group 
+	where member_number = #{memberNumber} 
+	</select>
 
 	
 </mapper>

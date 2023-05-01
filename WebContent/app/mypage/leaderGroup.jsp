@@ -52,7 +52,7 @@
 									<h1 class="study-title">
 										<a href="${pageContext.request.contextPath}/studyGroup/studyGroupReadOk.sg?studyGroupNumber=${myLeaderGroup.getStudyGroupNumber()}">${myLeaderGroup.getStudyGroupTitle() }</a></h1>
 									<ul class="study-item-position-list">
-										<li class="study-item-position">${myLeaderGroup.getStudyGroupContent() }</li>
+										<%-- <li class="study-item-position">${myLeaderGroup.getStudyGroupContent() }</li> --%>
 										<!-- <li class="study-item-position">디자이너</li> -->
 									</ul>
 									<div class="study-item-border"></div>
