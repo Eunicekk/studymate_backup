@@ -376,7 +376,8 @@
 }
 
 .cancelButton,
-.RegisterButton {
+.RegisterButton,
+.registerOkButton {
   cursor: pointer;
   outline: none;
   border: none;
@@ -393,7 +394,8 @@
   margin-right: 1rem;
 }
 
-.RegisterButton {
+.RegisterButton,
+.registerOkButton {
   font-weight: 700;
   background-color: #5a5597;
   color: #fff;

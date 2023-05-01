@@ -15,7 +15,7 @@
 	href="${pageContext.request.contextPath}/assets/css/summernote/summernote-lite.css" />
 </head>
 <body>
-		 <!-- 헤더 -->
+ <!-- 헤더 -->
     <header>
 		<c:choose>
 			<c:when test="${empty sessionScope.memberNickname}">

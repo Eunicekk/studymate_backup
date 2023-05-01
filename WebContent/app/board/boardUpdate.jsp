@@ -105,7 +105,7 @@
 				<!-- </form> -->
 				<!-- 게시판리스트로 돌아가기 ?? -->
 				<!-- <form action="" method="post"> -->
-				<button type="submit" class="writeButton-register" data-boardNumber="${board.getBoardNumber()}">수정 완료</button>
+				<button type="submit" class="writeButton-register" data-boardNumber="${board.getBoardNumber()}">수정</button>
 				<!-- </form> -->
 			</section>
 		</form>
