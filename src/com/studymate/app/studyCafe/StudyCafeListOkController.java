@@ -65,23 +65,58 @@ public class StudyCafeListOkController implements Execute {
 		System.out.println(req.getParameter("maxPrice"));
 		
 		System.out.println("갸아아악" + studyCafeFilterVO);
-		cafelist = studyCafeDAO.selectAll(pageMap);
 		
-		 if((order == null || order.equals("new")) && studyCafeName == null) {
-			cafelist = studyCafeDAO.selectAll(pageMap);
-		 }else if(studyCafeName != null) {
-			 cafelist = studyCafeDAO.search(studyCafeName);
-		 }else  if(order.equals("score") && studyCafeName == null) {
-		 	cafelist = studyCafeDAO.arrayByScore(pageMap);
-		 }else if(order.equals("like") && studyCafeName == null) {
-			 cafelist =studyCafeDAO.arrayByLike(pageMap); 
-		 }else if(order.equals("read") && studyCafeName == null) {
-			 cafelist = studyCafeDAO.arrayByRead(pageMap);
-		 }
+		/*
+		 * if((order == null || order.equals("new")) && studyCafeName == null) {
+		 * cafelist = studyCafeDAO.selectAll(pageMap); }else if(studyCafeName != null) {
+		 * cafelist = studyCafeDAO.search(studyCafeName); }else if(order.equals("score")
+		 * && studyCafeName == null) { cafelist = studyCafeDAO.arrayByScore(pageMap);
+		 * }else if(order.equals("like") && studyCafeName == null) { cafelist
+		 * =studyCafeDAO.arrayByLike(pageMap); }else if(order.equals("read") &&
+		 * studyCafeName == null) { cafelist = studyCafeDAO.arrayByRead(pageMap); }else
+		 * if(studyCafeFilterVO != null) { cafelist =
+		 * studyCafeDAO.filter(studyCafeFilterVO); }
+		 */
 		 
-		 if(studyCafeFilterVO != null) {
-			 cafelist = studyCafeDAO.filter(studyCafeFilterVO);
-		 }
+		if (order == null) {
+		    if (studyCafeName == null) {
+		        cafelist = studyCafeDAO.selectAll(pageMap);
+		    } else {
+		        cafelist = studyCafeDAO.search(studyCafeName);
+		    }
+		} else if (order.equals("new")) {
+		    if (studyCafeName == null) {
+		        cafelist = studyCafeDAO.selectAll(pageMap);
+		    } else {
+		        cafelist = studyCafeDAO.search(studyCafeName);
+		    }
+		} else if (order.equals("score")) {
+		    if (studyCafeName == null) {
+		        cafelist = studyCafeDAO.arrayByScore(pageMap);
+		    } else {
+		        cafelist = studyCafeDAO.search(studyCafeName);
+		    }
+		} else if (order.equals("like")) {
+		    if (studyCafeName == null) {
+		        cafelist = studyCafeDAO.arrayByLike(pageMap);
+		    } else {
+		        cafelist = studyCafeDAO.search(studyCafeName);
+		    }
+		} else if (order.equals("read")) {
+		    if (studyCafeName == null) {
+		        cafelist = studyCafeDAO.arrayByRead(pageMap);
+		    } else {
+		        cafelist = studyCafeDAO.search(studyCafeName);
+		    }
+		}
+
+		if (studyCafeFilterVO != null &&
+		    (studyCafeFilterVO.getStudyCafeAddress() != null ||
+		    studyCafeFilterVO.getStudyCafeAvailableDate() != null ||
+		    studyCafeFilterVO.getMinPrice() != null ||
+		    studyCafeFilterVO.getMaxPrice() != null)) {
+		    cafelist = studyCafeDAO.filter(studyCafeFilterVO);
+		}
 		 
 		for(int i=1; i<=cafelist.size(); i++) {
 			files = studyCafeFileDAO.select(i);
