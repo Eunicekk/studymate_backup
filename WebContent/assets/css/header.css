@@ -19,8 +19,8 @@
 .header-center{
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	width: 1150px;
+	justify-content: space-between;
+	width: 1200px;
 	margin: 0 auto;
 	position: relative;
 }
@@ -28,7 +28,7 @@
 .logo {
   width: 200px;
   height: 60px;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 .content-cafe, .content-group, .content-board{
