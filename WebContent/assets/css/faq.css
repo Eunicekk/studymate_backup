@@ -38,6 +38,7 @@ img {
     background-color:#9EA0C6 ;
     align-items: center;
     margin-bottom: 135px;
+    padding-top: 50px;
 }
 
 /* 상단 배너 텍스트 2줄 */
@@ -75,12 +76,13 @@ img {
     position: relative;
     padding-bottom: 24.5px;
     border-bottom: 1px solid rgb(212, 219, 226);
-    width: 90%;
+    width: 100%;
 }
 
 .NoticeContent-titleBox>h2 {
     font-size: 24px;
-    letter-spacing: 0.6px;
+    letter-spacing: -2px;
+    font-weight: 600;
 }
 
 .NoticeContent-titleBox::after {
@@ -101,7 +103,7 @@ img {
 /* FAQ 게시판 게시글하나하나 버튼으로돼있음 */
 .NoticeContent-serviceItemButton {
     position: relative;
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     /* 이 두개 뭐지? */
@@ -137,9 +139,10 @@ text-align: left;
 
 
 .serviceItem-titleDate>p:first-child {
-    font-size: 23px;
-    letter-spacing: -0.45px;
+    font-size: 20px;
+    letter-spacing: -0.5px;
     text-align: left;
+    font-weight: 500;
 }
 
 
@@ -180,26 +183,25 @@ text-align: left;
 /* 팝업창 */
 .serviceItem-contentBox {
     display: none;
-    width: 90%;
-    padding: 75.5px 0px;
+    width: 100%;
+    padding: 75.5px 40px;
     border-bottom: 1px solid rgb(212, 219, 226);
     position: relative;
-
+	box-sizing : border-box;
 }
 
 /* 팝업창 */
 .serviceItem-contentBox p {
-    font-size: 19px;
-    line-height: 35px;
+    font-size: 20px;
+    line-height: 28px;
     letter-spacing: -0.5px;
 }
 
 .serviceItem-contentBox h2 {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 35px;
-    letter-spacing: -0.45px;
-    
+    letter-spacing:-0.5px;
 }
 
 
